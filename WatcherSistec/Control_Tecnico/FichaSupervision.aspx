@@ -55,6 +55,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#ContentPlaceHolder1_txtFechaI').datetimepicker();
+        $('#ContentPlaceHolder1_txtFechaS').datetimepicker();
     });
 </script>
 
@@ -77,7 +78,7 @@
         <table class="cab_context" style="width:100%">
             <tr>
                 <td style="width:300px">
-                    FICHA DE SUPERVISION NRO PRUEBA FERNANDO PRUEBA2 :
+                    FICHA DE SUPERVISION NRO :
                 </td>
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel29" runat="server" UpdateMode="Conditional">
@@ -175,9 +176,7 @@
                                         <td>
                                             <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:TextBox ID="txtFechaS" runat="server" ReadOnly="true"></asp:TextBox>
-                                                    <asp:CalendarExtender ID="txtFechaS_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaS">
-                                                    </asp:CalendarExtender>
+                                                    <asp:TextBox ID="txtFechaS" runat="server"></asp:TextBox>                                                    
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </td>

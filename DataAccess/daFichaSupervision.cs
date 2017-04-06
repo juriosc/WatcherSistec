@@ -14,7 +14,7 @@ namespace DataAccess
         public bool InsertarFichaSupervision(SqlConnection con, int ProveedorID, int PersonalID, string Hora_Ingreso, string Hora_Salida, string Obs_Tec, int Estado_Ficha, string Nro_Telefono, string Panel, string Obs_Ficha, out string outID_Ficha)
         {
             bool registro = false;
-            SqlCommand cmd = new SqlCommand("sp_WCT_Registrar_Ficha", con);
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_Supervision", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter param1 = cmd.Parameters.Add("@ProveedorID", SqlDbType.Int);

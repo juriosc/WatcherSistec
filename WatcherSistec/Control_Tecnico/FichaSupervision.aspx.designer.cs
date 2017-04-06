@@ -229,15 +229,6 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtFechaS;
         
         /// <summary>
-        /// txtFechaS_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaS_CalendarExtender;
-        
-        /// <summary>
         /// UpdatePanel30 control.
         /// </summary>
         /// <remarks>
