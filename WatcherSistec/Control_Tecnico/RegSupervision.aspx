@@ -6,7 +6,16 @@
     <style type="text/css">
         .ColumnaOculta {display:none;}
     </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ContentPlaceHolder1_txtFechaDesde').datetimepicker();
+            $('#ContentPlaceHolder1_txtFechaHasta').datetimepicker();
+        });
+</script>
 </asp:Content>
+
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="fondoemergente" class="fondo">&nbsp;</div>
@@ -30,15 +39,11 @@
                             <tr>
                                 <td class="Etiqueta">Desde</td>
                                 <td style="text-align:right">
-                                    <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaIni" runat="server" style="height:16px ;width:80px"></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtFechaIni_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaIni" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                        </Triggers>
+                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:TextBox ID="txtFechaDesde" runat="server" ></asp:TextBox>                                                    
+                                                    
+                                                </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
@@ -50,15 +55,11 @@
                             <tr>
                                 <td class="Etiqueta">Hasta</td>
                                 <td style="text-align:right">
-                                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaFin" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtFechaFin_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaFin" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                        </Triggers>
+                                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:TextBox ID="txtFechaHasta" runat="server" ></asp:TextBox>                                                    
+                                                    
+                                                </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>

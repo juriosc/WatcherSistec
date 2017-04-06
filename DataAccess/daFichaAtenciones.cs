@@ -73,5 +73,91 @@ namespace DataAccess
             }
             return lbeAtenciones;
         }
+
+        public bool InsertarFichaAtencion(SqlConnection con, int ID_Ficha, int ID_Atencion, string CSID, string Usuario, string Fecha_Inicio, string Fecha_Termino, int Estado_Inicio, int Estado_Termino, int b_ALT, int b_BB, int b_FAC, int b_RED, int b_ACL, int b_AA, string Observaciones, int AlarmHistoryID_Inicial, int AlarmHistoryID_Final)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_Atencion", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ID_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@ID_Atencion", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = ID_Atencion;
+
+            SqlParameter param3 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = CSID;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = Usuario;
+
+            SqlParameter param5 = cmd.Parameters.Add("@Fecha_Inicio", SqlDbType.VarChar, 24);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = Fecha_Inicio;
+
+            SqlParameter param6 = cmd.Parameters.Add("@Fecha_Termino", SqlDbType.VarChar, 24);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = Fecha_Termino;
+
+            SqlParameter param7 = cmd.Parameters.Add("@Estado_Inicio", SqlDbType.Int);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = Estado_Inicio;
+
+            SqlParameter param8 = cmd.Parameters.Add("@Estado_Termino", SqlDbType.Int);
+            param8.Direction = ParameterDirection.Input;
+            param8.Value = Estado_Termino;
+
+            SqlParameter param9 = cmd.Parameters.Add("@b_ALT", SqlDbType.Int);
+            param9.Direction = ParameterDirection.Input;
+            param9.Value = b_ALT;
+
+            SqlParameter param10 = cmd.Parameters.Add("@b_BB", SqlDbType.Int);
+            param10.Direction = ParameterDirection.Input;
+            param10.Value = b_BB;
+
+            SqlParameter param11 = cmd.Parameters.Add("@b_FAC", SqlDbType.Int);
+            param11.Direction = ParameterDirection.Input;
+            param11.Value = b_FAC;
+
+            SqlParameter param12 = cmd.Parameters.Add("@b_RED", SqlDbType.Int);
+            param12.Direction = ParameterDirection.Input;
+            param12.Value = b_RED;
+
+            SqlParameter param13 = cmd.Parameters.Add("@b_ACL", SqlDbType.Int);
+            param13.Direction = ParameterDirection.Input;
+            param13.Value = b_ACL;
+
+            SqlParameter param14 = cmd.Parameters.Add("@b_AA", SqlDbType.Int);
+            param14.Direction = ParameterDirection.Input;
+            param14.Value = b_AA;
+
+            SqlParameter param15 = cmd.Parameters.Add("@Observaciones", SqlDbType.VarChar, 8000);
+            param15.Direction = ParameterDirection.Input;
+            param15.Value = Observaciones;
+
+            SqlParameter param16 = cmd.Parameters.Add("@AlarmHistoryID_Inicial", SqlDbType.Int);
+            param16.Direction = ParameterDirection.Input;
+            param16.Value = AlarmHistoryID_Inicial;
+
+            SqlParameter param17 = cmd.Parameters.Add("@AlarmHistoryID_Final", SqlDbType.Int);
+            param17.Direction = ParameterDirection.Input;
+            param17.Value = AlarmHistoryID_Final;
+
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
     }
 }

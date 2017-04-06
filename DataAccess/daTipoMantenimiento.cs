@@ -72,5 +72,30 @@ namespace DataAccess
 
             return lbeMantenimiento;
         }
+
+        public bool InsertarFichaTipoMant(SqlConnection con, int ID_Ficha, int TipoMant_ID)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_TipoMant", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ID_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@TipoMant_ID", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = TipoMant_ID;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
     }
 }
