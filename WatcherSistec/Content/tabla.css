@@ -1,0 +1,135 @@
+/* Copyright 2006 Joost de Valk */
+table.sortable 
+{
+	font-family:Trebuchet MS, Arial, Helvetica, sans-serif;
+	font-size:10;
+	cursor:pointer;
+}
+table.sortable tbody tr th {
+	background-color: #DADADA;
+	border: 1px solid #D3D3D3;
+	font-size:10;
+    color:#000000;
+    height:15px;
+	padding: 4px;
+	text-align:center;
+}
+table.sortable tbody tr td 
+{
+    font-size:10;
+    font-weight:normal;
+    text-align:left;
+	border: 1px solid #D3D3D3;
+}
+table.sortable tbody tr td.numero {
+	font-size:10;
+    font-weight:normal;
+    text-align:right;
+    padding-right:3px;
+}
+table.sortable tbody tr td.texto {
+	font-size:10;
+    font-weight:normal;
+    text-align:left;
+    padding-left:3px;
+}
+/*table.sortable tbody tr td.total{
+	font-size:10;
+    font-weight:bold;
+    text-align:right;
+    border: 1px solid #000;
+    padding-right:3px;
+}
+table.sortable thead tr th.arriba
+{
+    background-color: #729FCF;
+	border: 0px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	border-top: 1px solid #FFF;
+	font-size:10;
+    color:White;
+    height:15px;
+	padding: 4px;
+	text-align:center;
+}
+table.sortable thead tr th.abajo
+{
+    background-color: #729FCF;
+	border: 0px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	border-bottom: 1px solid #FFF;
+	font-size:10;
+    color:White;
+    height:15px;
+	padding: 4px;
+	text-align:center;
+}
+table.sortable thead tr th a {
+	font-size:10;
+	text-decoration: none;
+	color: White;
+}
+table.sortable td {
+	border-width: 0px 0px 0px 0px;
+	font-size:10;
+}
+table.sortable tr.odd td {
+	font-size:10;
+	background-color:#F8F8F8;
+	cursor: pointer;
+	height:10px;
+}
+table.sortable tr.even td 
+{
+	background-color: #FFFFFF;
+	cursor: pointer;
+	height:10px;
+}
+table.sortable tr.sell td {
+	font-size:10;
+	background-color: #D8BED1;
+	cursor: pointer;
+	height:10px;
+}
+table.sortable tr.fproc td {
+	font-size:10;
+	background-color: #CFCFCF;
+	cursor: pointer;
+	height:10px;
+}
+table.sortable tr.fsell td {
+	font-size:10;
+	background-color: #999999;
+	cursor: pointer;
+	height:10px;
+}
+table.sortable tr.sortbottom td 
+{
+    font-size:10;
+}*/
+
+table.sortable2
+{
+	font-family:Trebuchet MS, Arial, Helvetica, sans-serif;
+	font-size:5;
+	cursor:pointer;
+}
+table.sortable2 tbody tr th {
+	background-color: #DADADA;
+	border: 1px solid #D3D3D3;
+	font-size:12px;
+    color:#000000;
+    height:15px;
+	padding: 4px;
+	text-align:center;
+	cursor:pointer;
+}
+table.sortable2 tr td 
+{
+    font-size:12px;
+    font-weight:normal;
+    text-align:left;
+	border: 1px solid #D3D3D3;
+}

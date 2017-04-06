@@ -1,0 +1,191 @@
+﻿body {
+}
+
+.Etiqueta{
+    font-size: 12px;
+    font-family: Tahoma;
+}
+
+.EtiquetaPop{
+    font-size: 12px;
+    font-family: Tahoma;
+    font-weight:bold;
+    text-align:center;
+    height:30px;
+}
+
+.Bloque{
+    border:inset;
+    width: 5%;    
+    height: 5%;    
+    text-align:center;
+    color: #000000;     
+    font-size:14px;
+    /*cursor: pointer; 
+    cursor: hand;    */
+}   
+
+a.imjusttext{ color: #000000; text-decoration: none; }
+a.imjusttext:hover { text-decoration: none; }
+
+.TablaSimple{
+    display: table;
+    border-collapse:collapse;
+    border-spacing: 0px;
+    border-color: grey;
+    border-style:solid;
+}
+.btn_Iniciar
+{
+    background:transparent url(../Images/Mantenimiento/play_16.ico) left no-repeat;
+    border: 2px solid gray;
+    padding: 4px 4px 4px 4px;
+}
+.btn_Detener
+{
+    background:transparent url(../Images/Mantenimiento/stop_16.ico) left no-repeat;
+    padding: 4px 4px 4px 4px;
+    border: 2px solid gray;
+}
+/*.CajaTexto{
+    font-size: 13px;
+    font-family: Tahoma;
+}*/
+
+.ImagenBotonBuscar{
+    border: 2px solid gray;
+    padding: 4px 4px 4px 4px;
+    width: 12px;
+    height: 12px;
+}
+.ImagenBotonMargin{
+    border: 2px solid gray;
+    padding: 4px 4px 4px 4px;
+    width: 16px;
+    height: 16px;
+    margin:5px 0 10px 0;
+}
+.ImagenBoton{
+    border: 2px solid gray;
+    padding: 4px 4px 4px 4px;
+    width: 16px;
+    height: 16px;
+}
+
+.BotonPunto{
+    width: 24px;
+    height: 19px;
+    padding: 0px;
+    color: #ffffff;
+    background: #952304;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.Scroll{
+    overflow: scroll;
+    height: 370px;
+    
+}
+
+.CabeceraScroll
+{
+    padding: 4px 2px;  
+        color: #fff;  
+        background: black; /*linear-gradient(#525252,black)*/;
+        border-left: solid 1px #525252;  
+        font-size: 0.9em; 
+        font-weight: bold;
+}
+
+.Grilla{
+    
+    /*width: 100%;  
+    background-color: #fff;*/  
+    margin: 5px 0 10px 0;  
+    border: solid 1px #525252;  
+    border-collapse: collapse;  
+
+
+    color: Black;
+    background-color: #CCCCCC;
+    border-color: #999999;
+    border-width: 3px;
+    border-style: Solid;
+    width: 100%;
+}
+/*----------------- CABECERAS ------------------*/
+
+/*Opciones de Busqueda*/
+.CabeceraBusqueda{
+    padding-left:10px;
+    font-size:12px; 
+    font-family:Tahoma; 
+    color:white;
+    font-weight:bold;
+    text-align:left; 
+    color:White;
+    background: linear-gradient(#525252,black);
+    border: solid 1px #c1c1c1;
+    padding: 4px;
+    margin: 5px 0;
+}
+
+/*----------------- TAB ------------------*/
+        .MyTabStyle .ajax__tab_header
+        {
+            font-family:Verdana;
+            font-size: 11px;
+            font-weight:bold;
+            display: block;
+            background:url(WebResource.axd?d=QatMtaL3qjWXJGgVFbg_FoxrEiHb6y3k2NQ4KDlIJxrSt9QBt6hOi_FBwg3scTcHCG_Sn3cZU2lLYhtyR9v7_hQAQHinBr8mADCpEz6qHOyvJYT-M_dx7m0eg6lN-2io0&t=634837218120000000) repeat-x bottom;*/
+            
+        }
+        .MyTabStyle .ajax__tab_header .ajax__tab_outer
+        {
+            border-color: #222;
+            color: black;
+            padding-left: 10px;
+            border:solid 1px #d7d7d7;
+            background-color:black;
+            
+        }
+        .MyTabStyle .ajax__tab_header .ajax__tab_inner
+        {
+            border-color: #666;
+            color: #666;
+            padding: 3px 10px 2px 0px;
+        }
+        .MyTabStyle .ajax__tab_hover .ajax__tab_outer  
+        {
+            /*background-color:#9c3;*/
+            background-color:lightgrey;
+        }
+        .MyTabStyle .ajax__tab_hover .ajax__tab_inner
+        {
+            color: #fff;
+        }
+        .MyTabStyle .ajax__tab_active .ajax__tab_outer
+        {
+            border-bottom-color: #ffffff;
+            background-color: grey;
+            color:black;
+        }
+        .MyTabStyle .ajax__tab_active .ajax__tab_inner
+        {
+            /*color: #000;*/
+            color:black;
+            border-color: #333;
+
+        }
+        .MyTabStyle .ajax__tab_body
+        {
+            font-family: verdana,tahoma,helvetica;
+            font-size: 10pt;
+            background-color: #fff;
+            border-top-width: 0;
+            border: solid 1px gray;
+            border-top-color: #ffffff;
+        }
+
+
