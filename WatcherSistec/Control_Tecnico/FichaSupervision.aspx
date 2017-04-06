@@ -77,7 +77,7 @@
         <table class="cab_context" style="width:100%">
             <tr>
                 <td style="width:300px">
-                    FICHA DE SUPERVISION NRO PRUEBA :
+                    FICHA DE SUPERVISION NRO PRUEBA FERNANDO :
                 </td>
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel29" runat="server" UpdateMode="Conditional">
