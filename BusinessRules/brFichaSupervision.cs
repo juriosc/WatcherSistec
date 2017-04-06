@@ -10,7 +10,7 @@ namespace BusinessRules
 {
     public class brFichaSupervision:brGeneral
     {
-        public bool InsertarFichaSupervision(int ProveedorID, int PersonalID, string Hora_Ingreso, string Hora_Salida, string Obs_Tec, int Estado_Ficha, string Nro_Telefono, string Panel, string Obs_Ficha, out string outID_Ficha)
+        public bool InsertarFichaSupervision(int ProveedorID, int PersonalID, DateTime Hora_Ingreso, DateTime Hora_Salida, string Obs_Tec, int Estado_Ficha, string Nro_Telefono, string Panel, string Obs_Ficha, out string outID_Ficha)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessRules;
 using System.Data;
+using System.Globalization;
 
 namespace WatcherSistec.Control_Tecnico
 {    
@@ -423,10 +424,16 @@ namespace WatcherSistec.Control_Tecnico
         {
             brFichaSupervision br = new brFichaSupervision();
             string outID_Ficha = "";            
-            string men = "";            
+            string men = "";
+
+            IFormatProvider culture = new CultureInfo("es-PE", true);
+            
+            DateTime fechaI = DateTime.ParseExact(txtFechaI.Text, "dd/MM/yyyy HH:mm:ss", culture);
+            DateTime fechaS = DateTime.ParseExact(txtFechaS.Text, "dd/MM/yyyy HH:mm:ss", culture);
+
             bool updated = br.InsertarFichaSupervision(
-                Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), txtFechaI.Text
-                , txtFechaS.Text, txtObs_Tec.Text, 1,txtNro_Telefono.Text, txtPanel.Text, txtObs_Tec.Text
+                Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
+                , fechaS, txtObs_Tec.Text, 1,txtNro_Telefono.Text, txtPanel.Text, txtObs_Tec.Text
                 , out outID_Ficha);
             if (updated == false)
             {

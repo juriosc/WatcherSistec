@@ -176,7 +176,7 @@
                                         <td>
                                             <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:TextBox ID="txtFechaS" runat="server"></asp:TextBox>                                                    
+                                                    <asp:TextBox ID="txtFechaS" runat="server"></asp:TextBox>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </td>
