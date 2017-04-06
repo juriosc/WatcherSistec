@@ -40,8 +40,8 @@ namespace WatcherSistec.Control_Tecnico
             string Pend = "", Conc = "", Aten = "", Canc = "", Env = "", Trab = "", Obs = "" ;
             string BeginDate, EndDate, Mant = "";
             
-            BeginDate = txtFechaIni.Text;
-            EndDate = txtFechaFin.Text;
+            BeginDate = txtFechaDesde.Text;
+            EndDate = txtFechaHasta.Text;
 
             if (chkPendiente.Checked){
                 Pend = "1";

@@ -75,5 +75,38 @@ namespace BusinessRules
             }
             return (lbeMantenimiento);
         }
+
+        public bool InsertarFichaTipoMant(int ID_Ficha, int TipoMant_ID)
+        {
+            bool updated = false;
+            using (SqlConnection con = new SqlConnection(Conexion))
+            {
+                try
+                {
+                    con.Open();
+                    daTipoMantenimiento odaTipoMantenimiento = new daTipoMantenimiento();
+                    updated = odaTipoMantenimiento.InsertarFichaTipoMant(con, ID_Ficha, TipoMant_ID);
+                }
+                catch (SqlException ex)
+                {
+                    beLog obeLog;
+                    foreach (SqlError err in ex.Errors)
+                    {
+                        obeLog = new beLog();
+                        obeLog.MensajeError = err.Message;
+                        obeLog.DetalleError = ex.StackTrace;
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    beLog obeLog = new beLog();
+                    obeLog.MensajeError = ex.Message;
+                    obeLog.DetalleError = ex.StackTrace;
+                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                }
+            }
+            return (updated);
+        }
     }
 }
