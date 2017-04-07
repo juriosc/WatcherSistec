@@ -10,7 +10,7 @@ namespace BusinessRules
 {
     public class brFichaAbonado : brGeneral
     {
-        public List<beFichaAbonado> ListarFichaAbonado(int pID_Ficha)
+        public List<beFichaAbonado> ListarFichaAbonado(Int64 pID_Ficha)
         {
             List<beFichaAbonado> lbeFAbonado = null;
             using (SqlConnection con = new SqlConnection(Conexion))

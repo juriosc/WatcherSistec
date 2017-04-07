@@ -73,7 +73,7 @@ namespace DataAccess
             return lbeMantenimiento;
         }
 
-        public bool InsertarFichaTipoMant(SqlConnection con, int ID_Ficha, int TipoMant_ID)
+        public bool InsertarFichaTipoMant(SqlConnection con, Int64 ID_Ficha, Int64 TipoMant_ID)
         {
             bool registro = false;
             SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_TipoMant", con);

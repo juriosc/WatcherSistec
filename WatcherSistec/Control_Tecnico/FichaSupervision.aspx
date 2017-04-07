@@ -94,7 +94,7 @@
 
                 </td>
                 <td style="width:150px">
-                    <asp:UpdatePanel ID="UpdatePanel26" runat="server">
+                    <asp:UpdatePanel ID="UpdatePanel26" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
                             <asp:Button ID="btnGuardar" runat="server" Text="Guardar"  Width="110px" Height="30px" OnClick="btnGuardar_Click" />
                         </ContentTemplate>
@@ -420,12 +420,6 @@
                                             <div style="height:120px; overflow:auto">
                                                 <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="...">
-                                                            <ItemTemplate>
-                                                                <asp:CheckBox ID="chkSel" runat="server" />
-                                                            </ItemTemplate>
-                                                            <HeaderStyle BackColor="Silver" />
-                                                        </asp:TemplateField>
                                                         <asp:BoundField DataField="TipoMant_ID" HeaderText="Codigo" >
                                                             <HeaderStyle BackColor="Silver" CssClass="ColumnaOculta" />
                                                             <ItemStyle CssClass="ColumnaOculta" />
@@ -433,6 +427,12 @@
                                                         <asp:BoundField DataField="TipoMant_Des" HeaderText="Tipo Mantenimiento" >
                                                             <HeaderStyle BackColor="Silver" />
                                                         </asp:BoundField>
+                                                        <asp:TemplateField HeaderText="...">
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="chkSel" runat="server" />
+                                                            </ItemTemplate>
+                                                            <HeaderStyle BackColor="Silver" />
+                                                        </asp:TemplateField>
                                                     </Columns>
                                                     <FooterStyle BackColor="#CCCC99" HorizontalAlign="Center" ForeColor="Black" />
                                                     <HeaderStyle BackColor="#333333" Font-Size="9pt"  ForeColor="White" Font-Bold="True"  />

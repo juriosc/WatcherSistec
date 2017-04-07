@@ -11,7 +11,7 @@ namespace DataAccess
 {
     public class daFichaAbonado
     {
-        public List<beFichaAbonado> ListarFichaAbonado(int pID_Ficha, SqlConnection con)
+        public List<beFichaAbonado> ListarFichaAbonado(Int64 pID_Ficha, SqlConnection con)
         {
             List<beFichaAbonado> lbeFAbonado = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Abonado", con);

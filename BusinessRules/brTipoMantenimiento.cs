@@ -76,7 +76,7 @@ namespace BusinessRules
             return (lbeMantenimiento);
         }
 
-        public bool InsertarFichaTipoMant(int ID_Ficha, int TipoMant_ID)
+        public bool InsertarFichaTipoMant(Int64 ID_Ficha, Int64 TipoMant_ID)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))

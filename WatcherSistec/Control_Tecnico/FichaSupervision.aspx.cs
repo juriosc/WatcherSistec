@@ -28,7 +28,7 @@ namespace WatcherSistec.Control_Tecnico
                 }
                 
                 ListarTipoMantenimiento();
-                ListarFicha_Abonados();
+                ListarFicha_Abonados(0);
                 Bloque_Zona("201412");
                 Listar_Atenciones();
 
@@ -89,11 +89,10 @@ namespace WatcherSistec.Control_Tecnico
             ListarTipoMantenimiento();
         }
 
-        private void ListarFicha_Abonados()
+        private void ListarFicha_Abonados(Int64 ID_Ficha)
         {
             brFichaAbonado br = new brFichaAbonado();
-            //int ID_Ficha = txtHora.Text.Trim().Equals("") ? 0 : Convert.ToInt32(txtHora.Text);
-            int ID_Ficha = 0;
+            //int ID_Ficha = txtHora.Text.Trim().Equals("") ? 0 : Convert.ToInt32(txtHora.Text);            
 
             List<beFichaAbonado> ListarFicha_Abonados = br.ListarFichaAbonado(ID_Ficha);
             gvAbonado.DataSource = ListarFicha_Abonados;
@@ -102,7 +101,7 @@ namespace WatcherSistec.Control_Tecnico
         protected void gvAbonado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAbonado.PageIndex = e.NewPageIndex;
-            ListarFicha_Abonados();
+            ListarFicha_Abonados(Convert.ToInt64(txtID_Ficha));
         }
         private void ListarFicha_Comentario(string Ficha)
         {
@@ -425,15 +424,15 @@ namespace WatcherSistec.Control_Tecnico
             brFichaSupervision br = new brFichaSupervision();
             string outID_Ficha = "";            
             string men = "";
-
-            IFormatProvider culture = new CultureInfo("es-PE", true);
             
-            DateTime fechaI = DateTime.ParseExact(txtFechaI.Text, "dd/MM/yyyy HH:mm:ss", culture);
-            DateTime fechaS = DateTime.ParseExact(txtFechaS.Text, "dd/MM/yyyy HH:mm:ss", culture);
+            IFormatProvider culture = new CultureInfo("es-PE", true);
+            DateTime fechaI = DateTime.ParseExact(txtFechaI.Text, "dd/MM/yyyy HH:mm", culture);
+            DateTime fechaS = DateTime.ParseExact(txtFechaS.Text, "dd/MM/yyyy HH:mm", culture);
+            
 
             bool updated = br.InsertarFichaSupervision(
                 Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
-                , fechaS, txtObs_Tec.Text, 1,txtNro_Telefono.Text, txtPanel.Text, txtObs_Tec.Text
+                , fechaS , txtObs_Tec.Text, 1,txtNro_Telefono.Text, txtPanel.Text, txtObs_Tec.Text
                 , out outID_Ficha);
             if (updated == false)
             {
@@ -446,8 +445,57 @@ namespace WatcherSistec.Control_Tecnico
 
             txtID_Ficha.Text = outID_Ficha;
 
-            string script = "alert('Ocurrio un error: ' "+ men+ "');";
+            string script = "alert('Mensaje: ' "+ men+ "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+                brFichaAbonado brFA = new brFichaAbonado();
+                bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(txtID_Ficha.Text), fila.Cells[0].Text, fila.Cells[2].Text, fila.Cells[1].Text, fila.Cells[4].Text);
+
+                if (updated == false)
+                {
+                    men = "Hubo un problema al momento de intentar registrar el Abonado";
+                }
+                else
+                {
+                    men = "Abonados registrados correctamente";
+                }
+
+            }
+
+            string script1 = "alert('Mensaje: ' " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
+
+
+            foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+            {
+
+                CheckBox check = fila.FindControl("chkSel") as CheckBox;
+
+                if (check.Checked)
+                {
+
+                    brTipoMantenimiento brTM = new brTipoMantenimiento();
+
+                    bool updatedTM = brTM.InsertarFichaTipoMant(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt64(fila.Cells[0].Text));
+
+                    if (updated == false)
+                    {
+                        men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                    }
+                    else
+                    {
+                        men = "Tipo Mantenimiento registrado correctamente";
+                    }
+
+                }
+            }
+
+            string script2 = "alert('Mensaje: ' " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+
 
         }
 
