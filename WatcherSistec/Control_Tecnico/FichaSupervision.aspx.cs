@@ -101,7 +101,7 @@ namespace WatcherSistec.Control_Tecnico
         protected void gvAbonado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAbonado.PageIndex = e.NewPageIndex;
-            ListarFicha_Abonados(Convert.ToInt64(txtID_Ficha));
+            ListarFicha_Abonados(Convert.ToInt64(txtID_Ficha.Text));
         }
         private void ListarFicha_Comentario(string Ficha)
         {

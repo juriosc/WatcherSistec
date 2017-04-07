@@ -302,7 +302,7 @@
                             <td style="vertical-align:top;width:100%">
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:GridView ID="gvAbonado" runat="server" AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" OnPageIndexChanging="gvAbonado_PageIndexChanging" Width="99%" OnRowCommand="gvAbonado_RowCommand" BackColor="White" BorderColor="gray" BorderStyle="None" BorderWidth="1px">
+                                        <asp:GridView ID="gvAbonado" runat="server" AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" OnPageIndexChanging="gvAbonado_PageIndexChanging" Width="99%" OnRowCommand="gvAbonado_RowCommand" BackColor="White" BorderColor="Gray" BorderStyle="None" BorderWidth="1px">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Distri." DataField="DealerCode">
                                                 <HeaderStyle Height="30px" />
@@ -334,6 +334,9 @@
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
+
+                                                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+
                                             </Columns>
                                                 
                                             <EmptyDataTemplate></EmptyDataTemplate>
