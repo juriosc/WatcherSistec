@@ -264,7 +264,7 @@
                             <td colspan="2">
                                 <asp:UpdatePanel  runat="server">
                                     <ContentTemplate>
-                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" CssClass="btn btn-primary" Width="86px" OnClientClick="mostrarEmergenteTEnvioMsm('Envio automático MSM','350','170')" />
+                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" CssClass="btn btn-primary" Width="86px" OnClick="btnIniciar_Click" />
                                         <asp:Button ID="btnDetener" runat="server" Text="Detener" CssClass="btn btn-primary" Width="86px"/>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -334,9 +334,11 @@
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
-
-                                                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
-
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:RadioButton ID="rbtSelAbonado" GroupName="SuppliersGroup" runat="server" onclick="checkRadioBtn(this);" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                                 
                                             <EmptyDataTemplate></EmptyDataTemplate>
@@ -1499,6 +1501,25 @@
             (document.getElementById('ContentPlaceHolder1_btnListarSubcriber')).click();
 
         }
+
+
+                
+    function checkRadioBtn(id) {
+       var gv = document.getElementById('<%=gvAbonado.ClientID %>');
+
+        for (var i = 1; i < gv.rows.length; i++) {
+            var radioBtn = gv.rows[i].cells[7].getElementsByTagName("input");
+
+            // Check if the id not same
+            if (radioBtn[0].id != id.id) {
+                radioBtn[0].checked = false;
+            }
+        }
+    }
+
+
+
+
 
     </script>
 

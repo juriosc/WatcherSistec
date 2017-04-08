@@ -499,6 +499,26 @@ namespace WatcherSistec.Control_Tecnico
 
         }
 
+        protected void btnIniciar_Click(object sender, EventArgs e)
+        {
+            string men="";
+
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+
+                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                if (rbt.Checked)
+                {
+                    men = HttpUtility.HtmlDecode(fila.Cells[2].Text);
+                }
+            }
+
+            
+
+
+        }
+
 
         
         
