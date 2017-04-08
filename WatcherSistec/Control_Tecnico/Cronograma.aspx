@@ -137,7 +137,7 @@
                                 <td colspan="2">
                                     <asp:UpdatePanel ID="UpdatePanel15" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:ImageButton ID="btnPopupDistribuidor" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
+                                            <asp:ImageButton ID="btnPopupDistribuidor" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteDealer('Buscar Distribuidor:',460,250);" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -469,7 +469,7 @@
     <div id="emergente" class="ventana">
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
-				<tr style="background-color: #950208;" onmouseover="this.style.cursor='move'">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
 					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
 					<span id="titcabemergente">&nbsp;</span>&nbsp;&nbsp;</td>
 					<td id="tdemergentecerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equis.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupSubscriber();">
@@ -524,8 +524,8 @@
                                                         <asp:BoundField HeaderText="Abonado" DataField="CSID" />
                                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
                                                         <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
-                                                        <asp:CommandField ButtonType="Button" SelectText="Seleccionar" ShowSelectButton="True" >
-                                                        <ControlStyle CssClass="btn btn-primary" />
+                                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
+                                                            <ItemStyle HorizontalAlign="Center" />
                                                         </asp:CommandField>
                                                     </Columns>
                                                     
@@ -533,9 +533,9 @@
                                                     <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
                                                     <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
                                                     <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
+                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
                                                     <RowStyle BackColor="White" Font-Size="8pt" />
-                                                    <SelectedRowStyle BackColor="Yellow" Font-Bold="True" ForeColor="Black" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                                     <SortedAscendingCellStyle BackColor="#F1F1F1" />
                                                     <SortedAscendingHeaderStyle BackColor="#808080" />
                                                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
@@ -779,8 +779,8 @@
                                                                         <ItemStyle CssClass="ColumnaOculta" />
                                                                     </asp:BoundField>
                                                                     <asp:BoundField HeaderText="Tipos(s) de Mant." DataField="tiposMant" />
-                                                                    <asp:CommandField ButtonType="Button" SelectText="Seleccionar" ShowSelectButton="True" >
-                                                                    <ControlStyle CssClass="btn btn-primary" />
+                                                                    <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
+                                                                        <ItemStyle HorizontalAlign="Center" />
                                                                     </asp:CommandField>
                                                                 </Columns>
                                                     
@@ -790,7 +790,7 @@
                                                                 <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
                                                                 <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
                                                                 <RowStyle BackColor="White" Font-Size="8pt" />
-                                                                <SelectedRowStyle BackColor="Yellow" Font-Bold="True" ForeColor="Black" />
+                                                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                                                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                                                                 <SortedAscendingHeaderStyle BackColor="#808080" />
                                                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
@@ -832,12 +832,121 @@
             </table>
          </div>
     </div>
+
+    <div id="emerDealer" class="ventana">
+        <div class="undraggable" style="width:100%;">
+			<table style="width:100% ; border-spacing:0px 0px; ">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
+					<span id="titcabemerDealer">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdemerDealercerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirEmergenteDealer();">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+
+        <div id="emerDealercuerpo">
+            <table style="width:100%"> 
+                <tr>                                        
+                    <td>
+                        <div style="width:100%;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="EtiquetaPop">
+                                        Distribuidor
+                                    </td>
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel51" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtDealer" runat="server" style="width:50px"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel52" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtNameDealer" runat="server" style="width:220px"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td>                                        
+                                        <asp:UpdatePanel ID="UpdatePanel53" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnBuscarDealer" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarDealer_Click" /></td>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>        
+                            </table>                        
+                            <table style="width:100%; height:125px">
+                                <tr>
+                                    <td style="vertical-align:top;width:100%;">
+                                        
+                                        <asp:UpdatePanel ID="UpdatePanel54" runat="server" >
+                                            <ContentTemplate>
+                                                <asp:GridView ID="gvDealer" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gvDealer_PageIndexChanging">
+                                                    <Columns>                                    
+                                                        <asp:BoundField HeaderText="Codigo" DataField="DealerCode" />
+                                                        <asp:BoundField HeaderText="Distriuidor" DataField="DealerName" />
+                                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                        </asp:CommandField>
+                                                    </Columns>
+                                                    
+                                                    <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
+                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
+                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
+                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
+                                                    <RowStyle BackColor="White" Font-Size="8pt" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+
+                                                </asp:GridView>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="margin-top:10px;margin-left:110px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel55" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnAceptar_Dealer" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirEmergenteDealer()" OnClick="btnAceptar_Dealer_Click"/></td>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                        <td style="width:80px">
+                                        </td>    
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel56" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnCancelar_Dealer" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirEmergenteDealer()" />                                        
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+         </div>
+    </div>
     
     <script type="text/javascript">
 
             $(function () {
                 $("#emergente").draggable({ handle: 'div.undraggable' });
                 $("#emerLocalSubscriber").draggable({ handle: 'div.undraggable' });
+                $("#emerDealer").draggable({ handle: 'div.undraggable' });
             });
 
             function mostrarPopupSubscriber(titulo, ancho, alto) {
@@ -863,6 +972,13 @@
                 document.getElementById('ContentPlaceHolder1_txtBusOfi').value = "";
             }
 
+            function mostrarEmergenteDealer(titulo, ancho, alto) {
+                $("#tdemerDealercerrar").show();
+                $("#fondoemergente").css('display', 'block');
+                $("#titcabemerDealer").html(titulo);
+                mostrarCentrarDiv('emerDealer', ancho, alto);
+            }
+
             function SalirPopupSubscriber() {
                 $("#fondoemergente").hide();
                 $("#emergente").hide();
@@ -871,6 +987,11 @@
             function SalirPopupNuevoCronograma() {
                 $("#fondoemergente").hide();
                 $("#emerNuevoCronograma").hide();
+            }
+
+            function SalirEmergenteDealer() {
+                $("#fondoemergente").hide();
+                $("#emerDealer").hide();
             }
 
             function mostrarCentrarDiv(iddiv, w, h) {

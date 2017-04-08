@@ -170,5 +170,30 @@ namespace WatcherSistec.Control_Tecnico
             }
 
         }
+
+        protected void btnBuscarDealer_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Dealer(txtDealer.Text, txtNameDealer.Text);
+        }
+
+        protected void btnAceptar_Dealer_Click(object sender, EventArgs e)
+        {
+            txtDealercode.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
+            txtDealerName.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+        }
+
+        protected void gvDealer_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDealer.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Dealer(txtDealer.Text, txtNameDealer.Text);
+        }
+
+        private void Listar_Grilla_Dealer(string Dealer, string dealername)
+        {
+            brDealer br = new brDealer();
+            List<beDealer> lstListarDealer = br.ListarDealer(Dealer, dealername);
+            gvDealer.DataSource = lstListarDealer;
+            gvDealer.DataBind();
+        }
     }
 }
