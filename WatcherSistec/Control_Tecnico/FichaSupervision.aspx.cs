@@ -291,7 +291,56 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptarTEnvioMSM_Click(object sender, EventArgs e)
         {
+            bool updatedAT;
 
+
+            string outID_Atencion = "";
+
+
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+
+                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                if (rbt.Checked)
+                {
+
+
+                    brFichaAtenciones brAT = new brFichaAtenciones();
+
+                    updatedAT = brAT.InsertarFichaAtencion(
+                        Convert.ToInt64(txtID_Ficha.Text)
+                        , HttpUtility.HtmlDecode(fila.Cells[2].Text)
+                        , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())
+                        , 10
+                        , out outID_Atencion);
+
+
+                    string men = "";
+
+                    if (updatedAT == false)
+                    {
+                        men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                    }
+                    else
+                    {
+                        men = "Tipo Mantenimiento registrado correctamente";
+                    }
+
+                    string script2 = "alert('Mensaje: ' " + men + "');";
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+
+                }
+            }
+
+
+            brFichaAtenciones brFA = new brFichaAtenciones();
+
+            gvAtenciones.DataSource = brFA.ListarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text));
+            gvAtenciones.DataBind();
+
+            tmrRecepSeniales.Enabled = true;
+            lblTiempoFaltante.Text = "60";
         }
 
         protected void tmrActualizarZonas_Tick(object sender, EventArgs e)
@@ -501,43 +550,21 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnIniciar_Click(object sender, EventArgs e)
         {
-            string men="";
-
-            string outID_Atencion = "";
-
-
-            foreach (GridViewRow fila in gvAbonado.Rows)
-            {
-
-                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
-
-                if (rbt.Checked)
-                {                    
-                    
-
-                    brFichaAtenciones brAT = new brFichaAtenciones();
-
-                    bool updatedAT = brAT.InsertarFichaAtencion(
-                        Convert.ToInt64(txtID_Ficha.Text)
-                        , HttpUtility.HtmlDecode(fila.Cells[2].Text)
-                        , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())
-                        , 10
-                        , out outID_Atencion);
-
-
-                }
-            }
-
-            
-
 
         }
 
-
-        
-        
-
-
+        protected void tmrRecepSeniales_Tick(object sender, EventArgs e)
+        {
+            if (Convert.ToInt16(lblTiempoFaltante.Text) > 0) 
+            {
+                lblTiempoFaltante.Text = Convert.ToString(Convert.ToInt16(lblTiempoFaltante.Text) - 1);
+            }
+            else
+            {
+                lblTiempoFaltante.Text = "59";
+            }
+            
+        }
 
     }
 }

@@ -391,6 +391,42 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.ImageButton btnAdicionar;
         
         /// <summary>
+        /// UpdatePanel42 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel42;
+        
+        /// <summary>
+        /// lblTiempoFaltante control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempoFaltante;
+        
+        /// <summary>
+        /// UpdatePanel32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel32;
+        
+        /// <summary>
+        /// tmrRecepSeniales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer tmrRecepSeniales;
+        
+        /// <summary>
         /// TabContainer1 control.
         /// </summary>
         /// <remarks>
