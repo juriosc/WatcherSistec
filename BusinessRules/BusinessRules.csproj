@@ -55,6 +55,7 @@
     <Compile Include="brFichaTecnico.cs" />
     <Compile Include="brGeneral.cs" />
     <Compile Include="brLog.cs" />
+    <Compile Include="brLogin.cs" />
     <Compile Include="brSubscriber.cs" />
     <Compile Include="brSupervisiones.cs" />
     <Compile Include="brTipoMantenimiento.cs" />

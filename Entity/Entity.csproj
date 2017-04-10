@@ -46,6 +46,7 @@
     <Compile Include="beCronograma.cs" />
     <Compile Include="beFichaAbonado.cs" />
     <Compile Include="beLog.cs" />
+    <Compile Include="beLogin.cs" />
     <Compile Include="beProveedor.cs" />
     <Compile Include="beSubscriber.cs" />
     <Compile Include="beSupervisiones.cs" />

@@ -510,7 +510,12 @@ namespace WatcherSistec.Control_Tecnico
 
                 if (rbt.Checked)
                 {
-                    men = HttpUtility.HtmlDecode(fila.Cells[2].Text);
+                    
+                    brFichaAtenciones brAT = new brFichaAtenciones();
+
+                    //bool updatedAT = brAT.InsertarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text), );
+
+
                 }
             }
 

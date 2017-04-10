@@ -11,7 +11,20 @@ namespace WatcherSistec.General
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+                if (Session["cPrflCode"] == null || Session["sUserIden"] == null)
+                {
+                    Response.Redirect("../Login/Login.aspx");
+                }
+                else
+                {
+                    lblCodPerfil.Text = Session["cPrflCode"].ToString();
+                    lblUsuario.Text = Session["sUserIden"].ToString();
+                }
+
+            }
         }
 
         protected void lnkSalir_Click(object sender, EventArgs e)

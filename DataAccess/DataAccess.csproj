@@ -49,6 +49,7 @@
     <Compile Include="daFichaSupervision.cs" />
     <Compile Include="daFichaTecnico.cs" />
     <Compile Include="daLog.cs" />
+    <Compile Include="daLogin.cs" />
     <Compile Include="daProveedor.cs" />
     <Compile Include="daSubscriber.cs" />
     <Compile Include="daSupervisiones.cs" />
