@@ -11,7 +11,7 @@ namespace DataAccess
 {
     public class daFichaAtenciones
     {
-        public List<beFichaAtenciones> ListarFichaAtencion(int pID_Ficha, SqlConnection con)
+        public List<beFichaAtenciones> ListarFichaAtencion(Int64 pID_Ficha, SqlConnection con)
         {
             List<beFichaAtenciones> lbeAtenciones = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Atencion", con);

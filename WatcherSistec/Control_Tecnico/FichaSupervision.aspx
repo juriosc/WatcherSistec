@@ -67,7 +67,7 @@
         <table style="height:1px">
             <tr>
                 <td>
-                    <asp:UpdatePanel ID="UpdatePanel57" runat="server">
+                    <asp:UpdatePanel ID="UpdatePanel57" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
                             <asp:Timer ID="tmrActualizarZonas" runat="server" Interval="2000" OnTick="tmrActualizarZonas_Tick"></asp:Timer>
                         </ContentTemplate>
@@ -231,23 +231,23 @@
                                 <div style="width:100%; height:100px; overflow:auto">
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:GridView ID="gvAtenciones" runat="server"  AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" onpageindexchanging="gvAtenciones_PageIndexChanging" BackColor="White" BorderColor="gray" BorderStyle="None" BorderWidth="1px" Width="575px" >
+                                            <asp:GridView ID="gvAtenciones" runat="server"  AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" onpageindexchanging="gvAtenciones_PageIndexChanging" BackColor="White" BorderColor="Gray" BorderStyle="None" BorderWidth="1px" Width="575px" >
                                                 <HeaderStyle Height="30px" />
                                                 <Columns>                                                    
-                                                    <asp:BoundField HeaderText="ID_Aten"/>                                                    
-                                                    <asp:BoundField HeaderText="Abonado"/>
-                                                    <asp:BoundField HeaderText="Fecha_Inicio"/>
-                                                    <asp:BoundField HeaderText="Estado_Inicio"/>
-                                                    <asp:BoundField HeaderText="Fecha_Fin"/>
-                                                    <asp:BoundField HeaderText="Estado_Fin"/>
-                                                    <asp:BoundField HeaderText="Observacion"/>
+                                                    <asp:BoundField HeaderText="ID_Aten" DataField="ID_Atencion"/>                                                    
+                                                    <asp:BoundField HeaderText="Abonado" DataField="CSID"/>
+                                                    <asp:BoundField HeaderText="Fecha_Inicio" DataField="Fecha_Inicio"/>
+                                                    <asp:BoundField HeaderText="Estado_Inicio" DataField="Estado_Inicio"/>
+                                                    <asp:BoundField HeaderText="Fecha_Fin" DataField="Fecha_Termino"/>
+                                                    <asp:BoundField HeaderText="Estado_Fin" DataField="Estado_Termino"/>
+                                                    <asp:BoundField HeaderText="Observacion" DataField="Observaciones"/>
                                                 </Columns>
                                                 <EmptyDataTemplate></EmptyDataTemplate>
                                                 <FooterStyle BackColor="#99CCCC" HorizontalAlign="Center" ForeColor="#003399" />
                                                 <HeaderStyle BackColor="black" Font-Size="9pt"  ForeColor="white" Font-Bold="True"  />
                                                 <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" NextPageText="&gt;" PreviousPageText="&lt;" />
                                                 <PagerStyle BackColor="black" ForeColor="white" HorizontalAlign="Left" Font-Size="8pt"  />
-                                                <RowStyle BackColor="black" Font-Size="8pt" ForeColor="white" />
+                                                <RowStyle BackColor="white" Font-Size="8pt" ForeColor="black" />
                                                 <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
                                                 <SortedAscendingCellStyle BackColor="#EDF6F6" />
                                                 <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
@@ -255,6 +255,9 @@
                                                 <SortedDescendingHeaderStyle BackColor="#002876" />
                                             </asp:GridView>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnIniciar" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </div>
                             </td>
@@ -262,9 +265,9 @@
                         <tr>
                                 
                             <td colspan="2">
-                                <asp:UpdatePanel  runat="server">
+                                <asp:UpdatePanel  runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" CssClass="btn btn-primary" Width="86px" OnClick="btnIniciar_Click" />
+                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" CssClass="btn btn-primary" Width="86px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',250,150)" />
                                         <asp:Button ID="btnDetener" runat="server" Text="Detener" CssClass="btn btn-primary" Width="86px"/>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -386,9 +389,29 @@
                         
                         <tr>
                               <td style=" vertical-align:central">                               
-                                <table style="width:100%;font-size:12PX">
+                                <table style="width:40%;font-size:12px">
                                     <tr>
-                                        <td>TIEMPO FALTANTE : 0 SEGUNDOS</td>
+                                        <td>TIEMPO FALTANTE :</td>
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel42" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Label ID="lblTiempoFaltante" runat="server" Text="0" style="font-size:15px;font-weight:bold;font-family:Tahoma" ></asp:Label>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                        <td>SEGUNDOS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel32" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:Timer ID="tmrRecepSeniales" runat="server" Enabled="False" Interval="1000" OnTick="tmrRecepSeniales_Tick"></asp:Timer>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" EventName="Click" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+                                        </td>
                                     </tr>
                                 </table>                                
                             </td>
