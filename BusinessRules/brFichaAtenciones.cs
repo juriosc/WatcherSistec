@@ -43,7 +43,7 @@ namespace BusinessRules
             return (lbeAtenciones);
         }
 
-        public bool InsertarFichaAtencion(int ID_Ficha, string CSID, string Usuario, string Fecha_Inicio, string Fecha_Termino, int Estado_Inicio, int Estado_Termino, int b_ALT, int b_BB, int b_FAC, int b_RED, int b_ACL, int b_AA, string Observaciones, int AlarmHistoryID_Inicial, int AlarmHistoryID_Final)
+        public bool InsertarFichaAtencion(Int64 ID_Ficha, string CSID, string Usuario, int AlarmHistoryID_Inicial, out string outID_Atencion)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -52,9 +52,9 @@ namespace BusinessRules
                 {
                     con.Open();
                     daFichaAtenciones odaFichaAtencion = new daFichaAtenciones();
-                    //updated = odaFichaAtencion.InsertarFichaAtencion(con, ID_Ficha, CSID, Usuario, Fecha_Inicio, Fecha_Termino, Estado_Inicio, Estado_Termino, b_ALT, b_BB, b_FAC, b_RED, b_ACL, b_AA, Observaciones, AlarmHistoryID_Inicial, AlarmHistoryID_Final);
+                    updated = odaFichaAtencion.InsertarFichaAtencion(con, ID_Ficha, CSID, Usuario, AlarmHistoryID_Inicial,out outID_Atencion);
                 }
-                catch (SqlException ex)
+                 catch (SqlException ex)
                 {
                     beLog obeLog;
                     foreach (SqlError err in ex.Errors)
@@ -62,8 +62,9 @@ namespace BusinessRules
                         obeLog = new beLog();
                         obeLog.MensajeError = err.Message;
                         obeLog.DetalleError = ex.StackTrace;
-                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);                        
                     }
+                    outID_Atencion = "";
                 }
                 catch (Exception ex)
                 {
@@ -71,6 +72,7 @@ namespace BusinessRules
                     obeLog.MensajeError = ex.Message;
                     obeLog.DetalleError = ex.StackTrace;
                     ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    outID_Atencion = "";
                 }
             }
             return (updated);

@@ -74,7 +74,7 @@ namespace DataAccess
             return lbeAtenciones;
         }
 
-        public bool InsertarFichaAtencion(SqlConnection con, int ID_Ficha, string CSID, string Usuario, string Fecha_Inicio, int Estado_Inicio, string Observaciones, int AlarmHistoryID_Inicial, int AlarmHistoryID_Final)
+        public bool InsertarFichaAtencion(SqlConnection con, Int64 ID_Ficha, string CSID, string Usuario, int AlarmHistoryID_Inicial, out string outID_Atencion)
         {
             bool registro = false;
             SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_Atencion", con);
@@ -90,34 +90,28 @@ namespace DataAccess
 
             SqlParameter param3 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
             param3.Direction = ParameterDirection.Input;
-            param3.Value = Usuario;
+            param3.Value = Usuario;            
 
-            SqlParameter param4 = cmd.Parameters.Add("@Fecha_Inicio", SqlDbType.VarChar, 24);
+            SqlParameter param4 = cmd.Parameters.Add("@AlarmHistoryID_Inicial", SqlDbType.Int);
             param4.Direction = ParameterDirection.Input;
-            param4.Value = Fecha_Inicio;
-        
-            SqlParameter param6 = cmd.Parameters.Add("@Estado_Inicio", SqlDbType.Int);
-            param6.Direction = ParameterDirection.Input;
-            param6.Value = Estado_Inicio;
+            param4.Value = AlarmHistoryID_Inicial;
 
-            SqlParameter param14 = cmd.Parameters.Add("@Observaciones", SqlDbType.VarChar, 8000);
-            param14.Direction = ParameterDirection.Input;
-            param14.Value = Observaciones;
+            //PARAMETROS DE SALIDA
 
-            SqlParameter param15 = cmd.Parameters.Add("@AlarmHistoryID_Inicial", SqlDbType.Int);
-            param15.Direction = ParameterDirection.Input;
-            param15.Value = AlarmHistoryID_Inicial;
-
-            SqlParameter param16 = cmd.Parameters.Add("@AlarmHistoryID_Final", SqlDbType.Int);
-            param16.Direction = ParameterDirection.Input;
-            param16.Value = AlarmHistoryID_Final;
-
+            SqlParameter param5 = cmd.Parameters.Add("@outID_Atencion", SqlDbType.VarChar, 25);
+            param5.Direction = ParameterDirection.Output;
 
             int n = cmd.ExecuteNonQuery();
 
             if (n > 0)
             {
                 registro = true;
+                outID_Atencion = param5.Value.ToString();
+
+            }
+            else
+            {
+                outID_Atencion = "";
             }
 
             return registro;

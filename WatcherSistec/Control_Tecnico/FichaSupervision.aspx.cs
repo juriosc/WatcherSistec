@@ -503,6 +503,9 @@ namespace WatcherSistec.Control_Tecnico
         {
             string men="";
 
+            string outID_Atencion = "";
+
+
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
 
@@ -511,9 +514,16 @@ namespace WatcherSistec.Control_Tecnico
                 if (rbt.Checked)
                 {
                     
+                    
+
                     brFichaAtenciones brAT = new brFichaAtenciones();
 
-                    //bool updatedAT = brAT.InsertarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text), );
+                    bool updatedAT = brAT.InsertarFichaAtencion(
+                        Convert.ToInt64(txtID_Ficha.Text)
+                        , HttpUtility.HtmlDecode(fila.Cells[2].Text)
+                        , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())
+                        , 10
+                        , out outID_Atencion);
 
 
                 }
