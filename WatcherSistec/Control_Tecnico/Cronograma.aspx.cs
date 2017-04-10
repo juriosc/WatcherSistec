@@ -149,8 +149,8 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptar_Dealer_Click(object sender, EventArgs e)
         {
-            txtDealercode.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
-            txtDealerName.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+            txtDealercode.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
+            txtDealerName.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
         }
 
         protected void gvDealer_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -166,6 +166,46 @@ namespace WatcherSistec.Control_Tecnico
             gvDealer.DataSource = lstListarDealer;
             gvDealer.DataBind();
         }
+
+        protected void gvProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProveedor.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Proveedor(txtDealer.Text, txtNameDealer.Text);
+        }
+
+        private void Listar_Grilla_Proveedor(string Codigo, string Proveedor)
+        {
+            brProveedor br = new brProveedor();
+            List<beProveedor> lstListarProveedor = br.ListarProveedor(Codigo, Proveedor);
+            gvProveedor.DataSource = lstListarProveedor;
+            gvProveedor.DataBind();
+        }
+        protected void btnBuscarProv_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Proveedor("", txtProvName.Text);
+        }
+
+        protected void btnAceptar_Prov_Click(object sender, EventArgs e)
+        {
+            //txtDealercode.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
+            txtProveName.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
+        }
+
+        protected void gvTecnico_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void btnBuscarTecnico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAceptarTec_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
