@@ -512,8 +512,7 @@ namespace WatcherSistec.Control_Tecnico
                 RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
 
                 if (rbt.Checked)
-                {
-                    
+                {                    
                     
 
                     brFichaAtenciones brAT = new brFichaAtenciones();
