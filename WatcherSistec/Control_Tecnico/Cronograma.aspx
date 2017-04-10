@@ -120,6 +120,9 @@
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtDealercode" runat="server" style="width:50px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                                 <td>
@@ -127,6 +130,9 @@
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtDealerName" runat="server" style="width:220px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel ID="UpdatePanel14" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
@@ -151,6 +157,9 @@
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtCsid" runat="server" style="width:50px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                                 <td>
@@ -158,6 +167,9 @@
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtSubscriberName" runat="server" style="width:220px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel ID="UpdatePanel9" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
@@ -188,6 +200,9 @@
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtProveedor" runat="server" style="width:50px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Prov" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                                 <td>
@@ -195,6 +210,9 @@
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtProveName" runat="server" style="width:220px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Prov" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel ID="UpdatePanel20" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
@@ -205,7 +223,7 @@
                                 <td colspan="2">
                                     <asp:UpdatePanel ID="UpdatePanel21" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:ImageButton ID="btnPopupProveedor" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
+                                            <asp:ImageButton ID="btnPopupProveedor" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteProv('Buscar Proveedor:',400,250); " />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -505,7 +523,7 @@
                                         <asp:TextBox ID="txtBusDireccion" runat="server"></asp:TextBox>
                                     </td>
                                     <td>                                        
-                                        <asp:UpdatePanel ID="UpdatePanel39" runat="server" UpdateMode="Conditional">
+                                        <asp:UpdatePanel ID="UpdatePanel39" runat="server">
                                             <ContentTemplate>
                                                 <asp:Button ID="btnBuscarSubscriber" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarSubscriber_Click"  /></td>
                                             </ContentTemplate>
@@ -788,7 +806,7 @@
                                                                 <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
                                                                 <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
                                                                 <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                                <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
+                                                                <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
                                                                 <RowStyle BackColor="White" Font-Size="8pt" />
                                                                 <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                                                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -811,7 +829,7 @@
                                         <tr>
                                             <td style="width:20%">&nbsp;</td>
                                             <td>
-                                                <asp:UpdatePanel ID="UpdatePanel33" runat="server" UpdateMode="Conditional">
+                                                <asp:UpdatePanel ID="UpdatePanel33" runat="server">
                                                     <ContentTemplate>
                                                         <asp:Button ID="btnAceptarCronograma" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary"  OnClientClick="SalirPopupNuevoCronograma()" /></td>
                                                     </ContentTemplate>
@@ -820,7 +838,11 @@
                                             <td style="width:80px">
                                             </td>
                                             <td>
-                                                <asp:Button ID="btnCancelarCronograma" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupNuevoCronograma()" />
+                                                <asp:UpdatePanel ID="UpdatePanel57" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Button ID="btnCancelarCronograma" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupNuevoCronograma()" />
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             </td>
                                         </tr>
                                     </table>
@@ -857,21 +879,21 @@
                                         Distribuidor
                                     </td>
                                     <td>
-                                        <asp:UpdatePanel ID="UpdatePanel51" runat="server" UpdateMode="Conditional">
+                                        <asp:UpdatePanel ID="UpdatePanel51" runat="server">
                                             <ContentTemplate>
                                                 <asp:TextBox ID="txtDealer" runat="server" style="width:50px"></asp:TextBox>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </td>
                                     <td>
-                                        <asp:UpdatePanel ID="UpdatePanel52" runat="server" UpdateMode="Conditional">
+                                        <asp:UpdatePanel ID="UpdatePanel52" runat="server">
                                             <ContentTemplate>
                                                 <asp:TextBox ID="txtNameDealer" runat="server" style="width:220px"></asp:TextBox>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </td>
                                     <td>                                        
-                                        <asp:UpdatePanel ID="UpdatePanel53" runat="server" UpdateMode="Conditional">
+                                        <asp:UpdatePanel ID="UpdatePanel53" runat="server">
                                             <ContentTemplate>
                                                 <asp:Button ID="btnBuscarDealer" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarDealer_Click" /></td>
                                             </ContentTemplate>
@@ -898,7 +920,7 @@
                                                     <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
                                                     <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
                                                     <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
+                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
                                                     <RowStyle BackColor="White" Font-Size="8pt" />
                                                     <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                                     <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -916,7 +938,7 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <asp:UpdatePanel ID="UpdatePanel55" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="UpdatePanel55" runat="server">
                                                 <ContentTemplate>
                                                     <asp:Button ID="btnAceptar_Dealer" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirEmergenteDealer()" OnClick="btnAceptar_Dealer_Click"/></td>
                                                 </ContentTemplate>
@@ -925,9 +947,220 @@
                                         <td style="width:80px">
                                         </td>    
                                         <td>
-                                            <asp:UpdatePanel ID="UpdatePanel56" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="UpdatePanel56" runat="server">
                                                 <ContentTemplate>
                                                     <asp:Button ID="btnCancelar_Dealer" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirEmergenteDealer()" />                                        
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+         </div>
+    </div>
+
+    <div id="emerProv" class="ventana">
+        <div class="undraggable" style="width:100%;">
+			<table style="width:100% ; border-spacing:0px 0px; ">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
+					<span id="titcabemerProv">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdemerProvcerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirEmergenteProveedor();">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+
+        <div id="emerProvcuerpo">
+            <table style="width:100%"> 
+                <tr>                                        
+                    <td>
+                        <div style="width:100%;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="EtiquetaPop">
+                                        Proveedor
+                                    </td>
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel58" runat="server">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtProvName" runat="server" style="width:220px"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td>                                        
+                                        <asp:UpdatePanel ID="UpdatePanel59" runat="server">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnBuscarProv" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarProv_Click" /></td>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>        
+                            </table>                        
+                            <table style="width:100%; height:125px">
+                                <tr>
+                                    <td style="vertical-align:top;width:100%;">
+                                        
+                                        <asp:UpdatePanel ID="UpdatePanel60" runat="server" >
+                                            <ContentTemplate>
+                                                <asp:GridView ID="gvProveedor" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gvProveedor_PageIndexChanging">
+                                                    <Columns>                                    
+                                                        <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
+                                                        <asp:BoundField HeaderText="Proveedor" DataField="Proveedor" />
+                                                        <asp:BoundField HeaderText="RUC" DataField="RUC" />
+                                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                        </asp:CommandField>
+                                                    </Columns>
+                                                    
+                                                    <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
+                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
+                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
+                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
+                                                    <RowStyle BackColor="White" Font-Size="8pt" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+
+                                                </asp:GridView>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="margin-top:8px;margin-left:85px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel61" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnAceptar_Prov" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirEmergenteProveedor()" OnClick="btnAceptar_Prov_Click"/></td>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                        <td style="width:80px">
+                                        </td>    
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel62" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnCancelar_Prov" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirEmergenteProveedor()" />                                        
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+         </div>
+    </div>
+
+    <div id="emerTecnico" class="ventana">
+        <div class="undraggable" style="width:100%;">
+			<table style="width:100% ; border-spacing:0px 0px; ">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
+					<span id="titcabemerTecnico">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdemerTecnicocerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirEmergenteTecnico();">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+
+        <div id="emerTecnicocuerpo">
+            <table style="width:100%"> 
+                <tr>                                        
+                    <td>
+                        <div style="width:100%;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="EtiquetaPop">
+                                        Tecnico
+                                    </td>
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel68" runat="server">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtCodTecnico" runat="server" style="width:50px"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel63" runat="server">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtNameTecnico" runat="server" style="width:220px"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td>                                        
+                                        <asp:UpdatePanel ID="UpdatePanel64" runat="server">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnBuscarTecnico" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarTecnico_Click"/></td>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>        
+                            </table>                        
+                            <table style="width:100%; height:125px">
+                                <tr>
+                                    <td style="vertical-align:top;width:100%;">
+                                        
+                                        <asp:UpdatePanel ID="UpdatePanel65" runat="server" >
+                                            <ContentTemplate>
+                                                <asp:GridView ID="gvTecnico" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gvTecnico_PageIndexChanging">
+                                                    <Columns>                                    
+                                                        <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
+                                                        <asp:BoundField HeaderText="Proveedor" DataField="Proveedor" />
+                                                        <asp:BoundField HeaderText="RUC" DataField="RUC" />
+                                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                        </asp:CommandField>
+                                                    </Columns>
+                                                    
+                                                    <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
+                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
+                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
+                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
+                                                    <RowStyle BackColor="White" Font-Size="8pt" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+
+                                                </asp:GridView>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="margin-top:8px;margin-left:85px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel66" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnAceptarTec" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirEmergenteTecnico()" OnClick="btnAceptarTec_Click"/></td>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                        <td style="width:80px">
+                                        </td>    
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel67" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnCancelarTec" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirEmergenteTecnico()" />                                        
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </td>
@@ -947,6 +1180,9 @@
                 $("#emergente").draggable({ handle: 'div.undraggable' });
                 $("#emerLocalSubscriber").draggable({ handle: 'div.undraggable' });
                 $("#emerDealer").draggable({ handle: 'div.undraggable' });
+                $("#emerProv").draggable({ handle: 'div.undraggable' });
+                $("#emerTecnico").draggable({ handle: 'div.undraggable' });
+                
             });
 
             function mostrarPopupSubscriber(titulo, ancho, alto) {
@@ -979,6 +1215,20 @@
                 mostrarCentrarDiv('emerDealer', ancho, alto);
             }
 
+            function mostrarEmergenteProv(titulo, ancho, alto) {
+                $("#tdemerProvcerrar").show();
+                $("#fondoemergente").css('display', 'block');
+                $("#titcabemerProv").html(titulo);
+                mostrarCentrarDiv('emerProv', ancho, alto);
+            }
+
+            function mostrarEmergenteTecnico(titulo, ancho, alto) {
+                $("#tdemerTecnicocerrar").show();
+                $("#fondoemergente").css('display', 'block');
+                $("#titcabemerTecnico").html(titulo);
+                mostrarCentrarDiv('emerTecnico', ancho, alto);
+            }
+
             function SalirPopupSubscriber() {
                 $("#fondoemergente").hide();
                 $("#emergente").hide();
@@ -992,6 +1242,16 @@
             function SalirEmergenteDealer() {
                 $("#fondoemergente").hide();
                 $("#emerDealer").hide();
+            }
+
+            function SalirEmergenteProveedor() {
+                $("#fondoemergente").hide();
+                $("#emerProv").hide();
+            }
+
+            function SalirEmergenteTecnico() {
+                $("#fondoemergente").hide();
+                $("#emerTecnico").hide();
             }
 
             function mostrarCentrarDiv(iddiv, w, h) {
