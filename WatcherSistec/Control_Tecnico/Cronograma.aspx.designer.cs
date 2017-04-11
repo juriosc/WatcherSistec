@@ -265,24 +265,6 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.ImageButton btnPopupAbonado;
         
         /// <summary>
-        /// UpdatePanel18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel18;
-        
-        /// <summary>
-        /// txtProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProveedor;
-        
-        /// <summary>
         /// UpdatePanel19 control.
         /// </summary>
         /// <remarks>
@@ -310,13 +292,13 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.UpdatePanel UpdatePanel20;
         
         /// <summary>
-        /// btnBusCodProveedor control.
+        /// txtProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusCodProveedor;
+        protected global::System.Web.UI.WebControls.TextBox txtProveedor;
         
         /// <summary>
         /// UpdatePanel21 control.
@@ -337,24 +319,6 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.ImageButton btnPopupProveedor;
         
         /// <summary>
-        /// UpdatePanel23 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel23;
-        
-        /// <summary>
-        /// txtTecnico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTecnico;
-        
-        /// <summary>
         /// UpdatePanel25 control.
         /// </summary>
         /// <remarks>
@@ -373,22 +337,22 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtTecName;
         
         /// <summary>
-        /// UpdatePanel26 control.
+        /// UpdatePanel23 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel26;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel23;
         
         /// <summary>
-        /// btnBusCodTecnico control.
+        /// txtTecnico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusCodTecnico;
+        protected global::System.Web.UI.WebControls.TextBox txtTecnico;
         
         /// <summary>
         /// UpdatePanel29 control.
@@ -1210,31 +1174,13 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Button btnCancelar_Prov;
         
         /// <summary>
-        /// UpdatePanel68 control.
+        /// txtProv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel68;
-        
-        /// <summary>
-        /// txtCodTecnico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodTecnico;
-        
-        /// <summary>
-        /// UpdatePanel63 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel63;
+        protected global::System.Web.UI.WebControls.TextBox txtProv;
         
         /// <summary>
         /// txtNameTecnico control.
@@ -1246,13 +1192,13 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtNameTecnico;
         
         /// <summary>
-        /// UpdatePanel64 control.
+        /// UpdatePanel63 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel64;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel63;
         
         /// <summary>
         /// btnBuscarTecnico control.
@@ -1264,13 +1210,13 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Button btnBuscarTecnico;
         
         /// <summary>
-        /// UpdatePanel65 control.
+        /// UpdatePanel64 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel65;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel64;
         
         /// <summary>
         /// gvTecnico control.

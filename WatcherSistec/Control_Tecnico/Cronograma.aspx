@@ -122,6 +122,7 @@
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
@@ -132,6 +133,7 @@
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel ID="UpdatePanel14" runat="server" UpdateMode="Conditional">
@@ -158,6 +160,7 @@
                                             <asp:TextBox ID="txtCsid" runat="server" style="width:50px"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
                                             <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
@@ -168,6 +171,7 @@
                                             <asp:TextBox ID="txtSubscriberName" runat="server" style="width:220px"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
                                             <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
@@ -196,27 +200,18 @@
                                     Proveedor
                                 </td>
                                 <td>
-                                    <asp:UpdatePanel ID="UpdatePanel18" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtProveedor" runat="server" style="width:50px"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Prov" EventName="Click" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                                <td>
                                     <asp:UpdatePanel ID="UpdatePanel19" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtProveName" runat="server" style="width:220px"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnAceptar_Prov" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarTec" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel ID="UpdatePanel20" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnBusCodProveedor" runat="server" Text="Button" style="display:none" />
+                                            <asp:TextBox ID="txtProveedor" runat="server" style="display:none"></asp:TextBox>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -233,28 +228,25 @@
                                     Técnico
                                 </td>
                                 <td>
-                                    <asp:UpdatePanel ID="UpdatePanel23" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtTecnico" runat="server" style="width:50px"></asp:TextBox>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </td>
-                                <td>
                                     <asp:UpdatePanel ID="UpdatePanel25" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
                                             <asp:TextBox ID="txtTecName" runat="server" style="width:220px"></asp:TextBox>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarTec" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Prov" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
-                                    <asp:UpdatePanel ID="UpdatePanel26" runat="server" UpdateMode="Conditional">
+                                    <asp:UpdatePanel ID="UpdatePanel23" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnBusCodTecnico" runat="server" Text="Button" style="display:none" />
+                                            <asp:TextBox ID="txtTecnico" runat="server" style="display:none"></asp:TextBox>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
                                 <td colspan="2">
                                     <asp:UpdatePanel ID="UpdatePanel29" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:ImageButton ID="btnPopupTecnico" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
+                                            <asp:ImageButton ID="btnPopupTecnico" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteTecnico('Buscar Tecnico:',810,480); " />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -542,6 +534,10 @@
                                                         <asp:BoundField HeaderText="Abonado" DataField="CSID" />
                                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
                                                         <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
+                                                        <asp:BoundField HeaderText="DealerCode" DataField="DealerCode" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>
                                                         <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
                                                             <ItemStyle HorizontalAlign="Center" />
                                                         </asp:CommandField>
@@ -1071,7 +1067,7 @@
 				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
 					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
 					<span id="titcabemerTecnico">&nbsp;</span>&nbsp;&nbsp;</td>
-					<td id="tdemerTecnicocerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirEmergenteTecnico();">
+					<td id="tdemerTecnicocerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equis.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirEmergenteTecnico();">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
@@ -1082,46 +1078,48 @@
             <table style="width:100%"> 
                 <tr>                                        
                     <td>
-                        <div style="width:100%;">
+                        <div style="position:absolute;width:250px; height:20px;">
                             <table style="width:100%;">
                                 <tr>
                                     <td class="EtiquetaPop">
-                                        Tecnico
+                                       Proveedor
                                     </td>
                                     <td>
-                                        <asp:UpdatePanel ID="UpdatePanel68" runat="server">
-                                            <ContentTemplate>
-                                                <asp:TextBox ID="txtCodTecnico" runat="server" style="width:50px"></asp:TextBox>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
+                                        <asp:TextBox ID="txtProv" runat="server"></asp:TextBox>
+                                    </td>
+                                    <td class="EtiquetaPop">
+                                        Tecnico                                        
                                     </td>
                                     <td>
-                                        <asp:UpdatePanel ID="UpdatePanel63" runat="server">
-                                            <ContentTemplate>
-                                                <asp:TextBox ID="txtNameTecnico" runat="server" style="width:220px"></asp:TextBox>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
+                                        <asp:TextBox ID="txtNameTecnico" runat="server"></asp:TextBox>
                                     </td>
                                     <td>                                        
-                                        <asp:UpdatePanel ID="UpdatePanel64" runat="server">
+                                        <asp:UpdatePanel ID="UpdatePanel63" runat="server">
                                             <ContentTemplate>
-                                                <asp:Button ID="btnBuscarTecnico" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarTecnico_Click"/></td>
+                                                <asp:Button ID="btnBuscarTecnico" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarTecnico_Click"  /></td>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </td>
                                 </tr>        
                             </table>                        
-                            <table style="width:100%; height:125px">
+                            <table style="width:100%; height:200px">
                                 <tr>
                                     <td style="vertical-align:top;width:100%;">
-                                        
-                                        <asp:UpdatePanel ID="UpdatePanel65" runat="server" >
+                                        <asp:UpdatePanel ID="UpdatePanel64" runat="server" >
                                             <ContentTemplate>
-                                                <asp:GridView ID="gvTecnico" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gvTecnico_PageIndexChanging">
+                                                <asp:GridView ID="gvTecnico" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="800px" OnPageIndexChanging="gvTecnico_PageIndexChanging" >
                                                     <Columns>                                    
-                                                        <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
-                                                        <asp:BoundField HeaderText="Proveedor" DataField="Proveedor" />
-                                                        <asp:BoundField HeaderText="RUC" DataField="RUC" />
+                                                        <asp:BoundField HeaderText="Proveedor" DataField="sProveedorName" />
+                                                        <asp:BoundField HeaderText="DNI" DataField="sDocumento" />
+                                                        <asp:BoundField HeaderText="Nombres" DataField="Nombres" />
+                                                        <asp:BoundField HeaderText="PersonalID" DataField="PersonalID" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField HeaderText="ProveedorID" DataField="ProveedorID" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>
                                                         <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
                                                             <ItemStyle HorizontalAlign="Center" />
                                                         </asp:CommandField>
@@ -1144,8 +1142,9 @@
                                         </asp:UpdatePanel>
                                     </td>
                                 </tr>
+                                
                             </table>
-                            <div style="margin-top:8px;margin-left:85px;">
+                            <div style="position:absolute;width:250px; height:20px;top:50%;left:63%;margin-top:400px;margin-left:120px;">
                                 <table>
                                     <tr>
                                         <td>
@@ -1167,12 +1166,15 @@
                                     </tr>
                                 </table>
                             </div>
+                            
                         </div>
                     </td>
                 </tr>
             </table>
          </div>
     </div>
+    
+
     
     <script type="text/javascript">
 

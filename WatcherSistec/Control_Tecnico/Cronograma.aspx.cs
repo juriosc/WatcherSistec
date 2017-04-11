@@ -112,6 +112,8 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptarSubscriber_Click(object sender, EventArgs e)
         {
+            txtDealerName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[0].Text;
+            txtDealercode.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[4].Text;
             txtCsid.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
             txtSubscriberName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
         }
@@ -151,6 +153,8 @@ namespace WatcherSistec.Control_Tecnico
         {
             txtDealercode.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
             txtDealerName.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
+            txtCsid.Text = "";
+            txtSubscriberName.Text = "";
         }
 
         protected void gvDealer_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -187,23 +191,36 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptar_Prov_Click(object sender, EventArgs e)
         {
-            //txtDealercode.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
+            txtProveedor.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[0].Text;
             txtProveName.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
+            txtTecnico.Text = "";
+            txtTecName.Text = "";
         }
 
         protected void gvTecnico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvTecnico.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Tecnico(txtProv.Text, txtNameTecnico.Text);
         }
 
+        private void Listar_Grilla_Tecnico(string Proveedor, string Nombre)
+        {
+            brFichaTecnico br = new brFichaTecnico();
+            List<beTecnico> lstListarTecnico = br.ListarTecnico(Proveedor, Nombre);
+            gvTecnico.DataSource = lstListarTecnico;
+            gvTecnico.DataBind();
+        }
         protected void btnBuscarTecnico_Click(object sender, EventArgs e)
         {
-
+            Listar_Grilla_Tecnico(txtProv.Text, txtNameTecnico.Text);
         }
 
         protected void btnAceptarTec_Click(object sender, EventArgs e)
         {
-
+            txtTecnico.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[3].Text;
+            txtTecName.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text;
+            txtProveedor.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
+            txtProveName.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text;
         }
 
 
