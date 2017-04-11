@@ -256,7 +256,7 @@
                                             </asp:GridView>
                                         </ContentTemplate>
                                         <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnIniciar" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                 </div>
@@ -275,6 +275,68 @@
                             </td>
                         </tr>
                     </table>
+                       <table>
+                           <tr>
+                               <td>
+                                   <asp:UpdatePanel ID="UpdatePanel50" runat="server">
+                                       <ContentTemplate>
+                                           <asp:Label runat="server" Text="ALT" ></asp:Label>
+                                       </ContentTemplate>                                       
+                                   </asp:UpdatePanel>
+                               </td>
+                               <td>
+                                   &nbsp;
+                               </td>
+                               <td>
+                                   <asp:UpdatePanel ID="UpdatePanel58" runat="server">
+                                       <ContentTemplate>
+                                           <asp:Label runat="server" Text="BB" ></asp:Label>
+                                       </ContentTemplate>                                       
+                                   </asp:UpdatePanel>
+                               </td>
+                               <td>
+                                   &nbsp;
+                               </td>
+                               <td>
+                                   <asp:UpdatePanel ID="UpdatePanel59" runat="server">
+                                       <ContentTemplate>
+                                           <asp:Label runat="server" Text="FAC" ></asp:Label>
+                                       </ContentTemplate>                                       
+                                   </asp:UpdatePanel>
+                               </td>
+                               <td>
+                                   &nbsp;
+                               </td>
+                               <td>
+                                   <asp:UpdatePanel ID="UpdatePanel60" runat="server">
+                                       <ContentTemplate>
+                                           <asp:Label runat="server" Text="RED" ></asp:Label>
+                                       </ContentTemplate>                                       
+                                   </asp:UpdatePanel>
+                               </td>
+                               <td>
+                                   &nbsp;
+                               </td>
+                               <td>
+                                   <asp:UpdatePanel ID="UpdatePanel61" runat="server">
+                                       <ContentTemplate>
+                                           <asp:Label runat="server" Text="ACL" ></asp:Label>
+                                       </ContentTemplate>                                       
+                                   </asp:UpdatePanel>
+                               </td>
+                               <td>
+                                   &nbsp;
+                               </td>
+                               <td>
+                                   <asp:UpdatePanel ID="UpdatePanel62" runat="server">
+                                       <ContentTemplate>
+                                           <asp:Label runat="server" Text="AA" ></asp:Label>
+                                       </ContentTemplate>                                       
+                                   </asp:UpdatePanel>
+                               </td>
+
+                           </tr>
+                       </table>
 
                    </fieldset>
                                                     
@@ -393,10 +455,13 @@
                                     <tr>
                                         <td>TIEMPO FALTANTE :</td>
                                         <td>
-                                            <asp:UpdatePanel ID="UpdatePanel42" runat="server">
+                                            <asp:UpdatePanel ID="UpdatePanel42" runat="server" UpdateMode="Conditional" >
                                                 <ContentTemplate>
                                                     <asp:Label ID="lblTiempoFaltante" runat="server" Text="0" style="font-size:15px;font-weight:bold;font-family:Tahoma" ></asp:Label>
-                                                </ContentTemplate>
+                                                </ContentTemplate>                                                
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="tmrRecepSeniales" EventName="Tick" />
+                                                </Triggers>
                                             </asp:UpdatePanel>
                                         </td>
                                         <td>SEGUNDOS</td>
@@ -409,7 +474,8 @@
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" EventName="Click" />
-                                                </Triggers>
+                                                </Triggers>                                                
+
                                             </asp:UpdatePanel>
                                         </td>
                                     </tr>
@@ -1324,7 +1390,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align:center">
-                        <asp:UpdatePanel ID="UpdatePanel54" runat="server">
+                        <asp:UpdatePanel ID="UpdatePanel54" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:TextBox ID="txtTMSMMinutos" runat="server"></asp:TextBox>
                             </ContentTemplate>
@@ -1348,7 +1414,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel55" runat="server">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnAceptarTEnvioMSM" runat="server" Text="Aceptar" CssClass="btn btn-primary" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" />
+                                            <asp:Button ID="btnAceptarTEnvioMSM" runat="server" Text="Aceptar" CssClass="btn btn-primary" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
