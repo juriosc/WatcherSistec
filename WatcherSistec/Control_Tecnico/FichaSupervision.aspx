@@ -279,8 +279,8 @@
                            <tr>
                                <td>
                                    <asp:UpdatePanel ID="UpdatePanel50" runat="server">
-                                       <ContentTemplate>
-                                           <asp:Label runat="server" Text="ALT" ></asp:Label>
+                                       <ContentTemplate>                                           
+                                           <asp:Label ID="lblALT" runat="server" Text="ALT"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -290,7 +290,7 @@
                                <td>
                                    <asp:UpdatePanel ID="UpdatePanel58" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label runat="server" Text="BB" ></asp:Label>
+                                           <asp:Label ID="lblBB" runat="server" Text="BB"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -300,7 +300,7 @@
                                <td>
                                    <asp:UpdatePanel ID="UpdatePanel59" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label runat="server" Text="FAC" ></asp:Label>
+                                           <asp:Label ID="lblFAC" runat="server" Text="FAC"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -310,7 +310,7 @@
                                <td>
                                    <asp:UpdatePanel ID="UpdatePanel60" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label runat="server" Text="RED" ></asp:Label>
+                                           <asp:Label ID="lblRED" runat="server" Text="RED"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -320,7 +320,7 @@
                                <td>
                                    <asp:UpdatePanel ID="UpdatePanel61" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label runat="server" Text="ACL" ></asp:Label>
+                                           <asp:Label ID="lblACL" runat="server" Text="ACL"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -330,7 +330,7 @@
                                <td>
                                    <asp:UpdatePanel ID="UpdatePanel62" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label runat="server" Text="AA" ></asp:Label>
+                                           <asp:Label ID="lblAA" runat="server" Text="AA"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>

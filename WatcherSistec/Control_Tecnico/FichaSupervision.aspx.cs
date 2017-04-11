@@ -305,7 +305,6 @@ namespace WatcherSistec.Control_Tecnico
                 if (rbt.Checked)
                 {
 
-
                     brFichaAtenciones brAT = new brFichaAtenciones();
 
                     updatedAT = brAT.InsertarFichaAtencion(
@@ -555,7 +554,7 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void tmrRecepSeniales_Tick(object sender, EventArgs e)
         {
-            if (Convert.ToInt16(lblTiempoFaltante.Text) > 0) 
+            if (Convert.ToInt16(lblTiempoFaltante.Text) > 0)
             {
                 lblTiempoFaltante.Text = Convert.ToString(Convert.ToInt16(lblTiempoFaltante.Text) - 1);
             }
@@ -563,7 +562,13 @@ namespace WatcherSistec.Control_Tecnico
             {
                 lblTiempoFaltante.Text = "59";
             }
-            
+
+            string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
+            string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
+                                    
+            brFichaSupervision brRSE = new brFichaSupervision();
+            brRSE.InsertarReg_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID);            
+
         }
 
     }

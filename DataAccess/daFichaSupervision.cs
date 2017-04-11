@@ -75,6 +75,38 @@ namespace DataAccess
             return registro;
 
         }
+
+
+        public bool InsertarReg_Señales_Aten(SqlConnection con, Int64 ID_Ficha, int ID_Atencion, string csid)
+        {
+            bool registro = false;
+
+            SqlCommand cmd = new SqlCommand("sp_WCT_Reg_Señales_Aten", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ID_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@ID_Atencion", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = ID_Atencion;
+
+            SqlParameter param3 = cmd.Parameters.Add("@csid", SqlDbType.VarChar,10);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = csid;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
+
     
     }
 }
