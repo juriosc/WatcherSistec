@@ -51,6 +51,7 @@
     <Compile Include="daLog.cs" />
     <Compile Include="daLogin.cs" />
     <Compile Include="daProveedor.cs" />
+    <Compile Include="daRuta.cs" />
     <Compile Include="daSubscriber.cs" />
     <Compile Include="daSupervisiones.cs" />
     <Compile Include="daTipoMantenimiento.cs" />

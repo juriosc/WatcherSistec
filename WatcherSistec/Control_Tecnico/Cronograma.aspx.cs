@@ -16,6 +16,11 @@ namespace WatcherSistec.Control_Tecnico
             if (!IsPostBack)
             {
                 ListarCronograma();
+                ListarTipoMantenimiento();
+                ComboRuta();
+                ddlRutas.Items.Insert(0, new ListItem("TODOS", "0"));
+                ddlRuta.Items.Insert(0, new ListItem("TODOS", "0"));
+                Bloque_Zona("201412");
             }
         }
 
@@ -112,20 +117,32 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptarSubscriber_Click(object sender, EventArgs e)
         {
-            txtDealerName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[0].Text;
-            txtDealercode.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[4].Text;
-            txtCsid.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
-            txtSubscriberName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+            if(txtFondo3.Text=="1")
+            {
+
+                txtNewDealerDesc.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[0].Text;
+                txtNewDealer.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[4].Text;
+                txtNewAbon.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
+                txtNewAbonDesc.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+            }
+            else
+            {
+                txtDealerName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[0].Text;
+                txtDealercode.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[4].Text;
+                txtCsid.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
+                txtSubscriberName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+            }
+            
         }
 
         protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            ListarNewCronograma("","","","","");
-            string script = "mostrarPopupNuevoCronograma('Seleccionar Abonado:',700,520);";
+            //ListarNewCronograma("","","","","");
+            string script = "mostrarPopupNuevoCronograma('Seleccionar Abonado:',750,600);";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
         }
 
-        private void ListarNewCronograma(string Peri, string Prov, string pers, string ruta, string abon)
+        /*private void ListarNewCronograma(string Peri, string Prov, string pers, string ruta, string abon)
         {
             brCronograma br = new brCronograma();
             string BeginDate, EndDate;
@@ -137,12 +154,13 @@ namespace WatcherSistec.Control_Tecnico
 
             gvCronogramaMantenimiento.DataSource = lbeCronograma;
             gvCronogramaMantenimiento.DataBind();
-        }
-        protected void gvCronogramaMantenimiento_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        }*/
+
+        /*protected void gvCronogramaMantenimiento_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvCronogramaMantenimiento.PageIndex = e.NewPageIndex;
             ListarNewCronograma("", "", "", "", "");
-        }
+        }*/
 
         protected void btnBuscarDealer_Click(object sender, EventArgs e)
         {
@@ -151,10 +169,21 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptar_Dealer_Click(object sender, EventArgs e)
         {
-            txtDealercode.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
-            txtDealerName.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
-            txtCsid.Text = "";
-            txtSubscriberName.Text = "";
+            if(txtFondo4.Text=="1")
+            {
+                txtNewDealer.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
+                txtNewDealerDesc.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
+                txtNewAbon.Text = "";
+                txtNewAbonDesc.Text = "";
+            }
+            else
+            {
+                txtDealercode.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
+                txtDealerName.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
+                txtCsid.Text = "";
+                txtSubscriberName.Text = "";
+            }
+            
         }
 
         protected void gvDealer_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -191,10 +220,21 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptar_Prov_Click(object sender, EventArgs e)
         {
-            txtProveedor.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[0].Text;
-            txtProveName.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
-            txtTecnico.Text = "";
-            txtTecName.Text = "";
+            if (txtFondo.Text=="1")
+            {
+                txtNewProv.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[0].Text;
+                txtNewProvDes.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
+                txtNewTec.Text = "";
+                txtNewTecNom.Text = "";
+            }
+            else
+            {
+                txtProveedor.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[0].Text;
+                txtProveName.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
+                txtTecnico.Text = "";
+                txtTecName.Text = "";
+            }
+            
         }
 
         protected void gvTecnico_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -217,12 +257,79 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptarTec_Click(object sender, EventArgs e)
         {
-            txtTecnico.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[3].Text;
-            txtTecName.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text;
-            txtProveedor.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
-            txtProveName.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text;
+            if(txtFondo1.Text=="1")
+            {
+                txtNewTec.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[3].Text;
+                txtNewTecNom.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text);
+                txtNewProvDes.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text);
+                txtNewProv.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
+            }
+            else
+            {
+                txtTecnico.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[3].Text;
+                txtTecName.Text =HttpUtility.HtmlDecode( gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text);
+                txtProveedor.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
+                txtProveName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text);
+            }
+            
         }
 
+        private void ComboRuta()
+        {
+            brRuta br = new brRuta();
+            List<beRuta> lstRuta = br.ComboRuta();
 
+            ddlRutas.DataValueField = "Ruta_ID";
+            ddlRutas.DataTextField = "Ruta_Des";
+            ddlRutas.DataSource = lstRuta;
+            ddlRutas.DataBind();
+            ddlRuta.DataValueField = "Ruta_ID";
+            ddlRuta.DataTextField = "Ruta_Des";
+            ddlRuta.DataSource = lstRuta;
+            ddlRuta.DataBind();
+        }
+        private void ListarTipoMantenimiento()
+        {
+            brTipoMantenimiento br = new brTipoMantenimiento();
+            List<beTipoMantenimiento> lbeMantenimiento = br.ComboMantenimiento();
+
+            gvTipoMantenimiento.DataSource = lbeMantenimiento;
+            gvTipoMantenimiento.DataBind();
+        }
+        protected void gvTipoMantenimiento_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTipoMantenimiento.PageIndex = e.NewPageIndex;
+            ListarTipoMantenimiento();
+        }
+        private void Bloque_Zona(string csid)
+        {
+            brBloqueZona br = new brBloqueZona();
+
+            List<beBloqueZona> ListarBloqueZonaCron = br.ListarBloqueZonaCron(csid);
+            gvBloqueZonas.DataSource = ListarBloqueZonaCron;
+            gvBloqueZonas.DataBind();
+        }
+        protected void gvBloqueZonas_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for (int i = 1; i <= 39; i++)
+                {
+
+                    string[] Propiedad = e.Row.Cells[i].Text.Split('|');
+
+                    if (Propiedad[0].Equals("N"))
+                    {
+                        e.Row.Cells[i - 1].ForeColor = System.Drawing.Color.Black;
+                        e.Row.Cells[i - 1].Font.Bold = true;
+                        e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarPopupComentario('" + e.Row.Cells[i - 1].Text + "',600,560);");
+                        e.Row.Cells[i - 1].Attributes["style"] = "cursor:pointer";
+                        e.Row.Cells[i - 1].Attributes.Add("Title", Propiedad[1].ToString());
+                    }
+
+                }
+            }
+
+        }
     }
 }

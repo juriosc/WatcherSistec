@@ -266,11 +266,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel30" runat="server" UpdateMode="Conditional" >
                                         <ContentTemplate>
-                                            <asp:DropDownList ID="ddlDpto" runat="server" style="width:150px">
-                                                <asp:ListItem Value="00">TODOS</asp:ListItem>
-                                                <asp:ListItem Value="01">AMAZONAS</asp:ListItem>
-                                                <asp:ListItem Value="02">ANCASH</asp:ListItem>
-                                                <asp:ListItem Value="03">APURÍMAC</asp:ListItem>
+                                            <asp:DropDownList ID="ddlRuta" runat="server" style="width:150px">
                                             </asp:DropDownList>
                                         </ContentTemplate>
                                         <Triggers>
@@ -476,122 +472,10 @@
         </fieldset>
     </div>
 
-    <div id="emergente" class="ventana">
-        <div class="undraggable" style="width:100%;">
-			<table style="width:100% ; border-spacing:0px 0px; ">
-				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
-					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
-					<span id="titcabemergente">&nbsp;</span>&nbsp;&nbsp;</td>
-					<td id="tdemergentecerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equis.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupSubscriber();">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</td>
-				</tr>
-			</table>
-		</div>
-
-        <div id="emergentecuerpo">
-            <table style="width:100%"> 
-                <tr>                                        
-                    <td>
-                        <div style="position:absolute;width:250px; height:20px;">
-                            <table style="width:100%;">
-                                <tr>
-                                    <td class="EtiquetaPop">
-                                       Oficina
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtBusOficina" runat="server"></asp:TextBox>
-                                    </td>
-                                    <td class="EtiquetaPop">
-                                        Distribuidor                                        
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtBusDistribuidor" runat="server"></asp:TextBox>
-                                    </td>
-                                    <td class="EtiquetaPop">
-                                        Dirección
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtBusDireccion" runat="server"></asp:TextBox>
-                                    </td>
-                                    <td>                                        
-                                        <asp:UpdatePanel ID="UpdatePanel39" runat="server">
-                                            <ContentTemplate>
-                                                <asp:Button ID="btnBuscarSubscriber" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarSubscriber_Click"  /></td>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                </tr>        
-                            </table>                        
-                            <table style="width:100%; height:200px">
-                                <tr>
-                                    <td style="vertical-align:top;width:100%;">
-                                        <asp:UpdatePanel ID="UpdatePanel40" runat="server" >
-                                            <ContentTemplate>
-                                                <asp:GridView ID="gvSubscriber" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="800px" OnPageIndexChanging="gvSubscriber_PageIndexChanging" >
-                                                    <Columns>                                    
-                                                        <asp:BoundField HeaderText="Distribuidor" DataField="DealerName" />
-                                                        <asp:BoundField HeaderText="Abonado" DataField="CSID" />
-                                                        <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
-                                                        <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
-                                                        <asp:BoundField HeaderText="DealerCode" DataField="DealerCode" >
-                                                            <HeaderStyle CssClass="ColumnaOculta" />
-                                                            <ItemStyle CssClass="ColumnaOculta" />
-                                                        </asp:BoundField>
-                                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
-                                                            <ItemStyle HorizontalAlign="Center" />
-                                                        </asp:CommandField>
-                                                    </Columns>
-                                                    
-                                                    <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
-                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
-                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
-                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
-                                                    <RowStyle BackColor="White" Font-Size="8pt" />
-                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
-
-                                                </asp:GridView>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                </tr>
-                                
-                            </table>
-                            <div style="position:absolute;width:250px; height:20px;top:50%;left:63%;margin-top:400px;margin-left:120px;">
-                                <table >
-                                <tr>
-                                    <td  >
-                                        <asp:UpdatePanel ID="UpdatePanel41" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:Button ID="btnAceptarSubscriber" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClick="btnAceptarSubscriber_Click" OnClientClick="SalirPopupSubscriber()"  /></td>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                    <td style="width:80px">
-                                    </td>    
-                                    <td>
-                                        <asp:Button ID="btnCancelarSubscriber" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupSubscriber()" />                                        
-                                    </td>                                
-                                </tr>
-                            </table>
-                            </div>
-                            
-                        </div>
-                    </td>
-                </tr>
-            </table>
-         </div>
-    </div>
-
     <div id="emerNuevoCronograma" class="ventana">
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
-				<tr style="background-color: #950208;" onmouseover="this.style.cursor='move'">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
 					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
 					<span id="titcabemerNuevoCronograma">&nbsp;</span>&nbsp;&nbsp;</td>
 					<td id="tdemerNuevoCronogramacerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equis.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupNuevoCronograma();">
@@ -600,7 +484,7 @@
 				</tr>
 			</table>
 		</div>
-
+        <div id="fondoemergentedos" class="fondo">&nbsp;</div>
         <div id="emerNuevoCronogramacuerpo">
             <table style="width:100%"> 
                 <tr>                                        
@@ -614,7 +498,7 @@
                                         </legend>
                                         <table style="width:100%">
                                             <tr>
-                                                <td colspan="4">
+                                                <td colspan="6">
                                                     <table style="width:100%">
                                                         <tr>
                                                             <td class="EtiquetaPop">
@@ -643,13 +527,21 @@
                                                             <td>
                                                                 <asp:UpdatePanel ID="UpdatePanel42" runat="server" >
                                                                     <ContentTemplate>
-                                                                        <asp:TextBox ID="txtAño" runat="server" onkeypress="soloNumerosCompleto(this,event,'0');"></asp:TextBox>
-                                                                        <asp:NumericUpDownExtender ID="NumUPVent" runat="server" Width="60" Minimum="2000" TargetControlID="txtAño" >
-                                                                        </asp:NumericUpDownExtender>
+                                                                        <asp:TextBox ID="txtAño" runat="server" style="width:35px" MaxLength="4"></asp:TextBox>
                                                                     </ContentTemplate>
                                                                 </asp:UpdatePanel>
                                                             </td>
-                                                            <td style="width:11%">&nbsp;</td>
+                                                            <td class="Etiqueta">
+                                                                Ruta de Mantenimiento
+                                                            </td>
+                                                            <td>
+                                                                <asp:UpdatePanel ID="UpdatePanel49" runat="server">
+                                                                    <ContentTemplate>
+                                                                        <asp:DropDownList ID="ddlRutas" runat="server" style="width:150px">
+                                                                        </asp:DropDownList>
+                                                                    </ContentTemplate>
+                                                                </asp:UpdatePanel>
+                                                            </td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -659,85 +551,53 @@
                                                     Proveedor
                                                 </td>
                                                 <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel31" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:TextBox ID="txtNewProv" runat="server" style="width:50px"></asp:TextBox>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                </td>
-                                                <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel37" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel37" runat="server">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtNewProvDes" runat="server" style="width:220px"></asp:TextBox>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
-                                                    <asp:UpdatePanel ID="UpdatePanel43" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel31" runat="server">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnNewProv" runat="server" Text="Button" style="display:none" />
+                                                            <asp:TextBox ID="txtNewProv" runat="server" style="display:none"></asp:TextBox>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
-                                                <td colspan="2">
-                                                    <asp:UpdatePanel ID="UpdatePanel44" runat="server" UpdateMode="Conditional">
+                                                <td>
+                                                    <asp:UpdatePanel ID="UpdatePanel44" runat="server">
                                                         <ContentTemplate>
-                                                            <asp:ImageButton ID="btnNewPopupProv" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
+                                                            <asp:ImageButton ID="btnNewPopupProv" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteProv2('Buscar Proveedor:',400,250); " />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
-                                            </tr>
-                                            <tr>
                                                 <td class="Etiqueta">
                                                     Técnico
                                                 </td>
                                                 <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel45" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:TextBox ID="txtNewTec" runat="server" style="width:50px"></asp:TextBox>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                </td>
-                                                <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel46" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel46" runat="server">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtNewTecNom" runat="server" style="width:220px"></asp:TextBox>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
-                                                    <asp:UpdatePanel ID="UpdatePanel47" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel45" runat="server">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnNewTec" runat="server" Text="Button" style="display:none" />
+                                                            <asp:TextBox ID="txtNewTec" runat="server" style="display:none"></asp:TextBox>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
-                                                <td colspan="2">
-                                                    <asp:UpdatePanel ID="UpdatePanel48" runat="server" UpdateMode="Conditional">
+                                                <td>
+                                                    <asp:UpdatePanel ID="UpdatePanel48" runat="server">
                                                         <ContentTemplate>
-                                                            <asp:ImageButton ID="btnNewPopupTec" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="Etiqueta">
-                                                    Ruta de Mantenimiento
-                                                </td>
-                                                <td colspan="2">
-                                                    <asp:UpdatePanel ID="UpdatePanel49" runat="server" UpdateMode="Conditional" >
-                                                        <ContentTemplate>
-                                                            <asp:DropDownList ID="ddlRutas" runat="server" style="width:150px">
-                                                                <asp:ListItem Value="00">TODOS</asp:ListItem>
-                                                                <asp:ListItem Value="01">AMAZONAS</asp:ListItem>
-                                                                <asp:ListItem Value="02">ANCASH</asp:ListItem>
-                                                                <asp:ListItem Value="03">APURÍMAC</asp:ListItem>
-                                                            </asp:DropDownList>
+                                                            <asp:ImageButton ID="btnNewPopupTec" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteTecnico2('Buscar Oficinas:',810,480); " />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                
                                                 <td class="Etiqueta">
                                                     Observación
                                                 </td>
-                                                <td colspan="2" style="height:40%; width:60%;">
+                                                <td colspan="5" style="height:40%; width:60%;">
                                                      <asp:UpdatePanel ID="UpdatePanel50" runat="server">
                                                          <ContentTemplate>
                                                              <asp:TextBox ID="txtObs" Font-Size="14px" TextMode="MultiLine" runat="server" Width="100%" Height="50px"></asp:TextBox>
@@ -750,6 +610,217 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    <fieldset>
+                                        <legend>
+                                            Detalles
+                                        </legend>
+                                        <table style="width:100%">
+                                            <tr>
+                                                <td class="Etiqueta">
+                                                    Distribuidor
+                                                </td>
+                                                <td>
+                                                    <asp:UpdatePanel ID="UpdatePanel18" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtNewDealer" runat="server" style="width:50px"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                                <td>
+                                                    <asp:UpdatePanel ID="UpdatePanel26" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtNewDealerDesc" runat="server" style="width:220px"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                    <asp:UpdatePanel ID="UpdatePanel32" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:Button ID="btnNewDealer" runat="server" Text="Button" style="display:none" />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                                <td colspan="2">
+                                                    <asp:UpdatePanel ID="UpdatePanel43" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:ImageButton ID="btnNewPopupDealer" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteDealer2('Buscar Distribuidor:',460,250);" />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Etiqueta">
+                                                    Abonado
+                                                </td>
+                                                <td>
+                                                    <asp:UpdatePanel ID="UpdatePanel47" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtNewAbon" runat="server" style="width:50px"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                                <td>
+                                                    <asp:UpdatePanel ID="UpdatePanel65" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtNewAbonDesc" runat="server" style="width:220px"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                    <asp:UpdatePanel ID="UpdatePanel68" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:Button ID="btnNewAbon" runat="server" Text="Button" style="display:none" />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                                <td colspan="2">
+                                                    <asp:UpdatePanel ID="UpdatePanel69" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:ImageButton ID="btnNewPopupAbon" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber2('Buscar Oficinas:',810,480); " />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Etiqueta">Fecha Progrmacion</td>
+                                                <td  colspan="2" style="height: 28px">
+                                                    <asp:UpdatePanel ID="UpdatePanel70" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtFechaP" runat="server" ></asp:TextBox>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Etiqueta">Fecha Visita</td>
+                                                <td colspan="2" style="height: 28px">
+                                                    <asp:UpdatePanel ID="UpdatePanel71" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtFechaV" runat="server" ></asp:TextBox>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div>
+                                                        <table class="CabeceraScroll" style="background-color:black; font-size:11px; color:white; width:100%">
+                                                            <tr>
+                                                                <td>
+                                                                    Tipo Mantenimiento
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    
+                                                    </div>
+                                                    <div style="height:65px; overflow:auto">
+                                                        <asp:UpdatePanel ID="UpdatePanel72" runat="server" UpdateMode="Conditional">
+                                                            <ContentTemplate>
+                                                                <asp:GridView ID="gvTipoMantenimiento" Width="100%" runat="server" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" >
+                                                                    <Columns>
+                                                                        <asp:TemplateField HeaderText="...">
+                                                                            <ItemTemplate>
+                                                                                <asp:CheckBox ID="chkSel" runat="server" />
+                                                                            </ItemTemplate>
+                                                                            <HeaderStyle BackColor="Silver" />
+                                                                        </asp:TemplateField>
+                                                                        <asp:BoundField DataField="TipoMant_ID" HeaderText="Codigo" >
+                                                                            <HeaderStyle BackColor="Silver" CssClass="ColumnaOculta" />
+                                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                                        </asp:BoundField>
+                                                                        <asp:BoundField DataField="TipoMant_Des" HeaderText="Tipo Mantenimiento" >
+                                                                            <HeaderStyle BackColor="Silver" />
+                                                                        </asp:BoundField>
+                                                                    </Columns>
+                                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
+                                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White"  />
+                                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                                    <PagerStyle BackColor="Black" ForeColor="White" HorizontalAlign="Center" Font-Bold="True" Font-Size="8pt"  />
+                                                                    <RowStyle BackColor="White" Font-Size="8pt" />
+                                                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                                    <SortedAscendingHeaderStyle BackColor="Gray" />
+                                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                                                </asp:GridView>
+                                                            </ContentTemplate>
+                                                            <Triggers>
+                                                                <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
+                                                            </Triggers>
+                                                        </asp:UpdatePanel>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="vertical-align:central">
+                                                    <asp:UpdatePanel ID="UpdatePanel73" runat="server" >
+                                                        <ContentTemplate>
+                                                            <asp:GridView ID="gvBloqueZonas"  runat="server" AutoGenerateColumns="False" ShowHeader="false" OnRowDataBound="gvBloqueZonas_RowDataBound" Height="100%" Width="100%">
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="A" ItemStyle-CssClass="Bloque" ></asp:BoundField>
+                                                                    <asp:BoundField DataField="PA" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="B" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PB" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="C" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PC" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>                                                        
+                                                                    <asp:BoundField DataField="D" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PD" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="E" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PE" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="F" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PF" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="G" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PG" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="H" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PH" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="I" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PI" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="J" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PJ" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="K" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PK" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="L" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PL" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="M" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PM" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="N" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PN" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="O" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PO" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="P" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PP" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="Q" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PQ" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="R" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PR" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="S" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PS" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                    <asp:BoundField DataField="T" ItemStyle-CssClass="Bloque"></asp:BoundField>
+                                                                    <asp:BoundField DataField="PT" ItemStyle-CssClass="ColumnaOculta"></asp:BoundField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>                                
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                            <%--<tr>
                                 <td>
                                     <fieldset>
                                         <legend>
@@ -818,7 +889,7 @@
                                         </table>
                                     </fieldset>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             <tr>
                                 <td>
                                     <table style="width:100%">
@@ -885,6 +956,7 @@
                                         <asp:UpdatePanel ID="UpdatePanel52" runat="server">
                                             <ContentTemplate>
                                                 <asp:TextBox ID="txtNameDealer" runat="server" style="width:220px"></asp:TextBox>
+                                                <asp:TextBox ID="txtFondo4" runat="server" style="display:none"></asp:TextBox>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </td>
@@ -959,6 +1031,123 @@
          </div>
     </div>
 
+    <div id="emergente" class="ventana">
+        <div class="undraggable" style="width:100%;">
+			<table style="width:100% ; border-spacing:0px 0px; ">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
+					<span id="titcabemergente">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdemergentecerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equis.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupSubscriber();">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+
+        <div id="emergentecuerpo">
+            <table style="width:100%"> 
+                <tr>                                        
+                    <td>
+                        <div style="position:absolute;width:250px; height:20px;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="EtiquetaPop">
+                                       Oficina
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtBusOficina" runat="server"></asp:TextBox>
+                                    </td>
+                                    <td class="EtiquetaPop">
+                                        Distribuidor                                        
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtBusDistribuidor" runat="server"></asp:TextBox>
+                                    </td>
+                                    <td class="EtiquetaPop">
+                                        Dirección
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtBusDireccion" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtFondo3" runat="server" style="display:none"></asp:TextBox>
+                                    </td>
+                                    <td>                                        
+                                        <asp:UpdatePanel ID="UpdatePanel39" runat="server">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnBuscarSubscriber" runat="server" Width="70" Text="Buscar" Class="btn btn-primary" OnClick="btnBuscarSubscriber_Click"  /></td>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>        
+                            </table>                        
+                            <table style="width:100%; height:200px">
+                                <tr>
+                                    <td style="vertical-align:top;width:100%;">
+                                        <asp:UpdatePanel ID="UpdatePanel40" runat="server" >
+                                            <ContentTemplate>
+                                                <asp:GridView ID="gvSubscriber" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="800px" OnPageIndexChanging="gvSubscriber_PageIndexChanging" >
+                                                    <Columns>                                    
+                                                        <asp:BoundField HeaderText="Distribuidor" DataField="DealerName" />
+                                                        <asp:BoundField HeaderText="Abonado" DataField="CSID" />
+                                                        <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
+                                                        <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
+                                                        <asp:BoundField HeaderText="DealerCode" DataField="DealerCode" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>
+                                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                        </asp:CommandField>
+                                                    </Columns>
+                                                    
+                                                    <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
+                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
+                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
+                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
+                                                    <RowStyle BackColor="White" Font-Size="8pt" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+
+                                                </asp:GridView>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            <div style="position:absolute;width:250px; height:20px;top:50%;left:63%;margin-top:400px;margin-left:120px;">
+                                <table >
+                                <tr>
+                                    <td  >
+                                        <asp:UpdatePanel ID="UpdatePanel41" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnAceptarSubscriber" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClick="btnAceptarSubscriber_Click" OnClientClick="SalirPopupSubscriber()"  /></td>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td style="width:80px">
+                                    </td>    
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel74" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnCancelarSubscriber" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupSubscriber()" />                                        
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>                                
+                                </tr>
+                            </table>
+                            </div>
+                            
+                        </div>
+                    </td>
+                </tr>
+            </table>
+         </div>
+    </div>
+
     <div id="emerProv" class="ventana">
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
@@ -986,6 +1175,7 @@
                                         <asp:UpdatePanel ID="UpdatePanel58" runat="server">
                                             <ContentTemplate>
                                                 <asp:TextBox ID="txtProvName" runat="server" style="width:220px"></asp:TextBox>
+                                                <asp:TextBox ID="txtFondo" runat="server" style="display:none"></asp:TextBox>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </td>
@@ -1092,6 +1282,7 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtNameTecnico" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtFondo1" runat="server" style="display:none"></asp:TextBox>
                                     </td>
                                     <td>                                        
                                         <asp:UpdatePanel ID="UpdatePanel63" runat="server">
@@ -1184,13 +1375,19 @@
                 $("#emerDealer").draggable({ handle: 'div.undraggable' });
                 $("#emerProv").draggable({ handle: 'div.undraggable' });
                 $("#emerTecnico").draggable({ handle: 'div.undraggable' });
+                $("#emerNuevoCronograma").draggable({ handle: 'div.undraggable' });
                 
             });
 
+            $(document).ready(function () {
+                $('#ContentPlaceHolder1_txtFechaP').datetimepicker();
+                $('#ContentPlaceHolder1_txtFechaV').datetimepicker();
+            });
             function mostrarPopupSubscriber(titulo, ancho, alto) {
                 $("#tdemergentecerrar").show();
                 $("#fondoemergente").css('display', 'block');
                 $("#titcabemergente").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo3').value = "0";
                 mostrarCentrarDiv('emergente', ancho, alto);
             }
 
@@ -1201,19 +1398,11 @@
                 mostrarCentrarDiv('emerNuevoCronograma', ancho, alto);
             }
 
-            function mostrarEmergenteabon(titulo, ancho, alto) {
-                $("#tdemergentecerrarabon").show();
-                $("#fondoemergenteasc").css('display', 'block');
-                $("#titcabemergenteabon").html(titulo);
-                mostrarCentrarDiv('emergenteabon', ancho, alto);
-                document.getElementById('ContentPlaceHolder1_txtBusAbon').value = "";
-                document.getElementById('ContentPlaceHolder1_txtBusOfi').value = "";
-            }
-
             function mostrarEmergenteDealer(titulo, ancho, alto) {
                 $("#tdemerDealercerrar").show();
                 $("#fondoemergente").css('display', 'block');
                 $("#titcabemerDealer").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo4').value = "0";
                 mostrarCentrarDiv('emerDealer', ancho, alto);
             }
 
@@ -1221,6 +1410,7 @@
                 $("#tdemerProvcerrar").show();
                 $("#fondoemergente").css('display', 'block');
                 $("#titcabemerProv").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo').value = "0";
                 mostrarCentrarDiv('emerProv', ancho, alto);
             }
 
@@ -1228,31 +1418,100 @@
                 $("#tdemerTecnicocerrar").show();
                 $("#fondoemergente").css('display', 'block');
                 $("#titcabemerTecnico").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo1').value = "0";
                 mostrarCentrarDiv('emerTecnico', ancho, alto);
             }
 
-            function SalirPopupSubscriber() {
-                $("#fondoemergente").hide();
-                $("#emergente").hide();
+            function mostrarPopupSubscriber2(titulo, ancho, alto) {
+                $("#tdemergentecerrar").show();
+                $("#fondoemergentedos").css('display', 'block');
+                $("#titcabemergente").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo3').value = "1";
+                mostrarCentrarDiv('emergente', ancho, alto);
             }
 
+            function mostrarEmergenteDealer2(titulo, ancho, alto) {
+                $("#tdemerDealercerrar").show();
+                $("#fondoemergentedos").css('display', 'block');
+                $("#titcabemerDealer").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo4').value = "1";
+                mostrarCentrarDiv('emerDealer', ancho, alto);
+            }
+            function mostrarEmergenteProv2(titulo, ancho, alto) {
+                $("#tdemerProvcerrar").show();
+                $("#fondoemergentedos").css('display', 'block');
+                $("#titcabemerProv").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo').value = "1";
+                mostrarCentrarDiv('emerProv', ancho, alto);
+            }
+
+            function mostrarEmergenteTecnico2(titulo, ancho, alto) {
+                $("#tdemerTecnicocerrar").show();
+                $("#fondoemergentedos").css('display', 'block');
+                $("#titcabemerTecnico").html(titulo);
+                document.getElementById('ContentPlaceHolder1_txtFondo1').value = "1";
+                mostrarCentrarDiv('emerTecnico', ancho, alto);
+
+            }
             function SalirPopupNuevoCronograma() {
                 $("#fondoemergente").hide();
                 $("#emerNuevoCronograma").hide();
             }
 
+            function SalirPopupSubscriber() {
+
+                var bandera = document.getElementById('ContentPlaceHolder1_txtFondo3').value;
+                if (bandera == "1")
+                {
+                    $("#fondoemergentedos").hide();
+                }
+                else
+                {
+                    $("#fondoemergente").hide();
+                }
+                $("#emergente").hide();
+            }
+
+            
+
             function SalirEmergenteDealer() {
-                $("#fondoemergente").hide();
+
+                var bandera = document.getElementById('ContentPlaceHolder1_txtFondo4').value;
+                if (bandera == "1")
+                {
+                    $("#fondoemergentedos").hide();
+                }
+                else
+                {
+                    $("#fondoemergente").hide();
+                }
                 $("#emerDealer").hide();
             }
 
             function SalirEmergenteProveedor() {
-                $("#fondoemergente").hide();
+
+                var bandera = document.getElementById('ContentPlaceHolder1_txtFondo').value;
+                if (bandera == "1")
+                {
+                    $("#fondoemergentedos").hide();
+                }
+                else
+                {
+                    $("#fondoemergente").hide();
+                }
                 $("#emerProv").hide();
             }
 
             function SalirEmergenteTecnico() {
-                $("#fondoemergente").hide();
+                var bandera = document.getElementById('ContentPlaceHolder1_txtFondo1').value;
+                if (bandera == "1")
+                {
+                    $("#fondoemergentedos").hide();
+                }
+                else
+                {
+                    $("#fondoemergente").hide();
+                }
                 $("#emerTecnico").hide();
             }
 
