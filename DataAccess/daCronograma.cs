@@ -88,6 +88,11 @@ namespace DataAccess
                 int Estado_Ficha = drd.GetOrdinal("Estado_Ficha");
                 int tiposMant = drd.GetOrdinal("tiposMant");
                 int Fecha_Programada = drd.GetOrdinal("Fecha_Programada");
+                int Mes = drd.GetOrdinal("Mes");
+                int Anho = drd.GetOrdinal("Anho");
+                int DealerName = drd.GetOrdinal("DealerName");
+                int ProvName = drd.GetOrdinal("ProvName");
+                int Fecha_Visita = drd.GetOrdinal("Fecha_Visita");
                 
                 lbeCronograma = new List<beCronograma>();
                 beCronograma obeCronograma;
@@ -107,6 +112,11 @@ namespace DataAccess
                     obeCronograma.Estado_Ficha = drd.GetString(Estado_Ficha);
                     obeCronograma.tiposMant = drd.GetString(tiposMant);
                     obeCronograma.Fecha_Programada = drd.GetString(Fecha_Programada);
+                    obeCronograma.Mes = drd.GetString(Mes);
+                    obeCronograma.Anho = drd.GetString(Anho);
+                    obeCronograma.DealerName = drd.GetString(DealerName);
+                    obeCronograma.ProvName = drd.GetString(ProvName);
+                    obeCronograma.Fecha_Visita = drd.GetString(Fecha_Visita);
 
                     lbeCronograma.Add(obeCronograma);
                 }

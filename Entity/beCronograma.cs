@@ -17,5 +17,9 @@
         public string Fecha_Programada { get; set; }
         public string b_supervisar { get; set; }
         public string Fecha_Visita { get; set; }
+        public string Mes { get; set; }
+        public string Anho { get; set; }
+        public string DealerName { get; set; }
+        public string ProvName { get; set; }
     }
 }
