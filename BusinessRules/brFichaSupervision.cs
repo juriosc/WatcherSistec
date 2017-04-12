@@ -45,7 +45,7 @@ namespace BusinessRules
             return (updated);
         }
 
-        public bool InsertarReg_Señales_Aten(Int64 ID_Ficha, int ID_Atencion, string CSID)
+        public bool Insertar_Señales_Aten(Int64 ID_Ficha, int ID_Atencion, string CSID, Int64 AlarmHistoryID)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -54,7 +54,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daFichaSupervision odaReg_Señales_Aten = new daFichaSupervision();
-                    updated = odaReg_Señales_Aten.InsertarReg_Señales_Aten(con, ID_Ficha, ID_Atencion, CSID);
+                    updated = odaReg_Señales_Aten.Insertar_Señales_Aten(con, ID_Ficha, ID_Atencion, CSID, AlarmHistoryID);
                 }
                 catch (SqlException ex)
                 {

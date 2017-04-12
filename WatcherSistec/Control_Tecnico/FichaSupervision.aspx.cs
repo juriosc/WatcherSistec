@@ -313,7 +313,7 @@ namespace WatcherSistec.Control_Tecnico
                         Convert.ToInt64(txtID_Ficha.Text)
                         , HttpUtility.HtmlDecode(fila.Cells[2].Text)
                         , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())                        
-                        , out outID_Atencion, out out_AlarmHistoryID_Inicial);
+                        , out outID_Atencion);
 
 
                     string men = "";
@@ -555,6 +555,7 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void tmrRecepSeniales_Tick(object sender, EventArgs e)
         {
+
             if (Convert.ToInt16(lblTiempoFaltante.Text) > 0)
             {
                 lblTiempoFaltante.Text = Convert.ToString(Convert.ToInt16(lblTiempoFaltante.Text) - 1);
@@ -566,9 +567,11 @@ namespace WatcherSistec.Control_Tecnico
 
             string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
             string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
+            Int64 UFilaAlarmHistoryID = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[7].Text);
                                     
             brFichaSupervision brRSE = new brFichaSupervision();
-            brRSE.InsertarReg_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID);
+            brRSE.Insertar_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID, UFilaAlarmHistoryID);
+
 
         }
 

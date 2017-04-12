@@ -241,6 +241,9 @@
                                                     <asp:BoundField HeaderText="Fecha_Fin" DataField="Fecha_Termino"/>
                                                     <asp:BoundField HeaderText="Estado_Fin" DataField="Estado_Termino"/>
                                                     <asp:BoundField HeaderText="Observacion" DataField="Observaciones"/>
+                                                    <asp:BoundField HeaderText="AlarmHistoryID_Inicial" DataField="AlarmHistoryID_Inicial">
+                                                    
+                                                    </asp:BoundField>
                                                 </Columns>
                                                 <EmptyDataTemplate></EmptyDataTemplate>
                                                 <FooterStyle BackColor="#99CCCC" HorizontalAlign="Center" ForeColor="#003399" />

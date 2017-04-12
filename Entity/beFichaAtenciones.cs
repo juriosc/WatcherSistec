@@ -9,8 +9,8 @@
 	    public string Nombres { get; set; }
 	    public string Fecha_Inicio { get; set; }
 	    public string Fecha_Termino  { get; set; }
-	    public int Estado_Inicio  { get; set; }
-	    public int Estado_Termino { get; set; }
+	    public string Estado_Inicio  { get; set; }
+	    public string Estado_Termino { get; set; }
 	    public string b_ALT { get; set; }
 	    public string b_BB { get; set; }
 	    public string b_FAC { get; set; }

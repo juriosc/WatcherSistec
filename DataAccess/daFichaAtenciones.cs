@@ -56,8 +56,8 @@ namespace DataAccess
                     obeAtenciones.Usuario = drd.GetString(Usuario);
                     obeAtenciones.Fecha_Inicio = drd.GetString(Fecha_Inicio);
                     obeAtenciones.Fecha_Termino = drd.GetString(Fecha_Termino);
-                    obeAtenciones.Estado_Inicio = drd.GetInt32(Estado_Inicio);
-                    obeAtenciones.Estado_Termino = drd.GetInt32(Estado_Termino);
+                    obeAtenciones.Estado_Inicio = drd.GetString(Estado_Inicio);
+                    obeAtenciones.Estado_Termino = drd.GetString(Estado_Termino);
                     obeAtenciones.b_ALT = drd.GetString(b_ALT);
                     obeAtenciones.b_BB = drd.GetString(b_BB);
                     obeAtenciones.b_FAC = drd.GetString(b_FAC);
@@ -74,7 +74,7 @@ namespace DataAccess
             return lbeAtenciones;
         }
 
-        public bool InsertarFichaAtencion(SqlConnection con, Int64 ID_Ficha, string CSID, string Usuario, out string outID_Atencion, out string out_AlarmHistoryID_Inicial)
+        public bool InsertarFichaAtencion(SqlConnection con, Int64 ID_Ficha, string CSID, string Usuario, out string outID_Atencion)
         {
             bool registro = false;
             SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_Atencion", con);
@@ -94,24 +94,19 @@ namespace DataAccess
             
             //PARAMETROS DE SALIDA
 
-            SqlParameter param4 = cmd.Parameters.Add("@out_AlarmHistoryID_Inicial", SqlDbType.VarChar, 25);
+            SqlParameter param4 = cmd.Parameters.Add("@outID_Atencion", SqlDbType.VarChar, 25);
             param4.Direction = ParameterDirection.Output;
-
-            SqlParameter param5 = cmd.Parameters.Add("@outID_Atencion", SqlDbType.VarChar, 25);
-            param5.Direction = ParameterDirection.Output;            
-
+            
             int n = cmd.ExecuteNonQuery();
 
             if (n > 0)
             {
-                registro = true;
-                out_AlarmHistoryID_Inicial = param4.Value.ToString();
-                outID_Atencion = param5.Value.ToString();
+                registro = true;                
+                outID_Atencion = param4.Value.ToString();
 
             }
             else
-            {
-                out_AlarmHistoryID_Inicial = "";
+            {                
                 outID_Atencion = "";
             }
 

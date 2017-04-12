@@ -75,13 +75,11 @@ namespace DataAccess
             return registro;
 
         }
-
-
-        public bool InsertarReg_Señales_Aten(SqlConnection con, Int64 ID_Ficha, int ID_Atencion, string csid)
+        public bool Insertar_Señales_Aten(SqlConnection con, Int64 ID_Ficha, int ID_Atencion, string csid, Int64 AlarmHistoryID)
         {
             bool registro = false;
 
-            SqlCommand cmd = new SqlCommand("sp_WCT_Reg_Señales_Aten", con);
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Señales_Aten", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
@@ -95,6 +93,10 @@ namespace DataAccess
             SqlParameter param3 = cmd.Parameters.Add("@csid", SqlDbType.VarChar,10);
             param3.Direction = ParameterDirection.Input;
             param3.Value = csid;
+
+            SqlParameter param4 = cmd.Parameters.Add("@AlarmHistoryID", SqlDbType.BigInt);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = AlarmHistoryID;
 
             int n = cmd.ExecuteNonQuery();
 
