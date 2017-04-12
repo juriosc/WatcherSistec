@@ -186,5 +186,139 @@ namespace DataAccess
             }
             return lbeCronograma;
         }
+
+        public bool InsertarCronograma(SqlConnection con, int ProveedorID, int PersonalID, int Ruta, string Obser, DateTime Periodo)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Cronograma", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ProveedorID", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ProveedorID;
+
+            SqlParameter param2 = cmd.Parameters.Add("@PersonalID", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = PersonalID;
+
+            SqlParameter param3 = cmd.Parameters.Add("@Ruta_ID", SqlDbType.Int);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = Ruta;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Obser", SqlDbType.VarChar, 3000);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = Obser;
+
+            SqlParameter param5 = cmd.Parameters.Add("@Periodo", SqlDbType.DateTime);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = Periodo;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
+
+        public bool InsertarCronogramaDetalle(SqlConnection con, int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, DateTime Fecha_Programada, string Dealercode, DateTime Fecha_Visita, string Obser)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Cronograma_Detalle", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ProveedorID", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ProveedorID;
+
+            SqlParameter param2 = cmd.Parameters.Add("@PersonalID", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = PersonalID;
+
+            SqlParameter param3 = cmd.Parameters.Add("@Ruta_ID", SqlDbType.Int);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = Ruta;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Periodo", SqlDbType.DateTime);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = Periodo;
+
+            SqlParameter param5 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = CSID;
+
+            SqlParameter param6 = cmd.Parameters.Add("@Fecha_Programada", SqlDbType.DateTime);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = Fecha_Programada;
+
+            SqlParameter param7 = cmd.Parameters.Add("@DealerCode", SqlDbType.VarChar, 10);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = Dealercode;
+
+            SqlParameter param8 = cmd.Parameters.Add("@Fecha_Visita", SqlDbType.DateTime);
+            param8.Direction = ParameterDirection.Input;
+            param8.Value = Fecha_Visita;
+
+            SqlParameter param9 = cmd.Parameters.Add("@Obser", SqlDbType.VarChar, 3000);
+            param9.Direction = ParameterDirection.Input;
+            param9.Value = Obser;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
+        public bool InsertarCronogramaTipoMant(SqlConnection con, int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, DateTime Fecha_Programada, Int64 TipoMant_ID)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Cronograma_TipoMant", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ProveedorID", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ProveedorID;
+
+            SqlParameter param2 = cmd.Parameters.Add("@PersonalID", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = PersonalID;
+
+            SqlParameter param3 = cmd.Parameters.Add("@Ruta_ID", SqlDbType.Int);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = Ruta;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Periodo", SqlDbType.DateTime);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = Periodo;
+
+            SqlParameter param5 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = CSID;
+
+            SqlParameter param6 = cmd.Parameters.Add("@Fecha_Programada", SqlDbType.DateTime);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = Fecha_Programada;
+
+            SqlParameter param7 = cmd.Parameters.Add("@TipoMant_ID", SqlDbType.Int);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = TipoMant_ID;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
     }
 }

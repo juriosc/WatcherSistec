@@ -359,7 +359,7 @@
                                             <td class="Etiqueta">
                                                 <asp:UpdatePanel ID="UpdatePanel24" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:RadioButton ID="rbtSupervision" runat="server" GroupName="gSupervision" text="Supervisados" Checked="true"/>
+                                                        <asp:RadioButton ID="rbtSupervision" runat="server" GroupName="gSupervision" text="Supervisados"   Checked="true"/>
                                                     </ContentTemplate>
                                                     <Triggers>
                                                         <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
@@ -397,13 +397,6 @@
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </td>
-                                            <td>
-                                                <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:ImageButton ID="btnModificar" runat="server" ToolTip="Modificar" ImageUrl="../Images/Mantenimiento/modify_16.ico" CssClass="ImagenBoton"/>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                            </td>
                                         </tr>
                                     </table>
                                 </td>
@@ -422,7 +415,7 @@
                     <td style="text-align:center;">
                         <asp:UpdatePanel ID="UpdatePanel16" runat="server">
                             <ContentTemplate>
-                                <asp:GridView ID="gvCronograma" runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvCronograma_PageIndexChanging" ShowHeaderWhenEmpty="True">
+                                <asp:GridView ID="gvCronograma" Width="100%" runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvCronograma_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvCronograma_RowCommand">
                                     <Columns>
                                         <asp:BoundField HeaderText="Periodo" DataField="Periodo" />
                                         <asp:BoundField HeaderText="Proveedor" DataField="ProveedorID" />
@@ -449,14 +442,26 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:ImageButton ID="btnVer" runat="server" ImageUrl="~/Images/Mantenimiento/view.png" CommandName="Ver" ToolTip="VER"
+                                                    CausesValidation="false" CommandArgument="<%# ((GridViewRow)Container).RowIndex %>" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="../Images/Mantenimiento/modify_16.ico" CommandName="Modificar" ToolTip="MODIFICAR" 
+                                                    CausesValidation="false" CommandArgument="<%# ((GridViewRow)Container).RowIndex %>" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 
                                     <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
                                     <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
                                     <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
                                     <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
-                                    <RowStyle BackColor="White" Font-Size="8pt" />
+                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="8pt"  />
+                                    <RowStyle BackColor="White" Font-Size="10pt" />
                                     <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                                     <SortedAscendingCellStyle BackColor="#F1F1F1" />
                                     <SortedAscendingHeaderStyle BackColor="#808080" />
@@ -487,6 +492,15 @@
         <div id="fondoemergentedos" class="fondo">&nbsp;</div>
         <div id="emerNuevoCronogramacuerpo">
             <table style="width:100%"> 
+                <tr>
+                    <td>
+                        <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                            <ContentTemplate>
+                                <asp:HiddenField ID="hdfEstado" runat="server"/>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                </tr>
                 <tr>                                        
                     <td>
                         <table style="width:100%;">
@@ -695,7 +709,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="Etiqueta">Fecha Progrmacion</td>
+                                                <td class="Etiqueta">Fecha Programacion</td>
                                                 <td  colspan="2" style="height: 28px">
                                                     <asp:UpdatePanel ID="UpdatePanel70" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
@@ -898,7 +912,7 @@
                                             <td>
                                                 <asp:UpdatePanel ID="UpdatePanel33" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:Button ID="btnAceptarCronograma" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary"  OnClientClick="SalirPopupNuevoCronograma()" /></td>
+                                                        <asp:Button ID="btnAceptarCronograma" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClick="btnAceptarCronograma_Click"  OnClientClick="SalirPopupNuevoCronograma()" /></td>
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </td>
