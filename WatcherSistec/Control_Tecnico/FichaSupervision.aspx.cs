@@ -568,9 +568,11 @@ namespace WatcherSistec.Control_Tecnico
             string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
             string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
             Int64 UFilaAlarmHistoryID = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[7].Text);
-                                    
-            brFichaSupervision brRSE = new brFichaSupervision();
-            brRSE.Insertar_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID, UFilaAlarmHistoryID);
+
+            brSeniales brSE = new brSeniales();
+            brSE.Insertar_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID, UFilaAlarmHistoryID);
+
+
 
 
         }
