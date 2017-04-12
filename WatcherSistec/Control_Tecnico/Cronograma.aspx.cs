@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessRules;
+using System.Data;
+using System.Globalization;
 
 namespace WatcherSistec.Control_Tecnico
 {
@@ -330,6 +332,93 @@ namespace WatcherSistec.Control_Tecnico
                 }
             }
 
+        }
+
+        protected void btnAceptarCronograma_Click(object sender, EventArgs e)
+        {
+            brCronograma br = new brCronograma();
+
+            string men = "";
+            string mes = ddlMes.SelectedValue.ToString();
+            string año = txtAño.Text;
+            string Periodo = "01/"+mes+"/"+año;
+            DateTime fechaV;
+
+            IFormatProvider culture = new CultureInfo("es-PE", true);
+            DateTime FPeriodo = DateTime.ParseExact(Periodo, "dd/MM/yyyy", culture);
+            DateTime fechaP = DateTime.ParseExact(txtFechaP.Text, "dd/MM/yyyy HH:mm", culture);
+            if (txtFechaV.Text == "")
+            {
+                fechaV = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", culture);
+            }
+            else { fechaV = DateTime.ParseExact(txtFechaV.Text, "dd/MM/yyyy HH:mm", culture); }
+            
+
+
+            bool updated = br.InsertarCronograma(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text), 
+                                                 Convert.ToInt32(ddlRutas.SelectedValue.ToString()), txtObs.Text, FPeriodo);
+            if (updated == true)
+            {
+                bool updatedCD = br.InsertarCronogramaDetalle(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
+                                                              Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
+                                                              txtNewAbon.Text, fechaP, txtNewDealer.Text, fechaV, "");
+                if (updatedCD == true)
+                {
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+
+                        if (check.Checked)
+                        {
+                            bool updatedTM = br.InsertarCronogramaTipoMant(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
+                                                              Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
+                                                              txtNewAbon.Text, fechaP, Convert.ToInt64(fila.Cells[1].Text));
+
+                            if (updated == false)
+                            {
+                                men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                            }
+                            else
+                            {
+                                men = "Tipo Mantenimiento registrado correctamente";
+                            }
+
+                        }
+                    }
+                }
+                
+            }
+            else
+            {
+                men = "No se pudo registrar el Cronograma";
+            }
+
+            string script1 = "alert('Mensaje: ' " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
+        }
+
+        protected void gvCronograma_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("Ver") || e.CommandName.Equals("Modificar"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvCronograma.Rows[index];
+                string script = "";
+
+                if (e.CommandName.Equals("Ver"))
+                {
+                    hdfEstado.Value = "VER";
+                    script = "mostrarPopupNuevoCronograma('Ver Cronograma:',750,600);";
+                }
+
+                if (e.CommandName.Equals("Modificar"))
+                {
+                    hdfEstado.Value = "EDITAR";
+                    script = "mostrarPopupNuevoCronograma('Editar Cronograma:',750,600);";
+                }
+
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            }
         }
     }
 }
