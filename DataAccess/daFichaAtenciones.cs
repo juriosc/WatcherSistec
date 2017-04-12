@@ -74,7 +74,7 @@ namespace DataAccess
             return lbeAtenciones;
         }
 
-        public bool InsertarFichaAtencion(SqlConnection con, Int64 ID_Ficha, string CSID, string Usuario, int AlarmHistoryID_Inicial, out string outID_Atencion)
+        public bool InsertarFichaAtencion(SqlConnection con, Int64 ID_Ficha, string CSID, string Usuario, out string outID_Atencion, out string out_AlarmHistoryID_Inicial)
         {
             bool registro = false;
             SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Ficha_Atencion", con);
@@ -90,27 +90,28 @@ namespace DataAccess
 
             SqlParameter param3 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
             param3.Direction = ParameterDirection.Input;
-            param3.Value = Usuario;            
-
-            SqlParameter param4 = cmd.Parameters.Add("@AlarmHistoryID_Inicial", SqlDbType.Int);
-            param4.Direction = ParameterDirection.Input;
-            param4.Value = AlarmHistoryID_Inicial;
-
+            param3.Value = Usuario;
+            
             //PARAMETROS DE SALIDA
 
+            SqlParameter param4 = cmd.Parameters.Add("@out_AlarmHistoryID_Inicial", SqlDbType.VarChar, 25);
+            param4.Direction = ParameterDirection.Output;
+
             SqlParameter param5 = cmd.Parameters.Add("@outID_Atencion", SqlDbType.VarChar, 25);
-            param5.Direction = ParameterDirection.Output;
+            param5.Direction = ParameterDirection.Output;            
 
             int n = cmd.ExecuteNonQuery();
 
             if (n > 0)
             {
                 registro = true;
+                out_AlarmHistoryID_Inicial = param4.Value.ToString();
                 outID_Atencion = param5.Value.ToString();
 
             }
             else
             {
+                out_AlarmHistoryID_Inicial = "";
                 outID_Atencion = "";
             }
 

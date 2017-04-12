@@ -43,7 +43,7 @@ namespace BusinessRules
             return (lbeAtenciones);
         }
 
-        public bool InsertarFichaAtencion(Int64 ID_Ficha, string CSID, string Usuario, int AlarmHistoryID_Inicial, out string outID_Atencion)
+        public bool InsertarFichaAtencion(Int64 ID_Ficha, string CSID, string Usuario, out string out_AlarmHistoryID_Inicial, out string outID_Atencion)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -52,7 +52,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daFichaAtenciones odaFichaAtencion = new daFichaAtenciones();
-                    updated = odaFichaAtencion.InsertarFichaAtencion(con, ID_Ficha, CSID, Usuario, AlarmHistoryID_Inicial,out outID_Atencion);
+                    updated = odaFichaAtencion.InsertarFichaAtencion(con, ID_Ficha, CSID, Usuario, out out_AlarmHistoryID_Inicial, out outID_Atencion);
                 }
                  catch (SqlException ex)
                 {
@@ -64,6 +64,7 @@ namespace BusinessRules
                         obeLog.DetalleError = ex.StackTrace;
                         ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);                        
                     }
+                    out_AlarmHistoryID_Inicial = "";
                     outID_Atencion = "";
                 }
                 catch (Exception ex)
@@ -72,6 +73,7 @@ namespace BusinessRules
                     obeLog.MensajeError = ex.Message;
                     obeLog.DetalleError = ex.StackTrace;
                     ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    out_AlarmHistoryID_Inicial = "";
                     outID_Atencion = "";
                 }
             }

@@ -296,6 +296,8 @@ namespace WatcherSistec.Control_Tecnico
 
             string outID_Atencion = "";
 
+            string out_AlarmHistoryID_Inicial = "";
+
 
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
@@ -310,9 +312,8 @@ namespace WatcherSistec.Control_Tecnico
                     updatedAT = brAT.InsertarFichaAtencion(
                         Convert.ToInt64(txtID_Ficha.Text)
                         , HttpUtility.HtmlDecode(fila.Cells[2].Text)
-                        , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())
-                        , 10
-                        , out outID_Atencion);
+                        , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())                        
+                        , out outID_Atencion, out out_AlarmHistoryID_Inicial);
 
 
                     string men = "";
@@ -567,7 +568,7 @@ namespace WatcherSistec.Control_Tecnico
             string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
                                     
             brFichaSupervision brRSE = new brFichaSupervision();
-            brRSE.InsertarReg_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID);            
+            brRSE.InsertarReg_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID);
 
         }
 
