@@ -82,7 +82,7 @@ namespace WatcherSistec.Control_Tecnico
                 Sup = "0";
             }
 
-            List<beCronograma> lbeCronograma = br.ListarCronograma(PeriodoI, PeriodoF, txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), ddlRutas.Text, Sup, txtCsid.Text.ToString(), BeginDate, EndDate, Pend, Conc, Aten, Canc);
+            List<beCronograma> lbeCronograma = br.ListarCronograma(PeriodoI, PeriodoF, txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), ddlRuta.SelectedValue.ToString(), Sup, txtCsid.Text.ToString(), BeginDate, EndDate, Pend, Conc, Aten, Canc);
 
             gvCronograma.DataSource = lbeCronograma;
             gvCronograma.DataBind();
@@ -416,7 +416,21 @@ namespace WatcherSistec.Control_Tecnico
                     hdfEstado.Value = "EDITAR";
                     script = "mostrarPopupNuevoCronograma('Editar Cronograma:',750,600);";
                 }
-
+                ddlMes.Text = row.Cells[13].Text.ToString();
+                txtAño.Text = row.Cells[14].Text.ToString();
+                ddlRutas.Text = row.Cells[4].Text.ToString();
+                txtNewProvDes.Text = HttpUtility.HtmlDecode(row.Cells[16].Text.ToString());
+                txtNewProv.Text = row.Cells[1].Text.ToString();
+                txtNewTecNom.Text = HttpUtility.HtmlDecode(row.Cells[3].Text.ToString());
+                txtNewTec.Text = row.Cells[2].Text.ToString();
+                txtObs.Text = row.Cells[9].Text.ToString();
+                txtNewDealerDesc.Text = HttpUtility.HtmlDecode(row.Cells[16].Text.ToString());
+                txtNewDealer.Text = row.Cells[6].Text.ToString();
+                txtNewAbon.Text = row.Cells[7].Text.ToString();
+                txtNewAbonDesc.Text = HttpUtility.HtmlDecode(row.Cells[8].Text.ToString());
+                txtFechaP.Text = HttpUtility.HtmlDecode(row.Cells[12].Text.ToString());
+                txtFechaV.Text = HttpUtility.HtmlDecode(row.Cells[17].Text.ToString());
+                
                 ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
             }
         }

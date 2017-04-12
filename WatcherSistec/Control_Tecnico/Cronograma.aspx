@@ -442,6 +442,22 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
+                                        <asp:BoundField HeaderText="Mes" DataField="Mes" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="Anho" DataField="Anho" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="DealerName" DataField="DealerName" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="ProvName" DataField="ProvName" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="btnVer" runat="server" ImageUrl="~/Images/Mantenimiento/view.png" CommandName="Ver" ToolTip="VER"
@@ -635,34 +651,26 @@
                                                     Distribuidor
                                                 </td>
                                                 <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel18" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel18" runat="server">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtNewDealer" runat="server" style="width:50px"></asp:TextBox>
                                                         </ContentTemplate>
-                                                        <Triggers>
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
-                                                        </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel26" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel26" runat="server">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtNewDealerDesc" runat="server" style="width:220px"></asp:TextBox>
                                                         </ContentTemplate>
-                                                        <Triggers>
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
-                                                        </Triggers>
                                                     </asp:UpdatePanel>
-                                                    <asp:UpdatePanel ID="UpdatePanel32" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel32" runat="server">
                                                         <ContentTemplate>
                                                             <asp:Button ID="btnNewDealer" runat="server" Text="Button" style="display:none" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td colspan="2">
-                                                    <asp:UpdatePanel ID="UpdatePanel43" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel43" runat="server">
                                                         <ContentTemplate>
                                                             <asp:ImageButton ID="btnNewPopupDealer" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteDealer2('Buscar Distribuidor:',460,250);" />
                                                         </ContentTemplate>
@@ -674,34 +682,26 @@
                                                     Abonado
                                                 </td>
                                                 <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel47" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel47" runat="server">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtNewAbon" runat="server" style="width:50px"></asp:TextBox>
                                                         </ContentTemplate>
-                                                        <Triggers>
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
-                                                        </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td>
-                                                    <asp:UpdatePanel ID="UpdatePanel65" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel65" runat="server">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtNewAbonDesc" runat="server" style="width:220px"></asp:TextBox>
                                                         </ContentTemplate>
-                                                        <Triggers>
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptar_Dealer" EventName="Click" />
-                                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarSubscriber" EventName="Click" />
-                                                        </Triggers>
                                                     </asp:UpdatePanel>
-                                                    <asp:UpdatePanel ID="UpdatePanel68" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel68" runat="server">
                                                         <ContentTemplate>
                                                             <asp:Button ID="btnNewAbon" runat="server" Text="Button" style="display:none" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td colspan="2">
-                                                    <asp:UpdatePanel ID="UpdatePanel69" runat="server" UpdateMode="Conditional">
+                                                    <asp:UpdatePanel ID="UpdatePanel69" runat="server">
                                                         <ContentTemplate>
                                                             <asp:ImageButton ID="btnNewPopupAbon" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber2('Buscar Oficinas:',810,480); " />
                                                         </ContentTemplate>
@@ -715,6 +715,9 @@
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtFechaP" runat="server" ></asp:TextBox>
                                                         </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="gvCronograma" EventName="RowCommand" />
+                                                        </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
                                             </tr>
@@ -725,6 +728,9 @@
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtFechaV" runat="server" ></asp:TextBox>
                                                         </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="gvCronograma" EventName="RowCommand" />
+                                                        </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
                                             </tr>
