@@ -140,8 +140,10 @@ namespace WatcherSistec.Control_Tecnico
         protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
         {
             //ListarNewCronograma("","","","","");
+            
             string script = "mostrarPopupNuevoCronograma('Seleccionar Abonado:',750,600);";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            hdfEstado.Value = "NUEVO";
         }
 
         /*private void ListarNewCronograma(string Peri, string Prov, string pers, string ruta, string abon)
@@ -352,49 +354,87 @@ namespace WatcherSistec.Control_Tecnico
                 fechaV = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", culture);
             }
             else { fechaV = DateTime.ParseExact(txtFechaV.Text, "dd/MM/yyyy HH:mm", culture); }
-            
 
-
-            bool updated = br.InsertarCronograma(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text), 
-                                                 Convert.ToInt32(ddlRutas.SelectedValue.ToString()), txtObs.Text, FPeriodo);
-            if (updated == true)
+            if (hdfEstado.Value == "NUEVO")
             {
-                bool updatedCD = br.InsertarCronogramaDetalle(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
-                                                              Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
-                                                              txtNewAbon.Text, fechaP, txtNewDealer.Text, fechaV, "");
-                if (updatedCD == true)
+                bool insert = br.InsertarCronograma(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
+                                                     Convert.ToInt32(ddlRutas.SelectedValue.ToString()), txtObs.Text, FPeriodo);
+                if (insert == true)
                 {
-                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    bool insertCD = br.InsertarCronogramaDetalle(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
+                                                                  Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
+                                                                  txtNewAbon.Text, fechaP, txtNewDealer.Text, fechaV, "");
+                    if (insertCD == true)
                     {
-                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
-
-                        if (check.Checked)
+                        foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
                         {
-                            bool updatedTM = br.InsertarCronogramaTipoMant(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
-                                                              Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
-                                                              txtNewAbon.Text, fechaP, Convert.ToInt64(fila.Cells[1].Text));
+                            CheckBox check = fila.FindControl("chkSel") as CheckBox;
 
-                            if (updated == false)
+                            if (check.Checked)
                             {
-                                men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
-                            }
-                            else
-                            {
-                                men = "Tipo Mantenimiento registrado correctamente";
-                            }
+                                bool insertTM = br.InsertarCronogramaTipoMant(Convert.ToInt32(txtNewProv.Text), 
+                                                                               Convert.ToInt32(txtNewTec.Text),
+                                                                               Convert.ToInt32(ddlRutas.SelectedValue.ToString()), 
+                                                                               FPeriodo, txtNewAbon.Text, fechaP, 
+                                                                               Convert.ToInt64(fila.Cells[1].Text));
 
+                                if (insertTM == false)
+                                {
+                                    men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                                }
+                                else
+                                {
+                                    men = "Tipo Mantenimiento registrado correctamente";
+                                }
+
+                            }
                         }
                     }
+
                 }
-                
+                else
+                {
+                    men = "No se pudo registrar el Cronograma";
+                }
+
+                string script1 = "alert('Mensaje: ' " + men + "');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
             }
             else
             {
-                men = "No se pudo registrar el Cronograma";
-            }
+                if (hdfEstado.Value == "EDITAR")
+                {
+                    bool updatedCD = br.ActualizarCronograma(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
+                                                             Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
+                                                             txtNewAbon.Text, fechaP, txtNewDealer.Text, fechaV, txtObs.Text);
+                    if (updatedCD == true)
+                    {
+                        foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                        {
+                            CheckBox check = fila.FindControl("chkSel") as CheckBox;
 
-            string script1 = "alert('Mensaje: ' " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
+                            if (check.Checked)
+                            {
+                                bool insertTM = br.InsertarCronogramaTipoMant(Convert.ToInt32(txtNewProv.Text),
+                                                                               Convert.ToInt32(txtNewTec.Text),
+                                                                               Convert.ToInt32(ddlRutas.SelectedValue.ToString()),
+                                                                               FPeriodo, txtNewAbon.Text, fechaP,
+                                                                               Convert.ToInt64(fila.Cells[1].Text));
+
+                                if (insertTM == false)
+                                {
+                                    men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                                }
+                                else
+                                {
+                                    men = "Tipo Mantenimiento registrado correctamente";
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         protected void gvCronograma_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -423,7 +463,7 @@ namespace WatcherSistec.Control_Tecnico
                 txtNewProv.Text = row.Cells[1].Text.ToString();
                 txtNewTecNom.Text = HttpUtility.HtmlDecode(row.Cells[3].Text.ToString());
                 txtNewTec.Text = row.Cells[2].Text.ToString();
-                txtObs.Text = row.Cells[9].Text.ToString();
+                txtObs.Text = HttpUtility.HtmlDecode(row.Cells[9].Text.ToString());
                 txtNewDealerDesc.Text = HttpUtility.HtmlDecode(row.Cells[16].Text.ToString());
                 txtNewDealer.Text = row.Cells[6].Text.ToString();
                 txtNewAbon.Text = row.Cells[7].Text.ToString();
@@ -433,6 +473,84 @@ namespace WatcherSistec.Control_Tecnico
                 
                 ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
             }
+        }
+
+        protected void btnFicha_Click(object sender, EventArgs e)
+        {
+            //brFichaSupervision br = new brFichaSupervision();
+            //string outID_Ficha = "";
+            //string men = "";
+
+            //IFormatProvider culture = new CultureInfo("es-PE", true);
+            //DateTime fechaI = DateTime.ParseExact(txtFechaI.Text, "dd/MM/yyyy HH:mm", culture);
+            //DateTime fechaS = DateTime.ParseExact(txtFechaS.Text, "dd/MM/yyyy HH:mm", culture);
+
+
+            //bool updated = br.InsertarFichaSupervision(
+            //    Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
+            //    , fechaS, txtObs_Tec.Text, 1, txtNro_Telefono.Text, txtPanel.Text, txtObs_Tec.Text
+            //    , out outID_Ficha);
+            //if (updated == false)
+            //{
+            //    men = "Hubo un problema al momento de intentar registrar la alarma";
+            //}
+            //else
+            //{
+            //    men = "La alarma se registro correctamente";
+            //}
+
+            //txtID_Ficha.Text = outID_Ficha;
+
+            //string script = "alert('Mensaje: ' " + men + "');";
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+
+            //foreach (GridViewRow fila in gvAbonado.Rows)
+            //{
+            //    brFichaAbonado brFA = new brFichaAbonado();
+            //    bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(txtID_Ficha.Text), fila.Cells[0].Text, fila.Cells[2].Text, fila.Cells[1].Text, fila.Cells[4].Text);
+
+            //    if (updated == false)
+            //    {
+            //        men = "Hubo un problema al momento de intentar registrar el Abonado";
+            //    }
+            //    else
+            //    {
+            //        men = "Abonados registrados correctamente";
+            //    }
+
+            //}
+
+            //string script1 = "alert('Mensaje: ' " + men + "');";
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
+
+
+            //foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+            //{
+
+            //    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+
+            //    if (check.Checked)
+            //    {
+
+            //        brTipoMantenimiento brTM = new brTipoMantenimiento();
+
+            //        bool updatedTM = brTM.InsertarFichaTipoMant(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt64(fila.Cells[0].Text));
+
+            //        if (updated == false)
+            //        {
+            //            men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+            //        }
+            //        else
+            //        {
+            //            men = "Tipo Mantenimiento registrado correctamente";
+            //        }
+
+            //    }
+            //}
+
+            //string script2 = "alert('Mensaje: ' " + men + "');";
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
         }
     }
 }

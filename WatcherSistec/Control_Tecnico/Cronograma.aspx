@@ -535,7 +535,7 @@
                                                                 Periodo (MES-AÑO)
                                                             </td>
                                                             <td style="width:95px">
-                                                                <asp:UpdatePanel ID="UpdatePanel38" runat="server" UpdateMode="Conditional" >
+                                                                <asp:UpdatePanel ID="UpdatePanel38" runat="server">
                                                                     <ContentTemplate>
                                                                         <asp:DropDownList ID="ddlMes" runat="server" style="width:95px">
                                                                             <asp:ListItem Value="01">ENERO</asp:ListItem>
@@ -669,12 +669,15 @@
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
-                                                <td colspan="2">
+                                                <td>
                                                     <asp:UpdatePanel ID="UpdatePanel43" runat="server">
                                                         <ContentTemplate>
                                                             <asp:ImageButton ID="btnNewPopupDealer" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteDealer2('Buscar Distribuidor:',460,250);" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
+                                                </td>
+                                                <td>
+                                                    &nbsp;
                                                 </td>
                                             </tr>
                                             <tr>
@@ -700,12 +703,15 @@
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
-                                                <td colspan="2">
+                                                <td >
                                                     <asp:UpdatePanel ID="UpdatePanel69" runat="server">
                                                         <ContentTemplate>
                                                             <asp:ImageButton ID="btnNewPopupAbon" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber2('Buscar Oficinas:',810,480); " />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
+                                                </td>
+                                                <td>
+                                                    &nbsp;
                                                 </td>
                                             </tr>
                                             <tr>
@@ -733,6 +739,13 @@
                                                         </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
+                                                <td>
+                                                <asp:UpdatePanel ID="UpdatePanel75" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Button ID="btnFicha" runat="server" Width="70" Text="Generar Ficha" Class="btn btn-primary" OnClick="btnFicha_Click" /></td>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4">
