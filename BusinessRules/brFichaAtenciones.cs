@@ -10,7 +10,7 @@ namespace BusinessRules
 {
     public class brFichaAtenciones:brGeneral
     {
-        public List<beAtenciones> ListarFichaAtencion(Int64 pID_Ficha)
+        public List<beAtenciones> ListarFichaAtencion(string ID_Ficha)
         {
             List<beAtenciones> lbeAtenciones = null;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -19,7 +19,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daFichaAtenciones odaAtenciones = new daFichaAtenciones();
-                    lbeAtenciones = odaAtenciones.ListarFichaAtencion(pID_Ficha, con);
+                    lbeAtenciones = odaAtenciones.ListarFichaAtencion(con, ID_Ficha);
                 }
                 catch (SqlException ex)
                 {

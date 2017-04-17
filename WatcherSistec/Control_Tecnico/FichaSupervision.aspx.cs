@@ -22,23 +22,26 @@ namespace WatcherSistec.Control_Tecnico
                 {
                     string IdFicha = Request.QueryString["FichaID"];
 
-                    Ficha_Supervision(IdFicha);
-                    Ficha_Abonados(IdFicha);
                     ListarTipoMantenimiento();
-                    FichaTipoMant(IdFicha);
+
+                    Ficha_Supervision(IdFicha);
+                    Ficha_Abonados(IdFicha);                    
+                    FichaTipoMant(IdFicha);                    
+                    Ficha_Atenciones(IdFicha);
                     Ficha_Comentario(IdFicha);
-                    
+
                     txtID_Ficha.Text = IdFicha;
                     Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
                 }
                 else
                 {
                     ListarTipoMantenimiento();
+                    Ficha_Atenciones("");
                     Bloque_Zona("");
                 }
                 
                 
-                Listar_Atenciones();
+                //Listar_Atenciones();
 
                 TabContainer1.ActiveTabIndex = 0;
 
@@ -166,6 +169,15 @@ namespace WatcherSistec.Control_Tecnico
             gvComentario.DataSource = ListarComentarioZona;
             gvComentario.DataBind();
         }
+
+
+        private void Ficha_Atenciones(string ID_Ficha)
+        {
+            brFichaAtenciones brFA = new brFichaAtenciones();
+            gvAtenciones.DataSource = brFA.ListarFichaAtencion(ID_Ficha);
+            gvAtenciones.DataBind();
+        }
+
         protected void gvComentario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvComentario.PageIndex = e.NewPageIndex;
@@ -173,10 +185,9 @@ namespace WatcherSistec.Control_Tecnico
         }
         private void Listar_Atenciones()
         {
-            brFichaAtenciones br = new brFichaAtenciones();
-            int ID_Ficha = 0;
+            brFichaAtenciones br = new brFichaAtenciones();            
 
-            List<beAtenciones> ListarFichaAtencion = br.ListarFichaAtencion(ID_Ficha);
+            List<beAtenciones> ListarFichaAtencion = br.ListarFichaAtencion("");
             gvAtenciones.DataSource = ListarFichaAtencion;
             gvAtenciones.DataBind();
         }
@@ -340,13 +351,9 @@ namespace WatcherSistec.Control_Tecnico
                     ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
                 }
-            }
+            }                        
 
-
-            brFichaAtenciones brFA = new brFichaAtenciones();
-
-            gvAtenciones.DataSource = brFA.ListarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text));
-            gvAtenciones.DataBind();
+            Ficha_Atenciones(txtID_Ficha.Text);
 
             tmrRecepSeniales.Enabled = true;
             lblTiempoFaltante.Text = "60";

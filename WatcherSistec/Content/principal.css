@@ -189,7 +189,7 @@ input[disabled]{
     border:1px solid #c0c0c0 solid 1px;background-color:#FFFFE1;
 }
 textarea[readonly]{
-    border:1px solid #c0c0c0 solid 1px;background-color:#d8d8d8;
+    border:1px solid #c0c0c0 solid 1px;background-color:#FFFFE1;
 }
 textarea[disabled]{
     border:1px solid #c0c0c0 solid 1px;background-color:#d8d8d8;

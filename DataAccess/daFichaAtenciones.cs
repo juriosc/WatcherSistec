@@ -11,13 +11,13 @@ namespace DataAccess
 {
     public class daFichaAtenciones
     {
-        public List<beAtenciones> ListarFichaAtencion(Int64 pID_Ficha, SqlConnection con)
+        public List<beAtenciones> ListarFichaAtencion(SqlConnection con, string pID_Ficha)
         {
             List<beAtenciones> lbeAtenciones = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Atencion", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.Int);
+            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.VarChar, 15);
             param1.Direction = ParameterDirection.Input;
             param1.Value = pID_Ficha;
 

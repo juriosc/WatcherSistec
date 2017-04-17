@@ -237,14 +237,21 @@
                                             <asp:GridView ID="gvAtenciones" runat="server"  AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" onpageindexchanging="gvAtenciones_PageIndexChanging" BackColor="White" BorderColor="Gray" BorderStyle="None" BorderWidth="1px" Width="575px" >
                                                 <HeaderStyle Height="30px" />
                                                 <Columns>                                                    
-                                                    <asp:BoundField HeaderText="ID_Aten" DataField="ID_Atencion"/>                                                    
-                                                    <asp:BoundField HeaderText="Abonado" DataField="CSID"/>
-                                                    <asp:BoundField HeaderText="Fecha_Inicio" DataField="Fecha_Inicio"/>
-                                                    <asp:BoundField HeaderText="Estado_Inicio" DataField="Estado_Inicio"/>
-                                                    <asp:BoundField HeaderText="Fecha_Fin" DataField="Fecha_Termino"/>
-                                                    <asp:BoundField HeaderText="Estado_Fin" DataField="Estado_Termino"/>
-                                                    <asp:BoundField HeaderText="Observacion" DataField="Observaciones"/>
+                                                    <asp:BoundField HeaderText="AT ID" DataField="ID_Atencion"/>                                                    
+                                                    <asp:BoundField HeaderText="Abonado" DataField="CSID" HtmlEncode="False">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="Usuario" DataField="CSID"/>
+                                                    <asp:BoundField HeaderText="Fecha Inicio" DataField="Fecha_Inicio"/>
+                                                    <asp:BoundField HeaderText="Estado Inicio" DataField="Estado_Inicio"/>
+                                                    <asp:BoundField HeaderText="Fecha Fin" DataField="Fecha_Termino"/>
+                                                    <asp:BoundField HeaderText="Estado Fin" DataField="Estado_Termino"/>
+                                                    <asp:BoundField HeaderText="Observación" DataField="Observaciones"/>
                                                     <asp:BoundField HeaderText="AlarmHistoryID_Inicial" DataField="AlarmHistoryID_Inicial">
+                                                    
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
                                                     
                                                     </asp:BoundField>
                                                 </Columns>
@@ -274,7 +281,7 @@
                                 <asp:UpdatePanel  runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
                                         <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" class="btn btn-success" Width="86px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',250,150)" />
-                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" class="btn btn-success" Width="86px"/>
+                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" class="btn btn-success" Width="86px" OnClientClick="mostrarEmergenteModiAtencion('Modificar - Supervisión - Atención',300,380)" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 
@@ -459,7 +466,7 @@
                               <td style=" vertical-align:central">                               
                                 <table style="width:40%;font-size:12px">
                                     <tr>
-                                        <td>TIEMPO FALTANTE :</td>
+                                        <td>TIEMPO RESTANTE :</td>
                                         <td>
                                             <asp:UpdatePanel ID="UpdatePanel42" runat="server" UpdateMode="Conditional" >
                                                 <ContentTemplate>
@@ -1432,6 +1439,148 @@
             </table>
          </div>
     </div>
+    
+    <div id="emerModiAtencion" class="ventana">
+        <div class="undraggable" style="width:100%;">
+			<table style="width:100% ; border-spacing:0px 0px; ">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
+					<span id="titModiAtencion">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdModiAtencionCerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick=" SalirPopupModiAtencion()();">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+        <div id="emerModiAtencioncuerpo">
+            <table>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ATENCION ID
+                    </td>
+                    <td>
+                        <asp:UpdatePanel ID="UpdatePanel30" runat="server">
+                            <ContentTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                    <td> 
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        USUARIO
+                    </td>
+                    <td>
+                        <asp:UpdatePanel ID="UpdatePanel67" runat="server">
+                            <ContentTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                    <td> 
+
+                    </td>
+                </tr>   
+                <tr>
+                    <td>
+                        F. TÉRMINO 
+                    </td>
+                    <td>
+                        <asp:UpdatePanel ID="UpdatePanel68" runat="server">
+                            <ContentTemplate>
+                                <asp:TextBox ID="TextBox3" runat="server" ></asp:TextBox>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                    <td> 
+
+                    </td>
+                </tr>                
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <fieldset>
+                            <legend style="font-size:11px">
+                                ESTADO
+                            </legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:RadioButton ID="rbtPendiente" runat="server" text="PENDIENTE" AutoPostBack="True" GroupName="Estados" />
+                                    </td>
+                                    <td>
+                                        <asp:RadioButton ID="rbtCancelada" runat="server" text="CANCELADA" AutoPostBack="True" GroupName="Estados" />
+                                    </td>
+                                    <td>
+                                        <asp:RadioButton ID="rbtConcluida" runat="server" text="CONCLUIDA" AutoPostBack="True" GroupName="Estados" />
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </fieldset>                        
+                    </td>
+                    
+                </tr>                                
+                 <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:top">
+                        OBSERVACIÓN
+                    </td>
+                    <td>
+                        <asp:TextBox ID="TextBox4" runat="server" TextMode="MultiLine" Width="200px" Height="120px"></asp:TextBox>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
+         </div>
+        <div >
+            <table style="margin: 0 auto;">
+                <tr>
+                    <td >
+                        <table >
+                            <tr>
+                                <td>
+                                    <asp:UpdatePanel ID="UpdatePanel63" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="btn btn-primary" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                                <td style="width:35px">
+
+                                </td>
+                                <td>
+                                    <asp:UpdatePanel ID="UpdatePanel66" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Button ID="Button2" runat="server" Text="Cancelar" CssClass="btn btn-primary" Width="80px" />
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>   
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
     <script type="text/javascript">
 
@@ -1442,6 +1591,7 @@
             $("#emerSubs").draggable({ handle: 'div.undraggable' });
             $("#emerDealer").draggable({ handle: 'div.undraggable' });
             $("#emerTEnvioMsm").draggable({ handle: 'div.undraggable' });
+            $("#emerModiAtencion").draggable({ handle: 'div.undraggable' });
         });
 
         function mostrarPopupComentario(titulo, ancho, alto) {
@@ -1488,6 +1638,13 @@
             mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);
         }        
 
+        function mostrarEmergenteModiAtencion(titulo, ancho, alto) {
+            $("#tdModiAtencioncerrar").show();
+            $("#fondoemergente").css('display', 'block');
+            $("#titModiAtencion").html(titulo);
+            mostrarCentrarDiv('emerModiAtencion', ancho, alto);
+        }
+
         function SalirPopupComentario() {
             $("#fondoemergente").hide();
             $("#emergente").hide();
@@ -1516,6 +1673,11 @@
         function SalirPopupTEnvioMsm() {
             $("#fondoemergente").hide();
             $("#emerTEnvioMsm").hide();
+        }
+
+        function SalirPopupModiAtencion() {
+            $("#fondoemergente").hide();
+            $("#emerModiAtencion").hide();
         }
 
         function mostrarCentrarDiv(iddiv, w, h) {
