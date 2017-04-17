@@ -473,7 +473,7 @@
                                         <asp:BoundField HeaderText="Cod_Atencion" DataField="Cod_Atencion" />
                                         <asp:BoundField HeaderText="Obs_Ficha" DataField="Obs_Ficha" />
                                         <asp:BoundField HeaderText="TipoMantenimiento" DataField="TipoMantenimiento" />
-                                        <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                                        <asp:BoundField HeaderText="Estado" DataField="Estado_Ficha" />
                                         <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" />
                                         <asp:TemplateField>
                                             <ItemTemplate>

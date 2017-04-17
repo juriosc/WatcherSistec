@@ -75,7 +75,58 @@ namespace DataAccess
             return registro;
 
         }
-        
-        
+
+        public List<beFichaSupervision> Select_Ficha_Supervision(SqlConnection con, string pID_Ficha)
+        {
+            List<beFichaSupervision> lbeSupervisiones = null;
+
+            SqlCommand cmd = new SqlCommand("sp_WCT_Select_Ficha_Supervision", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.VarChar, 15);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = pID_Ficha;
+
+            SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
+
+            if (drd != null)
+            {
+                int ID_Ficha = drd.GetOrdinal("ID_Ficha");
+                int Fecha_Registro = drd.GetOrdinal("Fecha_Registro");
+                int ProveedorID = drd.GetOrdinal("ProveedorID");
+                int sProveedorName = drd.GetOrdinal("sProveedorName");
+                int PersonalID = drd.GetOrdinal("PersonalID");
+                int Nombres = drd.GetOrdinal("Nombres");
+                int Hora_Ingreso = drd.GetOrdinal("Hora_Ingreso");
+                int Hora_Salida = drd.GetOrdinal("Hora_Salida");
+                int Obs_Tec = drd.GetOrdinal("Obs_Tec");
+                int Estado_Ficha = drd.GetOrdinal("Estado_Ficha");
+                int Nro_Telefono = drd.GetOrdinal("Nro_Telefono");                
+                int Panel = drd.GetOrdinal("Panel");
+                int Obs_Ficha = drd.GetOrdinal("Obs_Ficha");
+
+                lbeSupervisiones = new List<beFichaSupervision>();
+                beFichaSupervision obeSupervisiones;
+                while (drd.Read())
+                {
+                    obeSupervisiones = new beFichaSupervision();
+                    obeSupervisiones.ID_Ficha = drd.GetString(ID_Ficha);
+                    obeSupervisiones.ProveedorID = drd.GetString(ProveedorID);
+                    obeSupervisiones.sProveedorName = drd.GetString(sProveedorName);
+                    obeSupervisiones.PersonalID = drd.GetString(PersonalID);
+                    obeSupervisiones.Nombres = drd.GetString(Nombres);
+                    obeSupervisiones.Hora_Ingreso = drd.GetString(Hora_Ingreso);
+                    obeSupervisiones.Hora_Salida = drd.GetString(Hora_Salida);
+                    obeSupervisiones.Obs_Tec = drd.GetString(Obs_Tec);
+                    obeSupervisiones.Estado_Ficha = drd.GetString(Estado_Ficha);
+                    obeSupervisiones.Nro_Telefono = drd.GetString(Nro_Telefono);
+                    obeSupervisiones.Panel = drd.GetString(Panel);
+                    obeSupervisiones.Obs_Ficha = drd.GetString(Obs_Ficha);
+                    lbeSupervisiones.Add(obeSupervisiones);
+                }
+                drd.Close();
+            }
+            return lbeSupervisiones;
+        }
     }
 }

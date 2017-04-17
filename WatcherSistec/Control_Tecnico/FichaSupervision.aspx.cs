@@ -22,22 +22,45 @@ namespace WatcherSistec.Control_Tecnico
                 {
                     string IdFicha = Request.QueryString["FichaID"];
 
-                    SelectFicha(IdFicha);
-                    ListarFicha_Comentario(IdFicha);
+                    Ficha_Supervision(IdFicha);
+                    Ficha_Abonados(IdFicha);
+                    Ficha_Comentario(IdFicha);
+                    
                     txtID_Ficha.Text = IdFicha;
+                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+                }
+                else
+                {
+
+                    Bloque_Zona("");
                 }
                 
                 ListarTipoMantenimiento();
-                ListarFicha_Abonados(0);
-                Bloque_Zona("201412");
+                
+                
                 Listar_Atenciones();
 
-                if (Session["ListaAbonado"]!=null)
-                {
-                    gvAbonado.DataSource = (List<beFichaAbonado>)Session["ListaAbonado"];
-                    gvAbonado.DataBind();
-                }
-                
+                //if (Session["ListaAbonado"]!=null)
+                //{
+                //    gvAbonado.DataSource = (List<beFichaAbonado>)Session["ListaAbonado"];
+                //    gvAbonado.DataBind();
+                //}
+
+                //if (Session["Select_Ficha_Supervision"] != null)
+                //{
+                //    List<beFichaSupervision> Ficha_Supervision = (List<beFichaSupervision>)Session["Select_Ficha_Supervision"];
+
+                //    txtProv.Text = Ficha_Supervision[1].sProveedorName.ToString();
+                //    txtNombre.Text = Ficha_Supervision[2].Nombres.ToString();
+                //    txtFechaI.Text = Ficha_Supervision[3].Hora_Ingreso.ToString();
+                //    txtFechaS.Text = Ficha_Supervision[4].Hora_Salida.ToString();
+                //    txtObs_Tec.Text = Ficha_Supervision[5].Obs_Tec.ToString();
+                //    txtPanel.Text = Ficha_Supervision[6].Panel.ToString();
+                //    txtTelefono.Text = Ficha_Supervision[7].Nro_Telefono.ToString();
+                //    txtInforme.Text = Ficha_Supervision[8].Nro_Informe.ToString();
+
+                //}
+
 
             }
             //else
@@ -48,24 +71,27 @@ namespace WatcherSistec.Control_Tecnico
            
         }
 
-        private void SelectFicha(string FichaId)
+        private void Ficha_Supervision(string FichaId)
         {
             try
             {
-                brSupervisiones br = new brSupervisiones();
+                brFichaSupervision br = new brFichaSupervision();
                 
-                List<beSupervisiones> ListSelectFicha = br.ListarDatosSupervision(Convert.ToInt32(FichaId));
+                List<beFichaSupervision> Ficha_Supervision = br.Select_Ficha_Supervision(FichaId);
 
-                if (ListSelectFicha != null)
+                if (Ficha_Supervision != null)
                 {
-                    txtProv.Text = ListSelectFicha[1].Proveedor.ToString();
-                    txtNombre.Text = ListSelectFicha[2].Nombres.ToString();
-                    txtFechaI.Text = ListSelectFicha[3].Hora_Ingreso.ToString();
-                    txtFechaS.Text = ListSelectFicha[4].Hora_Salida.ToString();
-                    txtObs_Tec.Text = ListSelectFicha[5].Obs_Tec.ToString();
-                    txtPanel.Text = ListSelectFicha[6].Panel.ToString();
-                    txtTelefono.Text = ListSelectFicha[7].Nro_Telefono.ToString();
-                    txtInforme.Text = ListSelectFicha[8].Nro_Informe.ToString();
+                    txtProv.Text = Ficha_Supervision[0].sProveedorName.ToString();
+                    txtNombre.Text = Ficha_Supervision[0].Nombres.ToString();
+                    txtFechaI.Text = Ficha_Supervision[0].Hora_Ingreso.ToString();
+                    txtFechaS.Text = Ficha_Supervision[0].Hora_Salida.ToString();
+                    txtObs_Tec.Text = Ficha_Supervision[0].Obs_Tec.ToString();
+                    txtPanel.Text = Ficha_Supervision[0].Panel.ToString();
+                    txtTelefono.Text = Ficha_Supervision[0].Nro_Telefono.ToString();
+                    txtInforme.Text = Ficha_Supervision[0].Nro_Informe.ToString();
+
+                   //Session["Select_Ficha_Supervision"] = Ficha_Supervision;
+
                 }
             }
             catch (Exception ex)
@@ -89,7 +115,7 @@ namespace WatcherSistec.Control_Tecnico
             ListarTipoMantenimiento();
         }
 
-        private void ListarFicha_Abonados(Int64 ID_Ficha)
+        private void Ficha_Abonados(string ID_Ficha)
         {
             brFichaAbonado br = new brFichaAbonado();
             //int ID_Ficha = txtHora.Text.Trim().Equals("") ? 0 : Convert.ToInt32(txtHora.Text);            
@@ -101,9 +127,9 @@ namespace WatcherSistec.Control_Tecnico
         protected void gvAbonado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAbonado.PageIndex = e.NewPageIndex;
-            ListarFicha_Abonados(Convert.ToInt64(txtID_Ficha.Text));
+            Ficha_Abonados(txtID_Ficha.Text);
         }
-        private void ListarFicha_Comentario(string Ficha)
+        private void Ficha_Comentario(string Ficha)
         {
             brComentario br = new brComentario();
 
@@ -155,44 +181,7 @@ namespace WatcherSistec.Control_Tecnico
             ListarFicha_Comentario_Zona(Ficha,Zona);
         }
 
-        protected void dtlZona_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-            //DataRowView drv = e.Item.DataItem as DataRowView;
-            //DataRowView drv = (DataRowView)(e.Item.DataItem);
-
-            //string Prop = drv.Row[1].ToString();
-
-           /* if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                if (e.Item.DataItem != null)
-                {                    
-                    //e.Item.DataItem[0][1]
-                    //e.Item.BackColor = System.Drawing.Color.Aqua;
-                    e.Item.ItemIndex.ToString();
-                    string Propiedad = DataBinder.Eval(e.Item.DataItem, "PA").ToString();
-                    if (Propiedad == "N" )
-                    {
-                        e.Item.BackColor = System.Drawing.Color.Aqua;                        
-                    }
-                }
-            }*/
-
-            /*
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                //System.Data.DataRowView drv = (System.Data.DataRowView)(e.Item.DataItem);
-
-                string Propiedad = DataBinder.Eval(e.Item.DataItem, "PA").ToString();
-                
-                if (Propiedad.Equals("N"))
-                {
-                    e.Item.BackColor = System.Drawing.Color.Red;
-                }
-            }
-             */
-
-        }
-
+      
         protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
         {
             //string script = "mostrarPopupTecnico('Nuevo - Ficha Supervisión - Tecnico:',500,300);";
@@ -296,8 +285,6 @@ namespace WatcherSistec.Control_Tecnico
 
             string outID_Atencion = "";
 
-            string out_AlarmHistoryID_Inicial = "";
-
 
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
@@ -345,7 +332,10 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void tmrActualizarZonas_Tick(object sender, EventArgs e)
         {
-            Bloque_Zona("201412");
+            if (Request.QueryString["FichaID"] != null)
+            {
+                Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+            }
         }
 
         protected void btnListarTecnico_Click(object sender, EventArgs e)
@@ -421,7 +411,7 @@ namespace WatcherSistec.Control_Tecnico
             }
             
 
-            Session["ListaAbonado"]=beFichaAbonado.FAbonado;
+            Session["ListaAbonado"] = beFichaAbonado.FAbonado;
 
             gvAbonado.DataSource = beFichaAbonado.FAbonado;
             gvAbonado.DataBind();
@@ -481,7 +471,7 @@ namespace WatcherSistec.Control_Tecnico
 
             bool updated = br.InsertarFichaSupervision(
                 Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
-                , fechaS , txtObs_Tec.Text, 1,txtNro_Telefono.Text, txtPanel.Text, txtObs_Tec.Text
+                , fechaS , txtObs_Tec.Text, 1,txtTelefono.Text, txtPanel.Text, ""
                 , out outID_Ficha);
             if (updated == false)
             {
@@ -501,7 +491,7 @@ namespace WatcherSistec.Control_Tecnico
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
                 brFichaAbonado brFA = new brFichaAbonado();
-                bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(txtID_Ficha.Text), fila.Cells[0].Text, fila.Cells[2].Text, fila.Cells[1].Text, fila.Cells[4].Text);
+                bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(txtID_Ficha.Text), HttpUtility.HtmlDecode(fila.Cells[0].Text), HttpUtility.HtmlDecode(fila.Cells[2].Text), HttpUtility.HtmlDecode(fila.Cells[1].Text), HttpUtility.HtmlDecode(fila.Cells[4].Text));
 
                 if (updated == false)
                 {
@@ -568,12 +558,41 @@ namespace WatcherSistec.Control_Tecnico
             string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
             string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
             Int64 UFilaAlarmHistoryID = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[7].Text);
-
+            
+            //INSERTAR SEÑALES
             brSeniales brSE = new brSeniales();
             brSE.Insertar_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID, UFilaAlarmHistoryID);
 
+            //VERIFICAR SEÑALES PARA CAMBIAR COLORES ALT, BB, FAC ....
+            List<beSeniales> lstVerificarSeniales = brSE.Verificar_Seniales_Aten(UFilaAlarmHistoryID, UFilaCSID);
+
+            for (int i = 0; i <= lstVerificarSeniales.Count-1; i++)
+            {
+                string SignalIdentifier = lstVerificarSeniales[i].SignalIdentifier;
+                string FLAG_TIPO = lstVerificarSeniales[i].FLAG_TIPO;
+
+                    if (SignalIdentifier.Equals("LT"))
+                    {
+                        lblALT.BackColor = System.Drawing.Color.Red;
+                    }
+
+                    if (SignalIdentifier.Equals("LR"))
+                    {                        
+                        lblALT.BackColor = System.Drawing.Color.Green;
+                    }
+
+                    if (SignalIdentifier.Equals("LT"))
+                    {
+                        lblALT.BackColor = System.Drawing.Color.Red;
+                    }
+
+                    if (SignalIdentifier.Equals("LR"))
+                    {
+                        lblALT.BackColor = System.Drawing.Color.Green;
+                    }
 
 
+            }
 
         }
 

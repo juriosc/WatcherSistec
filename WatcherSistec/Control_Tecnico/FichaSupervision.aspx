@@ -96,26 +96,26 @@
                 <td style="width:150px">
                     <asp:UpdatePanel ID="UpdatePanel26" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:Button ID="btnGuardar" runat="server" Text="Guardar"  Width="110px" Height="30px" OnClick="btnGuardar_Click" />
+                            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" Width="120px" Height="30px" OnClick="btnGuardar_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                    
                 </td>
                 <td style="width:150px">
                      <asp:UpdatePanel ID="UpdatePanel27" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnCancelar" CssClass="btn btn-primary" runat="server" Text="Cancelar Ficha" Width="110px"  />        
+                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar Ficha" class="btn btn-success" Width="120px" Height="30px"  />        
                         </ContentTemplate>
                     </asp:UpdatePanel>                        
                 </td>
                 <td style="width:150px">
                     <asp:UpdatePanel ID="UpdatePanel28" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnPendiente" CssClass="btn btn-primary" runat="server" Text="Ficha Pendiente" Width="110px" />
+                            <asp:Button ID="btnPendiente"  runat="server" Text="Ficha Pendiente" class="btn btn-success" Width="120px" Height="30px" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                                            
                 </td>
                  <td style="width:150px">
-                    <asp:Button ID="btnConcluir" CssClass="btn btn-primary" runat="server" Text="Concluir Ficha" Width="110px" />
+                    <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" class="btn btn-success" Width="120px" Height="30px" />
                 </td>
                 
                 <td style="width:150px">
@@ -125,7 +125,7 @@
                     <asp:CheckBox ID="chktlf" runat="server" Text="TLF. 9 DIG" CssClass="Etiqueta" />
                 </td>
                 <td style="width:150px">
-                    <asp:Button ID="btnsms" CssClass="btn btn-primary" runat="server" Text="SMS" />
+                    <asp:Button ID="btnsms" runat="server" Text="SMS" class="btn btn-success" Width="50px" Height="30px" />
                 </td>
 
             </tr>
@@ -181,18 +181,7 @@
                                             </asp:UpdatePanel>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            TELEFONO
-                                        </td>
-                                        <td>
-                                            <asp:UpdatePanel ID="UpdatePanel30" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtNro_Telefono" runat="server"></asp:TextBox>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td style="vertical-align:top">OBSERVACIÓN</td>
                                         <td colspan ="3">
@@ -270,8 +259,8 @@
                             <td colspan="2">
                                 <asp:UpdatePanel  runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" CssClass="btn btn-primary" Width="86px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',250,150)" />
-                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" CssClass="btn btn-primary" Width="86px"/>
+                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" class="btn btn-success" Width="86px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',250,150)" />
+                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" class="btn btn-success" Width="86px"/>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 
@@ -375,10 +364,10 @@
                                                 <asp:BoundField HeaderText="Distri." DataField="DealerCode">
                                                 <HeaderStyle Height="30px" />
                                                 </asp:BoundField>
-                                                <asp:BoundField HeaderText="Id. Local" DataField="LocalID"/>
-                                                <asp:BoundField HeaderText="Id. Abonado" DataField="csid"/>
-                                                <asp:BoundField HeaderText="Oficina" DataField="subscribername"/>
-                                                <asp:BoundField HeaderText="Observacion" DataField="Observaciones"/>
+                                                <asp:BoundField HeaderText="Id. Local" DataField="LocalID" HtmlEncode="False"/>
+                                                <asp:BoundField HeaderText="Id. Abonado" DataField="csid" HtmlEncode="False"/>
+                                                <asp:BoundField HeaderText="Oficina" DataField="subscribername" HtmlEncode="False"/>
+                                                <asp:BoundField HeaderText="Observacion" DataField="Observaciones" HtmlEncode="False"/>
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
                                                         <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Images/Mantenimiento/edit.png"

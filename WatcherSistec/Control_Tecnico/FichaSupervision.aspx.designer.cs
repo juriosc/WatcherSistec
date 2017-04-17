@@ -229,24 +229,6 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtFechaS;
         
         /// <summary>
-        /// UpdatePanel30 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel30;
-        
-        /// <summary>
-        /// txtNro_Telefono control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNro_Telefono;
-        
-        /// <summary>
         /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>

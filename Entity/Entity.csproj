@@ -51,7 +51,7 @@
     <Compile Include="beRuta.cs" />
     <Compile Include="beSeniales.cs" />
     <Compile Include="beSubscriber.cs" />
-    <Compile Include="beSupervisiones.cs" />
+    <Compile Include="beFichaSupervision.cs" />
     <Compile Include="beTecnico.cs" />
     <Compile Include="beTipoMantenimiento.cs" />
     <Compile Include="Class1.cs" />

@@ -12,9 +12,9 @@ namespace DataAccess
 {
     public class daSupervisiones
     {
-        public List<beSupervisiones> ListarSupervisiones(SqlConnection con, string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
+        public List<beFichaSupervision> ListarSupervisiones(SqlConnection con, string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
         {
-            List<beSupervisiones> lbeSupervisiones = null;
+            List<beFichaSupervision> lbeSupervisiones = null;
 
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Supervisiones", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -99,11 +99,11 @@ namespace DataAccess
                 int Estado = drd.GetOrdinal("Estado");
                 int Estado_Cod = drd.GetOrdinal("Estado_Cod");
 
-                lbeSupervisiones = new List<beSupervisiones>();
-                beSupervisiones obeSupervisiones;
+                lbeSupervisiones = new List<beFichaSupervision>();
+                beFichaSupervision obeSupervisiones;
                 while (drd.Read())
                 {
-                    obeSupervisiones = new beSupervisiones();
+                    obeSupervisiones = new beFichaSupervision();
                     obeSupervisiones.Fecha_Registro = drd.GetString(Fecha_Registro);
                     obeSupervisiones.ID_Ficha = drd.GetString(ID_Ficha);                    
                     obeSupervisiones.Dealer = drd.GetString(Dealer);
@@ -117,7 +117,7 @@ namespace DataAccess
                     obeSupervisiones.Estado_Termino = drd.GetString(Estado_Termino);                    
                     obeSupervisiones.Obs_Ficha = drd.GetString(Obs_Ficha);
                     obeSupervisiones.TipoMantenimiento = drd.GetString(TipoMantenimiento);
-                    obeSupervisiones.Estado = drd.GetString(Estado);
+                    obeSupervisiones.Estado_Ficha = drd.GetString(Estado);
                     obeSupervisiones.Estado_Cod = drd.GetString(Estado_Cod);
                     lbeSupervisiones.Add(obeSupervisiones);
                 }
@@ -126,49 +126,49 @@ namespace DataAccess
             return lbeSupervisiones;
         }
 
-        public List<beSupervisiones> ListarDatosSupervision(SqlConnection con, int pID_Ficha)
-        {
-            List<beSupervisiones> lbeSupervisiones = null;
+        //public List<beFichaSupervision> ListarDatosSupervision(SqlConnection con, string pID_Ficha)
+        //{
+        //    List<beFichaSupervision> lbeSupervisiones = null;
 
-            SqlCommand cmd = new SqlCommand("sp_WCT_listar_datos_Supervision", con);
-            cmd.CommandType = CommandType.StoredProcedure;
+        //    SqlCommand cmd = new SqlCommand("sp_WCT_Select_Ficha_Supervision", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.Int);
-            param1.Direction = ParameterDirection.Input;
-            param1.Value = pID_Ficha;
+        //    SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.VarChar,15);
+        //    param1.Direction = ParameterDirection.Input;
+        //    param1.Value = pID_Ficha;
 
-            SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
+        //    SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
 
-            if (drd != null)
-            {
-                int ID_Ficha = drd.GetOrdinal("ID_Ficha");
-                int Proveedor = drd.GetOrdinal("Proveedor");
-                int Nombres = drd.GetOrdinal("Nombres");
-                int Hora_Ingreso = drd.GetOrdinal("Hora_Ingreso");
-                int Hora_Salida = drd.GetOrdinal("Hora_Salida");
-                int Obs_Tec = drd.GetOrdinal("Obs_Tec");
-                int Panel = drd.GetOrdinal("Panel");
-                int Nro_Telefono = drd.GetOrdinal("Nro_Telefono");
-                int Nro_Informe = drd.GetOrdinal("Nro_Informe");
+        //    if (drd != null)
+        //    {
+        //        int ID_Ficha = drd.GetOrdinal("ID_Ficha");
+        //        int Proveedor = drd.GetOrdinal("Proveedor");
+        //        int Nombres = drd.GetOrdinal("Nombres");
+        //        int Hora_Ingreso = drd.GetOrdinal("Hora_Ingreso");
+        //        int Hora_Salida = drd.GetOrdinal("Hora_Salida");
+        //        int Obs_Tec = drd.GetOrdinal("Obs_Tec");
+        //        int Panel = drd.GetOrdinal("Panel");
+        //        int Nro_Telefono = drd.GetOrdinal("Nro_Telefono");
+        //        int Nro_Informe = drd.GetOrdinal("Nro_Informe");
 
-                lbeSupervisiones = new List<beSupervisiones>();
-                beSupervisiones obeSupervisiones;
-                while (drd.Read())
-                {
-                    obeSupervisiones = new beSupervisiones();
-                    obeSupervisiones.ID_Ficha = drd.GetString(ID_Ficha);
-                    obeSupervisiones.Proveedor = drd.GetString(Proveedor);
-                    obeSupervisiones.Nombres = drd.GetString(Nombres);
-                    obeSupervisiones.Hora_Ingreso = drd.GetString(Hora_Ingreso);
-                    obeSupervisiones.Hora_Salida = drd.GetString(Hora_Salida);
-                    obeSupervisiones.Obs_Tec = drd.GetString(Obs_Tec);
-                    obeSupervisiones.Panel = drd.GetString(Panel);
-                    obeSupervisiones.Nro_Telefono = drd.GetString(Nro_Telefono);                    
-                    lbeSupervisiones.Add(obeSupervisiones);
-                }
-                drd.Close();
-            }
-            return lbeSupervisiones;
-        }
+        //        lbeSupervisiones = new List<beFichaSupervision>();
+        //        beFichaSupervision obeSupervisiones;
+        //        while (drd.Read())
+        //        {
+        //            obeSupervisiones = new beFichaSupervision();
+        //            obeSupervisiones.ID_Ficha = drd.GetString(ID_Ficha);
+        //            obeSupervisiones.Proveedor = drd.GetString(Proveedor);
+        //            obeSupervisiones.Nombres = drd.GetString(Nombres);
+        //            obeSupervisiones.Hora_Ingreso = drd.GetString(Hora_Ingreso);
+        //            obeSupervisiones.Hora_Salida = drd.GetString(Hora_Salida);
+        //            obeSupervisiones.Obs_Tec = drd.GetString(Obs_Tec);
+        //            obeSupervisiones.Panel = drd.GetString(Panel);
+        //            obeSupervisiones.Nro_Telefono = drd.GetString(Nro_Telefono);                    
+        //            lbeSupervisiones.Add(obeSupervisiones);
+        //        }
+        //        drd.Close();
+        //    }
+        //    return lbeSupervisiones;
+        //}
     }
 }

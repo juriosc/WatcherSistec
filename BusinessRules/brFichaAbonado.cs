@@ -10,7 +10,7 @@ namespace BusinessRules
 {
     public class brFichaAbonado : brGeneral
     {
-        public List<beFichaAbonado> ListarFichaAbonado(Int64 pID_Ficha)
+        public List<beFichaAbonado> ListarFichaAbonado(string pID_Ficha)
         {
             List<beFichaAbonado> lbeFAbonado = null;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -19,7 +19,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daFichaAbonado odaFichaAbonado = new daFichaAbonado();
-                    lbeFAbonado = odaFichaAbonado.ListarFichaAbonado(pID_Ficha, con);
+                    lbeFAbonado = odaFichaAbonado.ListarFichaAbonado(con, pID_Ficha);
                 }
                 catch (SqlException ex)
                 {

@@ -10,6 +10,7 @@ namespace Entity
         public string CSID { get; set; }
         public string AlarmCode { get; set; }
         public string SignalIdentifier { get; set; }
+        public string FLAG_TIPO { get; set; }
         
     }
 }

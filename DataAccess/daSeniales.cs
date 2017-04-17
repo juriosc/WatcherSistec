@@ -45,47 +45,43 @@ namespace DataAccess
 
         }
 
-        /*
-        public List<beSeniales> Verificar_Señales_Aten(SqlConnection con , Int64 pID_Ficha, int ID_Atencion, string csid, Int64 AlarmHistoryID)
+        public List<beSeniales> Verificar_Seniales_Aten(SqlConnection con, Int64 AlarmHistoryID, string csid)
         {
-            /*List<beFichaAbonado> lbeFAbonado = null;
-            SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Abonado", con);
+            List<beSeniales> lbeVeriSeniales = null;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Verificar_Señales_Aten", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.Int);
+            SqlParameter param1 = cmd.Parameters.Add("@AlarmHistoryID", SqlDbType.Int);
             param1.Direction = ParameterDirection.Input;
-            param1.Value = pID_Ficha;
+            param1.Value = AlarmHistoryID;
+
+            SqlParameter param2 = cmd.Parameters.Add("@csid", SqlDbType.VarChar,10);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = csid;            
 
             SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
             
 
             if (drd != null)
             {
-                int ID_Ficha = drd.GetOrdinal("ID_Ficha");
-                int DealerCode = drd.GetOrdinal("DealerCode");
-                int CSID = drd.GetOrdinal("CSID");
-                int LocalID = drd.GetOrdinal("LocalID");
-                int Observaciones = drd.GetOrdinal("Observaciones");
+                int SignalIdentifier = drd.GetOrdinal("SignalIdentifier");
+                int FLAG_TIPO = drd.GetOrdinal("FLAG_TIPO");                
 
-                lbeFAbonado = new List<beFichaAbonado>();
+                lbeVeriSeniales = new List<beSeniales>();
 
-                beFichaAbonado obeFichaAbonado;
+                beSeniales obeSeniales;
 
                 while (drd.Read())
                 {
-                    obeFichaAbonado = new beFichaAbonado();
-                    obeFichaAbonado.ID_Ficha = drd.GetInt32(ID_Ficha);
-                    obeFichaAbonado.DealerCode = drd.GetString(DealerCode);
-                    obeFichaAbonado.CSID = drd.GetString(CSID);
-                    obeFichaAbonado.LocalID = drd.GetString(LocalID);
-                    obeFichaAbonado.Observaciones = drd.GetString(Observaciones);
-
-                    lbeFAbonado.Add(obeFichaAbonado);
+                    obeSeniales = new beSeniales();
+                    obeSeniales.SignalIdentifier = drd.GetString(SignalIdentifier);
+                    obeSeniales.FLAG_TIPO = drd.GetString(FLAG_TIPO);
+                    lbeVeriSeniales.Add(obeSeniales);
                 }
                 drd.Close();
             }
-            return lbeFAbonado;
+            return lbeVeriSeniales;
         }
-        */
+        
     }
 }

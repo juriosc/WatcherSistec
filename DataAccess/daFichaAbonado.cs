@@ -11,13 +11,13 @@ namespace DataAccess
 {
     public class daFichaAbonado
     {
-        public List<beFichaAbonado> ListarFichaAbonado(Int64 pID_Ficha, SqlConnection con)
+        public List<beFichaAbonado> ListarFichaAbonado(SqlConnection con, string pID_Ficha)
         {
             List<beFichaAbonado> lbeFAbonado = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Abonado", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.Int);
+            SqlParameter param1 = cmd.Parameters.Add("@Id_Ficha", SqlDbType.VarChar,15);
             param1.Direction = ParameterDirection.Input;
             param1.Value = pID_Ficha;
 
@@ -28,6 +28,7 @@ namespace DataAccess
                 int ID_Ficha = drd.GetOrdinal("ID_Ficha");
                 int DealerCode = drd.GetOrdinal("DealerCode");
                 int CSID = drd.GetOrdinal("CSID");
+                int SubscriberName = drd.GetOrdinal("SubscriberName");                
                 int LocalID = drd.GetOrdinal("LocalID");
                 int Observaciones = drd.GetOrdinal("Observaciones");
 
@@ -41,6 +42,7 @@ namespace DataAccess
                     obeFichaAbonado.ID_Ficha = drd.GetInt32(ID_Ficha);
                     obeFichaAbonado.DealerCode = drd.GetString(DealerCode);
                     obeFichaAbonado.CSID = drd.GetString(CSID);
+                    obeFichaAbonado.SubscriberName = drd.GetString(SubscriberName);
                     obeFichaAbonado.LocalID = drd.GetString(LocalID);
                     obeFichaAbonado.Observaciones = drd.GetString(Observaciones);
 
