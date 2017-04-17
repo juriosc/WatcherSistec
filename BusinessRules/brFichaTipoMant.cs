@@ -8,53 +8,18 @@ using System.Data.SqlClient;
 
 namespace BusinessRules
 {
-    public class brFichaSupervision:brGeneral
+    public class brFichaTipoMant:brGeneral
     {
-        public bool InsertarFichaSupervision(int ProveedorID, int PersonalID, DateTime Hora_Ingreso, DateTime Hora_Salida, string Obs_Tec, int Estado_Ficha, string Nro_Telefono, string Panel, string Obs_Ficha, out string outID_Ficha)
+        public List<beTipoMant> Select_Ficha_TipoMant(string pID_Ficha)
         {
-            bool updated = false;
+            List<beTipoMant> lbeTipoMant = null;
             using (SqlConnection con = new SqlConnection(Conexion))
             {
                 try
                 {
                     con.Open();
-                    daFichaSupervision odaFichaSupervision = new daFichaSupervision();
-                    updated = odaFichaSupervision.InsertarFichaSupervision(con, ProveedorID, PersonalID, Hora_Ingreso, Hora_Salida, Obs_Tec, Estado_Ficha, Nro_Telefono, Panel, Obs_Ficha, out outID_Ficha);
-                }
-                catch (SqlException ex)
-                {
-                    beLog obeLog;
-                    foreach (SqlError err in ex.Errors)
-                    {
-                        obeLog = new beLog();
-                        obeLog.MensajeError = err.Message;
-                        obeLog.DetalleError = ex.StackTrace;
-                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);                        
-                    }
-                    outID_Ficha = "";
-                }
-                catch (Exception ex)
-                {
-                    beLog obeLog = new beLog();
-                    obeLog.MensajeError = ex.Message;
-                    obeLog.DetalleError = ex.StackTrace;
-                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
-                    outID_Ficha = "";
-                }
-            }
-            return (updated);
-        }
-
-        public List<beSupervision> Select_Ficha_Supervision(string pID_Ficha)
-        {
-            List<beSupervision> lbeFichaSupervision = null;
-            using (SqlConnection con = new SqlConnection(Conexion))
-            {
-                try
-                {
-                    con.Open();
-                    daFichaSupervision odaFichaSupervision = new daFichaSupervision();
-                    lbeFichaSupervision = odaFichaSupervision.Select_Ficha_Supervision(con, pID_Ficha);
+                    daFichaTipoMant odaFichaTipoMant = new daFichaTipoMant();
+                    lbeTipoMant = odaFichaTipoMant.Select_Ficha_TipoMant(con, pID_Ficha);
                 }
                 catch (SqlException ex)
                 {
@@ -75,7 +40,40 @@ namespace BusinessRules
                     ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
                 }
             }
-            return (lbeFichaSupervision);
+            return (lbeTipoMant);
+        }
+
+        public bool InsertarFichaTipoMant(Int64 ID_Ficha, Int64 TipoMant_ID)
+        {
+            bool updated = false;
+            using (SqlConnection con = new SqlConnection(Conexion))
+            {
+                try
+                {
+                    con.Open();
+                    daFichaTipoMant odaFichaTipoMant = new daFichaTipoMant();
+                    updated = odaFichaTipoMant.InsertarFichaTipoMant(con, ID_Ficha, TipoMant_ID);
+                }
+                catch (SqlException ex)
+                {
+                    beLog obeLog;
+                    foreach (SqlError err in ex.Errors)
+                    {
+                        obeLog = new beLog();
+                        obeLog.MensajeError = err.Message;
+                        obeLog.DetalleError = ex.StackTrace;
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    beLog obeLog = new beLog();
+                    obeLog.MensajeError = ex.Message;
+                    obeLog.DetalleError = ex.StackTrace;
+                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                }
+            }
+            return (updated);
         }
     }
 }

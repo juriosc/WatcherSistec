@@ -11,9 +11,9 @@ namespace DataAccess
 {
     public class daFichaAbonado
     {
-        public List<beFichaAbonado> ListarFichaAbonado(SqlConnection con, string pID_Ficha)
+        public List<beAbonado> ListarFichaAbonado(SqlConnection con, string pID_Ficha)
         {
-            List<beFichaAbonado> lbeFAbonado = null;
+            List<beAbonado> lbeFAbonado = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Abonado", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -32,13 +32,13 @@ namespace DataAccess
                 int LocalID = drd.GetOrdinal("LocalID");
                 int Observaciones = drd.GetOrdinal("Observaciones");
 
-                lbeFAbonado = new List<beFichaAbonado>();
+                lbeFAbonado = new List<beAbonado>();
 
-                beFichaAbonado obeFichaAbonado;
+                beAbonado obeFichaAbonado;
 
                 while (drd.Read())
                 {
-                    obeFichaAbonado = new beFichaAbonado();
+                    obeFichaAbonado = new beAbonado();
                     obeFichaAbonado.ID_Ficha = drd.GetInt32(ID_Ficha);
                     obeFichaAbonado.DealerCode = drd.GetString(DealerCode);
                     obeFichaAbonado.CSID = drd.GetString(CSID);

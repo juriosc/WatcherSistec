@@ -11,9 +11,9 @@ namespace DataAccess
 {
     public class daFichaAtenciones
     {
-        public List<beFichaAtenciones> ListarFichaAtencion(Int64 pID_Ficha, SqlConnection con)
+        public List<beAtenciones> ListarFichaAtencion(Int64 pID_Ficha, SqlConnection con)
         {
-            List<beFichaAtenciones> lbeAtenciones = null;
+            List<beAtenciones> lbeAtenciones = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Ficha_Atencion", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -43,13 +43,13 @@ namespace DataAccess
                 int AlarmHistoryID_Inicial = drd.GetOrdinal("AlarmHistoryID_Inicial");
                 int AlarmHistoryID_Final = drd.GetOrdinal("AlarmHistoryID_Final");
 
-                lbeAtenciones = new List<beFichaAtenciones>();
+                lbeAtenciones = new List<beAtenciones>();
 
-                beFichaAtenciones obeAtenciones;
+                beAtenciones obeAtenciones;
 
                 while (drd.Read())
                 {
-                    obeAtenciones = new beFichaAtenciones();
+                    obeAtenciones = new beAtenciones();
                     obeAtenciones.ID_Ficha = drd.GetInt32(ID_Ficha);
                     obeAtenciones.ID_Atencion = drd.GetInt32(ID_Atencion);
                     obeAtenciones.CSID = drd.GetString(CSID);

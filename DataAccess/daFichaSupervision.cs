@@ -10,7 +10,7 @@ using System.Data;
 namespace DataAccess
 {
     public class daFichaSupervision
-    {
+    {   
         public bool InsertarFichaSupervision(SqlConnection con, int ProveedorID, int PersonalID, DateTime Hora_Ingreso, DateTime Hora_Salida, string Obs_Tec, int Estado_Ficha, string Nro_Telefono, string Panel, string Obs_Ficha, out string outID_Ficha)
         {
             bool registro = false;
@@ -76,9 +76,9 @@ namespace DataAccess
 
         }
 
-        public List<beFichaSupervision> Select_Ficha_Supervision(SqlConnection con, string pID_Ficha)
+        public List<beSupervision> Select_Ficha_Supervision(SqlConnection con, string pID_Ficha)
         {
-            List<beFichaSupervision> lbeSupervisiones = null;
+            List<beSupervision> lbeSupervisiones = null;
 
             SqlCommand cmd = new SqlCommand("sp_WCT_Select_Ficha_Supervision", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -101,15 +101,15 @@ namespace DataAccess
                 int Hora_Salida = drd.GetOrdinal("Hora_Salida");
                 int Obs_Tec = drd.GetOrdinal("Obs_Tec");
                 int Estado_Ficha = drd.GetOrdinal("Estado_Ficha");
-                int Nro_Telefono = drd.GetOrdinal("Nro_Telefono");                
+                int Nro_Telefono = drd.GetOrdinal("Nro_Telefono");
                 int Panel = drd.GetOrdinal("Panel");
                 int Obs_Ficha = drd.GetOrdinal("Obs_Ficha");
 
-                lbeSupervisiones = new List<beFichaSupervision>();
-                beFichaSupervision obeSupervisiones;
+                lbeSupervisiones = new List<beSupervision>();
+                beSupervision obeSupervisiones;
                 while (drd.Read())
                 {
-                    obeSupervisiones = new beFichaSupervision();
+                    obeSupervisiones = new beSupervision();
                     obeSupervisiones.ID_Ficha = drd.GetString(ID_Ficha);
                     obeSupervisiones.ProveedorID = drd.GetString(ProveedorID);
                     obeSupervisiones.sProveedorName = drd.GetString(sProveedorName);
@@ -128,5 +128,6 @@ namespace DataAccess
             }
             return lbeSupervisiones;
         }
+        
     }
 }

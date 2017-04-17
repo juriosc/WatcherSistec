@@ -48,6 +48,7 @@
     <Compile Include="daFichaAbonado.cs" />
     <Compile Include="daFichaSupervision.cs" />
     <Compile Include="daFichaTecnico.cs" />
+    <Compile Include="daFichaTipoMant.cs" />
     <Compile Include="daLog.cs" />
     <Compile Include="daLogin.cs" />
     <Compile Include="daProveedor.cs" />

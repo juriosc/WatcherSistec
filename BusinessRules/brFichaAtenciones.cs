@@ -10,9 +10,9 @@ namespace BusinessRules
 {
     public class brFichaAtenciones:brGeneral
     {
-        public List<beFichaAtenciones> ListarFichaAtencion(Int64 pID_Ficha)
+        public List<beAtenciones> ListarFichaAtencion(Int64 pID_Ficha)
         {
-            List<beFichaAtenciones> lbeAtenciones = null;
+            List<beAtenciones> lbeAtenciones = null;
             using (SqlConnection con = new SqlConnection(Conexion))
             {
                 try

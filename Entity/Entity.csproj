@@ -40,20 +40,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="beDealer.cs" />
-    <Compile Include="beFichaAtenciones.cs" />
+    <Compile Include="beAtenciones.cs" />
     <Compile Include="beBloqueZona.cs" />
     <Compile Include="beComentario.cs" />
     <Compile Include="beCronograma.cs" />
-    <Compile Include="beFichaAbonado.cs" />
+    <Compile Include="beAbonado.cs" />
     <Compile Include="beLog.cs" />
     <Compile Include="beLogin.cs" />
     <Compile Include="beProveedor.cs" />
     <Compile Include="beRuta.cs" />
     <Compile Include="beSeniales.cs" />
     <Compile Include="beSubscriber.cs" />
-    <Compile Include="beFichaSupervision.cs" />
+    <Compile Include="beSupervision.cs" />
     <Compile Include="beTecnico.cs" />
-    <Compile Include="beTipoMantenimiento.cs" />
+    <Compile Include="beTipoMant.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

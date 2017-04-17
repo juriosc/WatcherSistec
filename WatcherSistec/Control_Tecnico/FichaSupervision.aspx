@@ -47,6 +47,19 @@
         height: 28px;
     }
 
+        .auto-style5 {
+            height: 18px;
+        }
+
+        .auto-style6 {
+            height: 28px;
+            width: 73px;
+        }
+        .auto-style7 {
+            height: 18px;
+            width: 73px;
+        }
+
     </style>
 
 
@@ -141,10 +154,29 @@
                         <table style="width:100%">                                  
                         <tr>
                             <td style="height:100px;vertical-align:top">                                                
-                                <table>
+                                <table style="width:100%">
                                     <tr>
-                                        <td class="auto-style4" >PROVEEDOR</td>
+                                       <td class="auto-style4" >FEC INGRESO</td>
                                         <td class="auto-style4">
+                                            <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                                        <asp:TextBox ID="txtFechaI" runat="server" ReadOnly="true" ></asp:TextBox>                                                    
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>    
+                                        </td>
+                                        <td>FEC SALIDA</td>
+                                        <td >
+                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:TextBox ID="txtFechaS" runat="server" ReadOnly="true"></asp:TextBox>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style5" >PROVEEDOR</td>
+                                        <td class="auto-style5">                                            
                                             <asp:UpdatePanel ID="UpdatePanel9" runat="server">
                                                 <ContentTemplate>
                                                     <asp:TextBox ID="txtProveedorID" runat="server" style="display:none;" ></asp:TextBox>
@@ -152,33 +184,15 @@
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </td>
-                                        <td class="auto-style4" >FECHA INGRESO</td>
-                                        <td class="auto-style4">
-                                            <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtFechaI" runat="server" ></asp:TextBox>                                                    
-                                                    
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td >NOMBRES</td>
-                                        <td>
+                                        <td class="auto-style7">NOMBRES </td>
+                                        <td class="auto-style5">
                                             <asp:UpdatePanel ID="UpdatePanel7" runat="server">
                                                 <ContentTemplate>
                                                     <asp:TextBox ID="txtPersonalID" runat="server" style="display:none;"></asp:TextBox>
-                                                    <asp:TextBox ID="txtNombre" runat="server" ReadOnly="true" Height="19px" Width="365px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtNombre" runat="server" ReadOnly="true" Height="19px" Width="310px"></asp:TextBox>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
-                                        </td>
-                                        <td>FECHA SALIDA</td>
-                                        <td>
-                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtFechaS" runat="server"></asp:TextBox>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+                                            
                                         </td>
                                     </tr>
                                     
@@ -187,7 +201,7 @@
                                         <td colspan ="3">
                                             <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:TextBox ID="txtObs_Tec" runat="server" Width="105%" Height="55px" TextMode="MultiLine"></asp:TextBox>
+                                                    <asp:TextBox ID="txtObs_Tec" runat="server" Width="100%" Height="55px" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </td>
@@ -483,12 +497,12 @@
             </tr>
             
             <tr>
-                <td>
-                    <table style="width:99%;height:140px; border: 1px solid #999999;border-radius:5px">
+                <td style="vertical-align:top">
+                    <table style="width:99%;height:140px; ">
                         <tr>
                             <td>
-                                <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%">
-                        <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="Reporte Tecnico" >
+                                <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="100%" Width="100%" >
+                        <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                             <ContentTemplate>
                                 <table style="width:100%">
                                     <tr>
@@ -499,12 +513,24 @@
                                                         <td>
                                                             Tipo Mantenimiento
                                                         </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td style="text-align:right;padding-right:28px;">
+                                                            <asp:UpdatePanel ID="UpdatePanel65" runat="server">
+                                                                <ContentTemplate>
+                                                                    <asp:CheckBox ID="chkSeleccion" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccion_CheckedChanged" />
+                                                                </ContentTemplate>
+                                                            </asp:UpdatePanel>
+                                                        </td>
                                                     </tr>
                                                 </table>
                                                     
                                             </div>
                                             <div style="height:120px; overflow:auto">
-                                                <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
+                                                <asp:UpdatePanel ID="UpdatePanel64" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
                                                     <Columns>
                                                         <asp:BoundField DataField="TipoMant_ID" HeaderText="Codigo" >
                                                             <HeaderStyle BackColor="Silver" CssClass="ColumnaOculta" />
@@ -518,6 +544,7 @@
                                                                 <asp:CheckBox ID="chkSel" runat="server" />
                                                             </ItemTemplate>
                                                             <HeaderStyle BackColor="Silver" />
+                                                            <ItemStyle HorizontalAlign="Center" />
                                                         </asp:TemplateField>
                                                     </Columns>
                                                     <FooterStyle BackColor="#CCCC99" HorizontalAlign="Center" ForeColor="Black" />
@@ -531,36 +558,14 @@
                                                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                                     <SortedDescendingHeaderStyle BackColor="#242121" />
                                                 </asp:GridView>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                                
                                             </div>
                                         </td>
-                                        <td style="width:10%; padding-left:6%">
-                                            <asp:CheckBoxList ID="chkCaidas" runat="server">
-                                                    
-                                                <asp:ListItem Text="ALT" Value="ALT"></asp:ListItem>
-                                                <asp:ListItem Text="BB" Value="BB"></asp:ListItem>
-                                                <asp:ListItem Text="FAC" Value="FAC"></asp:ListItem>
-                                                <asp:ListItem Text="RED" Value="RED"></asp:ListItem>
-                                                <asp:ListItem Text="ACL" Value="ACL"></asp:ListItem>
-                                                <asp:ListItem Text="AA" Value="AA"></asp:ListItem>
-                                                    
-                                            </asp:CheckBoxList>
-                                        </td>
+                                        
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <table style="width:100%">
-                                                <tr>
-                                                    <td style="width:85%">
-                                                        <asp:Button ID="btnMarcar" runat="server" Text="Marcar Todos" />
-                                                    </td>
-                                                    <td>
-                                                        <asp:Button ID="btnDesmarcar" runat="server" Text="Desmarcar Todos"/>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                                
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td colspan="2" style="border-top:solid">&nbsp; </td>
                                     </tr>
@@ -598,7 +603,7 @@
                             </ContentTemplate>
                                 
                         </asp:TabPanel>
-                        <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="Señales Especiales">
+                        <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="SEÑALES ESPECIALES">
                         </asp:TabPanel>
                     </asp:TabContainer>
 

@@ -10,9 +10,9 @@ namespace BusinessRules
 {
     public class brSupervisiones : brGeneral
     {
-        public List<beFichaSupervision> ListarSupervisiones(string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
+        public List<beSupervision> ListarSupervisiones(string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
         {
-            List<beFichaSupervision> lbeSupervisiones = null;
+            List<beSupervision> lbeSupervisiones = null;
             using (SqlConnection con = new SqlConnection(Conexion))
             {
                 try

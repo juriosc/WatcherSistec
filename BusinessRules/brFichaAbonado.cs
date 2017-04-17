@@ -10,9 +10,9 @@ namespace BusinessRules
 {
     public class brFichaAbonado : brGeneral
     {
-        public List<beFichaAbonado> ListarFichaAbonado(string pID_Ficha)
+        public List<beAbonado> ListarFichaAbonado(string pID_Ficha)
         {
-            List<beFichaAbonado> lbeFAbonado = null;
+            List<beAbonado> lbeFAbonado = null;
             using (SqlConnection con = new SqlConnection(Conexion))
             {
                 try

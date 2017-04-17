@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class beFichaSupervision
+    public class beSupervision
     {
         public string Fecha_Registro { get; set; }
         public string ID_Ficha { get; set; }

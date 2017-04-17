@@ -12,9 +12,9 @@ namespace DataAccess
 {
     public class daSupervisiones
     {
-        public List<beFichaSupervision> ListarSupervisiones(SqlConnection con, string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
+        public List<beSupervision> ListarSupervisiones(SqlConnection con, string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
         {
-            List<beFichaSupervision> lbeSupervisiones = null;
+            List<beSupervision> lbeSupervisiones = null;
 
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Supervisiones", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -99,11 +99,11 @@ namespace DataAccess
                 int Estado = drd.GetOrdinal("Estado");
                 int Estado_Cod = drd.GetOrdinal("Estado_Cod");
 
-                lbeSupervisiones = new List<beFichaSupervision>();
-                beFichaSupervision obeSupervisiones;
+                lbeSupervisiones = new List<beSupervision>();
+                beSupervision obeSupervisiones;
                 while (drd.Read())
                 {
-                    obeSupervisiones = new beFichaSupervision();
+                    obeSupervisiones = new beSupervision();
                     obeSupervisiones.Fecha_Registro = drd.GetString(Fecha_Registro);
                     obeSupervisiones.ID_Ficha = drd.GetString(ID_Ficha);                    
                     obeSupervisiones.Dealer = drd.GetString(Dealer);

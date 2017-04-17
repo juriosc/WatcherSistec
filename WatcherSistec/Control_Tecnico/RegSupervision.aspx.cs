@@ -23,7 +23,7 @@ namespace WatcherSistec.Control_Tecnico
         private void ListarTipoMantenimiento()
         {
             brTipoMantenimiento br = new brTipoMantenimiento();
-            List<beTipoMantenimiento> lbeMantenimiento = br.ComboMantenimiento();
+            List<beTipoMant> lbeMantenimiento = br.ComboMantenimiento();
 
             gvTipoMantenimiento.DataSource = lbeMantenimiento;
             gvTipoMantenimiento.DataBind();
@@ -89,7 +89,7 @@ namespace WatcherSistec.Control_Tecnico
             {
                 CheckBox check = row.FindControl("chkSel") as CheckBox;
                 
-                beTipoMantenimiento P = new beTipoMantenimiento();
+                beTipoMant P = new beTipoMant();
                 string strError = string.Empty;
                 
                 if (check.Checked)
@@ -100,7 +100,7 @@ namespace WatcherSistec.Control_Tecnico
             int lmant = Mant.Length;
             if (lmant > 0) { Mant = Mant.Substring(0, lmant - 1); }
 
-            List<beFichaSupervision> lbeSupervisiones = br.ListarSupervisiones(txtCodAtencion.Text.ToString(), txtCsid.Text.ToString(), txtOperador.Text.ToString(), txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant , Obs, Trab, Env);
+            List<beSupervision> lbeSupervisiones = br.ListarSupervisiones(txtCodAtencion.Text.ToString(), txtCsid.Text.ToString(), txtOperador.Text.ToString(), txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant , Obs, Trab, Env);
             
             gvSupervisiones.DataSource = lbeSupervisiones;
             gvSupervisiones.DataBind();

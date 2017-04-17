@@ -24,6 +24,8 @@ namespace WatcherSistec.Control_Tecnico
 
                     Ficha_Supervision(IdFicha);
                     Ficha_Abonados(IdFicha);
+                    ListarTipoMantenimiento();
+                    FichaTipoMant(IdFicha);
                     Ficha_Comentario(IdFicha);
                     
                     txtID_Ficha.Text = IdFicha;
@@ -31,14 +33,14 @@ namespace WatcherSistec.Control_Tecnico
                 }
                 else
                 {
-
+                    ListarTipoMantenimiento();
                     Bloque_Zona("");
                 }
                 
-                ListarTipoMantenimiento();
-                
                 
                 Listar_Atenciones();
+
+                TabContainer1.ActiveTabIndex = 0;
 
                 //if (Session["ListaAbonado"]!=null)
                 //{
@@ -77,7 +79,7 @@ namespace WatcherSistec.Control_Tecnico
             {
                 brFichaSupervision br = new brFichaSupervision();
                 
-                List<beFichaSupervision> Ficha_Supervision = br.Select_Ficha_Supervision(FichaId);
+                List<beSupervision> Ficha_Supervision = br.Select_Ficha_Supervision(FichaId);
 
                 if (Ficha_Supervision != null)
                 {
@@ -104,11 +106,31 @@ namespace WatcherSistec.Control_Tecnico
         private void ListarTipoMantenimiento()
         {
             brTipoMantenimiento br = new brTipoMantenimiento();
-            List<beTipoMantenimiento> lbeMantenimiento = br.ComboMantenimiento();
+            List<beTipoMant> lbeMantenimiento = br.ComboMantenimiento();
 
             gvTipoMantenimiento.DataSource = lbeMantenimiento;
             gvTipoMantenimiento.DataBind();
         }
+
+        private void FichaTipoMant(string ID_FICHA)
+        {
+            brFichaTipoMant br = new brFichaTipoMant();
+            List<beTipoMant> lbeFichaTipoMant = br.Select_Ficha_TipoMant(ID_FICHA);
+
+            foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+            {
+                foreach (var a in lbeFichaTipoMant)
+                {
+                    if (a.TipoMant_ID.ToString() == fila.Cells[0].Text)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Checked = true;
+                    }
+                }
+            }
+            
+        }
+
         protected void gvTipoMantenimiento_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTipoMantenimiento.PageIndex = e.NewPageIndex;
@@ -120,7 +142,7 @@ namespace WatcherSistec.Control_Tecnico
             brFichaAbonado br = new brFichaAbonado();
             //int ID_Ficha = txtHora.Text.Trim().Equals("") ? 0 : Convert.ToInt32(txtHora.Text);            
 
-            List<beFichaAbonado> ListarFicha_Abonados = br.ListarFichaAbonado(ID_Ficha);
+            List<beAbonado> ListarFicha_Abonados = br.ListarFichaAbonado(ID_Ficha);
             gvAbonado.DataSource = ListarFicha_Abonados;
             gvAbonado.DataBind();
         }
@@ -154,7 +176,7 @@ namespace WatcherSistec.Control_Tecnico
             brFichaAtenciones br = new brFichaAtenciones();
             int ID_Ficha = 0;
 
-            List<beFichaAtenciones> ListarFichaAtencion = br.ListarFichaAtencion(ID_Ficha);
+            List<beAtenciones> ListarFichaAtencion = br.ListarFichaAtencion(ID_Ficha);
             gvAtenciones.DataSource = ListarFichaAtencion;
             gvAtenciones.DataBind();
         }
@@ -389,7 +411,7 @@ namespace WatcherSistec.Control_Tecnico
         protected void btnAceptarListarSub_Click(object sender, EventArgs e)
         {
 
-            beFichaAbonado fa = new beFichaAbonado();
+            beAbonado fa = new beAbonado();
 
             if (hdfMantEstado.Value=="NUEVO")
             {
@@ -398,22 +420,22 @@ namespace WatcherSistec.Control_Tecnico
                 fa.DealerCode = txtSelDealercode.Text;
                 fa.LocalID = txtSelLocalid.Text;            
                 fa.Observaciones = txtSelObservacion.Text;
-                beFichaAbonado.FAbonado.Add(fa);
+                beAbonado.FAbonado.Add(fa);
             }
             else
             {
-                beFichaAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].DealerCode = txtSelDealercode.Text;
-                beFichaAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].CSID = txtSelCsid.Text;
-                beFichaAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].SubscriberName = txtSelSubscriberName.Text;
-                beFichaAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].LocalID = txtSelLocalid.Text;
-                beFichaAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].Observaciones = txtSelObservacion.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].DealerCode = txtSelDealercode.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].CSID = txtSelCsid.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].SubscriberName = txtSelSubscriberName.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].LocalID = txtSelLocalid.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].Observaciones = txtSelObservacion.Text;
 
             }
             
 
-            Session["ListaAbonado"] = beFichaAbonado.FAbonado;
+            Session["ListaAbonado"] = beAbonado.FAbonado;
 
-            gvAbonado.DataSource = beFichaAbonado.FAbonado;
+            gvAbonado.DataSource = beAbonado.FAbonado;
             gvAbonado.DataBind();
         }
 
@@ -440,10 +462,10 @@ namespace WatcherSistec.Control_Tecnico
                 break;
 
                 case "EliminarAbon":
-                    beFichaAbonado.FAbonado.Remove(beFichaAbonado.FAbonado[rowIndex]);
+                    beAbonado.FAbonado.Remove(beAbonado.FAbonado[rowIndex]);
 
-                    Session["ListaAbonado"]=beFichaAbonado.FAbonado;
-                    gvAbonado.DataSource = beFichaAbonado.FAbonado;
+                    Session["ListaAbonado"]=beAbonado.FAbonado;
+                    gvAbonado.DataSource = beAbonado.FAbonado;
                     gvAbonado.DataBind();
 
                 break;
@@ -468,7 +490,7 @@ namespace WatcherSistec.Control_Tecnico
             DateTime fechaI = DateTime.ParseExact(txtFechaI.Text, "dd/MM/yyyy HH:mm", culture);
             DateTime fechaS = DateTime.ParseExact(txtFechaS.Text, "dd/MM/yyyy HH:mm", culture);
             
-
+            //GUARDANDO FICHA SUPÈRVISION
             bool updated = br.InsertarFichaSupervision(
                 Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
                 , fechaS , txtObs_Tec.Text, 1,txtTelefono.Text, txtPanel.Text, ""
@@ -487,6 +509,7 @@ namespace WatcherSistec.Control_Tecnico
             string script = "alert('Mensaje: ' "+ men+ "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
 
+            //GUARDANDO FICHA ABONADO
 
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
@@ -507,6 +530,7 @@ namespace WatcherSistec.Control_Tecnico
             string script1 = "alert('Mensaje: ' " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
 
+            //GUARDANDO FICHA TIPO MANTENIMIENTO
 
             foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
             {
@@ -516,7 +540,7 @@ namespace WatcherSistec.Control_Tecnico
                 if (check.Checked)
                 {
 
-                    brTipoMantenimiento brTM = new brTipoMantenimiento();
+                    brFichaTipoMant brTM = new brFichaTipoMant();
 
                     bool updatedTM = brTM.InsertarFichaTipoMant(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt64(fila.Cells[0].Text));
 
@@ -594,6 +618,48 @@ namespace WatcherSistec.Control_Tecnico
 
             }
 
+        }
+
+        protected void btnMarcar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void btnDesmarcar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chkSeleccion.Checked)
+            {
+                foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                {
+                    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+
+                    check.Checked = true;
+                }
+            }
+            else
+            {
+                if (chkSeleccion.Checked == false) 
+                {
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+
+                        check.Checked = false;
+                    }
+                
+                }
+
+            }
+
+            
+
+            
         }
 
     }

@@ -295,7 +295,7 @@ namespace WatcherSistec.Control_Tecnico
         private void ListarTipoMantenimiento()
         {
             brTipoMantenimiento br = new brTipoMantenimiento();
-            List<beTipoMantenimiento> lbeMantenimiento = br.ComboMantenimiento();
+            List<beTipoMant> lbeMantenimiento = br.ComboMantenimiento();
 
             gvTipoMantenimiento.DataSource = lbeMantenimiento;
             gvTipoMantenimiento.DataBind();

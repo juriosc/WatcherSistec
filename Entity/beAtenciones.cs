@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class beFichaAtenciones
+    public class beAtenciones
     {
        public int ID_Ficha { get; set; }
 	    public int ID_Atencion { get; set; }

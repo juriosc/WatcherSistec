@@ -53,6 +53,7 @@
     <Compile Include="brFichaAbonado.cs" />
     <Compile Include="brFichaSupervision.cs" />
     <Compile Include="brFichaTecnico.cs" />
+    <Compile Include="brFichaTipoMant.cs" />
     <Compile Include="brGeneral.cs" />
     <Compile Include="brLog.cs" />
     <Compile Include="brLogin.cs" />
