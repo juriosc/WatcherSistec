@@ -183,18 +183,20 @@ namespace WatcherSistec.Control_Tecnico
             gvComentario.PageIndex = e.NewPageIndex;
             //ListarFicha_Comentario_Zona();
         }
-        private void Listar_Atenciones()
-        {
-            brFichaAtenciones br = new brFichaAtenciones();            
 
-            List<beAtenciones> ListarFichaAtencion = br.ListarFichaAtencion("");
-            gvAtenciones.DataSource = ListarFichaAtencion;
-            gvAtenciones.DataBind();
-        }
+        //private void Listar_Atenciones()
+        //{
+        //    brFichaAtenciones br = new brFichaAtenciones();            
+
+        //    List<beAtenciones> ListarFichaAtencion = br.ListarFichaAtencion("");
+        //    gvAtenciones.DataSource = ListarFichaAtencion;
+        //    gvAtenciones.DataBind();
+        //}
         protected void gvAtenciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAtenciones.PageIndex = e.NewPageIndex;
-            Listar_Atenciones();
+            Ficha_Atenciones(txtID_Ficha.Text);
+            //Listar_Atenciones();
         }
 
         
@@ -667,6 +669,14 @@ namespace WatcherSistec.Control_Tecnico
             
 
             
+        }
+
+        protected void btnDetener_Click(object sender, EventArgs e)
+        {
+            txtIdAtencion.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
+            txtUsuario.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[2].Text.ToString();
+            txtFechaTermino.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+
         }
 
     }

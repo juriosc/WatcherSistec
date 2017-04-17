@@ -242,7 +242,7 @@
                                                     <HeaderStyle CssClass="ColumnaOculta" />
                                                     <ItemStyle CssClass="ColumnaOculta" />
                                                     </asp:BoundField>
-                                                    <asp:BoundField HeaderText="Usuario" DataField="CSID"/>
+                                                    <asp:BoundField HeaderText="Usuario" DataField="Usuario"/>
                                                     <asp:BoundField HeaderText="Fecha Inicio" DataField="Fecha_Inicio"/>
                                                     <asp:BoundField HeaderText="Estado Inicio" DataField="Estado_Inicio"/>
                                                     <asp:BoundField HeaderText="Fecha Fin" DataField="Fecha_Termino"/>
@@ -281,7 +281,7 @@
                                 <asp:UpdatePanel  runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
                                         <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" class="btn btn-success" Width="86px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',250,150)" />
-                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" class="btn btn-success" Width="86px" OnClientClick="mostrarEmergenteModiAtencion('Modificar - Supervisión - Atención',300,380)" />
+                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" class="btn btn-success" Width="86px" OnClientClick="mostrarEmergenteModiAtencion('Modificar - Supervisión - Atención',300,380)" OnClick="btnDetener_Click" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 
@@ -1443,7 +1443,7 @@
     <div id="emerModiAtencion" class="ventana">
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
-				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+				<tr style="background: black;" onmouseover="this.style.cursor='move'">
 					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
 					<span id="titModiAtencion">&nbsp;</span>&nbsp;&nbsp;</td>
 					<td id="tdModiAtencionCerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick=" SalirPopupModiAtencion()();">
@@ -1466,7 +1466,7 @@
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel30" runat="server">
                             <ContentTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtIdAtencion" runat="server" Width="50px" ReadOnly="true"></asp:TextBox>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </td>
@@ -1481,7 +1481,7 @@
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel67" runat="server">
                             <ContentTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtUsuario" runat="server" Width="200px" ReadOnly="true"></asp:TextBox>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </td>
@@ -1496,7 +1496,7 @@
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel68" runat="server">
                             <ContentTemplate>
-                                <asp:TextBox ID="TextBox3" runat="server" ></asp:TextBox>
+                                <asp:TextBox ID="txtFechaTermino" runat="server" Width="170" ReadOnly="true"></asp:TextBox>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </td>
@@ -1515,10 +1515,12 @@
                             <legend style="font-size:11px">
                                 ESTADO
                             </legend>
-                            <table>
+                             <asp:UpdatePanel ID="UpdatePanel69" runat="server">
+                                <ContentTemplate>
+                                    <table>
                                 <tr>
                                     <td>
-                                        <asp:RadioButton ID="rbtPendiente" runat="server" text="PENDIENTE" AutoPostBack="True" GroupName="Estados" />
+                                        <asp:RadioButton ID="rbtPendiente" runat="server" text="PENDIENTE" AutoPostBack="True" GroupName="Estados" Checked="True" />
                                     </td>
                                     <td>
                                         <asp:RadioButton ID="rbtCancelada" runat="server" text="CANCELADA" AutoPostBack="True" GroupName="Estados" />
@@ -1528,6 +1530,9 @@
                                     </td>
                                 </tr>
                             </table>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                            
                             
                         </fieldset>                        
                     </td>
@@ -1551,6 +1556,15 @@
                 </tr>
             </table>
          </div>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div >
             <table style="margin: 0 auto;">
                 <tr>
@@ -1560,7 +1574,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel63" runat="server">
                                         <ContentTemplate>
-                                            <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="btn btn-primary" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
+                                            <asp:Button ID="btnAceptarModiAten" runat="server" Text="Aceptar" class="btn btn-success" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -1570,7 +1584,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel66" runat="server">
                                         <ContentTemplate>
-                                            <asp:Button ID="Button2" runat="server" Text="Cancelar" CssClass="btn btn-primary" Width="80px" />
+                                            <asp:Button ID="CancelarModiAten" runat="server" Text="Cancelar" class="btn btn-success" Width="80px" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>   
