@@ -10,7 +10,9 @@
 	    public string Fecha_Inicio { get; set; }
 	    public string Fecha_Termino  { get; set; }
 	    public string Estado_Inicio  { get; set; }
+        public string Estado_Inicio_Des { get; set; }
 	    public string Estado_Termino { get; set; }
+        public string Estado_Termino_Des { get; set; }
 	    public string b_ALT { get; set; }
 	    public string b_BB { get; set; }
 	    public string b_FAC { get; set; }
@@ -20,5 +22,6 @@
         public string Observaciones { get; set; }
 	    public int AlarmHistoryID_Inicial { get; set; }
         public int AlarmHistoryID_Final { get; set; }
+        public string ImagenEstado { get; set; }
     }
 }

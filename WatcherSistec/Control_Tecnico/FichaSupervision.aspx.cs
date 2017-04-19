@@ -26,7 +26,7 @@ namespace WatcherSistec.Control_Tecnico
 
                     Ficha_Supervision(IdFicha);
                     Ficha_Abonados(IdFicha);                    
-                    FichaTipoMant(IdFicha);                    
+                    Ficha_TipoMant(IdFicha);                    
                     Ficha_Atenciones(IdFicha);
                     Ficha_Comentario(IdFicha);
 
@@ -115,7 +115,7 @@ namespace WatcherSistec.Control_Tecnico
             gvTipoMantenimiento.DataBind();
         }
 
-        private void FichaTipoMant(string ID_FICHA)
+        private void Ficha_TipoMant(string ID_FICHA)
         {
             brFichaTipoMant br = new brFichaTipoMant();
             List<beTipoMant> lbeFichaTipoMant = br.Select_Ficha_TipoMant(ID_FICHA);
@@ -588,16 +588,16 @@ namespace WatcherSistec.Control_Tecnico
                 lblTiempoFaltante.Text = "59";
             }
 
-            string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
-            string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
-            Int64 UFilaAlarmHistoryID = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[7].Text);
+            string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
+            string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[2].Text.ToString();
+            Int64 UFilaAlarmHistoryID_Inicial = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[9].Text);
             
             //INSERTAR SEÑALES
             brSeniales brSE = new brSeniales();
-            brSE.Insertar_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID, UFilaAlarmHistoryID);
+            brSE.Insertar_Señales_Aten(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(UFilaID_Atencion), UFilaCSID, UFilaAlarmHistoryID_Inicial);
 
             //VERIFICAR SEÑALES PARA CAMBIAR COLORES ALT, BB, FAC ....
-            List<beSeniales> lstVerificarSeniales = brSE.Verificar_Seniales_Aten(UFilaAlarmHistoryID, UFilaCSID);
+            List<beSeniales> lstVerificarSeniales = brSE.Verificar_Seniales_Aten(UFilaAlarmHistoryID_Inicial, UFilaCSID);
 
             for (int i = 0; i <= lstVerificarSeniales.Count-1; i++)
             {
@@ -629,16 +629,6 @@ namespace WatcherSistec.Control_Tecnico
 
         }
 
-        protected void btnMarcar_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        protected void btnDesmarcar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -663,19 +653,55 @@ namespace WatcherSistec.Control_Tecnico
                     }
                 
                 }
-
             }
-
-            
-
             
         }
 
         protected void btnDetener_Click(object sender, EventArgs e)
         {
-            txtIdAtencion.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[0].Text.ToString();
-            txtUsuario.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[2].Text.ToString();
+            txtIdAtencion.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
+            txtCsidAtencion.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[2].Text.ToString();
+            txtUsuario.Text = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[3].Text.ToString();
             txtFechaTermino.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+
+        }
+
+        protected void btnAceptarModiAten_Click(object sender, EventArgs e)
+        {
+            bool updatedFA;
+            string men = "";
+            int Estado = 1;
+
+            brFichaAtenciones brFA = new brFichaAtenciones();            
+
+            if(rbtPendiente.Checked)
+            {
+                Estado = 1;
+            }
+
+            if (rbtConcluida.Checked)
+            {
+                Estado = 3;
+            }
+
+            if (rbtCancelada.Checked)
+            {
+                Estado = 4;
+            }
+
+            updatedFA = brFA.ModificarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(txtIdAtencion.Text), HttpUtility.HtmlDecode(txtCsidAtencion.Text), Estado, HttpUtility.HtmlDecode(txtObsAtencion.Text));
+
+            if (updatedFA == false)
+            {
+                men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+            }
+            else
+            {
+                men = "Tipo Mantenimiento registrado correctamente";
+            }
+
+            string script2 = "alert('Mensaje: ' " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
         }
 

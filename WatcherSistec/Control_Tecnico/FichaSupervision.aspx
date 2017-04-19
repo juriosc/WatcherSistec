@@ -135,7 +135,7 @@
                     <asp:CheckBox ID="chksms" runat="server" Text="SMS AUTO" CssClass="Etiqueta" />
                 </td>
                 <td style="width:150px">
-                    <asp:CheckBox ID="chktlf" runat="server" Text="TLF. 9 DIG" CssClass="Etiqueta" />
+                    
                 </td>
                 <td style="width:150px">
                     <asp:Button ID="btnsms" runat="server" Text="SMS" class="btn btn-success" Width="50px" Height="30px" />
@@ -237,6 +237,8 @@
                                             <asp:GridView ID="gvAtenciones" runat="server"  AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" onpageindexchanging="gvAtenciones_PageIndexChanging" BackColor="White" BorderColor="Gray" BorderStyle="None" BorderWidth="1px" Width="575px" >
                                                 <HeaderStyle Height="30px" />
                                                 <Columns>                                                    
+                                                    <asp:ImageField DataImageUrlField="ImagenEstado">
+                                                    </asp:ImageField>
                                                     <asp:BoundField HeaderText="AT ID" DataField="ID_Atencion"/>                                                    
                                                     <asp:BoundField HeaderText="Abonado" DataField="CSID" HtmlEncode="False">
                                                     <HeaderStyle CssClass="ColumnaOculta" />
@@ -244,9 +246,20 @@
                                                     </asp:BoundField>
                                                     <asp:BoundField HeaderText="Usuario" DataField="Usuario"/>
                                                     <asp:BoundField HeaderText="Fecha Inicio" DataField="Fecha_Inicio"/>
-                                                    <asp:BoundField HeaderText="Estado Inicio" DataField="Estado_Inicio"/>
+                                                    <asp:BoundField HeaderText="Est Inicio" DataField="Estado_Inicio">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="Estado_Inicio_Des" HeaderText="Estado Inicio" />
                                                     <asp:BoundField HeaderText="Fecha Fin" DataField="Fecha_Termino"/>
-                                                    <asp:BoundField HeaderText="Estado Fin" DataField="Estado_Termino"/>
+                                                    <asp:BoundField HeaderText="Est Fin" DataField="Estado_Termino">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="Estado_Termino_Des" HeaderText="Estado Fin">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
                                                     <asp:BoundField HeaderText="Observación" DataField="Observaciones"/>
                                                     <asp:BoundField HeaderText="AlarmHistoryID_Inicial" DataField="AlarmHistoryID_Inicial">
                                                     
@@ -508,7 +521,7 @@
                     <table style="width:99%;height:140px; ">
                         <tr>
                             <td>
-                                <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="100%" Width="100%" >
+                                <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" >
                         <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                             <ContentTemplate>
                                 <table style="width:100%">
@@ -574,10 +587,10 @@
                                     </tr>
                                     
                                     <tr>
-                                        <td colspan="2" style="border-top:solid">&nbsp; </td>
+                                        <td style="border-top:solid">&nbsp; </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td>
                                             <table style="width:100%">
                                                 <tr>
                                                     <td>
@@ -611,6 +624,40 @@
                                 
                         </asp:TabPanel>
                         <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="SEÑALES ESPECIALES">
+                            <ContentTemplate>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                TIPO DE CONDICIÓN
+                                            </td>
+                                            <td>
+                                                <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                ABONADO
+                                            </td>
+                                            <td>
+                                                <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+                                            </td>
+                                            <td>
+                                                <asp:Button ID="Button1" runat="server" Text="Buscar" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </ContentTemplate>
                         </asp:TabPanel>
                     </asp:TabContainer>
 
@@ -1446,13 +1493,13 @@
 				<tr style="background: black;" onmouseover="this.style.cursor='move'">
 					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
 					<span id="titModiAtencion">&nbsp;</span>&nbsp;&nbsp;</td>
-					<td id="tdModiAtencionCerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick=" SalirPopupModiAtencion()();">
+					<td id="tdModiAtencionCerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupModiAtencion();">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 			</table>
 		</div>
-        <div id="emerModiAtencioncuerpo">
+        <div id="emerModiAtencioncuerpo" >
             <table>
                 <tr>
                     <td>
@@ -1508,6 +1555,13 @@
                     <td>
                         &nbsp;
                     </td>
+                    <td>
+                          <asp:UpdatePanel ID="UpdatePanel70" runat="server">
+                            <ContentTemplate>
+                                <asp:TextBox ID="txtCsidAtencion" runat="server" Width="170"></asp:TextBox>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -1548,7 +1602,7 @@
                         OBSERVACIÓN
                     </td>
                     <td>
-                        <asp:TextBox ID="TextBox4" runat="server" TextMode="MultiLine" Width="200px" Height="120px"></asp:TextBox>
+                        <asp:TextBox ID="txtObsAtencion" runat="server" TextMode="MultiLine" Width="200px" Height="120px"></asp:TextBox>
                     </td>
                     <td>
 
@@ -1574,7 +1628,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel63" runat="server">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnAceptarModiAten" runat="server" Text="Aceptar" class="btn btn-success" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
+                                            <asp:Button ID="btnAceptarModiAten" runat="server" Text="Aceptar" class="btn btn-success" Width="80px" OnClick="btnAceptarModiAten_Click" OnClientClick="SalirPopupModiAtencion();" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -1584,7 +1638,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel66" runat="server">
                                         <ContentTemplate>
-                                            <asp:Button ID="CancelarModiAten" runat="server" Text="Cancelar" class="btn btn-success" Width="80px" />
+                                            <asp:Button ID="CancelarModiAten" runat="server" Text="Cancelar" class="btn btn-success" Width="80px" OnClientClick="SalirPopupModiAtencion();" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>   

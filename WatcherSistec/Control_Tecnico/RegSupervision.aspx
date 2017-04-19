@@ -456,25 +456,43 @@
                     <td style="text-align:center;">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:GridView ID="gvSupervisiones"  runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvSupervisiones_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvSupervisiones_RowCommand">
+                                <asp:GridView ID="gvSupervisiones" Width="100%"  runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvSupervisiones_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvSupervisiones_RowCommand">
                                     <Columns>
-                                        <asp:BoundField HeaderText="Fecha_Registro" DataField="Fecha_Registro" />
-                                        <asp:BoundField HeaderText="ID_Ficha" DataField="ID_Ficha" />
-                                        <asp:BoundField HeaderText="ID_Atencion" DataField="ID_Atencion" />
-                                        <asp:BoundField HeaderText="Dealer" DataField="Dealer" />
-                                        <asp:BoundField HeaderText="CSID" DataField="CSID" />
-                                        <asp:BoundField HeaderText="SubscriberName" DataField="SubscriberName" />
+                                        <asp:BoundField HeaderText="Fecha" DataField="Fecha_Registro" />                                        
+                                        <asp:BoundField HeaderText="ID_Ficha" DataField="ID_Ficha">
+                                        <HeaderStyle CssClass="ColumnaOculta" Width="150px"/>
+                                        <ItemStyle CssClass="ColumnaOculta" Width="150px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="Tipo Mant." DataField="TipoMantenimiento" />
+                                        <asp:BoundField HeaderText="ID_Atencion" DataField="ID_Atencion">
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="Dealer" DataField="Dealer">
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>                                        
+                                        <asp:BoundField HeaderText="Abonado" DataField="CSID"/>
+                                        <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
                                         <asp:BoundField HeaderText="ProveedorID" DataField="ProveedorID" />
                                         <asp:BoundField HeaderText="PersonalID" DataField="PersonalID" />
                                         <asp:BoundField HeaderText="Nombres" DataField="Nombres" />
                                         <asp:BoundField HeaderText="Usuario" DataField="Usuario" />
-                                        <asp:BoundField HeaderText="Estado_Inicio" DataField="Estado_Inicio" />
-                                        <asp:BoundField HeaderText="Estado_Termino" DataField="Estado_Termino" />
-                                        <asp:BoundField HeaderText="Cod_Atencion" DataField="Cod_Atencion" />
-                                        <asp:BoundField HeaderText="Obs_Ficha" DataField="Obs_Ficha" />
-                                        <asp:BoundField HeaderText="TipoMantenimiento" DataField="TipoMantenimiento" />
+                                        <asp:BoundField HeaderText="Estado_Inicio" DataField="Estado_Inicio">
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="Estado_Termino" DataField="Estado_Termino">
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>                                        
+                                        <asp:BoundField HeaderText="Observaciones" DataField="Obs_Ficha" />
+                                        
                                         <asp:BoundField HeaderText="Estado" DataField="Estado_Ficha" />
-                                        <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" />
+                                        <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="btnVer" runat="server" ImageUrl="~/Images/Mantenimiento/view.png" CommandName="Ver" ToolTip="VER"

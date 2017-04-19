@@ -208,8 +208,11 @@
     <Content Include="Images\AlrRojo.PNG" />
     <Content Include="Images\AlRrojocAmarillo.PNG" />
     <Content Include="Images\binocular.png" />
+    <Content Include="Images\Cancelada.ico" />
     <Content Include="Images\comentario.png" />
+    <Content Include="Images\Concluida.ico" />
     <Content Include="Images\email.png" />
+    <Content Include="Images\En_Atencion.ico" />
     <Content Include="Images\equis.png" />
     <Content Include="Images\equis_hover.png" />
     <Content Include="Images\Espera.gif" />
@@ -244,6 +247,7 @@
     <Content Include="Images\Modulos\SupervisionCaida.png" />
     <Content Include="Images\Modulos\test.png" />
     <Content Include="Images\Modulos\VisorSeñales.png" />
+    <Content Include="Images\Pendiente.ico" />
     <Content Include="Images\print.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\start.png" />
