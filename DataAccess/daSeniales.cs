@@ -65,7 +65,7 @@ namespace DataAccess
             if (drd != null)
             {
                 int SignalIdentifier = drd.GetOrdinal("SignalIdentifier");
-                int FLAG_TIPO = drd.GetOrdinal("FLAG_TIPO");                
+                //int FLAG_TIPO = drd.GetOrdinal("FLAG_TIPO");                
 
                 lbeVeriSeniales = new List<beSeniales>();
 
@@ -75,7 +75,7 @@ namespace DataAccess
                 {
                     obeSeniales = new beSeniales();
                     obeSeniales.SignalIdentifier = drd.GetString(SignalIdentifier);
-                    obeSeniales.FLAG_TIPO = drd.GetString(FLAG_TIPO);
+                    //obeSeniales.FLAG_TIPO = drd.GetString(FLAG_TIPO);
                     lbeVeriSeniales.Add(obeSeniales);
                 }
                 drd.Close();

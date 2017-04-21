@@ -51,13 +51,17 @@
             height: 18px;
         }
 
-        .auto-style6 {
-            height: 28px;
-            width: 73px;
-        }
         .auto-style7 {
             height: 18px;
             width: 73px;
+        }
+
+        .auto-style9 {
+            height: 50px;
+            width: 50px;
+        }
+        .auto-style10 {
+            width: 50px;
         }
 
     </style>
@@ -82,8 +86,12 @@
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel57" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:Timer ID="tmrActualizarZonas" runat="server" Interval="2000" OnTick="tmrActualizarZonas_Tick"></asp:Timer>
+                            <asp:Timer ID="tmrActualizarZonas" runat="server" Interval="2000" OnTick="tmrActualizarZonas_Tick" ></asp:Timer>
                         </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="btnAceptarModiAten" EventName="Click" />
+                        </Triggers>
                     </asp:UpdatePanel>                    
                 </td>
             </tr>
@@ -109,14 +117,14 @@
                 <td style="width:150px">
                     <asp:UpdatePanel ID="UpdatePanel26" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" Width="120px" Height="30px" OnClick="btnGuardar_Click" />
+                            <asp:Button ID="btnGuardar" runat="server" Text="Guardar"  Width="120px" Height="30px" OnClick="btnGuardar_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                    
                 </td>
                 <td style="width:150px">
                      <asp:UpdatePanel ID="UpdatePanel27" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar Ficha" class="btn btn-success" Width="120px" Height="30px"  />        
+                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar Ficha" Width="120px" Height="30px"  />        
                         </ContentTemplate>
                     </asp:UpdatePanel>                        
                 </td>
@@ -128,7 +136,7 @@
                     </asp:UpdatePanel>                                            
                 </td>
                  <td style="width:150px">
-                    <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" class="btn btn-success" Width="120px" Height="30px" />
+                    <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" Width="120px" Height="30px" />
                 </td>
                 
                 <td style="width:150px">
@@ -138,7 +146,7 @@
                     
                 </td>
                 <td style="width:150px">
-                    <asp:Button ID="btnsms" runat="server" Text="SMS" class="btn btn-success" Width="50px" Height="30px" />
+                    <asp:Button ID="btnsms" runat="server" Text="SMS" Width="50px" Height="30px" />
                 </td>
 
             </tr>
@@ -152,76 +160,75 @@
                             TÉCNICO
                         </legend>
                         <table style="width:100%">                                  
-                        <tr>
-                            <td style="height:100px;vertical-align:top">                                                
-                                <table style="width:100%">
-                                    <tr>
-                                       <td class="auto-style4" >FEC INGRESO</td>
-                                        <td class="auto-style4">
-                                            <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
+                            <tr>
+                                <td style="height:100px;vertical-align:top">                                                
+                                    <table style="width:100%">
+                                        <tr>
+                                           <td class="auto-style4" >FEC INGRESO</td>
+                                            <td class="auto-style4">
+                                                <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtFechaI" runat="server" ></asp:TextBox>                                                    
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>    
+                                            </td>
+                                            <td>FEC SALIDA</td>
+                                            <td >
+                                                <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:TextBox ID="txtFechaI" runat="server" ReadOnly="true" ></asp:TextBox>                                                    
+                                                        <asp:TextBox ID="txtFechaS" runat="server" ></asp:TextBox>
                                                     </ContentTemplate>
-                                                </asp:UpdatePanel>    
-                                        </td>
-                                        <td>FEC SALIDA</td>
-                                        <td >
-                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtFechaS" runat="server" ReadOnly="true"></asp:TextBox>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                        </td>
+                                                </asp:UpdatePanel>
+                                            </td>
                                         
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5" >PROVEEDOR</td>
-                                        <td class="auto-style5">                                            
-                                            <asp:UpdatePanel ID="UpdatePanel9" runat="server">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtProveedorID" runat="server" style="display:none;" ></asp:TextBox>
-                                                    <asp:TextBox ID="txtProv" runat="server" ReadOnly="true"></asp:TextBox>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                        </td>
-                                        <td class="auto-style7">NOMBRES </td>
-                                        <td class="auto-style5">
-                                            <asp:UpdatePanel ID="UpdatePanel7" runat="server">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtPersonalID" runat="server" style="display:none;"></asp:TextBox>
-                                                    <asp:TextBox ID="txtNombre" runat="server" ReadOnly="true" Height="19px" Width="310px"></asp:TextBox>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+                                        </tr>
+                                        <tr>
+                                            <td class="auto-style5" >PROVEEDOR</td>
+                                            <td class="auto-style5">                                            
+                                                <asp:UpdatePanel ID="UpdatePanel9" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:TextBox ID="txtProveedorID" runat="server" style="display:none;" ></asp:TextBox>
+                                                        <asp:TextBox ID="txtProv" runat="server" ReadOnly="true"></asp:TextBox>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </td>
+                                            <td class="auto-style7">NOMBRES </td>
+                                            <td class="auto-style5">
+                                                <asp:UpdatePanel ID="UpdatePanel7" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:TextBox ID="txtPersonalID" runat="server" style="display:none;"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNombre" runat="server" ReadOnly="true" Height="19px" Width="310px"></asp:TextBox>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     
-                                    <tr>
-                                        <td style="vertical-align:top">OBSERVACIÓN</td>
-                                        <td colspan ="3">
-                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>
-                                                    <asp:TextBox ID="txtObs_Tec" runat="server" Width="100%" Height="55px" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                        </td>
-                                    </tr>
-                                </table>                                                
-                            </td>
-                            <td >
+                                        <tr>
+                                            <td style="vertical-align:top">OBSERVACIÓN</td>
+                                            <td colspan ="3">
+                                                <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                                        <asp:TextBox ID="txtObs_Tec" runat="server" Width="100%" Height="55px" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </td>
+                                        </tr>
+                                    </table>                                                
+                                </td>
+                                <td >
 
-                            </td>
-                            <td style="vertical-align:top" >
-                                <asp:UpdatePanel ID="UpdatePanel31" runat="server">
-                                    <ContentTemplate>
-                                        <asp:ImageButton ID="btnAgregar" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarPopupTecnico('Lista de Técnicos',500,300);" OnClick="btnAgregar_Click1"/>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                    </table>
-                    </fieldset>
-                    
+                                </td>
+                                <td style="vertical-align:top" >
+                                    <asp:UpdatePanel ID="UpdatePanel31" runat="server">
+                                        <ContentTemplate>
+                                            <asp:ImageButton ID="btnAgregar" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarPopupTecnico('Lista de Técnicos',500,300);" OnClick="btnAgregar_Click1"/>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>                    
                 </td>
                <td style="width:50%">
                    <fieldset>
@@ -256,9 +263,7 @@
                                                     <HeaderStyle CssClass="ColumnaOculta" />
                                                     <ItemStyle CssClass="ColumnaOculta" />
                                                     </asp:BoundField>
-                                                    <asp:BoundField DataField="Estado_Termino_Des" HeaderText="Estado Fin">
-                                                    <HeaderStyle CssClass="ColumnaOculta" />
-                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    <asp:BoundField DataField="Estado_Termino_Des" HeaderText="Estado Fin">                                                    
                                                     </asp:BoundField>
                                                     <asp:BoundField HeaderText="Observación" DataField="Observaciones"/>
                                                     <asp:BoundField HeaderText="AlarmHistoryID_Inicial" DataField="AlarmHistoryID_Inicial">
@@ -283,6 +288,7 @@
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btnAceptarModiAten" EventName="Click" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                 </div>
@@ -293,80 +299,105 @@
                             <td colspan="2">
                                 <asp:UpdatePanel  runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" class="btn btn-success" Width="86px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',250,150)" />
-                                        <asp:Button ID="btnDetener" runat="server" Text="Detener" class="btn btn-success" Width="86px" OnClientClick="mostrarEmergenteModiAtencion('Modificar - Supervisión - Atención',300,380)" OnClick="btnDetener_Click" />
+                                        <asp:Button ID="btnIniciar" runat="server" Text="Iniciar"  Width="86px" Height="30px" OnClick="btnIniciar_Click" OnClientClick="mostrarEmergenteTEnvioMsm('Envio de MSM',280,170)" />
+                                        <asp:Button ID="btnDetener" runat="server" Text="Detener"  Width="86px" Height="30px" OnClientClick="mostrarEmergenteModiAtencion('Modificar - Supervisión - Atención',300,380)" OnClick="btnDetener_Click" Enabled="False" />
                                     </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" />
+                                        <asp:AsyncPostBackTrigger ControlID="btnAceptarModiAten" EventName="Click" />
+                                    </Triggers>
                                 </asp:UpdatePanel>
                                 
                             </td>
                         </tr>
                     </table>
-                       <table>
+                       
+
+                   </fieldset>                           
+               </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                </td>
+                <td style="vertical-align:central;width:100%">
+                    <fieldset>
+                        <legend>
+                            ESTADO SEÑALES
+                        </legend>
+                        <table>
                            <tr>
-                               <td>
+                               <td style="width:30px;height:30px; border: black 2px solid;font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px" >
                                    <asp:UpdatePanel ID="UpdatePanel50" runat="server">
                                        <ContentTemplate>                                           
-                                           <asp:Label ID="lblALT" runat="server" Text="ALT"></asp:Label>
+                                           <asp:Label ID="lblALT" runat="server" Text="ALT" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+                                           </asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
                                <td>
                                    &nbsp;
                                </td>
-                               <td>
+                               <td style="width:30px;height:30px; border: black 2px solid;font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px" class="auto-style9">
                                    <asp:UpdatePanel ID="UpdatePanel58" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblBB" runat="server" Text="BB"></asp:Label>
+                                           <asp:Label ID="lblBB" runat="server" Text="BB" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+                                           </asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
                                <td>
                                    &nbsp;
                                </td>
-                               <td>
+                               <td style="width:30px;height:30px; border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel59" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblFAC" runat="server" Text="FAC"></asp:Label>
+                                           <asp:Label ID="lblFAC" runat="server" Text="FAC" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+
+                                           </asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
                                <td>
                                    &nbsp;
                                </td>
-                               <td>
+                               <td style="border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel60" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblRED" runat="server" Text="RED"></asp:Label>
+                                           <asp:Label ID="lblRED" runat="server" Text="RED" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+                                           </asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
                                <td>
                                    &nbsp;
                                </td>
-                               <td>
+                               <td style="border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel61" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblACL" runat="server" Text="ACL"></asp:Label>
+                                           <asp:Label ID="lblACL" runat="server" Text="ACL" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+
+                                           </asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
                                <td>
                                    &nbsp;
                                </td>
-                               <td>
+                               <td style="border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel62" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblAA" runat="server" Text="AA"></asp:Label>
+                                           <asp:Label ID="lblAA" runat="server" Text="AA" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+
+                                           </asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
 
                            </tr>
                        </table>
-
-                   </fieldset>
-                                                    
-                                                                      
+                    </fieldset>
                 </td>
             </tr>
             <tr>
@@ -465,9 +496,9 @@
                             </td>                                                            
                         </tr>
                     </table>
-                    </fieldset>
-                    
-                </td>
+                    </fieldset>                    
+                </td>                 
+
                 <td style="vertical-align:central">
                     <fieldset>
                         <legend>
@@ -500,8 +531,8 @@
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="btnAceptarTEnvioMSM" EventName="Click" />
-                                                </Triggers>                                                
-
+                                                    <asp:AsyncPostBackTrigger ControlID="btnAceptarModiAten" EventName="Click" />
+                                                </Triggers>
                                             </asp:UpdatePanel>
                                         </td>
                                     </tr>
@@ -1154,14 +1185,14 @@
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel43" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnAceptarListarSub" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirPopupAbonado()" OnClick="btnAceptarListarSub_Click"/></td>
+                                                            <asp:Button ID="btnAceptarListarSub" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirPopupAbonado();" OnClick="btnAceptarListarSub_Click"/></td>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td style="width:80px">
                                                 </td>    
                                                 <td>
-                                                    <asp:Button ID="btnCancelarListarSub" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupAbonado()" />                                        
+                                                    <asp:Button ID="btnCancelarListarSub" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupAbonado();" />                                        
                                                 </td>                                
                                             </tr>
                                         </table>
@@ -1443,7 +1474,7 @@
                     <td colspan="4" style="text-align:center">
                         <asp:UpdatePanel ID="UpdatePanel54" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <asp:TextBox ID="txtTMSMMinutos" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtTMSMMinutos" onkeypress="soloNumerosCompleto(this,event,'0');" runat="server"></asp:TextBox>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </td>
@@ -1463,9 +1494,9 @@
                         <table style="margin: 0 auto;">
                             <tr>
                                 <td>
-                                    <asp:UpdatePanel ID="UpdatePanel55" runat="server">
+                                    <asp:UpdatePanel ID="UpdatePanel55" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnAceptarTEnvioMSM" runat="server" Text="Aceptar" CssClass="btn btn-primary" Width="80px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
+                                            <asp:Button ID="btnAceptarTEnvioMSM" runat="server" Text="Aceptar" Width="80px" Height="30px" OnClick="btnAceptarTEnvioMSM_Click" OnClientClick="SalirPopupTEnvioMsm();" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -1473,9 +1504,9 @@
 
                                 </td>
                                 <td>
-                                    <asp:UpdatePanel ID="UpdatePanel56" runat="server">
+                                    <asp:UpdatePanel ID="UpdatePanel56" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnCancelarTEnvioMSM" runat="server" Text="Cancelar" CssClass="btn btn-primary" Width="80px" />
+                                            <asp:Button ID="btnCancelarTEnvioMSM" runat="server" Text="Cancelar" Width="80px" Height="30px" OnClientClick="SalirPopupTEnvioMsm();"/>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>   
@@ -1703,7 +1734,9 @@
             $("#tdTEnvioMsmcerrar").show();
             $("#fondoemergente").css('display', 'block');
             $("#titTEnvioMsm").html(titulo);
-            mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);
+            mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);            
+            //document.getElementById("ContentPlaceHolder1_txtTMSMMinutos").focus();            
+            $("#ContentPlaceHolder1_txtTMSMMinutos").focus();
         }        
 
         function mostrarEmergenteModiAtencion(titulo, ancho, alto) {
@@ -1739,8 +1772,19 @@
         }
 
         function SalirPopupTEnvioMsm() {
-            $("#fondoemergente").hide();
-            $("#emerTEnvioMsm").hide();
+
+            //var datolleno = $("#ContentPlaceHolder1_txtTMSMMinutos").val();
+
+            //if (datolleno.length == 0)
+            //{
+            //    alert("No se ha ingresado los minutos");
+            //}
+            //else
+            //{
+                $("#fondoemergente").hide();
+                $("#emerTEnvioMsm").hide();
+            //}
+            
         }
 
         function SalirPopupModiAtencion() {

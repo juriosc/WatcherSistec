@@ -35,6 +35,9 @@ namespace WatcherSistec.Control_Tecnico
                 }
                 else
                 {
+
+                    beAbonado.FAbonado.Clear();
+
                     ListarTipoMantenimiento();
                     Ficha_Atenciones("");
                     Bloque_Zona("");
@@ -316,8 +319,6 @@ namespace WatcherSistec.Control_Tecnico
         protected void btnAceptarTEnvioMSM_Click(object sender, EventArgs e)
         {
             bool updatedAT;
-
-
             string outID_Atencion = "";
 
 
@@ -346,6 +347,8 @@ namespace WatcherSistec.Control_Tecnico
                     }
                     else
                     {
+                        btnIniciar.Enabled = false;
+                        btnDetener.Enabled = true;
                         men = "Tipo Mantenimiento registrado correctamente";
                     }
 
@@ -356,6 +359,8 @@ namespace WatcherSistec.Control_Tecnico
             }                        
 
             Ficha_Atenciones(txtID_Ficha.Text);
+            
+            //tmrActualizarZonas.Enabled = true;
 
             tmrRecepSeniales.Enabled = true;
             lblTiempoFaltante.Text = "60";
@@ -366,6 +371,14 @@ namespace WatcherSistec.Control_Tecnico
             if (Request.QueryString["FichaID"] != null)
             {
                 Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+            }
+            else
+            {
+                if(gvAbonado.Rows.Count>0)
+                {
+                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+                }                    
+
             }
         }
 
@@ -420,7 +433,7 @@ namespace WatcherSistec.Control_Tecnico
         protected void btnAceptarListarSub_Click(object sender, EventArgs e)
         {
 
-            beAbonado fa = new beAbonado();
+            beAbonado fa = new beAbonado();            
 
             if (hdfMantEstado.Value=="NUEVO")
             {
@@ -442,7 +455,7 @@ namespace WatcherSistec.Control_Tecnico
             }
             
 
-            Session["ListaAbonado"] = beAbonado.FAbonado;
+            //Session["ListaAbonado"] = beAbonado.FAbonado;
 
             gvAbonado.DataSource = beAbonado.FAbonado;
             gvAbonado.DataBind();
@@ -573,7 +586,7 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnIniciar_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void tmrRecepSeniales_Tick(object sender, EventArgs e)
@@ -590,7 +603,7 @@ namespace WatcherSistec.Control_Tecnico
 
             string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
             string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[2].Text.ToString();
-            Int64 UFilaAlarmHistoryID_Inicial = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[9].Text);
+            Int64 UFilaAlarmHistoryID_Inicial = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text);
             
             //INSERTAR SEÑALES
             brSeniales brSE = new brSeniales();
@@ -602,8 +615,9 @@ namespace WatcherSistec.Control_Tecnico
             for (int i = 0; i <= lstVerificarSeniales.Count-1; i++)
             {
                 string SignalIdentifier = lstVerificarSeniales[i].SignalIdentifier;
-                string FLAG_TIPO = lstVerificarSeniales[i].FLAG_TIPO;
-
+                //string FLAG_TIPO = lstVerificarSeniales[i].FLAG_TIPO;
+                    
+                    //PARA ALT
                     if (SignalIdentifier.Equals("LT"))
                     {
                         lblALT.BackColor = System.Drawing.Color.Red;
@@ -613,16 +627,53 @@ namespace WatcherSistec.Control_Tecnico
                     {                        
                         lblALT.BackColor = System.Drawing.Color.Green;
                     }
-
-                    if (SignalIdentifier.Equals("LT"))
+                    
+                    //PARA BB 
+                    if (SignalIdentifier.Equals("YT"))
                     {
-                        lblALT.BackColor = System.Drawing.Color.Red;
+                        lblBB.BackColor = System.Drawing.Color.Red;
                     }
 
-                    if (SignalIdentifier.Equals("LR"))
+                    if (SignalIdentifier.Equals("XR"))
                     {
-                        lblALT.BackColor = System.Drawing.Color.Green;
+                        lblBB.BackColor = System.Drawing.Color.Green;
                     }
+                    
+                    //PARA FAC
+                    if (SignalIdentifier.Equals("AT"))
+                    {
+                        lblFAC.BackColor = System.Drawing.Color.Red;
+                    }
+
+                    if (SignalIdentifier.Equals("AR"))
+                    {
+                        lblFAC.BackColor = System.Drawing.Color.Green;
+                    }
+
+                    //PARA RED o ACR
+                    if (SignalIdentifier.Equals("YC"))
+                    {
+                        lblRED.BackColor = System.Drawing.Color.Red;
+                    }
+
+                    if (SignalIdentifier.Equals("YK"))
+                    {
+                        lblRED.BackColor = System.Drawing.Color.Green;
+                    }
+                    
+                    //ACL -- NO HAY SEÑALES -- QUE PENDIENTE HASTA LA ACTIVACION DE ESTAS
+
+                    //PARA AA
+                    if (SignalIdentifier.Equals("HA"))
+                    {
+                        lblAA.BackColor = System.Drawing.Color.Red;
+                    }
+
+                    if (SignalIdentifier.Equals("HH"))
+                    {
+                        lblAA.BackColor = System.Drawing.Color.Green;
+                    }
+
 
 
             }
@@ -698,7 +749,15 @@ namespace WatcherSistec.Control_Tecnico
             else
             {
                 men = "Tipo Mantenimiento registrado correctamente";
+
+                btnIniciar.Enabled = true;
+                btnDetener.Enabled = false;
+
             }
+
+            //tmrActualizarZonas.Enabled = false;
+            Ficha_Atenciones(txtID_Ficha.Text);
+            tmrRecepSeniales.Enabled = false;
 
             string script2 = "alert('Mensaje: ' " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);

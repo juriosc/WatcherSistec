@@ -155,7 +155,7 @@ namespace WatcherSistec.Control_Tecnico
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvSupervisiones.Rows[index];
 
-                string pFichaID = row.Cells[1].Text.ToString();
+                string pFichaID = row.Cells[2].Text.ToString();
                 Response.Redirect("../Control_Tecnico/FichaSupervision.aspx?FichaID=" + pFichaID);
             }
 
@@ -165,7 +165,7 @@ namespace WatcherSistec.Control_Tecnico
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvSupervisiones.Rows[index];
 
-                string pFichaID = row.Cells[1].Text.ToString();
+                string pFichaID = row.Cells[2].Text.ToString();
                 Response.Redirect("../Control_Tecnico/FichaSupervision.aspx?FichaID=" + pFichaID);
             }
 

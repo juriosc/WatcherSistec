@@ -81,6 +81,7 @@ namespace DataAccess
         public string NombreDeIcono(string Estado)
         {
             string Nombre = "";
+            
             switch (Estado)
             {
                 case "1":
@@ -95,9 +96,10 @@ namespace DataAccess
                 case "4":
                     Nombre = "Cancelada";
                     break;
+                default:
+                    Nombre = "En_Atencion";
+                    break;
             }
-            
-            
             
             string Carp = "../Images/";
             string NomArch = Nombre + ".ico";

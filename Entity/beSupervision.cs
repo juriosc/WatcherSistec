@@ -18,7 +18,7 @@
         public string Cod_Atencion { get; set; }
         public string Obs_Ficha { get; set; }
         public string TipoMantenimiento { get; set; }
-        public string Estado_Ficha { get; set; }
+        public string Estado_Des { get; set; }
         public string Estado_Cod { get; set; }
         //public string Proveedor { get; set; }
         public string Hora_Ingreso { get; set; }
@@ -27,5 +27,7 @@
         public string Panel { get; set; }
 	    public string Nro_Telefono { get; set; }
         public string Nro_Informe { get; set; }
+        public string ImagenEstado { get; set; }
+        public string Estado_Ficha { get; set; }
     }
 }

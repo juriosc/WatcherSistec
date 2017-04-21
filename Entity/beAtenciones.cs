@@ -23,5 +23,6 @@
 	    public int AlarmHistoryID_Inicial { get; set; }
         public int AlarmHistoryID_Final { get; set; }
         public string ImagenEstado { get; set; }
+        
     }
 }

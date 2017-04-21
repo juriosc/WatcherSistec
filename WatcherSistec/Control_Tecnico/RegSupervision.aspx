@@ -458,6 +458,8 @@
                             <ContentTemplate>
                                 <asp:GridView ID="gvSupervisiones" Width="100%"  runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvSupervisiones_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvSupervisiones_RowCommand">
                                     <Columns>
+                                        <asp:ImageField DataImageUrlField="ImagenEstado">
+                                        </asp:ImageField>
                                         <asp:BoundField HeaderText="Fecha" DataField="Fecha_Registro" />                                        
                                         <asp:BoundField HeaderText="ID_Ficha" DataField="ID_Ficha">
                                         <HeaderStyle CssClass="ColumnaOculta" Width="150px"/>
@@ -488,7 +490,7 @@
                                         </asp:BoundField>                                        
                                         <asp:BoundField HeaderText="Observaciones" DataField="Obs_Ficha" />
                                         
-                                        <asp:BoundField HeaderText="Estado" DataField="Estado_Ficha" />
+                                        <asp:BoundField HeaderText="Estado" DataField="Estado_Des" />
                                         <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" >
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />

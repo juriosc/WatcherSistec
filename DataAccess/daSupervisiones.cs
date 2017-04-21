@@ -96,8 +96,9 @@ namespace DataAccess
                 int Estado_Termino = drd.GetOrdinal("Estado_Termino");                
                 int Obs_Ficha = drd.GetOrdinal("Obs_Ficha");
                 int TipoMantenimiento = drd.GetOrdinal("TipoMantenimiento");
-                int Estado = drd.GetOrdinal("Estado");
+                int Estado_Des = drd.GetOrdinal("Estado_Des");
                 int Estado_Cod = drd.GetOrdinal("Estado_Cod");
+                int Estado_Ficha = drd.GetOrdinal("Estado_Ficha");
 
                 lbeSupervisiones = new List<beSupervision>();
                 beSupervision obeSupervisiones;
@@ -117,14 +118,46 @@ namespace DataAccess
                     obeSupervisiones.Estado_Termino = drd.GetString(Estado_Termino);                    
                     obeSupervisiones.Obs_Ficha = drd.GetString(Obs_Ficha);
                     obeSupervisiones.TipoMantenimiento = drd.GetString(TipoMantenimiento);
-                    obeSupervisiones.Estado_Ficha = drd.GetString(Estado);
-                    obeSupervisiones.Estado_Cod = drd.GetString(Estado_Cod);
+                    obeSupervisiones.Estado_Des = drd.GetString(Estado_Des);
+                    obeSupervisiones.Estado_Cod = drd.GetString(Estado_Cod);                    
+                    obeSupervisiones.Estado_Ficha = drd.GetString(Estado_Ficha);
+                    obeSupervisiones.ImagenEstado = NombreDeIcono(drd.GetString(Estado_Ficha));
+                    
                     lbeSupervisiones.Add(obeSupervisiones);
                 }
+
                 drd.Close();
+
             }
             return lbeSupervisiones;
         }
+        
+        public string NombreDeIcono(string Estado)
+        {
+            string Nombre = "";
+            switch (Estado)
+            {
+                case "1":
+                    Nombre = "Pendiente";
+                    break;
+                case "2":
+                    Nombre = "En_Atencion";
+                    break;
+                case "3":
+                    Nombre = "Concluida";
+                    break;
+                case "4":
+                    Nombre = "Cancelada";
+                    break;
+            }
+
+
+
+            string Carp = "../Images/";
+            string NomArch = Nombre + ".ico";
+            return Carp + NomArch;
+        }
+            
 
         //public List<beFichaSupervision> ListarDatosSupervision(SqlConnection con, string pID_Ficha)
         //{
