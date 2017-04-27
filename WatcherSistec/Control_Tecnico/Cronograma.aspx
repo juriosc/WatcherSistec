@@ -442,7 +442,7 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
-                                        <asp:BoundField HeaderText="Mes" DataFielMd="Mes" >
+                                        <asp:BoundField HeaderText="Mes" DataField="Mes" >
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
