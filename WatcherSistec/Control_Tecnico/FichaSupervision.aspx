@@ -60,10 +60,7 @@
             height: 50px;
             width: 50px;
         }
-        .auto-style10 {
-            width: 50px;
-        }
-
+        
     </style>
 
 
@@ -164,7 +161,7 @@
                                 <td style="height:100px;vertical-align:top">                                                
                                     <table style="width:100%">
                                         <tr>
-                                           <td class="auto-style4" >FEC INGRESO</td>
+                                           <td class="auto-style4" >FEC. INGRESO</td>
                                             <td class="auto-style4">
                                                 <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
@@ -172,7 +169,7 @@
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>    
                                             </td>
-                                            <td>FEC SALIDA</td>
+                                            <td>FEC. SALIDA</td>
                                             <td >
                                                 <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
