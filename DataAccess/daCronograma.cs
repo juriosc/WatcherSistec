@@ -197,6 +197,64 @@ namespace DataAccess
             return lbeCronograma;
         }
 
+        public List<beCronograma> ListarCronogramaTipoMant(SqlConnection con, string pPeriodo, string pProveedorID, string pPersonalID, string pRuta_ID, string pCSID)
+        {
+            List<beCronograma> lbeCronograma = null;
+            SqlCommand cmd = new SqlCommand("sp_WCT_listar_Cronograma_Mantenimiento", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@Periodo", SqlDbType.VarChar, 20);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = pPeriodo;
+            //param1.Value = pPeriodo != "" ? DateTime.ParseExact(pPeriodo, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+
+            SqlParameter param2 = cmd.Parameters.Add("@ProveedorID", SqlDbType.VarChar, 15);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = pProveedorID;
+
+            SqlParameter param3 = cmd.Parameters.Add("@PersonalID", SqlDbType.VarChar, 15);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = pPersonalID;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Ruta_ID", SqlDbType.VarChar, 10);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = pRuta_ID;
+
+            SqlParameter param5 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = pCSID.ToUpper();
+
+            SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
+
+            if (drd != null)
+            {
+                int Periodo = drd.GetOrdinal("Periodo");
+                int ProveedorID = drd.GetOrdinal("ProveedorID");
+                int PersonalID = drd.GetOrdinal("PersonalID");
+                int Ruta_ID = drd.GetOrdinal("Ruta_ID");
+                int CSID = drd.GetOrdinal("CSID");
+                int TipoMant_ID = drd.GetOrdinal("TipoMant_ID");
+
+                lbeCronograma = new List<beCronograma>();
+                beCronograma obeCronograma;
+
+                while (drd.Read())
+                {
+                    obeCronograma = new beCronograma();
+                    obeCronograma.Periodo = drd.GetString(Periodo);
+                    obeCronograma.ProveedorID = drd.GetString(ProveedorID);
+                    obeCronograma.PersonalID = drd.GetString(PersonalID);
+                    obeCronograma.Ruta_ID = drd.GetString(Ruta_ID);
+                    obeCronograma.CSID = drd.GetString(CSID);
+                    obeCronograma.TipoMant_ID = drd.GetInt32(TipoMant_ID);
+                    lbeCronograma.Add(obeCronograma);
+                }
+                drd.Close();
+            }
+
+            return lbeCronograma;
+        }        
+
         public bool InsertarCronograma(SqlConnection con, int ProveedorID, int PersonalID, int Ruta, string Obser, DateTime Periodo)
         {
             bool registro = false;

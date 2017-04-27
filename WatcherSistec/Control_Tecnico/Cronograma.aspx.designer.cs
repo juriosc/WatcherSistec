@@ -985,6 +985,24 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Button btnFicha;
         
         /// <summary>
+        /// UpdatePanel76 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel76;
+        
+        /// <summary>
+        /// chkSeleccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSeleccion;
+        
+        /// <summary>
         /// UpdatePanel72 control.
         /// </summary>
         /// <remarks>

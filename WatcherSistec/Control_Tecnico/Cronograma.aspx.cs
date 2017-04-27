@@ -140,7 +140,22 @@ namespace WatcherSistec.Control_Tecnico
         protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
         {
             //ListarNewCronograma("","","","","");
-            
+            ddlMes.Text = "00" ;
+            txtAño.Text = "" ;
+            ddlRutas.Text = "0";
+            txtNewProvDes.Text = "";
+            txtNewProv.Text = "";
+            txtNewTecNom.Text = "";
+            txtNewTec.Text = "";
+            txtObs.Text = "";
+            txtNewDealer.Text = "";
+            txtNewDealerDesc.Text = "";
+            txtNewAbon.Text = "";
+            txtNewAbonDesc.Text = "";
+            txtFechaP.Text = "";
+            txtFechaV.Text = "";
+
+
             string script = "mostrarPopupNuevoCronograma('Seleccionar Abonado:',750,600);";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
             hdfEstado.Value = "NUEVO";
@@ -376,7 +391,7 @@ namespace WatcherSistec.Control_Tecnico
                                                                                Convert.ToInt32(txtNewTec.Text),
                                                                                Convert.ToInt32(ddlRutas.SelectedValue.ToString()), 
                                                                                FPeriodo, txtNewAbon.Text, fechaP, 
-                                                                               Convert.ToInt64(fila.Cells[1].Text));
+                                                                               Convert.ToInt64(fila.Cells[0].Text));
 
                                 if (insertTM == false)
                                 {
@@ -419,7 +434,7 @@ namespace WatcherSistec.Control_Tecnico
                                                                                Convert.ToInt32(txtNewTec.Text),
                                                                                Convert.ToInt32(ddlRutas.SelectedValue.ToString()),
                                                                                FPeriodo, txtNewAbon.Text, fechaP,
-                                                                               Convert.ToInt64(fila.Cells[1].Text));
+                                                                               Convert.ToInt64(fila.Cells[0].Text));
 
                                 if (insertTM == false)
                                 {
@@ -471,7 +486,30 @@ namespace WatcherSistec.Control_Tecnico
                 txtFechaP.Text = HttpUtility.HtmlDecode(row.Cells[12].Text.ToString());
                 txtFechaV.Text = HttpUtility.HtmlDecode(row.Cells[17].Text.ToString());
                 
+                string Periodo = HttpUtility.HtmlDecode(row.Cells[0].Text.ToString());
+                string Ruta = row.Cells[4].Text.ToString();
+
+                Cronograma_TipoMant(Periodo, txtNewProv.Text, txtNewTec.Text, Ruta, txtNewAbon.Text);                    
+
                 ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+            }
+        }
+        private void Cronograma_TipoMant(string Periodo, string ProveedorID, string PersonalID, string Ruta_ID, string CSID)
+        {
+            brCronograma br = new brCronograma();
+            List<beCronograma> lbeCronograma = br.ListarCronogramaTipoMant(Periodo, ProveedorID, PersonalID, Ruta_ID, CSID);
+
+            foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+            {
+                foreach (var a in lbeCronograma)
+                {
+                    if (a.TipoMant_ID.ToString() == fila.Cells[0].Text)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Checked = true;
+                    }
+                }
             }
         }
 
@@ -551,6 +589,29 @@ namespace WatcherSistec.Control_Tecnico
 
             //string script2 = "alert('Mensaje: ' " + men + "');";
             //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+        }
+
+        protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSeleccion.Checked)
+            {
+                foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                {
+                    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                    check.Checked = true;
+                }
+            }
+            else
+            {
+                if (chkSeleccion.Checked == false)
+                {
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Checked = false;
+                    }
+                }
+            }
         }
     }
 }

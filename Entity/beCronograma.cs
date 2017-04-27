@@ -21,5 +21,6 @@
         public string Anho { get; set; }
         public string DealerName { get; set; }
         public string ProvName { get; set; }
+        public int TipoMant_ID { get; set; }
     }
 }

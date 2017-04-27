@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/General/Principal.Master" AutoEventWireup="true" CodeBehind="Cronograma.aspx.cs" Inherits="WatcherSistec.Control_Tecnico.Cronograma" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/General/Principal.Master" AutoEventWireup="true" CodeBehind="Cronograma.aspx.cs" Inherits="WatcherSistec.Control_Tecnico.Cronograma" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -442,7 +442,7 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
-                                        <asp:BoundField HeaderText="Mes" DataField="Mes" >
+                                        <asp:BoundField HeaderText="Mes" DataFielMd="Mes" >
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
@@ -537,7 +537,8 @@
                                                             <td style="width:95px">
                                                                 <asp:UpdatePanel ID="UpdatePanel38" runat="server">
                                                                     <ContentTemplate>
-                                                                        <asp:DropDownList ID="ddlMes" runat="server" style="width:95px">
+                                                                        <asp:DropDownList ID="ddlMes" runat="server" style="width:98px">
+                                                                            <asp:ListItem Value="00">SELECCIONE</asp:ListItem>
                                                                             <asp:ListItem Value="01">ENERO</asp:ListItem>
                                                                             <asp:ListItem Value="02">FEBRERO</asp:ListItem>
                                                                             <asp:ListItem Value="03">MARZO</asp:ListItem>
@@ -742,7 +743,7 @@
                                                 <td>
                                                 <asp:UpdatePanel ID="UpdatePanel75" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:Button ID="btnFicha" runat="server" Width="70" Text="Generar Ficha" Class="btn btn-primary" OnClick="btnFicha_Click" /></td>
+                                                        <asp:Button ID="btnFicha" runat="server" Width="100px" Text="Generar Ficha" Class="btn btn-primary" OnClick="btnFicha_Click" /></td>
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </td>
@@ -755,21 +756,24 @@
                                                                 <td>
                                                                     Tipo Mantenimiento
                                                                 </td>
+                                                                <td>
+
+                                                                </td>
+                                                                <td style="text-align:right;padding-right:28px;">
+                                                                    <asp:UpdatePanel ID="UpdatePanel76" runat="server">
+                                                                        <ContentTemplate>
+                                                                            <asp:CheckBox ID="chkSeleccion" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccion_CheckedChanged" />
+                                                                        </ContentTemplate>
+                                                                    </asp:UpdatePanel>
+                                                                </td>
                                                             </tr>
                                                         </table>
-                                                    
                                                     </div>
                                                     <div style="height:65px; overflow:auto">
-                                                        <asp:UpdatePanel ID="UpdatePanel72" runat="server" UpdateMode="Conditional">
+                                                        <asp:UpdatePanel ID="UpdatePanel72" runat="server">
                                                             <ContentTemplate>
-                                                                <asp:GridView ID="gvTipoMantenimiento" Width="100%" runat="server" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" >
+                                                                <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
                                                                     <Columns>
-                                                                        <asp:TemplateField HeaderText="...">
-                                                                            <ItemTemplate>
-                                                                                <asp:CheckBox ID="chkSel" runat="server" />
-                                                                            </ItemTemplate>
-                                                                            <HeaderStyle BackColor="Silver" />
-                                                                        </asp:TemplateField>
                                                                         <asp:BoundField DataField="TipoMant_ID" HeaderText="Codigo" >
                                                                             <HeaderStyle BackColor="Silver" CssClass="ColumnaOculta" />
                                                                             <ItemStyle CssClass="ColumnaOculta" />
@@ -777,25 +781,32 @@
                                                                         <asp:BoundField DataField="TipoMant_Des" HeaderText="Tipo Mantenimiento" >
                                                                             <HeaderStyle BackColor="Silver" />
                                                                         </asp:BoundField>
+                                                                        <asp:TemplateField HeaderText="...">
+                                                                            <ItemTemplate>
+                                                                                <asp:CheckBox ID="chkSel" runat="server" />
+                                                                            </ItemTemplate>
+                                                                            <HeaderStyle BackColor="Silver" />
+                                                                            <ItemStyle HorizontalAlign="Center" />
+                                                                        </asp:TemplateField>
                                                                     </Columns>
-                                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
-                                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White"  />
-                                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                                    <PagerStyle BackColor="Black" ForeColor="White" HorizontalAlign="Center" Font-Bold="True" Font-Size="8pt"  />
-                                                                    <RowStyle BackColor="White" Font-Size="8pt" />
-                                                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                                                    <SortedAscendingHeaderStyle BackColor="Gray" />
-                                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                                                    <FooterStyle BackColor="#CCCC99" HorizontalAlign="Center" ForeColor="Black" />
+                                                                    <HeaderStyle BackColor="#333333" Font-Size="9pt"  ForeColor="White" Font-Bold="True"  />
+                                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" Font-Size="8pt"  />
+                                                                    <RowStyle Font-Size="8pt" />
+                                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                                                    <SortedDescendingHeaderStyle BackColor="#242121" />
                                                                 </asp:GridView>
                                                             </ContentTemplate>
-                                                            <Triggers>
-                                                                <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
-                                                            </Triggers>
                                                         </asp:UpdatePanel>
                                                     </div>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:solid">&nbsp; </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" style="vertical-align:central">
