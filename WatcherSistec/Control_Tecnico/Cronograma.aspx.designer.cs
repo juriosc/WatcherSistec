@@ -877,6 +877,24 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtNewAbon;
         
         /// <summary>
+        /// UpdatePanel77 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel77;
+        
+        /// <summary>
+        /// txtLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLocal;
+        
+        /// <summary>
         /// UpdatePanel65 control.
         /// </summary>
         /// <remarks>

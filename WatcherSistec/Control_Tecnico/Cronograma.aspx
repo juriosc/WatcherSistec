@@ -691,6 +691,11 @@
                                                             <asp:TextBox ID="txtNewAbon" runat="server" style="width:50px"></asp:TextBox>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
+                                                    <asp:UpdatePanel ID="UpdatePanel77" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtLocal" runat="server" style="display:none"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
                                                 </td>
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel65" runat="server">
@@ -806,7 +811,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:solid">&nbsp; </td>
+                                                <td colspan="4" style="border-top:solid">&nbsp; </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" style="vertical-align:central">
@@ -1135,6 +1140,10 @@
                                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
                                                         <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
                                                         <asp:BoundField HeaderText="DealerCode" DataField="DealerCode" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField HeaderText="Localid" DataField="Localid" >
                                                             <HeaderStyle CssClass="ColumnaOculta" />
                                                             <ItemStyle CssClass="ColumnaOculta" />
                                                         </asp:BoundField>
