@@ -985,6 +985,24 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtFechaV;
         
         /// <summary>
+        /// UpdatePanel78 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel78;
+        
+        /// <summary>
+        /// txtFicha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFicha;
+        
+        /// <summary>
         /// UpdatePanel75 control.
         /// </summary>
         /// <remarks>

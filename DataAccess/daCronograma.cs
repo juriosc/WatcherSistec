@@ -93,6 +93,8 @@ namespace DataAccess
                 int DealerName = drd.GetOrdinal("DealerName");
                 int ProvName = drd.GetOrdinal("ProvName");
                 int Fecha_Visita = drd.GetOrdinal("Fecha_Visita");
+                int Ficha_ID = drd.GetOrdinal("Ficha_ID");
+                
                 
                 lbeCronograma = new List<beCronograma>();
                 beCronograma obeCronograma;
@@ -117,6 +119,7 @@ namespace DataAccess
                     obeCronograma.DealerName = drd.GetString(DealerName);
                     obeCronograma.ProvName = drd.GetString(ProvName);
                     obeCronograma.Fecha_Visita = drd.GetString(Fecha_Visita);
+                    obeCronograma.Ficha_ID = drd.GetString(Ficha_ID);
 
                     lbeCronograma.Add(obeCronograma);
                 }
@@ -443,6 +446,49 @@ namespace DataAccess
 
         }
 
-        
+        public bool ActualizarFichaID(SqlConnection con, string Ficha, int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, string Dealercode)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Actualizar_IDFicha", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.VarChar, 10);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@ProveedorID", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = ProveedorID;
+
+            SqlParameter param3 = cmd.Parameters.Add("@PersonalID", SqlDbType.Int);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = PersonalID;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Ruta_ID", SqlDbType.Int);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = Ruta;
+
+            SqlParameter param5 = cmd.Parameters.Add("@Periodo", SqlDbType.DateTime);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = Periodo;
+
+            SqlParameter param6 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = CSID;
+
+            SqlParameter param7 = cmd.Parameters.Add("@DealerCode", SqlDbType.VarChar, 10);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = Dealercode;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
     }
 }

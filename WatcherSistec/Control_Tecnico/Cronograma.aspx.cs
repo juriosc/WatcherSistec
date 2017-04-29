@@ -155,8 +155,7 @@ namespace WatcherSistec.Control_Tecnico
             txtNewAbonDesc.Text = "";
             txtFechaP.Text = "";
             txtFechaV.Text = "";
-            txtFechaP.Text = "";
-            txtFechaV.Text = "";
+            txtFicha.Text = "";
 
             // Para limpiar Grilla_TipoMant
             foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
@@ -474,12 +473,63 @@ namespace WatcherSistec.Control_Tecnico
                 {
                     hdfEstado.Value = "VER";
                     script = "mostrarPopupNuevoCronograma('Ver Cronograma:',750,600);";
+
+                    ddlMes.Enabled = false;
+                    txtAño.Enabled = false;
+                    ddlRutas.Enabled = false;
+                    txtNewProvDes.Enabled = false;
+                    btnNewPopupTec.Enabled = false;
+                    txtNewTecNom.Enabled = false;
+                    btnNewPopupProv.Enabled = false;
+                    txtObs.Enabled = false;
+                    txtNewDealerDesc.Enabled = false;
+                    txtNewDealer.Enabled = false;
+                    btnNewPopupDealer.Enabled = false;
+                    txtNewAbon.Enabled = false;
+                    txtNewAbonDesc.Enabled = false;
+                    btnNewPopupAbon.Enabled = false;
+                    txtFechaP.Enabled = false;
+                    txtFechaV.Enabled = false;
+                    btnFicha.Visible = true;
+                    chkSeleccion.Enabled = false;
+
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Enabled = false;
+                    }
                 }
 
                 if (e.CommandName.Equals("Modificar"))
                 {
                     hdfEstado.Value = "EDITAR";
                     script = "mostrarPopupNuevoCronograma('Editar Cronograma:',750,600);";
+
+                    ddlMes.Enabled = false;
+                    txtAño.Enabled = false;
+                    ddlRutas.Enabled = false;
+                    txtNewProvDes.Enabled = false;
+                    btnNewPopupProv.Enabled = false;
+                    txtNewTecNom.Enabled = false;
+                    btnNewPopupTec.Enabled = false;
+                    txtNewDealerDesc.Enabled = false;
+                    txtNewDealer.Enabled = false;
+                    btnNewPopupDealer.Enabled = false;
+                    txtNewAbon.Enabled = false;
+                    txtNewAbonDesc.Enabled = false;
+                    btnNewPopupAbon.Enabled = false;
+                    txtFechaV.Enabled = false;
+                    btnFicha.Visible = false;
+
+                    txtFechaP.Enabled = true;
+                    txtObs.Enabled = true;
+                    chkSeleccion.Enabled = true;
+
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Enabled = true;
+                    }
                 }
                 ddlMes.Text = row.Cells[13].Text.ToString();
                 txtAño.Text = row.Cells[14].Text.ToString();
@@ -495,7 +545,8 @@ namespace WatcherSistec.Control_Tecnico
                 txtNewAbonDesc.Text = HttpUtility.HtmlDecode(row.Cells[8].Text.ToString());
                 txtFechaP.Text = HttpUtility.HtmlDecode(row.Cells[12].Text.ToString());
                 txtFechaV.Text = HttpUtility.HtmlDecode(row.Cells[17].Text.ToString());
-                
+                txtFicha.Text = HttpUtility.HtmlDecode(row.Cells[18].Text.ToString());
+
                 string Periodo = HttpUtility.HtmlDecode(row.Cells[0].Text.ToString());
                 string Ruta = row.Cells[4].Text.ToString();
 
@@ -509,7 +560,6 @@ namespace WatcherSistec.Control_Tecnico
                 Cronograma_TipoMant(Periodo, txtNewProv.Text, txtNewTec.Text, Ruta, txtNewAbon.Text);                    
 
                 ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
-
             }
         }
         private void Cronograma_TipoMant(string Periodo, string ProveedorID, string PersonalID, string Ruta_ID, string CSID)
@@ -534,19 +584,27 @@ namespace WatcherSistec.Control_Tecnico
         {
             brFichaSupervision br = new brFichaSupervision();
             string outID_Ficha = "";
-            string men = "";
+            string mes = ddlMes.SelectedValue.ToString();
+            string año = txtAño.Text;
+            string Periodo = "01/"+mes+"/"+año;
 
             IFormatProvider culture = new CultureInfo("es-PE", true);
-            DateTime fechaI = DateTime.ParseExact(txtFechaV.Text, "dd/MM/yyyy HH:mm", culture);
-            DateTime fechaV = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", culture);
+            DateTime FPeriodo = DateTime.ParseExact(Periodo, "dd/MM/yyyy", culture);
+            DateTime fechaI = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", culture);
+            DateTime fechaF = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", culture);
 
-            bool updated = br.InsertarFichaSupervision(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text), fechaI, 
-                                                       fechaV, "" , 1, "", "", txtObs.Text, out outID_Ficha);
+            bool updated = br.InsertarFichaSupervision(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text), fechaI,
+                                                        fechaF, "", 1, "", "", txtObs.Text, out outID_Ficha);
 
             string Ficha = outID_Ficha;
-            
+
             if (updated == true)
             {
+                brCronograma brF = new brCronograma();
+                bool UpdtFichaId = brF.ActualizarFichaID(Ficha,Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
+                                                            Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
+                                                            txtNewAbon.Text, txtNewDealer.Text);
+
                 brFichaAbonado brFA = new brFichaAbonado();
                 bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(Ficha), txtNewDealer.Text, txtNewAbon.Text, txtLocal.Text, "");
 
@@ -564,8 +622,6 @@ namespace WatcherSistec.Control_Tecnico
                     }
                 }
             }
-            string script2 = "alert('Mensaje: ' " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
         }
 
         protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)

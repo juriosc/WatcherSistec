@@ -22,5 +22,6 @@
         public string DealerName { get; set; }
         public string ProvName { get; set; }
         public int TipoMant_ID { get; set; }
+        public string Ficha_ID { get; set; }
     }
 }
