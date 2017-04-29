@@ -458,6 +458,14 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
+                                        <asp:BoundField HeaderText="Fecha_Visita" DataField="Fecha_Visita" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="Ficha_ID" DataField="Ficha_ID" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="btnVer" runat="server" ImageUrl="~/Images/Mantenimiento/view.png" CommandName="Ver" ToolTip="VER"
@@ -691,6 +699,11 @@
                                                             <asp:TextBox ID="txtNewAbon" runat="server" style="width:50px"></asp:TextBox>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
+                                                    <asp:UpdatePanel ID="UpdatePanel77" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtLocal" runat="server" style="display:none"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
                                                 </td>
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel65" runat="server">
@@ -724,6 +737,7 @@
                                                         </ContentTemplate>
                                                         <Triggers>
                                                             <asp:AsyncPostBackTrigger ControlID="gvCronograma" EventName="RowCommand" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btnNuevo" EventName="Click" />
                                                         </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
@@ -737,16 +751,22 @@
                                                         </ContentTemplate>
                                                         <Triggers>
                                                             <asp:AsyncPostBackTrigger ControlID="gvCronograma" EventName="RowCommand" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btnNuevo" EventName="Click" />
                                                         </Triggers>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td>
-                                                <asp:UpdatePanel ID="UpdatePanel75" runat="server">
-                                                    <ContentTemplate>
-                                                        <asp:Button ID="btnFicha" runat="server" Width="100px" Text="Generar Ficha" Class="btn btn-primary" OnClick="btnFicha_Click" /></td>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                            </td>
+                                                    <asp:UpdatePanel ID="UpdatePanel78" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtFicha" runat="server" style="display:none"></asp:TextBox>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                    <asp:UpdatePanel ID="UpdatePanel75" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:Button ID="btnFicha" runat="server" Width="100px" Text="Generar Ficha" Class="btn btn-primary" OnClick="btnFicha_Click"/></td>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4">
@@ -806,7 +826,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:solid">&nbsp; </td>
+                                                <td colspan="4" style="border-top:solid">&nbsp; </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" style="vertical-align:central">
@@ -1135,6 +1155,10 @@
                                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
                                                         <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
                                                         <asp:BoundField HeaderText="DealerCode" DataField="DealerCode" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField HeaderText="Localid" DataField="Localid" >
                                                             <HeaderStyle CssClass="ColumnaOculta" />
                                                             <ItemStyle CssClass="ColumnaOculta" />
                                                         </asp:BoundField>

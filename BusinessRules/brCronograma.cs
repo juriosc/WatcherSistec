@@ -240,5 +240,37 @@ namespace BusinessRules
             return (updated);
         }
 
+        public bool ActualizarFichaID(string Ficha, int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, string Dealercode)
+        {
+            bool updated = false;
+            using (SqlConnection con = new SqlConnection(Conexion))
+            {
+                try
+                {
+                    con.Open();
+                    daCronograma odaCronograma = new daCronograma();
+                    updated = odaCronograma.ActualizarFichaID(con, Ficha, ProveedorID, PersonalID, Ruta, Periodo, CSID, Dealercode);
+                }
+                catch (SqlException ex)
+                {
+                    beLog obeLog;
+                    foreach (SqlError err in ex.Errors)
+                    {
+                        obeLog = new beLog();
+                        obeLog.MensajeError = err.Message;
+                        obeLog.DetalleError = ex.StackTrace;
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    beLog obeLog = new beLog();
+                    obeLog.MensajeError = ex.Message;
+                    obeLog.DetalleError = ex.StackTrace;
+                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                }
+            }
+            return (updated);
+        }
     }
 }
