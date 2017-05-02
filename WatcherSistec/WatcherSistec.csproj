@@ -264,6 +264,15 @@
     <Content Include="Account\Web.config" />
     <Content Include="General\Principal.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Reportes\repEstadHorasTrabPorTecnico.aspx" />
+    <Content Include="Reportes\repEstadProxreporte.aspx" />
+    <Content Include="Reportes\repEstadRutaDeTrabajo.aspx" />
+    <Content Include="Reportes\repEstadSalidasNoReportadas.aspx" />
+    <Content Include="Reportes\repEstadTipoTrabOfiEntidad.aspx" />
+    <Content Include="Reportes\rephorasTrabajasxTecnico.aspx" />
+    <Content Include="Reportes\repOTsPendientesTec.aspx" />
+    <Content Include="Reportes\repOTsPorOficinaEntidad.aspx" />
+    <Content Include="Reportes\repOTsPorTipoTrabajo.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -430,6 +439,69 @@
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\repEstadHorasTrabPorTecnico.aspx.cs">
+      <DependentUpon>repEstadHorasTrabPorTecnico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repEstadHorasTrabPorTecnico.aspx.designer.cs">
+      <DependentUpon>repEstadHorasTrabPorTecnico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repEstadProxreporte.aspx.cs">
+      <DependentUpon>repEstadProxreporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repEstadProxreporte.aspx.designer.cs">
+      <DependentUpon>repEstadProxreporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repEstadRutaDeTrabajo.aspx.cs">
+      <DependentUpon>repEstadRutaDeTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repEstadRutaDeTrabajo.aspx.designer.cs">
+      <DependentUpon>repEstadRutaDeTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repEstadSalidasNoReportadas.aspx.cs">
+      <DependentUpon>repEstadSalidasNoReportadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repEstadSalidasNoReportadas.aspx.designer.cs">
+      <DependentUpon>repEstadSalidasNoReportadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repEstadTipoTrabOfiEntidad.aspx.cs">
+      <DependentUpon>repEstadTipoTrabOfiEntidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repEstadTipoTrabOfiEntidad.aspx.designer.cs">
+      <DependentUpon>repEstadTipoTrabOfiEntidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\rephorasTrabajasxTecnico.aspx.cs">
+      <DependentUpon>rephorasTrabajasxTecnico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\rephorasTrabajasxTecnico.aspx.designer.cs">
+      <DependentUpon>rephorasTrabajasxTecnico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repOTsPendientesTec.aspx.cs">
+      <DependentUpon>repOTsPendientesTec.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repOTsPendientesTec.aspx.designer.cs">
+      <DependentUpon>repOTsPendientesTec.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repOTsPorOficinaEntidad.aspx.cs">
+      <DependentUpon>repOTsPorOficinaEntidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repOTsPorOficinaEntidad.aspx.designer.cs">
+      <DependentUpon>repOTsPorOficinaEntidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\repOTsPorTipoTrabajo.aspx.cs">
+      <DependentUpon>repOTsPorTipoTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\repOTsPorTipoTrabajo.aspx.designer.cs">
+      <DependentUpon>repOTsPorTipoTrabajo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\Mantenimiento.aspx.cs">
       <DependentUpon>Mantenimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
