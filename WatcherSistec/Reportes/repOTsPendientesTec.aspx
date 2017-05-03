@@ -151,14 +151,6 @@
                         <table style="width:100%; margin-top:10px">
                             <tr>
                                 <td class="Etiqueta">
-                                    Cod. Atención
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtCodAtencion" runat="server" style="width:100px"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="Etiqueta">
                                     Distribuidor
                                 </td>
                                 <td>
@@ -219,43 +211,48 @@
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
+                            <tr><td>&nbsp;&nbsp;</td></tr>
+                            <tr>
+                                <td colspan="4">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td>
+                                                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                                        <asp:CheckBox ID="chkComent" runat="server" Text=""/> 
+                                                    </ContentTemplate>
+                                                    <Triggers>
+                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
+                                                    </Triggers>
+                                                </asp:UpdatePanel>
+                                            </td>
+                                            <td class="Etiqueta">
+                                                Excluir Comentarios
+                                            </td>
+                                            <td class="Etiqueta">
+                                                Estado
+                                            </td>
+                                            <td style="width:130px">
+                                                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:DropDownList ID="ddlEstado" runat="server" style="width:130px">
+                                                            <asp:ListItem Value="0">TODOS</asp:ListItem>
+                                                            <asp:ListItem Value="1">COMPLETADO</asp:ListItem>
+                                                            <asp:ListItem Value="2">NO COMPLETADO</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                         </table>
-                        </fieldset>
+                    </fieldset>
                 </td>
                 <td class="auto-style4">
                     <fieldset style="height:104px">
                         <table style="width:100%; margin-top:10px">
-                            <tr>
-                                <td class="Etiqueta">
-                                    Operador
-                                </td>
-                                <td>
-                                    <asp:UpdatePanel ID="UpdatePanel30" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtOperador" runat="server" style="width:50px"></asp:TextBox>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </td>
-                                <td>
-                                    <asp:UpdatePanel ID="UpdatePanel31" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtOperName" runat="server" style="width:220px"></asp:TextBox>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                    <asp:UpdatePanel ID="UpdatePanel32" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:Button ID="btnBusCodOperador" runat="server" Text="Button" style="display:none" />
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </td>
-                                <td colspan="2">
-                                    <asp:UpdatePanel ID="UpdatePanel33" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:ImageButton ID="btnPopupOperador" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
                              <tr>
                                 <td class="Etiqueta">
                                     Proveedor
@@ -287,7 +284,7 @@
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
-                                <tr>
+                            <tr>
                                 <td class="Etiqueta">
                                     Técnico
                                 </td>
@@ -318,107 +315,31 @@
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
-                        </table>
-                     </fieldset>
-                </td>
-            </tr>
-                        <tr>
-                <td colspan="2">
-                    <fieldset>
-                        <legend>
-                            Estados OT
-                        </legend>
-                        <table style="width:100%">
                             <tr>
-                                <td>
+                                <td colspan="4">
                                     <table style="width:100%">
                                         <tr>
+                                            <td style="width:80px"></td>
                                             <td>
-                                                <asp:UpdatePanel ID="UpdatePanel27" runat="server" UpdateMode="Conditional">
+                                                <asp:UpdatePanel ID="UpdatePanel16" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:CheckBox ID="chkPendiente" runat="server" Text="Pendientes"/> 
+                                                        <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="../Images/Limpiar.png" CssClass="ImagenBoton" OnClientClick="Limpiar();" />
                                                     </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
                                                 </asp:UpdatePanel>
                                             </td>
                                             <td>
-                                                <asp:UpdatePanel ID="UpdatePanel28" runat="server" UpdateMode="Conditional">
+                                                <asp:UpdatePanel ID="UpdatePanel17" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:CheckBox ID="chkConcluida" runat="server" Text="Concluidas"/> 
+                                                        <asp:ImageButton ID="btnBuscar" runat="server" ImageUrl="../Images/binocular.png" CssClass="ImagenBoton" OnClick="btnBuscar_Click"/>
                                                     </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
                                                 </asp:UpdatePanel>
                                             </td>
                                             <td>
-                                                <asp:UpdatePanel ID="UpdatePanel34" runat="server" UpdateMode="Conditional">
+                                                <asp:UpdatePanel ID="UpdatePanel24" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:CheckBox ID="chkAtencion" runat="server" Text="En Atencion"/> 
+                                                        <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
                                                     </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
-                                                </asp:UpdatePanel>
-                                            </td>
-                                            <td>
-                                                <asp:UpdatePanel ID="UpdatePanel35" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:CheckBox ID="chkCancelada" runat="server" Text="Canceladas"/> 
-                                                    </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
-                                                </asp:UpdatePanel>
-                                            </td>
-                                            <td>
-                                                <asp:UpdatePanel ID="UpdatePanel36" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:CheckBox ID="chkenviadas" runat="server" Text="Enviadas"/> 
-                                                    </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
-                                                </asp:UpdatePanel>
-                                            </td>
-                                          </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                                    </td>
-                <td>
-                    <fieldset>
-                        <legend>
-                            Comentarios
-                        </legend>
-                        <table style="width:100%">
-                            <tr>
-                                <td>
-                                    <table style="width:100%">
-                                        <tr>
-                                            <td>
-                                                <asp:UpdatePanel ID="UpdatePanel37" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:CheckBox ID="chkTrabPend" runat="server" Text="Trabajos Pendientes"/>
-                                                    </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
-                                                </asp:UpdatePanel>
-                                            </td>
-                                            <td>
-                                                <asp:UpdatePanel ID="UpdatePanel38" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:CheckBox ID="chkObservaciones" runat="server" Text="Observaciones"/>
-                                                    </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                                    </Triggers>
-                                                </asp:UpdatePanel>
+                                                </asp:UpdatePanel>                                                
                                             </td>
                                         </tr>
                                     </table>
@@ -426,46 +347,9 @@
                             </tr>
                         </table>
                     </fieldset>
-                    </td>
-                    <td>
-                    <fieldset>
-                        <table style="width:100%">                               
-                                                       
-                             <tr>
-                                    <td>
-                                    <asp:UpdatePanel ID="UpdatePanel11" runat="server">
-                                        <ContentTemplate>
-                                            <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="../Images/Limpiar.png" CssClass="ImagenBoton" OnClientClick="Limpiar();" />
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </td>
-                                <td>
-                                    <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                        <ContentTemplate>
-                                            <asp:ImageButton ID="btnBuscar" runat="server" ImageUrl="../Images/binocular.png" CssClass="ImagenBoton" OnClick="btnBuscar_Click"/>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </td>
-                                <td>
-                                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:ImageButton ID="btnNuevo" ToolTip="Nuevo" runat="server" ImageUrl="../Images/Mantenimiento/new_16.ico" CssClass="ImagenBoton" OnClick="btnNuevo_Click"/>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>                                                
-                                </td>
-                            </tr>
-                          </table>
-                        </fieldset>
-                        <table>
-                            <tr>
-                              <td>
-                                    Nota: Ubicar el Cursor dentro del Parámetro a buscar y luego presionar F3 para realizar la búsqueda.
-                                </td>                              
-                            </tr>
-                        </table>
-               <%--   </td>
-                       </tr--%>
-    </table>
+                </td>
+            </tr>
+        </table>
     </div>
     <div>
         <fieldset style="padding:0 0 0 0">
@@ -474,7 +358,7 @@
                     <td style="text-align:center;">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:GridView ID="gvSupervisiones"  runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvSupervisiones_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvSupervisiones_RowCommand">
+                                <asp:GridView ID="gvSupervisiones" Width="100%" runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvSupervisiones_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvSupervisiones_RowCommand">
                                     <Columns>
                                         <asp:BoundField HeaderText="Fecha_Registro" DataField="Fecha_Registro" />
                                         <asp:BoundField HeaderText="ID_Ficha" DataField="ID_Ficha" />
@@ -491,7 +375,7 @@
                                         <asp:BoundField HeaderText="Cod_Atencion" DataField="Cod_Atencion" />
                                         <asp:BoundField HeaderText="Obs_Ficha" DataField="Obs_Ficha" />
                                         <asp:BoundField HeaderText="TipoMantenimiento" DataField="TipoMantenimiento" />
-                                        <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                                        <asp:BoundField HeaderText="Estado" DataField="Estado_Des" />
                                         <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" />
                                         <asp:TemplateField>
                                             <ItemTemplate>

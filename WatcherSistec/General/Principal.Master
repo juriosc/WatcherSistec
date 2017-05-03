@@ -172,7 +172,7 @@ ul, ol {
                             </ul>
                         </td>
                         
-                        <td style="background-color:black; color:White; ">
+                        <td style="background-color:black; color:White; width:140px; ">
                             <ul class="nav">
                                 <li>
                                     <a href="#">SEGURIDAD</a>
@@ -184,7 +184,7 @@ ul, ol {
                             </ul>
                         </td>
                         
-                       <%-- <td style="background-color:black; color:White; ">
+                        <td style="background-color:black; color:White; ">
                              <ul class="nav">
                                  <li>
                                      <a href="#">REPORTE</a> 
@@ -201,7 +201,7 @@ ul, ol {
                                      </ul>
                                  </li>
                              </ul>
-                         </td>--%>
+                         </td>
                     </tr>
                 </table>                 
             </div>

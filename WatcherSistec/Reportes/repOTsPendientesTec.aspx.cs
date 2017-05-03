@@ -43,69 +43,6 @@ namespace WatcherSistec.Reportes
             BeginDate = txtFechaIni.Text;
             EndDate = txtFechaFin.Text;
 
-            if (chkPendiente.Checked)
-            {
-                Pend = "1";
-            }
-            else
-            {
-                Pend = "0";
-            }
-
-            if (chkConcluida.Checked)
-            {
-                Conc = "1";
-            }
-            else
-            {
-                Conc = "0";
-            }
-
-            if (chkAtencion.Checked)
-            {
-                Aten = "1";
-            }
-            else
-            {
-                Aten = "0";
-            }
-
-            if (chkCancelada.Checked)
-            {
-                Canc = "1";
-            }
-            else
-            {
-                Canc = "0";
-            }
-
-            if (chkenviadas.Checked)
-            {
-                Env = "1";
-            }
-            else
-            {
-                Env = "0";
-            }
-
-            if (chkTrabPend.Checked)
-            {
-                Trab = "1";
-            }
-            else
-            {
-                Trab = "0";
-            }
-
-            if (chkObservaciones.Checked)
-            {
-                Obs = "1";
-            }
-            else
-            {
-                Obs = "0";
-            }
-
             foreach (GridViewRow row in gvTipoMantenimiento.Rows)
             {
                 CheckBox check = row.FindControl("chkSel") as CheckBox;
@@ -121,7 +58,7 @@ namespace WatcherSistec.Reportes
             int lmant = Mant.Length;
             if (lmant > 0) { Mant = Mant.Substring(0, lmant - 1); }
 
-            List<beSupervision> lbeSupervisiones = br.ListarSupervisiones(txtCodAtencion.Text.ToString(), txtCsid.Text.ToString(), txtOperador.Text.ToString(), txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant, Obs, Trab, Env);
+            List<beSupervision> lbeSupervisiones = br.ListarSupervisiones("", txtCsid.Text.ToString(),"", txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant, Obs, Trab, Env);
 
             gvSupervisiones.DataSource = lbeSupervisiones;
             gvSupervisiones.DataBind();
@@ -187,10 +124,6 @@ namespace WatcherSistec.Reportes
             Listar_Supervisiones();
         }
 
-        protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("../Control_Tecnico/FichaSupervision.aspx");
-        }
 
     }
 }

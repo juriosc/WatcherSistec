@@ -216,6 +216,7 @@
     <Content Include="Images\equis.png" />
     <Content Include="Images\equis_hover.png" />
     <Content Include="Images\Espera.gif" />
+    <Content Include="Images\excel.png" />
     <Content Include="Images\exit.png" />
     <Content Include="Images\exportExcel.png" />
     <Content Include="Images\Limpiar.png" />
