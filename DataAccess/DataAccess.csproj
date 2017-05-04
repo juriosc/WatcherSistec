@@ -52,6 +52,7 @@
     <Compile Include="daLog.cs" />
     <Compile Include="daLogin.cs" />
     <Compile Include="daProveedor.cs" />
+    <Compile Include="daReportes.cs" />
     <Compile Include="daRuta.cs" />
     <Compile Include="daSeniales.cs" />
     <Compile Include="daSubscriber.cs" />

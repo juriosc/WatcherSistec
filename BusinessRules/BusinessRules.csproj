@@ -58,6 +58,7 @@
     <Compile Include="brLog.cs" />
     <Compile Include="brLogin.cs" />
     <Compile Include="brProveedor.cs" />
+    <Compile Include="brReportes.cs" />
     <Compile Include="brRuta.cs" />
     <Compile Include="brSeniales.cs" />
     <Compile Include="brSubscriber.cs" />

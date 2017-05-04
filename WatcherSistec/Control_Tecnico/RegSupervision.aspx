@@ -749,7 +749,6 @@
 
         $(function () {
             $("#emergente").draggable({ handle: 'div.undraggable' });
-            $("#emerLocalSubscriber").draggable({ handle: 'div.undraggable' });
             $("#emerDealer").draggable({ handle: 'div.undraggable' });
         });
 

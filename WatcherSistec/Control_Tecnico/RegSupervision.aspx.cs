@@ -178,8 +178,8 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptar_Dealer_Click(object sender, EventArgs e)
         {
-            txtDealercode.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
-            txtDealerName.Text = gvDealer.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+            txtDealercode.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
+            txtDealerName.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
         }
 
         protected void gvDealer_PageIndexChanging(object sender, GridViewPageEventArgs e)

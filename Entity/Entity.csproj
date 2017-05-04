@@ -48,6 +48,7 @@
     <Compile Include="beLog.cs" />
     <Compile Include="beLogin.cs" />
     <Compile Include="beProveedor.cs" />
+    <Compile Include="beReportes.cs" />
     <Compile Include="beRuta.cs" />
     <Compile Include="beSeniales.cs" />
     <Compile Include="beSubscriber.cs" />
