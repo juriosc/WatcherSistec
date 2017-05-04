@@ -12,72 +12,68 @@ namespace DataAccess
 {
     public class daSupervisiones
     {
-        public List<beSupervision> ListarSupervisiones(SqlConnection con, string pCodAtencion, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
+        public List<beSupervision> ListarSupervisiones(SqlConnection con, string pCSID, string pUsuario, string pProveedorID, string pPersonalID, string pestado_pendiente, string pestado_concluida, string pestado_en_atencion, string pestado_cancelada, string pfechad, string pfechah, string ptipo_mant, string pcoment_obs, string pcoment_trab_pend, string pestado_enviados)
         {
             List<beSupervision> lbeSupervisiones = null;
 
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Supervisiones", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter param1 = cmd.Parameters.Add("@CodAtencion", SqlDbType.VarChar, 10);
+            SqlParameter param1 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
             param1.Direction = ParameterDirection.Input;
-            param1.Value = pCodAtencion.ToUpper();
+            param1.Value = pCSID.ToUpper();
 
-            SqlParameter param2 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            SqlParameter param2 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
             param2.Direction = ParameterDirection.Input;
-            param2.Value = pCSID.ToUpper();
+            param2.Value = pUsuario;
 
-            SqlParameter param3 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
+            SqlParameter param3 = cmd.Parameters.Add("@ProveedorID", SqlDbType.VarChar, 15);
             param3.Direction = ParameterDirection.Input;
-            param3.Value = pUsuario;
+            param3.Value = pProveedorID;
 
-            SqlParameter param4 = cmd.Parameters.Add("@ProveedorID", SqlDbType.VarChar, 15);
+            SqlParameter param4 = cmd.Parameters.Add("@PersonalID", SqlDbType.VarChar, 15);
             param4.Direction = ParameterDirection.Input;
-            param4.Value = pProveedorID;
+            param4.Value = pPersonalID;
 
-            SqlParameter param5 = cmd.Parameters.Add("@PersonalID", SqlDbType.VarChar, 15);
+            SqlParameter param5 = cmd.Parameters.Add("@estado_pendiente", SqlDbType.VarChar, 1);
             param5.Direction = ParameterDirection.Input;
-            param5.Value = pPersonalID;
+            param5.Value = pestado_pendiente;
 
-            SqlParameter param6 = cmd.Parameters.Add("@estado_pendiente", SqlDbType.VarChar, 1);
+            SqlParameter param6 = cmd.Parameters.Add("@estado_concluida", SqlDbType.VarChar, 1);
             param6.Direction = ParameterDirection.Input;
-            param6.Value = pestado_pendiente;
+            param6.Value = pestado_concluida;
 
-            SqlParameter param7 = cmd.Parameters.Add("@estado_concluida", SqlDbType.VarChar, 1);
+            SqlParameter param7 = cmd.Parameters.Add("@estado_en_atencion", SqlDbType.VarChar, 1);
             param7.Direction = ParameterDirection.Input;
-            param7.Value = pestado_concluida;
+            param7.Value = pestado_en_atencion;
 
-            SqlParameter param8 = cmd.Parameters.Add("@estado_en_atencion", SqlDbType.VarChar, 1);
+            SqlParameter param8 = cmd.Parameters.Add("@estado_cancelada", SqlDbType.VarChar, 1);
             param8.Direction = ParameterDirection.Input;
-            param8.Value = pestado_en_atencion;
+            param8.Value = pestado_cancelada;
 
-            SqlParameter param9 = cmd.Parameters.Add("@estado_cancelada", SqlDbType.VarChar, 1);
+            SqlParameter param9 = cmd.Parameters.Add("@fechad", SqlDbType.VarChar, 10);
             param9.Direction = ParameterDirection.Input;
-            param9.Value = pestado_cancelada;
+            param9.Value = pfechad != "" ? DateTime.ParseExact(pfechad, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
 
-            SqlParameter param10 = cmd.Parameters.Add("@fechad", SqlDbType.VarChar, 10);
+            SqlParameter param10 = cmd.Parameters.Add("@fechah", SqlDbType.VarChar, 10);
             param10.Direction = ParameterDirection.Input;
-            param10.Value = pfechad != "" ? DateTime.ParseExact(pfechad, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+            param10.Value = pfechah != "" ? DateTime.ParseExact(pfechah, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
 
-            SqlParameter param11 = cmd.Parameters.Add("@fechah", SqlDbType.VarChar, 10);
+            SqlParameter param11 = cmd.Parameters.Add("@tipo_mant", SqlDbType.VarChar, 300);
             param11.Direction = ParameterDirection.Input;
-            param11.Value = pfechah != "" ? DateTime.ParseExact(pfechah, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+            param11.Value = ptipo_mant.ToUpper();
 
-            SqlParameter param12 = cmd.Parameters.Add("@tipo_mant", SqlDbType.VarChar, 100);
+            SqlParameter param12 = cmd.Parameters.Add("@coment_obs", SqlDbType.VarChar, 1);
             param12.Direction = ParameterDirection.Input;
-            param12.Value = ptipo_mant.ToUpper();
+            param12.Value = pcoment_obs.ToString();
 
-            SqlParameter param13 = cmd.Parameters.Add("@coment_obs", SqlDbType.VarChar, 1);
+            SqlParameter param13 = cmd.Parameters.Add("@coment_trab_pend", SqlDbType.VarChar,1);
             param13.Direction = ParameterDirection.Input;
-            param13.Value = pcoment_obs.ToString();
+            param13.Value = pcoment_trab_pend;
 
-            SqlParameter param14 = cmd.Parameters.Add("@coment_trab_pend", SqlDbType.VarChar,1);
+            SqlParameter param14 = cmd.Parameters.Add("@estado_enviados", SqlDbType.VarChar, 1);
             param14.Direction = ParameterDirection.Input;
-            param14.Value = pcoment_trab_pend;
-
-            SqlParameter param15 = cmd.Parameters.Add("@estado_enviados", SqlDbType.VarChar, 1);
-            param15.Direction = ParameterDirection.Input;
-            param15.Value = pestado_enviados;
+            param14.Value = pestado_enviados;
 
             SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
 

@@ -94,13 +94,13 @@ namespace WatcherSistec.Control_Tecnico
                 
                 if (check.Checked)
                 {
-                    Mant = Mant + row.Cells[1].Text + ",";
+                    Mant = Mant + row.Cells[0].Text + ",";
                 }
             }
             int lmant = Mant.Length;
             if (lmant > 0) { Mant = Mant.Substring(0, lmant - 1); }
 
-            List<beSupervision> lbeSupervisiones = br.ListarSupervisiones(txtCodAtencion.Text.ToString(), txtCsid.Text.ToString(), txtOperador.Text.ToString(), txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant , Obs, Trab, Env);
+            List<beSupervision> lbeSupervisiones = br.ListarSupervisiones(txtCsid.Text.ToString(), txtOperador.Text.ToString(), txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant , Obs, Trab, Env);
             
             gvSupervisiones.DataSource = lbeSupervisiones;
             gvSupervisiones.DataBind();
@@ -134,6 +134,8 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnAceptarSubscriber_Click(object sender, EventArgs e)
         {
+            txtDealercode.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[4].Text;
+            txtDealerName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[0].Text;
             txtCsid.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
             txtSubscriberName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
         }
@@ -194,6 +196,83 @@ namespace WatcherSistec.Control_Tecnico
             List<beDealer> lstListarDealer = br.ListarDealer(Dealer, dealername);
             gvDealer.DataSource = lstListarDealer;
             gvDealer.DataBind();
+        }
+
+        private void Listar_Grilla_Proveedor(string Codigo, string Proveedor)
+        {
+            brProveedor br = new brProveedor();
+            List<beProveedor> lstListarProveedor = br.ListarProveedor(Codigo, Proveedor);
+            gvProveedor.DataSource = lstListarProveedor;
+            gvProveedor.DataBind();
+        }
+
+        protected void gvProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProveedor.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Proveedor(txtDealer.Text, txtNameDealer.Text);
+        }
+
+        protected void btnAceptar_Prov_Click(object sender, EventArgs e)
+        {
+            txtProveedor.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[0].Text;
+            txtProveName.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
+            txtTecnico.Text = "";
+            txtTecName.Text = "";
+        }
+
+        private void Listar_Grilla_Tecnico(string Proveedor, string Nombre)
+        {
+            brFichaTecnico br = new brFichaTecnico();
+            List<beTecnico> lstListarTecnico = br.ListarTecnico(Proveedor, Nombre);
+            gvTecnico.DataSource = lstListarTecnico;
+            gvTecnico.DataBind();
+        }
+
+        protected void gvTecnico_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTecnico.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Tecnico(txtProv.Text, txtNameTecnico.Text);
+        }
+
+        protected void btnAceptarTec_Click(object sender, EventArgs e)
+        {
+            txtTecnico.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[3].Text;
+            txtTecName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text);
+            txtProveedor.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
+            txtProveName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text);
+        }
+
+        protected void btnBuscarProv_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Proveedor("", txtProvName.Text);
+        }
+
+        protected void btnBuscarTecnico_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Tecnico(txtProv.Text, txtNameTecnico.Text);
+        }
+
+        protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSeleccion.Checked)
+            {
+                foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                {
+                    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                    check.Checked = true;
+                }
+            }
+            else
+            {
+                if (chkSeleccion.Checked == false)
+                {
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Checked = false;
+                    }
+                }
+            }
         }
     }
 }

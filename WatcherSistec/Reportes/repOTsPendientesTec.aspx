@@ -887,17 +887,11 @@
         }
 
         function Limpiar() {
-            document.getElementById('ContentPlaceHolder1_txtHoraIni').value = "00";
-            document.getElementById('ContentPlaceHolder1_txtMinIni').value = "00";
-            document.getElementById('ContentPlaceHolder1_txtHoraFin').value = "23";
-            document.getElementById('ContentPlaceHolder1_txtMinFin').value = "59";
-            document.getElementById('ContentPlaceHolder1_txtCodAtencion').value = "";
+            
             document.getElementById('ContentPlaceHolder1_txtDealercode').value = "";
             document.getElementById('ContentPlaceHolder1_txtDealerName').value = "";
             document.getElementById('ContentPlaceHolder1_txtCsid').value = "";
             document.getElementById('ContentPlaceHolder1_txtSubscriberName').value = "";
-            document.getElementById('ContentPlaceHolder1_txtOperador').value = "";
-            document.getElementById('ContentPlaceHolder1_txtOperName').value = "";
             document.getElementById('ContentPlaceHolder1_txtProveedor').value = "";
             document.getElementById('ContentPlaceHolder1_txtProveName').value = "";
             document.getElementById('ContentPlaceHolder1_txtTecnico').value = "";

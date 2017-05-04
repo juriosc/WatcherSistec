@@ -17,6 +17,56 @@ namespace WatcherSistec.Reportes
             {
                 ListarTipoMantenimiento();
                 Listar_Reporte();
+
+                int dia_d, mes_d, dia_h, mes_h;
+                string sdia_d, smes_d, sdia_h, smes_h;
+
+                dia_h = DateTime.Now.Day;
+                mes_h = DateTime.Now.Month;
+
+
+                DateTime Fecha_Desde = DateTime.Now.AddDays(-7);
+                dia_d = Fecha_Desde.Day;
+                mes_d = Fecha_Desde.Month;
+
+                if (dia_h < 10)
+                {
+                    sdia_h = "0" + dia_h.ToString();
+                }
+                else
+                {
+                    sdia_h = dia_h.ToString();
+                }
+
+                if (mes_h < 10)
+                {
+                    smes_h = "0" + mes_h.ToString();
+                }
+                else
+                {
+                    smes_h = mes_h.ToString();
+                }
+
+                if (dia_d < 10)
+                {
+                    sdia_d = "0" + dia_d.ToString();
+                }
+                else
+                {
+                    sdia_d = dia_d.ToString();
+                }
+
+                if (mes_d < 10)
+                {
+                    smes_d = "0" + mes_d.ToString();
+                }
+                else
+                {
+                    smes_d = mes_d.ToString();
+                }
+
+                txtFechaIni.Text = sdia_d + "/" + smes_d + "/" + DateTime.Now.Year.ToString();
+                txtFechaFin.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
             }
         }
 
