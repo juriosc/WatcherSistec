@@ -29,5 +29,6 @@
         public string Nro_Informe { get; set; }
         public string ImagenEstado { get; set; }
         public string Estado_Ficha { get; set; }
+        public string ProvName { get; set; }
     }
 }

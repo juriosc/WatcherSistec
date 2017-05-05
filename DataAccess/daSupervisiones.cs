@@ -95,6 +95,7 @@ namespace DataAccess
                 int Estado_Des = drd.GetOrdinal("Estado_Des");
                 int Estado_Cod = drd.GetOrdinal("Estado_Cod");
                 int Estado_Ficha = drd.GetOrdinal("Estado_Ficha");
+                int ProvName = drd.GetOrdinal("ProvName");
 
                 lbeSupervisiones = new List<beSupervision>();
                 beSupervision obeSupervisiones;
@@ -118,6 +119,7 @@ namespace DataAccess
                     obeSupervisiones.Estado_Cod = drd.GetString(Estado_Cod);                    
                     obeSupervisiones.Estado_Ficha = drd.GetString(Estado_Ficha);
                     obeSupervisiones.ImagenEstado = NombreDeIcono(drd.GetString(Estado_Ficha));
+                    obeSupervisiones.ProvName = drd.GetString(ProvName);
                     
                     lbeSupervisiones.Add(obeSupervisiones);
                 }

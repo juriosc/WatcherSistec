@@ -432,16 +432,20 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
-                                        <asp:BoundField HeaderText="Dealer" DataField="Dealer">
-                                        <HeaderStyle CssClass="ColumnaOculta" />
-                                        <ItemStyle CssClass="ColumnaOculta" />
-                                        </asp:BoundField>                                        
+                                        <asp:BoundField HeaderText="Distribuidor" DataField="Dealer" />                                     
                                         <asp:BoundField HeaderText="Abonado" DataField="CSID"/>
                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
-                                        <asp:BoundField HeaderText="ProveedorID" DataField="ProveedorID" />
-                                        <asp:BoundField HeaderText="PersonalID" DataField="PersonalID" />
-                                        <asp:BoundField HeaderText="Nombres" DataField="Nombres" />
-                                        <asp:BoundField HeaderText="Usuario" DataField="Usuario" />
+                                        <asp:BoundField HeaderText="ProveedorID" DataField="ProveedorID" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="PersonalID" DataField="PersonalID" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="Proveedor" DataField="ProvName" />
+                                        <asp:BoundField HeaderText="Técnico" DataField="Nombres" />
+                                        <asp:BoundField HeaderText="Oper. Responsable" DataField="Usuario" />
                                         <asp:BoundField HeaderText="Estado_Inicio" DataField="Estado_Inicio">
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
@@ -451,8 +455,10 @@
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>                                        
                                         <asp:BoundField HeaderText="Observaciones" DataField="Obs_Ficha" />
-                                        
-                                        <asp:BoundField HeaderText="Estado" DataField="Estado_Des" />
+                                        <asp:BoundField HeaderText="Estado" DataField="Estado_Des" >
+                                        <HeaderStyle CssClass="ColumnaOculta" />
+                                        <ItemStyle CssClass="ColumnaOculta" />
+                                        </asp:BoundField> 
                                         <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" >
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
@@ -998,7 +1004,6 @@
         }
 
         function Limpiar() {
-            document.getElementById('ContentPlaceHolder1_txtCodAtencion').value = "";
             document.getElementById('ContentPlaceHolder1_txtDealercode').value = "";
             document.getElementById('ContentPlaceHolder1_txtDealerName').value = "";
             document.getElementById('ContentPlaceHolder1_txtCsid').value = "";
