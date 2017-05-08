@@ -41,6 +41,7 @@ namespace WatcherSistec.Control_Tecnico
                     ListarTipoMantenimiento();
                     Ficha_Atenciones("");
                     Bloque_Zona("");
+                    Ficha_Abonados("");  
                 }
                 
                 
@@ -89,14 +90,17 @@ namespace WatcherSistec.Control_Tecnico
 
                 if (Ficha_Supervision != null)
                 {
+                    string fechaing = string.Format("{0:yyyy/MM/dd 00:00}", Ficha_Supervision[0].Hora_Ingreso.ToString());
+                    string fechasal = string.Format("{0:yyyy/MM/dd 00:00}", Ficha_Supervision[0].Hora_Salida.ToString());
+
                     txtProv.Text = Ficha_Supervision[0].sProveedorName.ToString();
                     txtNombre.Text = Ficha_Supervision[0].Nombres.ToString();
-                    txtFechaI.Text = Ficha_Supervision[0].Hora_Ingreso.ToString();
-                    txtFechaS.Text = Ficha_Supervision[0].Hora_Salida.ToString();
+                    txtFechaIngreso.Text = fechaing; //Ficha_Supervision[0].Hora_Ingreso.ToString();
+                    txtFechaSalida.Text = fechasal; //Ficha_Supervision[0].Hora_Salida.ToString();
                     txtObs_Tec.Text = Ficha_Supervision[0].Obs_Tec.ToString();
                     txtPanel.Text = Ficha_Supervision[0].Panel.ToString();
                     txtTelefono.Text = Ficha_Supervision[0].Nro_Telefono.ToString();
-                    txtInforme.Text = Ficha_Supervision[0].Nro_Informe.ToString();
+                    //txtInforme.Text = Ficha_Supervision[0].Nro_Informe.ToString();
 
                    //Session["Select_Ficha_Supervision"] = Ficha_Supervision;
 
@@ -300,21 +304,49 @@ namespace WatcherSistec.Control_Tecnico
                 for (int i = 1; i <= 39; i++)
                 {
 
-                    string[] Propiedad = e.Row.Cells[i].Text.Split('|');
+                        string[] Propiedad = e.Row.Cells[i].Text.Split('|');
+                        if (Propiedad[0].ToString().Equals("P"))
+                        {                            
+                            e.Row.Cells[i - 1].Font.Bold = true;
+                            e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarPopupComentario('" + e.Row.Cells[i - 1].Text + "',600,560);");
+                            e.Row.Cells[i - 1].Attributes["style"] = "cursor:pointer";
+                            e.Row.Cells[i - 1].Attributes.Add("Title", Propiedad[1].ToString());
+                            e.Row.Cells[i - 1].ForeColor = ColorLetra(Propiedad[2].ToString());
+                        }
+                      
 
-                    if (Propiedad[0].Equals("N"))
-                    {
-                        e.Row.Cells[i - 1].ForeColor = System.Drawing.Color.Black;
-                        e.Row.Cells[i - 1].Font.Bold = true;
-                        e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarPopupComentario('" + e.Row.Cells[i - 1].Text + "',600,560);");
-                        e.Row.Cells[i - 1].Attributes["style"] = "cursor:pointer";
-                        e.Row.Cells[i - 1].Attributes.Add("Title", Propiedad[1].ToString());
-                    }
 
                 }
             }
 
         }
+
+        public System.Drawing.Color ColorLetra(string Letra)
+        {
+            System.Drawing.Color Color;
+
+            switch (Letra)
+            {
+                case "N":
+                    Color = System.Drawing.Color.Black;
+                    break;
+                case "R":
+                    Color = System.Drawing.Color.Red;
+                    break;
+                case "A":
+                    Color = System.Drawing.Color.Blue;
+                    break;
+                case "V":
+                    Color = System.Drawing.Color.Green;
+                    break;
+                default:
+                    Color = System.Drawing.Color.Black;
+                    break;
+            }
+
+            return Color;
+        }
+            
 
         protected void btnAceptarTEnvioMSM_Click(object sender, EventArgs e)
         {
@@ -396,10 +428,10 @@ namespace WatcherSistec.Control_Tecnico
         {
             try
             {
-                txtProveedorID.Text = gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[0].Text;
-                txtProv.Text = HttpUtility.HtmlDecode(gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[1].Text);
-                txtPersonalID.Text = gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[2].Text;
-                txtNombre.Text = HttpUtility.HtmlDecode(gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[3].Text);
+                txtUpProveedorID.Text = gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[0].Text;
+                txtUpProv.Text = HttpUtility.HtmlDecode(gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[1].Text);
+                txtUpPersonalID.Text = gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[2].Text;
+                txtUpNombre.Text = HttpUtility.HtmlDecode(gvListadoTecnicos.Rows[gvListadoTecnicos.SelectedIndex].Cells[3].Text);
             }
             catch (Exception)
             {
@@ -422,12 +454,12 @@ namespace WatcherSistec.Control_Tecnico
         protected void gvListarSubscriber_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = gvListarSubscriber.SelectedRow;
-            txtSelDealercode.Text = HttpUtility.HtmlDecode(row.Cells[0].Text);
-            txtSelDealerName.Text = HttpUtility.HtmlDecode(row.Cells[1].Text);
-            txtSelCsid.Text = HttpUtility.HtmlDecode(row.Cells[2].Text);
-            txtSelSubscriberName.Text = HttpUtility.HtmlDecode(row.Cells[3].Text);
-            txtSelLocalid.Text = HttpUtility.HtmlDecode(row.Cells[4].Text);
-            txtSelLocaldes.Text = HttpUtility.HtmlDecode(row.Cells[5].Text);
+            txtUpDealercode.Text = HttpUtility.HtmlDecode(row.Cells[0].Text);
+            txtUpDealerName.Text = HttpUtility.HtmlDecode(row.Cells[1].Text);
+            txtUpCsid.Text = HttpUtility.HtmlDecode(row.Cells[2].Text);
+            txtUpSubscriberName.Text = HttpUtility.HtmlDecode(row.Cells[3].Text);
+            txtUpLocalid.Text = HttpUtility.HtmlDecode(row.Cells[4].Text);
+            txtUpLocaldes.Text = HttpUtility.HtmlDecode(row.Cells[5].Text);
         }
 
         protected void btnAceptarListarSub_Click(object sender, EventArgs e)
@@ -437,20 +469,20 @@ namespace WatcherSistec.Control_Tecnico
 
             if (hdfMantEstado.Value=="NUEVO")
             {
-                fa.CSID = txtSelCsid.Text;
-                fa.SubscriberName = txtSelSubscriberName.Text;
-                fa.DealerCode = txtSelDealercode.Text;
-                fa.LocalID = txtSelLocalid.Text;            
-                fa.Observaciones = txtSelObservacion.Text;
+                fa.CSID = txtUpCsid.Text;
+                fa.SubscriberName = txtUpSubscriberName.Text;
+                fa.DealerCode = txtUpDealercode.Text;
+                fa.LocalID = txtUpLocalid.Text;            
+                fa.Observaciones = txtUpObservacion.Text;
                 beAbonado.FAbonado.Add(fa);
             }
             else
             {
-                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].DealerCode = txtSelDealercode.Text;
-                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].CSID = txtSelCsid.Text;
-                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].SubscriberName = txtSelSubscriberName.Text;
-                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].LocalID = txtSelLocalid.Text;
-                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].Observaciones = txtSelObservacion.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].DealerCode = txtUpDealercode.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].CSID = txtUpCsid.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].SubscriberName = txtUpSubscriberName.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].LocalID = txtUpLocalid.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].Observaciones = txtUpObservacion.Text;
 
             }
             
@@ -472,13 +504,13 @@ namespace WatcherSistec.Control_Tecnico
 
                     hdfMantEstado.Value = "EDITAR";
                     hdfIndex.Value = rowIndex.ToString();
-                    txtSelDealercode.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[0].Text);
-                    txtSelLocalid.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[1].Text);
-                    txtSelCsid.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[2].Text);
-                    txtSelSubscriberName.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[3].Text);
-                    txtSelObservacion.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[4].Text);
+                    txtUpDealercode.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[0].Text);
+                    txtUpLocalid.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[1].Text);
+                    txtUpCsid.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[2].Text);
+                    txtUpSubscriberName.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[3].Text);
+                    txtUpObservacion.Text = HttpUtility.HtmlDecode(gvAbonado.Rows[rowIndex].Cells[4].Text);
 
-                    script1 = "mostrarPopupAbonado('MODIFICAR ABONADO ...',920,520);";
+                    script1 = "mostrarEmerUpAbonado('MODIFICAR ABONADO ...',750,250);";
                     ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
 
                 break;
@@ -509,8 +541,8 @@ namespace WatcherSistec.Control_Tecnico
             string men = "";
             
             IFormatProvider culture = new CultureInfo("es-PE", true);
-            DateTime fechaI = DateTime.ParseExact(txtFechaI.Text, "dd/MM/yyyy HH:mm", culture);
-            DateTime fechaS = DateTime.ParseExact(txtFechaS.Text, "dd/MM/yyyy HH:mm", culture);
+            DateTime fechaI = DateTime.ParseExact(txtFechaIngreso.Text, "dd/MM/yyyy HH:mm", culture);
+            DateTime fechaS = DateTime.ParseExact(txtFechaSalida.Text, "dd/MM/yyyy HH:mm", culture);
             
             //GUARDANDO FICHA SUPÈRVISION
             bool updated = br.InsertarFichaSupervision(
@@ -762,6 +794,27 @@ namespace WatcherSistec.Control_Tecnico
             string script2 = "alert('Mensaje: ' " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
+        }
+
+        protected void btnListarTecnicos_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Tecnico(txtBsProveedorName.Text, txtBNombres.Text);
+        }
+
+        protected void btnAgregarTecnico_Click(object sender, ImageClickEventArgs e)
+        {
+            
+        }
+
+        protected void btnAceptarUpTecnico_Click(object sender, EventArgs e)
+        {
+            txtFechaIngreso.Text = txtUpFechaIngreso.Text;
+            txtFechaSalida.Text = txtUpFechaSalida.Text;
+            txtProveedorID.Text= txtUpProveedorID.Text;
+            txtProv.Text = txtUpProv.Text;
+            txtPersonalID.Text= txtUpPersonalID.Text;
+            txtNombre.Text = txtUpNombre.Text;
+            txtObs_Tec.Text = txtUpObs_Tec.Text;
         }
 
     }
