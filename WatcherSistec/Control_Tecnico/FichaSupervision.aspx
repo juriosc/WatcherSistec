@@ -102,7 +102,7 @@
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel29" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:TextBox ID="txtID_Ficha" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtID_Ficha" runat="server" ReadOnly="true"></asp:TextBox>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
@@ -1893,12 +1893,21 @@
         }
 
         function mostrarEmergenteTEnvioMsm(titulo, ancho, alto) {
-            $("#tdTEnvioMsmcerrar").show();
-            $("#fondoemergente").css('display', 'block');
-            $("#titTEnvioMsm").html(titulo);
-            mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);            
-            //document.getElementById("ContentPlaceHolder1_txtTMSMMinutos").focus();            
-            $("#ContentPlaceHolder1_txtTMSMMinutos").focus();
+
+            var disdes = $("#ContentPlaceHolder1_txtID_Ficha").val();
+
+            if (disdes.length == 0) {
+                alert('Debe guardar los datos y generar la ficha');
+            }
+            else
+            {
+                $("#tdTEnvioMsmcerrar").show();
+                $("#fondoemergente").css('display', 'block');
+                $("#titTEnvioMsm").html(titulo);
+                mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);
+                //document.getElementById("ContentPlaceHolder1_txtTMSMMinutos").focus();            
+                $("#ContentPlaceHolder1_txtTMSMMinutos").focus();
+            }
         }        
 
         function mostrarEmergenteModiAtencion(titulo, ancho, alto) {

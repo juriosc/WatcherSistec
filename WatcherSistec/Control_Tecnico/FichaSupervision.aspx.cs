@@ -378,7 +378,7 @@ namespace WatcherSistec.Control_Tecnico
             {
 
                 RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
-
+                
                 if (rbt.Checked)
                 {
 
@@ -391,7 +391,7 @@ namespace WatcherSistec.Control_Tecnico
                         , out outID_Atencion);
 
 
-                    string men = "";
+                    
 
                     if (updatedAT == false)
                     {
@@ -821,10 +821,9 @@ namespace WatcherSistec.Control_Tecnico
             }
 
 
-            //CUANDO SE INICIA LA ATENCION, SE DEBE COLOCAR EL ESTADO DE LA FICHA EN ATENCION
+            //CUANDO SE TERMINA LA ATENCION, EL ESTADO DE LA FICHA SE PONE EN PENDIENTE
 
-            brFichaSupervision br = new brFichaSupervision();
-            string men = "";
+            brFichaSupervision br = new brFichaSupervision();            
 
             bool updated = br.ActualizarFichaSupervision(1, Convert.ToInt32(txtID_Ficha.Text));
 
