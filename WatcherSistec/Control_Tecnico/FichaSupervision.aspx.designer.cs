@@ -895,6 +895,33 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.TextBox txtUpObservacion;
         
         /// <summary>
+        /// UpdatePanel79 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel79;
+        
+        /// <summary>
+        /// btnAceptarUPAbonado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarUPAbonado;
+        
+        /// <summary>
+        /// btnCancelarUpAbonado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarUpAbonado;
+        
+        /// <summary>
         /// UpdatePanel12 control.
         /// </summary>
         /// <remarks>
@@ -1001,6 +1028,15 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAceptarListarSub;
+        
+        /// <summary>
+        /// UpdatePanel80 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel80;
         
         /// <summary>
         /// btnCancelarListarSub control.

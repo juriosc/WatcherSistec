@@ -31,6 +31,7 @@
     text-shadow: 1px 1px 1px #000;
     width: 150px;
   }
+
   .tooltip:hover:before {
     bottom: 20px;
     content: "";
@@ -121,19 +122,19 @@
                 <td style="width:150px">
                      <asp:UpdatePanel ID="UpdatePanel27" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar Ficha" Width="120px" Height="30px"  />        
+                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar Ficha" Width="120px" Height="30px" Enabled="False" OnClick="btnCancelar_Click"  />        
                         </ContentTemplate>
                     </asp:UpdatePanel>                        
                 </td>
                 <td style="width:150px">
                     <asp:UpdatePanel ID="UpdatePanel28" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnPendiente"  runat="server" Text="Ficha Pendiente" class="btn btn-success" Width="120px" Height="30px" />
+                            <asp:Button ID="btnPendiente"  runat="server" Text="Ficha Pendiente" class="btn btn-success" Width="120px" Height="30px" Enabled="False" OnClick="btnPendiente_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                                            
                 </td>
                  <td style="width:150px">
-                    <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" Width="120px" Height="30px" />
+                    <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" Width="120px" Height="30px" Enabled="False" OnClick="btnConcluir_Click" />
                 </td>
                 
                 <td style="width:150px">
@@ -187,8 +188,7 @@
                                                                         <asp:AsyncPostBackTrigger ControlID="btnAceptarUpTecnico" EventName="Click" />
                                                                     </Triggers>
                                                             </asp:UpdatePanel>
-                                                        </td>
-                                        
+                                                        </td>                                        
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style5" >PROVEEDOR</td>
@@ -329,7 +329,7 @@
                                                     </asp:GridView>
                                                 </ContentTemplate>
                                                 <Triggers>
-                                                    <asp:AsyncPostBackTrigger ControlID="btnAceptarListarSub" EventName="Click" />
+                                                    <asp:AsyncPostBackTrigger ControlID="btnAceptarUPAbonado" EventName="Click" />
                                                 </Triggers>
                                             </asp:UpdatePanel>
                                         </td>
@@ -993,6 +993,22 @@
                 </tr>
 
                             </table>
+            <table style="margin: 0 auto;">
+                                <tr>
+                                    <td>
+                                        <asp:UpdatePanel ID="UpdatePanel79" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnAceptarUPAbonado" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirEmerUpAbonado()" OnClick="btnAceptarUPAbonado_Click"/></td>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </td>
+                                    <td style="width:80px">
+                                    </td>    
+                                    <td>
+                                        <asp:Button ID="btnCancelarUpAbonado" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirEmerUpAbonado()"/>                                        
+                                    </td>                                
+                                </tr>
+                            </table>
                                            
 
 
@@ -1116,14 +1132,17 @@
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel43" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnAceptarListarSub" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirPopupAbonado();" OnClick="btnAceptarListarSub_Click"/></td>
+                                                            <asp:Button ID="btnAceptarListarSub" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClick="btnAceptarListarSub_Click"/></td>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td style="width:80px">
                                                 </td>    
-                                                <td>
-                                                    <asp:Button ID="btnCancelarListarSub" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupAbonado();" />                                        
+                                                <td> <asp:UpdatePanel ID="UpdatePanel80" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:Button ID="btnCancelarListarSub" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirEmerListarAbonados();"/>                                        
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
                                                 </td>                                
                                             </tr>
                                         </table>
@@ -1832,6 +1851,8 @@
             $("#emerTEnvioMsm").draggable({ handle: 'div.undraggable' });
             $("#emerModiAtencion").draggable({ handle: 'div.undraggable' });
             $("#emerUpTecnico").draggable({ handle: 'div.undraggable' });
+            $("#emerUpAbonado").draggable({ handle: 'div.undraggable' });
+            $("#emerListarAbonados").draggable({ handle: 'div.undraggable' });
         });
 
         function mostrarPopupComentario(titulo, ancho, alto) {

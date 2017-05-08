@@ -129,5 +129,31 @@ namespace DataAccess
             return lbeSupervisiones;
         }
         
+        public bool ActualizarFichaSupervision(SqlConnection con, int Estado_Ficha, int ID_Ficha)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Actualizar_Ficha_Supervision", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            
+            SqlParameter param1 = cmd.Parameters.Add("@Estado_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = Estado_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = ID_Ficha;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;            
+            }
+
+            return registro;
+
+        }
+
     }
 }

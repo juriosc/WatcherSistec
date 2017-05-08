@@ -353,6 +353,26 @@ namespace WatcherSistec.Control_Tecnico
             bool updatedAT;
             string outID_Atencion = "";
 
+            //CUANDO SE INICIA LA ATENCION, SE DEBE COLOCAR EL ESTADO DE LA FICHA EN ATENCION
+
+            brFichaSupervision br = new brFichaSupervision();
+            string men = "";
+
+            bool updated = br.ActualizarFichaSupervision(2, Convert.ToInt32(txtID_Ficha.Text));
+
+            if (updated == false)
+            {
+                men = "Hubo un problema al momento de intentar actualizar la Ficha";
+            }
+            else
+            {
+                men = "La ficha se registro correctamente";
+            }
+
+            string script = "alert('Mensaje:  " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+            ////////////
 
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
@@ -384,7 +404,7 @@ namespace WatcherSistec.Control_Tecnico
                         men = "Tipo Mantenimiento registrado correctamente";
                     }
 
-                    string script2 = "alert('Mensaje: ' " + men + "');";
+                    string script2 = "alert('Mensaje:  " + men + "');";
                     ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
                 }
@@ -453,6 +473,12 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void gvListarSubscriber_SelectedIndexChanged(object sender, EventArgs e)
         {
+          
+        }
+
+        protected void btnAceptarListarSub_Click(object sender, EventArgs e)
+        {
+
             GridViewRow row = gvListarSubscriber.SelectedRow;
             txtUpDealercode.Text = HttpUtility.HtmlDecode(row.Cells[0].Text);
             txtUpDealerName.Text = HttpUtility.HtmlDecode(row.Cells[1].Text);
@@ -460,11 +486,12 @@ namespace WatcherSistec.Control_Tecnico
             txtUpSubscriberName.Text = HttpUtility.HtmlDecode(row.Cells[3].Text);
             txtUpLocalid.Text = HttpUtility.HtmlDecode(row.Cells[4].Text);
             txtUpLocaldes.Text = HttpUtility.HtmlDecode(row.Cells[5].Text);
-        }
 
-        protected void btnAceptarListarSub_Click(object sender, EventArgs e)
-        {
+            string script = "SalirEmerListarAbonados();";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            
 
+            /*
             beAbonado fa = new beAbonado();            
 
             if (hdfMantEstado.Value=="NUEVO")
@@ -491,6 +518,7 @@ namespace WatcherSistec.Control_Tecnico
 
             gvAbonado.DataSource = beAbonado.FAbonado;
             gvAbonado.DataBind();
+             */
         }
 
         protected void gvAbonado_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -560,7 +588,7 @@ namespace WatcherSistec.Control_Tecnico
 
             txtID_Ficha.Text = outID_Ficha;
 
-            string script = "alert('Mensaje: ' "+ men+ "');";
+            string script = "alert('Mensaje:  "+ men+ "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
 
             //GUARDANDO FICHA ABONADO
@@ -581,7 +609,7 @@ namespace WatcherSistec.Control_Tecnico
 
             }
 
-            string script1 = "alert('Mensaje: ' " + men + "');";
+            string script1 = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
 
             //GUARDANDO FICHA TIPO MANTENIMIENTO
@@ -610,7 +638,12 @@ namespace WatcherSistec.Control_Tecnico
                 }
             }
 
-            string script2 = "alert('Mensaje: ' " + men + "');";
+            btnGuardar.Enabled = false;
+            btnCancelar.Enabled = true;
+            btnConcluir.Enabled = true;
+            btnPendiente.Enabled = true;
+
+            string script2 = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
 
@@ -787,11 +820,34 @@ namespace WatcherSistec.Control_Tecnico
 
             }
 
+
+            //CUANDO SE INICIA LA ATENCION, SE DEBE COLOCAR EL ESTADO DE LA FICHA EN ATENCION
+
+            brFichaSupervision br = new brFichaSupervision();
+            string men = "";
+
+            bool updated = br.ActualizarFichaSupervision(1, Convert.ToInt32(txtID_Ficha.Text));
+
+            if (updated == false)
+            {
+                men = "Hubo un problema al momento de intentar actualizar la Ficha";
+            }
+            else
+            {
+                men = "La ficha se registro correctamente";
+            }
+
+            string script = "alert('Mensaje:  " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+            ////////////
+
+
             //tmrActualizarZonas.Enabled = false;
             Ficha_Atenciones(txtID_Ficha.Text);
             tmrRecepSeniales.Enabled = false;
 
-            string script2 = "alert('Mensaje: ' " + men + "');";
+            string script2 = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
         }
@@ -815,6 +871,94 @@ namespace WatcherSistec.Control_Tecnico
             txtPersonalID.Text= txtUpPersonalID.Text;
             txtNombre.Text = txtUpNombre.Text;
             txtObs_Tec.Text = txtUpObs_Tec.Text;
+        }
+
+        protected void btnAceptarUPAbonado_Click(object sender, EventArgs e)
+        {
+            beAbonado fa = new beAbonado();
+
+            if (hdfMantEstado.Value == "NUEVO")
+            {
+                fa.CSID = txtUpCsid.Text;
+                fa.SubscriberName = txtUpSubscriberName.Text;
+                fa.DealerCode = txtUpDealercode.Text;
+                fa.LocalID = txtUpLocalid.Text;
+                fa.Observaciones = txtUpObservacion.Text;
+                beAbonado.FAbonado.Add(fa);
+            }
+            else
+            {
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].DealerCode = txtUpDealercode.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].CSID = txtUpCsid.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].SubscriberName = txtUpSubscriberName.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].LocalID = txtUpLocalid.Text;
+                beAbonado.FAbonado[Convert.ToInt16(hdfIndex.Value)].Observaciones = txtUpObservacion.Text;
+            }
+
+            //Session["ListaAbonado"] = beAbonado.FAbonado;
+
+            gvAbonado.DataSource = beAbonado.FAbonado;
+            gvAbonado.DataBind();
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            brFichaSupervision br = new brFichaSupervision();
+            string men="";
+            
+            bool updated = br.ActualizarFichaSupervision(4, Convert.ToInt32(txtID_Ficha.Text));
+
+            if (updated == false)
+            {
+                men = "Hubo un problema al momento de intentar actualizar la Ficha";
+            }
+            else
+            {
+                men = "La ficha se registro correctamente";
+            }
+
+            string script = "alert('Mensaje:  " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+        }
+
+        protected void btnPendiente_Click(object sender, EventArgs e)
+        {
+            brFichaSupervision br = new brFichaSupervision();
+            string men = "";
+
+            bool updated = br.ActualizarFichaSupervision(1, Convert.ToInt32(txtID_Ficha.Text));
+
+            if (updated == false)
+            {
+                men = "Hubo un problema al momento de intentar actualizar la Ficha";
+            }
+            else
+            {
+                men = "La ficha se registro correctamente";
+            }
+
+            string script = "alert('Mensaje:  " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+        }
+
+        protected void btnConcluir_Click(object sender, EventArgs e)
+        {
+            brFichaSupervision br = new brFichaSupervision();
+            string men = "";
+
+            bool updated = br.ActualizarFichaSupervision(3, Convert.ToInt32(txtID_Ficha.Text));
+
+            if (updated == false)
+            {
+                men = "Hubo un problema al momento de intentar actualizar la Ficha";
+            }
+            else
+            {
+                men = "La ficha se registro correctamente";
+            }
+
+            string script = "alert('Mensaje:  " + men + "');";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
         }
 
     }
