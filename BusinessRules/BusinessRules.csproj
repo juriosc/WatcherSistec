@@ -57,6 +57,7 @@
     <Compile Include="brGeneral.cs" />
     <Compile Include="brLog.cs" />
     <Compile Include="brLogin.cs" />
+    <Compile Include="brOperador.cs" />
     <Compile Include="brProveedor.cs" />
     <Compile Include="brReportes.cs" />
     <Compile Include="brRuta.cs" />

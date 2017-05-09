@@ -17,6 +17,34 @@ namespace WatcherSistec.Control_Tecnico
             {
                 ListarTipoMantenimiento();
                 Listar_Supervisiones();
+
+                int dia_h, mes_h;
+                string  sdia_h, smes_h;
+
+                dia_h = DateTime.Now.Day;
+                mes_h = DateTime.Now.Month;
+
+                if (dia_h < 10)
+                {
+                    sdia_h = "0" + dia_h.ToString();
+                }
+                else
+                {
+                    sdia_h = dia_h.ToString();
+                }
+
+                if (mes_h < 10)
+                {
+                    smes_h = "0" + mes_h.ToString();
+                }
+                else
+                {
+                    smes_h = mes_h.ToString();
+                }
+
+                //txtFechaDesde.Text = sdia_d + "/" + smes_d + "/" + DateTime.Now.Year.ToString();
+                txtFechaDesde.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
+                txtFechaHasta.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
             }
         }
 
@@ -273,6 +301,31 @@ namespace WatcherSistec.Control_Tecnico
                     }
                 }
             }
+        }
+
+        private void Listar_Grilla_Operador(string User, string Nombre)
+        {
+            brOperador br = new brOperador();
+            List<beOperador> lstListarOperador = br.ListarOperador(User, Nombre);
+            gvOperador.DataSource = lstListarOperador;
+            gvOperador.DataBind();
+        }
+
+        protected void btnBuscarOperador_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Operador(txtUser.Text, txtName.Text);
+        }
+
+        protected void gvOperador_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvOperador.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Operador(txtUser.Text, txtName.Text);
+        }
+
+        protected void btnAceptarOper_Click(object sender, EventArgs e)
+        {
+            txtOperador.Text = gvOperador.Rows[gvOperador.SelectedIndex].Cells[2].Text;
+            txtOperName.Text = HttpUtility.HtmlDecode(gvOperador.Rows[gvOperador.SelectedIndex].Cells[3].Text);
         }
     }
 }

@@ -1448,8 +1448,8 @@
             });
 
             $(document).ready(function () {
-                $('#ContentPlaceHolder1_txtFechaP').datetimepicker();
-                $('#ContentPlaceHolder1_txtFechaV').datetimepicker();
+                $('#ContentPlaceHolder1_txtFechaP').datepicker();
+                $('#ContentPlaceHolder1_txtFechaV').datepicker();
             });
             function mostrarPopupSubscriber(titulo, ancho, alto) {
                 $("#tdemergentecerrar").show();

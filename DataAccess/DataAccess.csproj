@@ -51,6 +51,7 @@
     <Compile Include="daFichaTipoMant.cs" />
     <Compile Include="daLog.cs" />
     <Compile Include="daLogin.cs" />
+    <Compile Include="daOperador.cs" />
     <Compile Include="daProveedor.cs" />
     <Compile Include="daReportes.cs" />
     <Compile Include="daRuta.cs" />

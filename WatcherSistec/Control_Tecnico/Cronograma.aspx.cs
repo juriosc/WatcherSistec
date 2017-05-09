@@ -22,7 +22,7 @@ namespace WatcherSistec.Control_Tecnico
                 ComboRuta();
                 ddlRutas.Items.Insert(0, new ListItem("TODOS", "0"));
                 ddlRuta.Items.Insert(0, new ListItem("TODOS", "0"));
-                Bloque_Zona("201412");
+                Bloque_Zona("");
             }
         }
 

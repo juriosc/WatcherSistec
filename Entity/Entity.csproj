@@ -47,6 +47,7 @@
     <Compile Include="beAbonado.cs" />
     <Compile Include="beLog.cs" />
     <Compile Include="beLogin.cs" />
+    <Compile Include="beOperador.cs" />
     <Compile Include="beProveedor.cs" />
     <Compile Include="beReportes.cs" />
     <Compile Include="beRuta.cs" />
