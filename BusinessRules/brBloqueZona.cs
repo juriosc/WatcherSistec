@@ -10,7 +10,7 @@ namespace BusinessRules
 {
     public class brBloqueZona :brGeneral
     {
-        public List<beBloqueZona> ListarBloqueZona(string pCSID)
+        public List<beBloqueZona> ListarBloqueZona(string pCSID, string palarmhistoryidinicial)
         {
             List<beBloqueZona> lbeBloqueZona = null;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -19,7 +19,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daBloqueZona odaBloqueZona = new daBloqueZona();
-                    lbeBloqueZona = odaBloqueZona.ListarBloqueZona(con, pCSID);
+                    lbeBloqueZona = odaBloqueZona.ListarBloqueZona(con, pCSID, palarmhistoryidinicial);
                 }
                 catch (SqlException ex)
                 {

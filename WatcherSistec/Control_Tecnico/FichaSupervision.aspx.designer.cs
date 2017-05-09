@@ -103,6 +103,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Button btnPendiente;
         
         /// <summary>
+        /// UpdatePanel82 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel82;
+        
+        /// <summary>
         /// btnConcluir control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnsms;
+        
+        /// <summary>
+        /// UpdatePanel81 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel81;
+        
+        /// <summary>
+        /// hdfEstadoFicha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfEstadoFicha;
         
         /// <summary>
         /// UpdatePanel8 control.
@@ -328,6 +355,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.ImageButton btnAdicionar;
         
         /// <summary>
+        /// UpdatePanel83 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel83;
+        
+        /// <summary>
         /// TabContainer1 control.
         /// </summary>
         /// <remarks>
@@ -362,15 +398,6 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkSeleccion;
-        
-        /// <summary>
-        /// UpdatePanel64 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel64;
         
         /// <summary>
         /// gvTipoMantenimiento control.

@@ -151,7 +151,7 @@ ul, ol {
             <div id="header">
                 <table style="border-spacing:0px 0px;width:100%">
                     <tr>
-                        <td style="background-color:black; color:White; width:140px; font-weight:bold ">
+                        <td style="background-color:black; color:White; width:140px; ">
                             <ul class="nav">
                                 <li>
                                     <a href="#">CONTROL TÉCNICO</a> 
@@ -163,16 +163,16 @@ ul, ol {
                                                 <li><a href="#" onclick="salir = 0; window.location = '../Control_tecnico/Cronograma.aspx'">Vista de Calendario</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Listado de Tecnicos en Atencion o Sin hora de Salida</a></li>
+                                       <%-- <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Listado de Tecnicos en Atencion o Sin hora de Salida</a></li>
                                         <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Listado de Abonados en  tes mkwn</a></li>
                                         <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Lista de Visitas no Realizadas</a></li>
-                                        <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Problemas técnicos</a></li>
+                                        <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Problemas técnicos</a></li>--%>
                                     </ul>
                                 </li>
                             </ul>
                         </td>
                         
-                        <td style="background-color:black; color:White; width:140px; ">
+                        <%--<td style="background-color:black; color:White; width:140px; ">
                             <ul class="nav">
                                 <li>
                                     <a href="#">SEGURIDAD</a>
@@ -182,9 +182,9 @@ ul, ol {
                                     </ul>
                                 </li>
                             </ul>
-                        </td>
+                        </td>--%>
                         
-                        <td style="background-color:black; color:White; ">
+                        <td style="background-color:black; color:White;">
                              <ul class="nav">
                                  <li>
                                      <a href="#">REPORTE</a> 

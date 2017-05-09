@@ -134,7 +134,12 @@
                     </asp:UpdatePanel>                                            
                 </td>
                  <td style="width:150px">
-                    <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" Width="120px" Height="30px" Enabled="False" OnClick="btnConcluir_Click" />
+                     <asp:UpdatePanel ID="UpdatePanel82" runat="server">
+                         <ContentTemplate>
+                             <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" Width="120px" Height="30px" Enabled="False" OnClick="btnConcluir_Click" />
+                         </ContentTemplate>
+                     </asp:UpdatePanel>
+                    
                 </td>
                 
                 <td style="width:150px">
@@ -155,8 +160,14 @@
                 <td id="col1">
                     <div>
                         
+                        <asp:UpdatePanel ID="UpdatePanel81" runat="server">
+                            <ContentTemplate>
+                                <asp:HiddenField ID="hdfEstadoFicha" runat="server" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
                         <table style="width:100%">
-                            <tr>
+                            <tr>                                
                                 <td>
                                     <fieldset>
                                     <legend>
@@ -338,7 +349,7 @@
 
                                         </td>
                                                  
-                                        <td style="vertical-align: top"  >
+                                        <td style="vertical-align: top">
                                                                 
                                             <asp:UpdatePanel ID="UpdatePanel33" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
@@ -355,8 +366,10 @@
                         <table style="width:100% ;height:100%;">
                             <tr>
                                 <td>
-                                    <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" BorderColor="#DEDEDE" >
-                            <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
+                                    <asp:UpdatePanel ID="UpdatePanel83" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" BorderColor="#DEDEDE" >
+                                                <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                                 <ContentTemplate>
                                     <table style="width:100%">
                                         <tr>
@@ -381,10 +394,8 @@
                                                     </table>
                                                     
                                                 </div>
-                                                <div style="height:120px; overflow:auto">
-                                                    <asp:UpdatePanel ID="UpdatePanel64" runat="server">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
+                                                <div style="height:120px; overflow:auto">                                                    
+                                                    <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
                                                         <Columns>
                                                             <asp:BoundField DataField="TipoMant_ID" HeaderText="Codigo" >
                                                                 <HeaderStyle BackColor="Silver" CssClass="ColumnaOculta" />
@@ -411,10 +422,7 @@
                                                         <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
                                                         <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                                         <SortedDescendingHeaderStyle BackColor="#242121" />
-                                                    </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                
+                                                    </asp:GridView>                                                    
                                                 </div>
                                             </td>
                                         
@@ -449,7 +457,7 @@
                                 </ContentTemplate>
                                 
                             </asp:TabPanel>
-                            <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="SEÑALES ESPECIALES">
+                                                <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="SEÑALES ESPECIALES">
                                 <ContentTemplate>
                                     <div>
                                         <table>
@@ -485,7 +493,9 @@
                                     </div>
                                 </ContentTemplate>
                             </asp:TabPanel>
-                        </asp:TabContainer>
+                                            </asp:TabContainer>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>                                    
                                 </td>
                             </tr>
                         </table>
@@ -983,7 +993,7 @@
                         OBSERVACIÓN
                     </td>
                     <td colspan="4">
-                        <asp:UpdatePanel ID="UpdatePanel21" runat="server" UpdateMode="Conditional" >
+                        <asp:UpdatePanel ID="UpdatePanel21" runat="server">
                             <ContentTemplate>
                                 <asp:TextBox ID="txtUpObservacion" runat="server" TextMode="MultiLine" Height="61px" Width="620px"></asp:TextBox>
                             </ContentTemplate>

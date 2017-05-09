@@ -11,7 +11,7 @@ namespace DataAccess
 {
     public class daBloqueZona
     {
-        public List<beBloqueZona> ListarBloqueZona(SqlConnection con, string pCSID)
+        public List<beBloqueZona> ListarBloqueZona(SqlConnection con, string pCSID, string palarmhistoryidinicial)
         {
             List<beBloqueZona> lbeBloqueZona = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_BLOQUE_ZONA", con);
@@ -20,6 +20,10 @@ namespace DataAccess
             SqlParameter param1 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
             param1.Direction = ParameterDirection.Input;
             param1.Value = pCSID;
+
+            SqlParameter param2 = cmd.Parameters.Add("@alarmhistoryidinicial", SqlDbType.VarChar, 10);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = palarmhistoryidinicial;
 
             SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
 

@@ -31,16 +31,16 @@ namespace WatcherSistec.Control_Tecnico
                     Ficha_Comentario(IdFicha);
 
                     txtID_Ficha.Text = IdFicha;
-                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                 }
                 else
                 {
 
                     beAbonado.FAbonado.Clear();
-
+                    hdfEstadoFicha.Value = "1";
                     ListarTipoMantenimiento();
                     Ficha_Atenciones("");
-                    Bloque_Zona("");
+                    Bloque_Zona("","");
                     Ficha_Abonados("");  
                 }
                 
@@ -100,6 +100,7 @@ namespace WatcherSistec.Control_Tecnico
                     txtObs_Tec.Text = Ficha_Supervision[0].Obs_Tec.ToString();
                     txtPanel.Text = Ficha_Supervision[0].Panel.ToString();
                     txtTelefono.Text = Ficha_Supervision[0].Nro_Telefono.ToString();
+                    hdfEstadoFicha.Value = Ficha_Supervision[0].Estado_Ficha.ToString();
                     //txtInforme.Text = Ficha_Supervision[0].Nro_Informe.ToString();
 
                    //Session["Select_Ficha_Supervision"] = Ficha_Supervision;
@@ -207,11 +208,10 @@ namespace WatcherSistec.Control_Tecnico
         }
 
         
-        private void Bloque_Zona(string csid)
+        private void Bloque_Zona(string csid, string alarmhistoryidinicial)
         {
-            brBloqueZona br = new brBloqueZona();
-            
-            List<beBloqueZona> ListarBloqueZona = br.ListarBloqueZona(csid);
+            brBloqueZona br = new brBloqueZona();            
+            List<beBloqueZona> ListarBloqueZona = br.ListarBloqueZona(csid, alarmhistoryidinicial);
             gvBloqueZonas.DataSource = ListarBloqueZona;
             gvBloqueZonas.DataBind();
         }
@@ -235,6 +235,15 @@ namespace WatcherSistec.Control_Tecnico
         {
             //string script = "mostrarPopupAbonado('Nuevo - Ficha Supervisión - Abonado:',500,235);";
             //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+            txtUpDealercode.Text = "";
+            txtUpDealerName.Text = "";
+            txtUpCsid.Text = "";
+            txtUpSubscriberName.Text = "";
+            txtUpLocalid.Text = "";
+            txtUpLocaldes.Text = "";
+            txtUpObservacion.Text = "";
+            
             Listar_Grilla_Subscriber(txtBDealerCode.Text, txtBCsid.Text, txtBSubscriberName.Text);
             hdfMantEstado.Value = "NUEVO";
         }
@@ -422,14 +431,20 @@ namespace WatcherSistec.Control_Tecnico
         {
             if (Request.QueryString["FichaID"] != null)
             {
-                Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+                if (gvAtenciones.Rows.Count > 0)
+                {
+                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                }
             }
             else
             {
-                if(gvAbonado.Rows.Count>0)
+                if (gvAbonado.Rows.Count > 0)
                 {
-                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
-                }                    
+                    if (gvAtenciones.Rows.Count > 0)
+                    {
+                        Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                    }
+                }
 
             }
         }
@@ -836,8 +851,8 @@ namespace WatcherSistec.Control_Tecnico
                 men = "La ficha se registro correctamente";
             }
 
-            string script = "alert('Mensaje:  " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            //string script = "alert('Mensaje:  " + men + "');";
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
 
             ////////////
 
@@ -846,8 +861,8 @@ namespace WatcherSistec.Control_Tecnico
             Ficha_Atenciones(txtID_Ficha.Text);
             tmrRecepSeniales.Enabled = false;
 
-            string script2 = "alert('Mensaje:  " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+            //string script2 = "alert('Mensaje:  " + men + "');";
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
         }
 
