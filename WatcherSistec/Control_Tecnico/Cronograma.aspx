@@ -1448,9 +1448,10 @@
             });
 
             $(document).ready(function () {
-                $('#ContentPlaceHolder1_txtFechaP').datepicker();
-                $('#ContentPlaceHolder1_txtFechaV').datepicker();
+                $('#ContentPlaceHolder1_txtFechaP').datetimepicker();
+                $('#ContentPlaceHolder1_txtFechaV').datetimepicker();
             });
+
             function mostrarPopupSubscriber(titulo, ancho, alto) {
                 $("#tdemergentecerrar").show();
                 $("#fondoemergente").css('display', 'block');

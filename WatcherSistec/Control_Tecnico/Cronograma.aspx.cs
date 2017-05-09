@@ -153,8 +153,8 @@ namespace WatcherSistec.Control_Tecnico
             txtNewDealerDesc.Text = "";
             txtNewAbon.Text = "";
             txtNewAbonDesc.Text = "";
-            txtFechaP.Text = "";
-            txtFechaV.Text = "";
+            //txtFechaP.Text = "";
+            //txtFechaV.Text = "";
             txtFicha.Text = "";
 
             // Para limpiar Grilla_TipoMant
