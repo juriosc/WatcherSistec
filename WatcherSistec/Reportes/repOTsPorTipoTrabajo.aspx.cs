@@ -17,7 +17,34 @@ namespace WatcherSistec.Reportes
             if (!IsPostBack)
             {
                 ListarTipoMantenimiento();
-                Listar_Supervisiones();
+                Listar_Reporte();
+
+                int dia_h, mes_h;
+                string  sdia_h, smes_h;
+
+                dia_h = DateTime.Now.Day;
+                mes_h = DateTime.Now.Month;
+
+                if (dia_h < 10)
+                {
+                    sdia_h = "0" + dia_h.ToString();
+                }
+                else
+                {
+                    sdia_h = dia_h.ToString();
+                }
+
+                if (mes_h < 10)
+                {
+                    smes_h = "0" + mes_h.ToString();
+                }
+                else
+                {
+                    smes_h = mes_h.ToString();
+                }
+
+                txtFechaDesde.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
+                txtFechaHasta.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
             }
         }
         private void ListarTipoMantenimiento()
@@ -35,61 +62,67 @@ namespace WatcherSistec.Reportes
             ListarTipoMantenimiento();
         }
 
-        private void Listar_Supervisiones()
+        private void Listar_Reporte()
         {
-            brSupervisiones br = new brSupervisiones();
+            brReportes br = new brReportes();
+            string BeginDate, EndDate, Mant = "" ;
 
-            gvSupervisiones.DataBind();
-        }
-        protected void gvSupervisiones_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName.Equals("Ver"))
+            BeginDate = txtFechaDesde.Text;
+            EndDate = txtFechaHasta.Text;
+
+            foreach (GridViewRow row in gvTipoMantenimiento.Rows)
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvSupervisiones.Rows[index];
+                CheckBox check = row.FindControl("chkSel") as CheckBox;
 
-                string pFichaID = row.Cells[1].Text.ToString();
-                Response.Redirect("../Control_Tecnico/FichaSupervision.aspx?FichaID=" + pFichaID);
+                beTipoMant P = new beTipoMant();
+                string strError = string.Empty;
+
+                if (check.Checked)
+                {
+                    Mant = Mant + row.Cells[0].Text + ",";
+                }
             }
+            int lmant = Mant.Length;
+            if (lmant > 0) { Mant = Mant.Substring(0, lmant - 1); }
 
+            List<beReportes> lbeReportes = br.ListarReporte_xTipoTrabajo(BeginDate, EndDate, Mant);
 
-            if (e.CommandName.Equals("Modificar"))
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvSupervisiones.Rows[index];
-
-                string pFichaID = row.Cells[1].Text.ToString();
-                Response.Redirect("../Control_Tecnico/FichaSupervision.aspx?FichaID=" + pFichaID);
-            }
-        }
-
-        protected void gvSupervisiones_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvSupervisiones.PageIndex = e.NewPageIndex;
-            Listar_Supervisiones();
-        }
-
-        private void Listar_Grilla_Subscriber()
-        {
-            brSubscriber br = new brSubscriber();
-            //  List<beSubscriber> lstListarSubscriber = br.ListarSubscriber(subscribername, dealername, addressStreet);
-
-        }
-        protected void gvSubscriber_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-            Listar_Grilla_Subscriber();
-
+            gvReporte.DataSource = lbeReportes;
+            gvReporte.DataBind();
         }
 
         protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
         {
-            Listar_Supervisiones();
+            Listar_Reporte();
         }
 
-        protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
+        protected void gvReporte_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            Response.Redirect("../Control_Tecnico/FichaSupervision.aspx");
+            gvReporte.PageIndex = e.NewPageIndex;
+            Listar_Reporte();
+        }
+
+        protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSeleccion.Checked)
+            {
+                foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                {
+                    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                    check.Checked = true;
+                }
+            }
+            else
+            {
+                if (chkSeleccion.Checked == false)
+                {
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Checked = false;
+                    }
+                }
+            }
         }
     }
 }

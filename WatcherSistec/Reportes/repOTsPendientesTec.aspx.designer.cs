@@ -31,15 +31,6 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaIni;
         
         /// <summary>
-        /// txtFechaIni_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaIni_CalendarExtender;
-        
-        /// <summary>
         /// UpdatePanel7 control.
         /// </summary>
         /// <remarks>
@@ -58,13 +49,22 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
         
         /// <summary>
-        /// txtFechaFin_CalendarExtender control.
+        /// UpdatePanel76 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaFin_CalendarExtender;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel76;
+        
+        /// <summary>
+        /// chkSeleccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSeleccion;
         
         /// <summary>
         /// UpdatePanel42 control.
@@ -83,24 +83,6 @@ namespace WatcherSistec.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTipoMantenimiento;
-        
-        /// <summary>
-        /// btnMarcar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMarcar;
-        
-        /// <summary>
-        /// btnDesmarcar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDesmarcar;
         
         /// <summary>
         /// UpdatePanel3 control.

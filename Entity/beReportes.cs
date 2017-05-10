@@ -23,5 +23,6 @@ namespace Entity
         public string b_completado { get; set; }
         public string DealerName { get; set; }
         public string ProvName { get; set; }
+        public string Observaciones { get; set; }
     }
 }

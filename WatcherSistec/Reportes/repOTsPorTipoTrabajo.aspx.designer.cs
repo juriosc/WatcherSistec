@@ -13,58 +13,58 @@ namespace WatcherSistec.Reportes {
     public partial class repOTsPorTipoTrabajo {
         
         /// <summary>
-        /// UpdatePanel22 control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel22;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// txtFechaIni control.
+        /// txtFechaDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaIni;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
         
         /// <summary>
-        /// txtFechaIni_CalendarExtender control.
+        /// UpdatePanel5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaIni_CalendarExtender;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
         
         /// <summary>
-        /// UpdatePanel7 control.
+        /// txtFechaHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel7;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
         
         /// <summary>
-        /// txtFechaFin control.
+        /// UpdatePanel76 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel76;
         
         /// <summary>
-        /// txtFechaFin_CalendarExtender control.
+        /// chkSeleccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaFin_CalendarExtender;
+        protected global::System.Web.UI.WebControls.CheckBox chkSeleccion;
         
         /// <summary>
         /// UpdatePanel42 control.
@@ -83,24 +83,6 @@ namespace WatcherSistec.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTipoMantenimiento;
-        
-        /// <summary>
-        /// btnMarcar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMarcar;
-        
-        /// <summary>
-        /// btnDesmarcar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDesmarcar;
         
         /// <summary>
         /// UpdatePanel11 control.
@@ -148,13 +130,13 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
         
         /// <summary>
-        /// btnNuevo control.
+        /// btnExportar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnNuevo;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportar;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -166,12 +148,12 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// gvSupervisiones control.
+        /// gvReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSupervisiones;
+        protected global::System.Web.UI.WebControls.GridView gvReporte;
     }
 }

@@ -4,16 +4,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div>
-     <table style="width:100%">
-           <tr>
+    <div>
+        <table style="width:100%">
+            <tr>
                 <td class="CabeceraBusqueda">
                     &nbsp; DATOS DE BUSQUEDA:
                 </td>
             </tr>
-       </table>
-     <table style="width:100%">
-              <tr>
+        </table>
+
+        <table style="width:100%">
+            <tr>
                 <td style="width:11%">
                     <fieldset style="height: 110px; margin-bottom:9px">
                         <legend>
@@ -23,15 +24,10 @@
                             <tr>
                                 <td class="Etiqueta">Desde</td>
                                 <td style="text-align:right">
-                                    <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
+                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaIni" runat="server" style="height:16px ;width:80px"></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtFechaIni_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaIni" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
+                                            <asp:TextBox ID="txtFechaDesde" runat="server" ReadOnly="true" ></asp:TextBox>
                                         </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
@@ -43,22 +39,17 @@
                             <tr>
                                 <td class="Etiqueta">Hasta</td>
                                 <td style="text-align:right">
-                                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
+                                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional" >
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaFin" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtFechaFin_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaFin" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
+                                            <asp:TextBox ID="txtFechaHasta" runat="server" ReadOnly="true"></asp:TextBox>
                                         </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
-                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
-                     </td>
-                <td style="width:27%">
+                </td>
+                <td style="width:40%">
                     <fieldset style="padding-top: 0em;padding-bottom: 0em;height: 125px;">
                         <table style="width:100%; height:100%">
                             <tr>
@@ -69,21 +60,24 @@
                                                 <td>
                                                     Tipo Mantenimiento
                                                 </td>
+                                                <td>
+
+                                                </td>
+                                                <td style="text-align:right;padding-right:16px;">
+                                                    <asp:UpdatePanel ID="UpdatePanel76" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:CheckBox ID="chkSeleccion" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccion_CheckedChanged" />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </td>
                                             </tr>
-                                        </table>
-                                                    
+                                        </table>           
                                     </div>
                                     <div style="height:65px; overflow:auto">
-                                        <asp:UpdatePanel ID="UpdatePanel42" runat="server" UpdateMode="Conditional">
+                                        <asp:UpdatePanel ID="UpdatePanel42" runat="server" >
                                             <ContentTemplate>
-                                                <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" >
+                                                <asp:GridView ID="gvTipoMantenimiento" runat="server" AutoGenerateColumns="False" CellPadding="4" onpageindexchanging="gvTipoMantenimiento_PageIndexChanging" SkinID="gvwBusqueda" CssClass="mGrid" ShowHeader="False" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" >
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="...">
-                                                            <ItemTemplate>
-                                                                <asp:CheckBox ID="chkSel" runat="server" />
-                                                            </ItemTemplate>
-                                                            <HeaderStyle BackColor="Silver" />
-                                                        </asp:TemplateField>
                                                         <asp:BoundField DataField="TipoMant_ID" HeaderText="Codigo" >
                                                             <HeaderStyle BackColor="Silver" CssClass="ColumnaOculta" />
                                                             <ItemStyle CssClass="ColumnaOculta" />
@@ -91,114 +85,84 @@
                                                         <asp:BoundField DataField="TipoMant_Des" HeaderText="Tipo Mantenimiento" >
                                                             <HeaderStyle BackColor="Silver" />
                                                         </asp:BoundField>
+                                                        <asp:TemplateField HeaderText="...">
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="chkSel" runat="server" />
+                                                            </ItemTemplate>
+                                                            <HeaderStyle BackColor="Silver" />
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                        </asp:TemplateField>
                                                     </Columns>
-                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
-                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White"  />
-                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                    <PagerStyle BackColor="Black" ForeColor="White" HorizontalAlign="Center" Font-Bold="True" Font-Size="8pt"  />
-                                                    <RowStyle BackColor="White" Font-Size="8pt" />
-                                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                                    <SortedAscendingHeaderStyle BackColor="Gray" />
-                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                                    <FooterStyle BackColor="#CCCC99" HorizontalAlign="Center" ForeColor="Black" />
+                                                    <HeaderStyle BackColor="#333333" Font-Size="9pt"  ForeColor="White" Font-Bold="True"  />
+                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" NextPageText="&gt;" PreviousPageText="&lt;" />
+                                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" Font-Size="8pt"  />
+                                                    <RowStyle Font-Size="8pt" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                                    <SortedDescendingHeaderStyle BackColor="#242121" />
                                                 </asp:GridView>
                                             </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
-                                            </Triggers>
                                         </asp:UpdatePanel>
                                     </div>
                                 </td>
                             </tr>
-                             <tr>
+                        </table>
+                    </fieldset>
+                </td>
+                <td style="padding-left:15%">
+                    <fieldset style="width:50px">
+                        <table style="width:100%">
+                            <tr>
                                 <td>
-                                    <table style="width:100%">
-                                        <tr>
-                                            <td style="width:80%">
-                                                <asp:Button ID="btnMarcar" runat="server" Text="Marcar Todos" CssClass="btn btn-primary" />
-                                            </td>
-                                            <td>
-                                                <asp:Button ID="btnDesmarcar" runat="server" Text="Desmarcar Todos" CssClass="btn btn-primary"/>
-                                            </td>
-                                        </tr>
-                                    </table >
-                                
-       
-                                 <table style="width:100%">
-                                  <tr>
-                                    <td>
                                     <asp:UpdatePanel ID="UpdatePanel11" runat="server">
                                         <ContentTemplate>
                                             <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="../Images/Limpiar.png" CssClass="ImagenBoton" OnClientClick="Limpiar();" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                    </td>
-                                    <td>
+                                </td>
+                                <td>
                                     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                         <ContentTemplate>
                                             <asp:ImageButton ID="btnBuscar" runat="server" ImageUrl="../Images/binocular.png" CssClass="ImagenBoton" OnClick="btnBuscar_Click"/>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                    </td>
-                                    <td>
-                                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional">
+                                </td>
+                                <td>
+                                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" >
                                         <ContentTemplate>
-                                            <asp:ImageButton ID="btnNuevo" ToolTip="Nuevo" runat="server" ImageUrl="../Images/Mantenimiento/new_16.ico" CssClass="ImagenBoton" OnClick="btnNuevo_Click"/>
+                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>                                                
-                                    </td>
-                                    </tr>
-                                   </table>
                                 </td>
-                            </tr>                      
-                                 
-                    </table>
+                            </tr>
+                        </table>
                     </fieldset>
-                    </td>              
-
-    </table>
-   </div>
-
-
-     <div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div>
         <fieldset style="padding:0 0 0 0">
             <table style="width:100%">
                 <tr>
                     <td style="text-align:center;">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:GridView ID="gvSupervisiones"  runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvSupervisiones_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowCommand="gvSupervisiones_RowCommand">
+                                <asp:GridView ID="gvReporte" Width="100%" runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvReporte_PageIndexChanging" ShowHeaderWhenEmpty="True">
                                     <Columns>
-                                        <asp:BoundField HeaderText="Fecha_Registro" DataField="Fecha_Registro" />
-                                        <asp:BoundField HeaderText="ID_Ficha" DataField="ID_Ficha" />
-                                        <asp:BoundField HeaderText="ID_Atencion" DataField="ID_Atencion" />
-                                        <asp:BoundField HeaderText="Dealer" DataField="Dealer" />
-                                        <asp:BoundField HeaderText="CSID" DataField="CSID" />
-                                        <asp:BoundField HeaderText="SubscriberName" DataField="SubscriberName" />
-                                        <asp:BoundField HeaderText="ProveedorID" DataField="ProveedorID" />
-                                        <asp:BoundField HeaderText="PersonalID" DataField="PersonalID" />
-                                        <asp:BoundField HeaderText="Nombres" DataField="Nombres" />
+                                        <asp:BoundField HeaderText="Fecha" DataField="Fecha_Registro" />
+                                        <asp:BoundField HeaderText="Tipo. Mant" DataField="TipoMantenimiento" />
+                                        <asp:BoundField HeaderText="Distribuidor" DataField="Dealer" />
+                                        <asp:BoundField HeaderText="Abonado" DataField="CSID" />
+                                        <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
+                                        <asp:BoundField HeaderText="Proveedor" DataField="ProvName" />
+                                        <asp:BoundField HeaderText="Tecnico" DataField="Nombres" />
                                         <asp:BoundField HeaderText="Usuario" DataField="Usuario" />
-                                        <asp:BoundField HeaderText="Estado_Inicio" DataField="Estado_Inicio" />
-                                        <asp:BoundField HeaderText="Estado_Termino" DataField="Estado_Termino" />
-                                        <asp:BoundField HeaderText="Cod_Atencion" DataField="Cod_Atencion" />
-                                        <asp:BoundField HeaderText="Obs_Ficha" DataField="Obs_Ficha" />
-                                        <asp:BoundField HeaderText="TipoMantenimiento" DataField="TipoMantenimiento" />
-                                        <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                                        <asp:BoundField HeaderText="Estado_Cod" DataField="Estado_Cod" />
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:ImageButton ID="btnVer" runat="server" ImageUrl="~/Images/Mantenimiento/view.png" CommandName="Ver" ToolTip="VER"
-                                                    CausesValidation="false" CommandArgument="<%# ((GridViewRow)Container).RowIndex %>" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="../Images/Mantenimiento/modify_16.ico" CommandName="Modificar" ToolTip="MODIFICAR" 
-                                                    CausesValidation="false" CommandArgument="<%# ((GridViewRow)Container).RowIndex %>" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                        <asp:BoundField HeaderText="Observaciones" DataField="Observaciones" />
                                     </Columns>
                                 
                                     <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
@@ -223,22 +187,14 @@
     </div>
     <script type="text/javascript">
 
-        $(function () {
-            $("#emergente").draggable({ handle: 'div.undraggable' });
-            $("#emerLocalSubscriber").draggable({ handle: 'div.undraggable' });
+        $(document).ready(function () {
+            $('#ContentPlaceHolder1_txtFechaDesde').datepicker();
+            $('#ContentPlaceHolder1_txtFechaHasta').datepicker();
         });
 
-        function mostrarPopupSubscriber(titulo, ancho, alto) {
-            $("#tdemergentecerrar").show();
-            $("#fondoemergente").css('display', 'block');
-            $("#titcabemergente").html(titulo);
-            mostrarCentrarDiv('emergente', ancho, alto);
-        }
-
-        function SalirPopupSubscriber() {
-            $("#fondoemergente").hide();
-            $("#emergente").hide();
-        }
+        $(function () {
+            $("#emergente").draggable({ handle: 'div.undraggable' });
+        });
 
         function mostrarCentrarDiv(iddiv, w, h) {
             var striddiv = "#" + iddiv;

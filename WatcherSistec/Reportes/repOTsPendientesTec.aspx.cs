@@ -106,7 +106,7 @@ namespace WatcherSistec.Reportes
 
                 if (check.Checked)
                 {
-                    Mant = Mant + row.Cells[1].Text + ",";
+                    Mant = Mant + row.Cells[0].Text + ",";
                 }
             }
             int lmant = Mant.Length;
@@ -230,6 +230,29 @@ namespace WatcherSistec.Reportes
             txtTecName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text);
             txtProveedor.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
             txtProveName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text);
+        }
+
+        protected void chkSeleccion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSeleccion.Checked)
+            {
+                foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                {
+                    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                    check.Checked = true;
+                }
+            }
+            else
+            {
+                if (chkSeleccion.Checked == false)
+                {
+                    foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                    {
+                        CheckBox check = fila.FindControl("chkSel") as CheckBox;
+                        check.Checked = false;
+                    }
+                }
+            }
         }
     }
 }
