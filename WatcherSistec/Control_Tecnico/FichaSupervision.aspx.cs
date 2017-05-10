@@ -36,17 +36,23 @@ namespace WatcherSistec.Control_Tecnico
                     {
                         Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                     }
+
                     
                 }
                 else
                 {
-
                     beAbonado.FAbonado.Clear();
                     hdfEstadoFicha.Value = "1";
                     ListarTipoMantenimiento();
                     Ficha_Atenciones("");
                     Bloque_Zona("","");
-                    Ficha_Abonados("");  
+                    Ficha_Abonados("");
+
+                    btnGuardar.Enabled = true;
+                    btnPendiente.Enabled = false;
+                    btnCancelar.Enabled = false;
+                    btnConcluir.Enabled = false;
+
                 }
                 
                 
@@ -107,8 +113,38 @@ namespace WatcherSistec.Control_Tecnico
                     txtTelefono.Text = Ficha_Supervision[0].Nro_Telefono.ToString();
                     hdfEstadoFicha.Value = Ficha_Supervision[0].Estado_Ficha.ToString();
                     //txtInforme.Text = Ficha_Supervision[0].Nro_Informe.ToString();
-
                    //Session["Select_Ficha_Supervision"] = Ficha_Supervision;
+
+                    switch (Ficha_Supervision[0].Estado_Ficha.ToString())
+                    {
+                        case "1": //PENDIENTE
+                            btnGuardar.Enabled = false;
+                            btnPendiente.Enabled = true;
+                            btnCancelar.Enabled = true;
+                            btnConcluir.Enabled = true;
+                            break;
+                        case "2"://EN ATENCION
+                            btnGuardar.Enabled = false;
+                            btnPendiente.Enabled = true;
+                            btnCancelar.Enabled = true;
+                            btnConcluir.Enabled = true;
+                            break;
+                        case "3"://CONCLUIDO
+                            btnGuardar.Enabled = false;
+                            btnPendiente.Enabled = false;
+                            btnCancelar.Enabled = false;
+                            btnConcluir.Enabled = false;
+                            break;
+                        case "4"://CANCELADO
+                            btnGuardar.Enabled = false;
+                            btnPendiente.Enabled = false;
+                            btnCancelar.Enabled = false;
+                            btnConcluir.Enabled = false;
+                            break;
+
+                    }
+
+
 
                 }
             }
@@ -707,6 +743,8 @@ namespace WatcherSistec.Control_Tecnico
                 lblTiempoFaltante.Text = "59";
             }
 
+
+            
             string UFilaID_Atencion = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[1].Text.ToString();
             string UFilaCSID = gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[2].Text.ToString();
             Int64 UFilaAlarmHistoryID_Inicial = Convert.ToInt64(gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text);

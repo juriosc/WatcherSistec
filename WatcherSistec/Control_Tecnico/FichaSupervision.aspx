@@ -731,15 +731,15 @@
                         </table>
                         <table style="width:100%;height:280px; border: 1px solid #DEDEDE;border-radius:3px">
                         <tr>
-                            <td >
+                            <td style="display:none">
                                 <asp:HyperLink ID="HyperLink1" runat="server" CssClass="imjusttext">Trabajos Pendiente: GENERALES</asp:HyperLink>
                             </td>
                             <td style="width:20px">&nbsp;</td>
-                            <td >
+                            <td style="display:none">
                                 <asp:HyperLink ID="HyperLink2" runat="server" CssClass="imjusttext">Observaciones</asp:HyperLink>
                             </td>
                             <td style="width:150px">&nbsp;</td>
-                            <td>
+                            <td style="display:none">
                                 <asp:Button ID="btnHistorial" runat="server" CssClass="btn btn-primary" Text="Historial de Señales" />
                             </td>
                         </tr>
