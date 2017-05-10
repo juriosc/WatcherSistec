@@ -1687,6 +1687,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Button btnCancelarUpTecnico;
         
         /// <summary>
+        /// UpdatePanel64 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel64;
+        
+        /// <summary>
         /// txtBsProveedorName control.
         /// </summary>
         /// <remarks>
@@ -1694,6 +1703,15 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBsProveedorName;
+        
+        /// <summary>
+        /// UpdatePanel84 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel84;
         
         /// <summary>
         /// txtBNombres control.

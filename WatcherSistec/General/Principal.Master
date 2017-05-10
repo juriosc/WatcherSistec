@@ -106,8 +106,7 @@ ul, ol {
 
     <script type="text/javascript">
         document.onkeydown = function (evt) { return (evt ? evt.which : event.keyCode) != 13; }
-
-             </script> 
+    </script> 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

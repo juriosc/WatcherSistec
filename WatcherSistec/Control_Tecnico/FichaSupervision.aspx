@@ -248,7 +248,7 @@
 
                                             </td>
                                             <td style="vertical-align:top" >
-                                                <asp:UpdatePanel ID="UpdatePanel31" runat="server">
+                                                <asp:UpdatePanel ID="UpdatePanel31" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
                                                         <asp:ImageButton ID="btnAgregarTecnico" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarEmergenteUpTecnico('AGREGANDO TÉCNICO ...',650,190);" OnClick="btnAgregarTecnico_Click"/>
                                                     </ContentTemplate>
@@ -366,9 +366,9 @@
                         <table style="width:100% ;height:100%;">
                             <tr>
                                 <td>
-                                    <asp:UpdatePanel ID="UpdatePanel83" runat="server">
+                                    <asp:UpdatePanel ID="UpdatePanel83" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" BorderColor="#DEDEDE" >
+                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="100%" Width="100%" BorderColor="#DEDEDE" >
                                                 <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                                 <ContentTemplate>
                                     <table style="width:100%">
@@ -541,7 +541,7 @@
                                                     <ItemStyle CssClass="ColumnaOculta" />
                                                     </asp:BoundField>
                                                     <asp:BoundField DataField="Estado_Inicio_Des" HeaderText="Estado Inicio" />
-                                                    <asp:BoundField HeaderText="Fecha Fin" DataField="Fecha_Termino"/>
+                                                    <asp:BoundField HeaderText="Fecha Fin" DataField="Fecha_Termino" HtmlEncode="False"/>
                                                     <asp:BoundField HeaderText="Est Fin" DataField="Estado_Termino">
                                                     <HeaderStyle CssClass="ColumnaOculta" />
                                                     <ItemStyle CssClass="ColumnaOculta" />
@@ -958,7 +958,7 @@
                         </asp:UpdatePanel>
                     </td>
                     <td>
-                        <asp:UpdatePanel ID="UpdatePanel78" runat="server">
+                        <asp:UpdatePanel ID="UpdatePanel78" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:Button ID="btnListarAbonados" runat="server" Text="..." onclientClick="mostrarEmerListarAbonados('Lista de Abonados','750','420');" OnClick="btnListarTecnicos_Click"/>
                             </ContentTemplate>
@@ -993,7 +993,7 @@
                         OBSERVACIÓN
                     </td>
                     <td colspan="4">
-                        <asp:UpdatePanel ID="UpdatePanel21" runat="server">
+                        <asp:UpdatePanel ID="UpdatePanel21" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:TextBox ID="txtUpObservacion" runat="server" TextMode="MultiLine" Height="61px" Width="620px"></asp:TextBox>
                             </ContentTemplate>
@@ -1644,6 +1644,7 @@
     </div>
 
     <div id="emerUpTecnico" class="ventana" >
+        
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
 				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
@@ -1700,7 +1701,7 @@
                                                             </asp:UpdatePanel> 
                                                         </td>
                                                         <td>
-                                                            <asp:UpdatePanel ID="UpdatePanel76" runat="server">
+                                                            <asp:UpdatePanel ID="UpdatePanel76" runat="server" UpdateMode="Conditional">
                                                                 <ContentTemplate>
                                                                     <asp:Button ID="btnListarTecnicos" runat="server" Text="..." onclientClick="mostrarPopupTecnico('Lista de Técnicos','700','300');" OnClick="btnListarTecnicos_Click"/>
                                                                 </ContentTemplate>
@@ -1715,6 +1716,9 @@
                                                                 <ContentTemplate>
                                                                     <asp:TextBox ID="txtUpObs_Tec" runat="server" Width="100%" Height="55px" TextMode="MultiLine"></asp:TextBox>
                                                                 </ContentTemplate>
+                                                                <Triggers>
+                                                                    <asp:AsyncPostBackTrigger ControlID="btnAgregarTecnico" EventName="Click" />
+                                                                </Triggers>
                                                             </asp:UpdatePanel>
                                                         </td>
                                                     </tr>
@@ -1771,16 +1775,25 @@
                                         Proveedor
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtBsProveedorName" runat="server" onkeyup="ListarTecnico();" ></asp:TextBox>
+                                        <asp:UpdatePanel ID="UpdatePanel64" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtBsProveedorName" runat="server" onkeyup="ListarTecnico();" ></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>                                        
                                     </td>
                                     <td>
                                         Técnico
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtBNombres" runat="server" onkeyup="ListarTecnico();"></asp:TextBox>
+                                        <asp:UpdatePanel ID="UpdatePanel84" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtBNombres" runat="server" onkeyup="ListarTecnico();"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                        
                                     </td>
                                     <td>
-                                        <asp:UpdatePanel ID="UpdatePanel11" runat="server">
+                                        <asp:UpdatePanel ID="UpdatePanel11" runat="server" UpdateMode="Conditional">
                                             <ContentTemplate>
                                                 <asp:Button ID="btnListarTecnico" runat="server" Text="Buscar" OnClick="btnListarTecnico_Click" style="display:none;" />
                                             </ContentTemplate>
