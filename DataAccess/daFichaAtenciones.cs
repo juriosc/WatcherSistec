@@ -150,8 +150,8 @@ namespace DataAccess
         {
 
             bool registro = false;
-            
-            SqlCommand cmd = new SqlCommand("WCT_Actualizar_Ficha_Atencion", con);
+
+            SqlCommand cmd = new SqlCommand("sp_WCT_Actualizar_Ficha_Atencion", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);

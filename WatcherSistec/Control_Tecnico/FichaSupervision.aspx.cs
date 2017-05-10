@@ -31,7 +31,12 @@ namespace WatcherSistec.Control_Tecnico
                     Ficha_Comentario(IdFicha);
 
                     txtID_Ficha.Text = IdFicha;
-                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                    
+                    if(gvAtenciones.Rows.Count>0)
+                    {
+                        Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                    }
+                    
                 }
                 else
                 {
@@ -184,6 +189,18 @@ namespace WatcherSistec.Control_Tecnico
             brFichaAtenciones brFA = new brFichaAtenciones();
             gvAtenciones.DataSource = brFA.ListarFichaAtencion(ID_Ficha);
             gvAtenciones.DataBind();
+
+            if ((gvAtenciones.Rows.Count)>=1)
+            {
+
+                if (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[7].Text.Trim().Equals("&nbsp;")) 
+                {
+                    btnIniciar.Enabled = false;
+                    btnDetener.Enabled = true;
+                }
+            }
+
+
         }
 
         protected void gvComentario_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -585,7 +602,16 @@ namespace WatcherSistec.Control_Tecnico
             
             IFormatProvider culture = new CultureInfo("es-PE", true);
             DateTime fechaI = DateTime.ParseExact(txtFechaIngreso.Text, "dd/MM/yyyy HH:mm", culture);
-            DateTime fechaS = DateTime.ParseExact(txtFechaSalida.Text, "dd/MM/yyyy HH:mm", culture);
+            
+            DateTime fechaS = DateTime.ParseExact("01/01/1900 00:00", "dd/MM/yyyy HH:mm", culture);
+
+            if (txtFechaSalida.Text.Trim().Length>0)
+            {
+                fechaS = DateTime.ParseExact(txtFechaSalida.Text, "dd/MM/yyyy HH:mm", culture);
+            }
+            
+                
+            
             
             //GUARDANDO FICHA SUPÈRVISION
             bool updated = br.InsertarFichaSupervision(
@@ -836,11 +862,11 @@ namespace WatcherSistec.Control_Tecnico
             }
 
 
-            //CUANDO SE TERMINA LA ATENCION, EL ESTADO DE LA FICHA SE PONE EN PENDIENTE
+            //CUANDO SE TERMINA LA ATENCION, EL ESTADO DE LA FICHA SE REGISTRA SEGUN EL ESTADO DEL TERMINO DE LA ATENCION
 
             brFichaSupervision br = new brFichaSupervision();            
 
-            bool updated = br.ActualizarFichaSupervision(1, Convert.ToInt32(txtID_Ficha.Text));
+            bool updated = br.ActualizarFichaSupervision(Estado, Convert.ToInt32(txtID_Ficha.Text));
 
             if (updated == false)
             {
