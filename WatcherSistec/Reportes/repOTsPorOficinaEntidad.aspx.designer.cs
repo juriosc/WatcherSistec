@@ -31,15 +31,6 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaIni;
         
         /// <summary>
-        /// txtFechaIni_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaIni_CalendarExtender;
-        
-        /// <summary>
         /// UpdatePanel7 control.
         /// </summary>
         /// <remarks>
@@ -58,157 +49,148 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
         
         /// <summary>
-        /// txtFechaFin_CalendarExtender control.
+        /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFechaFin_CalendarExtender;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
-        /// UpdatePanel18 control.
+        /// txtDealercode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel18;
+        protected global::System.Web.UI.WebControls.TextBox txtDealercode;
         
         /// <summary>
-        /// txtProveedor control.
+        /// UpdatePanel12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProveedor;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel12;
         
         /// <summary>
-        /// UpdatePanel19 control.
+        /// txtDealerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel19;
+        protected global::System.Web.UI.WebControls.TextBox txtDealerName;
         
         /// <summary>
-        /// txtProveName control.
+        /// UpdatePanel14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProveName;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel14;
         
         /// <summary>
-        /// UpdatePanel20 control.
+        /// btnBusCodDistribuidor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel20;
+        protected global::System.Web.UI.WebControls.Button btnBusCodDistribuidor;
         
         /// <summary>
-        /// btnBusCodProveedor control.
+        /// UpdatePanel15 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusCodProveedor;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel15;
         
         /// <summary>
-        /// UpdatePanel21 control.
+        /// btnPopupDistribuidor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel21;
+        protected global::System.Web.UI.WebControls.ImageButton btnPopupDistribuidor;
         
         /// <summary>
-        /// btnPopupProveedor control.
+        /// UpdatePanel10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnPopupProveedor;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel10;
         
         /// <summary>
-        /// UpdatePanel23 control.
+        /// txtCsid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel23;
+        protected global::System.Web.UI.WebControls.TextBox txtCsid;
         
         /// <summary>
-        /// txtTecnico control.
+        /// UpdatePanel8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTecnico;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel8;
         
         /// <summary>
-        /// UpdatePanel25 control.
+        /// txtSubscriberName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel25;
+        protected global::System.Web.UI.WebControls.TextBox txtSubscriberName;
         
         /// <summary>
-        /// txtTecName control.
+        /// UpdatePanel9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTecName;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel9;
         
         /// <summary>
-        /// UpdatePanel26 control.
+        /// btnBusCodAbonado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel26;
+        protected global::System.Web.UI.WebControls.Button btnBusCodAbonado;
         
         /// <summary>
-        /// btnBusCodTecnico control.
+        /// UpdatePanel13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusCodTecnico;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel13;
         
         /// <summary>
-        /// UpdatePanel29 control.
+        /// btnPopupAbonado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel29;
-        
-        /// <summary>
-        /// btnPopupTecnico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnPopupTecnico;
+        protected global::System.Web.UI.WebControls.ImageButton btnPopupAbonado;
         
         /// <summary>
         /// UpdatePanel11 control.
@@ -256,13 +238,13 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
         
         /// <summary>
-        /// btnNuevo control.
+        /// btnExportar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnNuevo;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportar;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -274,12 +256,210 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// gvSupervisiones control.
+        /// gvReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSupervisiones;
+        protected global::System.Web.UI.WebControls.GridView gvReporte;
+        
+        /// <summary>
+        /// txtBusOficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBusOficina;
+        
+        /// <summary>
+        /// txtBusDistribuidor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBusDistribuidor;
+        
+        /// <summary>
+        /// txtBusDireccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBusDireccion;
+        
+        /// <summary>
+        /// UpdatePanel39 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel39;
+        
+        /// <summary>
+        /// btnBuscarSubscriber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarSubscriber;
+        
+        /// <summary>
+        /// UpdatePanel40 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel40;
+        
+        /// <summary>
+        /// gvSubscriber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSubscriber;
+        
+        /// <summary>
+        /// UpdatePanel41 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel41;
+        
+        /// <summary>
+        /// btnAceptarSubscriber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarSubscriber;
+        
+        /// <summary>
+        /// btnCancelarSubscriber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarSubscriber;
+        
+        /// <summary>
+        /// UpdatePanel47 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel47;
+        
+        /// <summary>
+        /// txtDealer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDealer;
+        
+        /// <summary>
+        /// UpdatePanel48 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel48;
+        
+        /// <summary>
+        /// txtNameDealer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNameDealer;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// btnBuscarDealer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarDealer;
+        
+        /// <summary>
+        /// UpdatePanel44 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel44;
+        
+        /// <summary>
+        /// gvDealer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDealer;
+        
+        /// <summary>
+        /// UpdatePanel45 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel45;
+        
+        /// <summary>
+        /// btnAceptar_Dealer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptar_Dealer;
+        
+        /// <summary>
+        /// UpdatePanel46 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel46;
+        
+        /// <summary>
+        /// btnCancelar_Dealer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelar_Dealer;
     }
 }

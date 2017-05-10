@@ -170,5 +170,70 @@ namespace DataAccess
             }
             return lbeReportes;
         }
+
+        public List<beReportes> ListarReporte_xOficinaEntidad(SqlConnection con, string pfechad, string pfechah, string pCSID)
+        {
+            List<beReportes> lbeReportes = null;
+
+            SqlCommand cmd = new SqlCommand("sp_WCT_listar_rep_xOficinaEntidad", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@fechad", SqlDbType.VarChar, 10);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = pfechad != "" ? DateTime.ParseExact(pfechad, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+
+            SqlParameter param2 = cmd.Parameters.Add("@fechah", SqlDbType.VarChar, 10);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = pfechah != "" ? DateTime.ParseExact(pfechah, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+
+            SqlParameter param3 = cmd.Parameters.Add("@CSID", SqlDbType.VarChar, 10);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = pCSID.ToUpper();
+
+            SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
+
+            if (drd != null)
+            {
+                int Fecha_Registro = drd.GetOrdinal("Fecha_Registro");
+                int ID_Ficha = drd.GetOrdinal("ID_Ficha");
+                int Dealer = drd.GetOrdinal("Dealer");
+                int DealerName = drd.GetOrdinal("DealerName");
+                int CSID = drd.GetOrdinal("CSID");
+                int SubscriberName = drd.GetOrdinal("SubscriberName");
+                int ProveedorID = drd.GetOrdinal("ProveedorID");
+                int ProvName = drd.GetOrdinal("ProvName");
+                int PersonalID = drd.GetOrdinal("PersonalID");
+                int Nombres = drd.GetOrdinal("Nombres");
+                int Usuario = drd.GetOrdinal("Usuario");
+                int TipoMantenimiento = drd.GetOrdinal("TipoMantenimiento");
+                int Observaciones = drd.GetOrdinal("Observaciones");
+
+                lbeReportes = new List<beReportes>();
+                beReportes obeReportes;
+                while (drd.Read())
+                {
+                    obeReportes = new beReportes();
+                    obeReportes.Fecha_Registro = drd.GetString(Fecha_Registro);
+                    obeReportes.ID_Ficha = drd.GetString(ID_Ficha);
+                    obeReportes.Dealer = drd.GetString(Dealer);
+                    obeReportes.DealerName = drd.GetString(DealerName);
+                    obeReportes.CSID = drd.GetString(CSID);
+                    obeReportes.SubscriberName = drd.GetString(SubscriberName);
+                    obeReportes.ProveedorID = drd.GetString(ProveedorID);
+                    obeReportes.ProvName = drd.GetString(ProvName);
+                    obeReportes.PersonalID = drd.GetString(PersonalID);
+                    obeReportes.Nombres = drd.GetString(Nombres);
+                    obeReportes.Usuario = drd.GetString(Usuario);
+                    obeReportes.TipoMantenimiento = drd.GetString(TipoMantenimiento);
+                    obeReportes.Observaciones = drd.GetString(Observaciones);
+
+                    lbeReportes.Add(obeReportes);
+                }
+
+                drd.Close();
+
+            }
+            return lbeReportes;
+        }
     }
 }

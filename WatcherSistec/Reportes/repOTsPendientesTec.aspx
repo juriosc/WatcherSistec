@@ -30,7 +30,7 @@
                     &nbsp; DATOS DE BUSQUEDA:
                 </td>
             </tr>
-       </table>
+        </table>
         <table style="width:100%">
               <tr>
                 <td class="auto-style1">
@@ -42,9 +42,9 @@
                             <tr>
                                 <td class="Etiqueta">Desde</td>
                                 <td style="text-align:right">
-                                    <asp:UpdatePanel ID="UpdatePanel22" runat="server">
+                                    <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaIni" runat="server" style="height:16px ;width:80px"></asp:TextBox>
+                                            <asp:TextBox ID="txtFechaIni" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -57,9 +57,9 @@
                             <tr>
                                 <td class="Etiqueta">Hasta</td>
                                 <td style="text-align:right">
-                                    <asp:UpdatePanel ID="UpdatePanel7" runat="server">
+                                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaFin" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
+                                            <asp:TextBox ID="txtFechaFin" runat="server" ReadOnly="true" style="height:16px ;width:80px" ></asp:TextBox>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -435,7 +435,11 @@
                                                         <asp:BoundField HeaderText="Distribuidor" DataField="DealerName" />
                                                         <asp:BoundField HeaderText="Abonado" DataField="CSID" />
                                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
-                                                        <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />                                                        
+                                                        <asp:BoundField HeaderText="Dirección" DataField="AddressStreet" />
+                                                        <asp:BoundField HeaderText="DealerCode" DataField="DealerCode" >
+                                                            <HeaderStyle CssClass="ColumnaOculta" />
+                                                            <ItemStyle CssClass="ColumnaOculta" />
+                                                        </asp:BoundField>                                                        
                                                         <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png">
                                                             <ItemStyle HorizontalAlign="Center" />
                                                         </asp:CommandField>

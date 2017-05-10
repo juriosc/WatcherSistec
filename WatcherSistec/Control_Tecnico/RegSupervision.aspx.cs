@@ -42,7 +42,6 @@ namespace WatcherSistec.Control_Tecnico
                     smes_h = mes_h.ToString();
                 }
 
-                //txtFechaDesde.Text = sdia_d + "/" + smes_d + "/" + DateTime.Now.Year.ToString();
                 txtFechaDesde.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
                 txtFechaHasta.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
             }

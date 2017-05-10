@@ -26,7 +26,7 @@
                                 <td style="text-align:right">
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaDesde" runat="server" ReadOnly="true" ></asp:TextBox>
+                                            <asp:TextBox ID="txtFechaDesde" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -41,7 +41,7 @@
                                 <td style="text-align:right">
                                     <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional" >
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaHasta" runat="server" ReadOnly="true"></asp:TextBox>
+                                            <asp:TextBox ID="txtFechaHasta" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </td>
@@ -204,24 +204,6 @@
             var mtop = "-" + (h / 2) + "px";
             $(striddiv).css({ 'width': width, 'height': height, 'left': '50%', 'top': '50%', 'margin-left': mleft, 'margin-top': mtop });
             $(striddiv).css('display', 'block');
-        }
-
-        function Limpiar() {
-            document.getElementById('ContentPlaceHolder1_txtHoraIni').value = "00";
-            document.getElementById('ContentPlaceHolder1_txtMinIni').value = "00";
-            document.getElementById('ContentPlaceHolder1_txtHoraFin').value = "23";
-            document.getElementById('ContentPlaceHolder1_txtMinFin').value = "59";
-            document.getElementById('ContentPlaceHolder1_txtCodAtencion').value = "";
-            document.getElementById('ContentPlaceHolder1_txtDealercode').value = "";
-            document.getElementById('ContentPlaceHolder1_txtDealerName').value = "";
-            document.getElementById('ContentPlaceHolder1_txtCsid').value = "";
-            document.getElementById('ContentPlaceHolder1_txtSubscriberName').value = "";
-            document.getElementById('ContentPlaceHolder1_txtOperador').value = "";
-            document.getElementById('ContentPlaceHolder1_txtOperName').value = "";
-            document.getElementById('ContentPlaceHolder1_txtProveedor').value = "";
-            document.getElementById('ContentPlaceHolder1_txtProveName').value = "";
-            document.getElementById('ContentPlaceHolder1_txtTecnico').value = "";
-            document.getElementById('ContentPlaceHolder1_txtTecName').value = "";
         }
 
     </script>

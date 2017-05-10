@@ -18,16 +18,12 @@ namespace WatcherSistec.Reportes
                 ListarTipoMantenimiento();
                 Listar_Reporte();
 
-                int dia_d, mes_d, dia_h, mes_h;
-                string sdia_d, smes_d, sdia_h, smes_h;
+                int dia_h, mes_h;
+                string sdia_h, smes_h;
 
                 dia_h = DateTime.Now.Day;
                 mes_h = DateTime.Now.Month;
 
-
-                DateTime Fecha_Desde = DateTime.Now.AddDays(-7);
-                dia_d = Fecha_Desde.Day;
-                mes_d = Fecha_Desde.Month;
 
                 if (dia_h < 10)
                 {
@@ -47,25 +43,7 @@ namespace WatcherSistec.Reportes
                     smes_h = mes_h.ToString();
                 }
 
-                if (dia_d < 10)
-                {
-                    sdia_d = "0" + dia_d.ToString();
-                }
-                else
-                {
-                    sdia_d = dia_d.ToString();
-                }
-
-                if (mes_d < 10)
-                {
-                    smes_d = "0" + mes_d.ToString();
-                }
-                else
-                {
-                    smes_d = mes_d.ToString();
-                }
-
-                txtFechaIni.Text = sdia_d + "/" + smes_d + "/" + DateTime.Now.Year.ToString();
+                txtFechaIni.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
                 txtFechaFin.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
             }
         }
@@ -141,6 +119,8 @@ namespace WatcherSistec.Reportes
         {
             txtCsid.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[1].Text;
             txtSubscriberName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[2].Text;
+            txtDealercode.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[4].Text;
+            txtDealerName.Text = gvSubscriber.Rows[gvSubscriber.SelectedIndex].Cells[0].Text;
         }
 
         protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
@@ -164,6 +144,8 @@ namespace WatcherSistec.Reportes
         {
             txtDealercode.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[0].Text;
             txtDealerName.Text = gvDealer.Rows[gvDealer.SelectedIndex].Cells[1].Text;
+            txtCsid.Text = "";
+            txtSubscriberName.Text = "";
         }
         private void Listar_Grilla_Dealer(string Dealer, string dealername)
         {
