@@ -41,7 +41,7 @@ namespace WatcherSistec.Control_Tecnico
                     btnAgregarTecnico.BackColor = System.Drawing.Color.DimGray;
                     btnLimpiarTecnico.Enabled = false;
                     btnLimpiarTecnico.BackColor = System.Drawing.Color.DimGray;
-
+                    btnAdicionar.Enabled = false;
                     
                 }
                 else
@@ -429,11 +429,11 @@ namespace WatcherSistec.Control_Tecnico
 
             if (updated == false)
             {
-                men = "Hubo un problema al momento de intentar actualizar la Ficha";
+                men = "Hubo un problema al momento de intentar actualizar la atención";
             }
             else
             {
-                men = "La ficha se registro correctamente";
+                men = "La atención se registro correctamente";
             }
 
             //string script = "alert('Mensaje:  " + men + "');";
@@ -455,10 +455,7 @@ namespace WatcherSistec.Control_Tecnico
                         Convert.ToInt64(txtID_Ficha.Text)
                         , HttpUtility.HtmlDecode(fila.Cells[2].Text)
                         , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())                        
-                        , out outID_Atencion);
-
-
-                    
+                        , out outID_Atencion);                    
 
                     if (updatedAT == false)
                     {
@@ -640,93 +637,111 @@ namespace WatcherSistec.Control_Tecnico
             brFichaSupervision br = new brFichaSupervision();
             string outID_Ficha = "";            
             string men = "";
-            
-            IFormatProvider culture = new CultureInfo("es-PE", true);
-            DateTime fechaI = DateTime.Today;
-            
-            DateTime fechaS = DateTime.ParseExact("01/01/1900 00:00", "dd/MM/yyyy HH:mm", culture);
 
-            if (txtFechaSalida.Text.Trim().Length>0)
+            try
             {
-                fechaS = DateTime.ParseExact(txtFechaSalida.Text, "dd/MM/yyyy HH:mm", culture);
-            }
-            
-                
-            
-            
-            //GUARDANDO FICHA SUPÈRVISION
-            bool updated = br.InsertarFichaSupervision(
-                Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
-                , fechaS , txtObs_Tec.Text, 1,txtTelefono.Text, txtPanel.Text, ""
-                , out outID_Ficha);
-            if (updated == false)
-            {
-                men = "Hubo un problema al momento de intentar registrar la alarma";
-            }            
-            else
-            {
-                men = "La alarma se registro correctamente";
-            }
+                IFormatProvider culture = new CultureInfo("es-PE", true);
+                DateTime fechaI = DateTime.Today;
 
-            txtID_Ficha.Text = outID_Ficha;
+                DateTime fechaS = DateTime.ParseExact("01/01/1900 00:00", "dd/MM/yyyy HH:mm", culture);
 
-            string script = "alert('Mensaje:  "+ men+ "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+                if (txtFechaSalida.Text.Trim().Length > 0)
+                {
+                    fechaS = DateTime.ParseExact(txtFechaSalida.Text, "dd/MM/yyyy HH:mm", culture);
+                }
 
-            //GUARDANDO FICHA ABONADO
-
-            foreach (GridViewRow fila in gvAbonado.Rows)
-            {
-                brFichaAbonado brFA = new brFichaAbonado();
-                bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(txtID_Ficha.Text), HttpUtility.HtmlDecode(fila.Cells[0].Text), HttpUtility.HtmlDecode(fila.Cells[2].Text), HttpUtility.HtmlDecode(fila.Cells[1].Text), HttpUtility.HtmlDecode(fila.Cells[4].Text));
-
+                //GUARDANDO FICHA SUPÈRVISION
+                bool updated = br.InsertarFichaSupervision(
+                    Convert.ToInt32(txtProveedorID.Text), Convert.ToInt32(txtPersonalID.Text), fechaI
+                    , fechaS, txtObs_Tec.Text, 1, txtTelefono.Text, txtPanel.Text, ""
+                    , out outID_Ficha);
                 if (updated == false)
                 {
-                    men = "Hubo un problema al momento de intentar registrar el Abonado";
+                    men = "Hubo un problema al momento de intentar registrar la ficha";
                 }
                 else
                 {
-                    men = "Abonados registrados correctamente";
+                    men = "La ficha se registro correctamente";
                 }
 
-            }
+                txtID_Ficha.Text = outID_Ficha;
 
-            string script1 = "alert('Mensaje:  " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
+                string script = "alert('Mensaje:  " + men + "');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
 
-            //GUARDANDO FICHA TIPO MANTENIMIENTO
+                //GUARDANDO FICHA ABONADO
 
-            foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
-            {
-
-                CheckBox check = fila.FindControl("chkSel") as CheckBox;
-
-                if (check.Checked)
+                foreach (GridViewRow fila in gvAbonado.Rows)
                 {
-
-                    brFichaTipoMant brTM = new brFichaTipoMant();
-
-                    bool updatedTM = brTM.InsertarFichaTipoMant(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt64(fila.Cells[0].Text));
+                    brFichaAbonado brFA = new brFichaAbonado();
+                    bool updatedFA = brFA.InsertarFichaAbonado(Convert.ToInt32(txtID_Ficha.Text), HttpUtility.HtmlDecode(fila.Cells[0].Text), HttpUtility.HtmlDecode(fila.Cells[2].Text), HttpUtility.HtmlDecode(fila.Cells[1].Text), HttpUtility.HtmlDecode(fila.Cells[4].Text));
 
                     if (updated == false)
                     {
-                        men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                        men = "Hubo un problema al momento de intentar registrar el Abonado";
                     }
                     else
                     {
-                        men = "Tipo Mantenimiento registrado correctamente";
+                        men = "Abonados registrados correctamente";
                     }
 
                 }
+
+                string script1 = "alert('Mensaje:  " + men + "');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
+
+                //GUARDANDO FICHA TIPO MANTENIMIENTO
+
+                foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
+                {
+
+                    CheckBox check = fila.FindControl("chkSel") as CheckBox;
+
+                    if (check.Checked)
+                    {
+
+                        brFichaTipoMant brTM = new brFichaTipoMant();
+
+                        bool updatedTM = brTM.InsertarFichaTipoMant(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt64(fila.Cells[0].Text));
+
+                        if (updated == false)
+                        {
+                            men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                        }
+                        else
+                        {
+                            men = "Tipo Mantenimiento registrado correctamente";
+                        }
+
+                    }
+                }
+
+                btnGuardar.Enabled = false;
+                btnCancelar.Enabled = true;
+                btnConcluir.Enabled = true;
+                btnPendiente.Enabled = true;
+
+                Ficha_Supervision(outID_Ficha);
+
+                btnAgregarTecnico.Enabled = false;
+                btnAgregarTecnico.BackColor = System.Drawing.Color.DimGray;
+                btnLimpiarTecnico.Enabled = false;
+                btnLimpiarTecnico.BackColor = System.Drawing.Color.DimGray;
+                btnAdicionar.Enabled = false;
+
+
+                string script2 = "alert('Mensaje:  " + men + "');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+
+            }
+            catch (Exception ex)
+            {
+
+                string script2 = "alert('Mensaje:  " + ex.Message + "');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
             }
 
-            btnGuardar.Enabled = false;
-            btnCancelar.Enabled = true;
-            btnConcluir.Enabled = true;
-            btnPendiente.Enabled = true;
-
-            string script2 = "alert('Mensaje:  " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+           
 
 
         }
@@ -1000,6 +1015,8 @@ namespace WatcherSistec.Control_Tecnico
                 men = "La ficha se registro correctamente";
             }
 
+            Ficha_Supervision(txtID_Ficha.Text);
+
             string script = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
         }
@@ -1020,6 +1037,8 @@ namespace WatcherSistec.Control_Tecnico
                 men = "La ficha se registro correctamente";
             }
 
+            Ficha_Supervision(txtID_Ficha.Text);
+
             string script = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
         }
@@ -1039,6 +1058,8 @@ namespace WatcherSistec.Control_Tecnico
             {
                 men = "La ficha se registro correctamente";
             }
+
+            Ficha_Supervision(txtID_Ficha.Text);
 
             string script = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);

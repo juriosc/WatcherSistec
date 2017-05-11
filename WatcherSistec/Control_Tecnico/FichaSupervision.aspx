@@ -62,6 +62,14 @@
             width: 50px;
         }
         
+        .auto-style10 {
+            width: 61%;
+        }
+        
+        .auto-style11 {
+            width: 576px;
+        }
+        
     </style>
 
 
@@ -731,7 +739,34 @@
                         <tr>
                             <td style="display:none">
                                 <asp:HyperLink ID="HyperLink1" runat="server" CssClass="imjusttext">Trabajos Pendiente: GENERALES</asp:HyperLink>
+                                <br />                                
                             </td>
+                            
+                            <td>
+                                <table >
+                                    <tr>
+                                        <td class="auto-style10">
+                                            <asp:Label ID="lblRojo" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:red" Text="ROJO: Señales sin restore"></asp:Label><br />
+                                        </td>
+                                        <td class="auto-style11" >
+                                            <asp:Label ID="Label2" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:black" Text="NEGRO: Zona sin prueba"></asp:Label><br />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style10">
+                                            <asp:Label ID="Label1" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:blue" Text="AZUL: Restore si señal"></asp:Label><br />
+                                        </td>
+                                        <td class="auto-style11">
+                                            <asp:Label ID="Label3" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:green" Text="VERDE: Prueba de Zona OK (Señal + Restore)"></asp:Label><br />
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+
+                            </td>
+                            
+
+
                             <td style="width:20px">&nbsp;</td>
                             <td style="display:none">
                                 <asp:HyperLink ID="HyperLink2" runat="server" CssClass="imjusttext">Observaciones</asp:HyperLink>
@@ -1932,8 +1967,7 @@
                 $("#tdTEnvioMsmcerrar").show();
                 $("#fondoemergente").css('display', 'block');
                 $("#titTEnvioMsm").html(titulo);
-                mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);
-                //document.getElementById("ContentPlaceHolder1_txtTMSMMinutos").focus();            
+                mostrarCentrarDiv('emerTEnvioMsm', ancho, alto);                
                 $("#ContentPlaceHolder1_txtTMSMMinutos").focus();
             }
         }        
