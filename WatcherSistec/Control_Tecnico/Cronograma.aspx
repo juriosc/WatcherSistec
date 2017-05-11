@@ -21,19 +21,17 @@
         <table style="width:100%">
             <tr>
                 <td style="width:11%">
-                    <fieldset>
+                    <fieldset style="height: 64px; margin-bottom: 9px">
                         <legend>
                             Periodo
                         </legend>
-                        <table id="tblCtrlPeriodo" style="margin-top:20px">
+                        <table id="tblCtrlPeriodo">
                             <tr>
                                 <td class="Etiqueta">Desde</td>
                                 <td style="text-align:right">
                                     <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtPeriodoIni" runat="server" style="height:16px ;width:80px"></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtPeriodoIni_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtPeriodoIni" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
+                                            <asp:TextBox ID="txtPeriodoIni" ReadOnly="true" runat="server" style="height:16px ;width:80px"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
@@ -51,9 +49,7 @@
                                 <td style="text-align:right">
                                     <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtPeriodoFin" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtPeriodoFin_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtPeriodoFin" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
+                                            <asp:TextBox ID="txtPeriodoFin" ReadOnly="true" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
@@ -65,19 +61,17 @@
                     </fieldset>
                 </td>
                 <td style="width:11%">
-                    <fieldset>
+                    <fieldset style="height: 64px; margin-bottom: 9px">
                         <legend>
                             Fecha de Programación
                         </legend>
-                        <table id="tblCtrlFecha" style="margin-top:20px">
+                        <table id="tblCtrlFecha">
                             <tr>
                                 <td class="Etiqueta">Desde</td>
                                 <td style="text-align:right">
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaIni" runat="server" style="height:16px ;width:80px"></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtFechaIni_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaIni" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
+                                            <asp:TextBox ID="txtFechaIni" ReadOnly="true" runat="server" style="height:16px ;width:80px"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
@@ -95,9 +89,7 @@
                                 <td style="text-align:right">
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtFechaFin" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
-                                            <asp:CalendarExtender ID="txtFechaFin_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaFin" Format="dd/MM/yyyy">
-                                            </asp:CalendarExtender>
+                                            <asp:TextBox ID="txtFechaFin" ReadOnly="true" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="btnLimpiar" EventName="Click" />
@@ -110,7 +102,7 @@
                 </td>
                 <td style="width:32%">
                     <fieldset>
-                        <table style="width:100%; margin-top:10px">
+                        <table style="width:100%;">
                             <tr>
                                 <td class="Etiqueta">
                                     Distribuidor
@@ -194,7 +186,7 @@
                 </td>
                 <td style="width:30%">
                     <fieldset>
-                        <table style="width:100%; margin-top:10px">
+                        <table style="width:100%;">
                             <tr>
                                 <td class="Etiqueta">
                                     Proveedor
@@ -257,7 +249,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <fieldset>
+                    <fieldset style ="height:51px;">
                         <legend>
                             Ruta de Mantenimiento
                         </legend>
@@ -280,7 +272,7 @@
                     </fieldset>
                 </td>
                 <td>
-                    <fieldset>
+                    <fieldset style ="height:51px;">
                         <legend>
                             Estados OT
                         </legend>
@@ -734,6 +726,8 @@
                                                     <asp:UpdatePanel ID="UpdatePanel70" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtFechaP" runat="server" ></asp:TextBox>
+                                                            <asp:CalendarExtender ID="txtFechaP_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaP" Format="dd/MM/yyyy">
+                                                            </asp:CalendarExtender>
                                                         </ContentTemplate>
                                                         <Triggers>
                                                             <asp:AsyncPostBackTrigger ControlID="gvCronograma" EventName="RowCommand" />
@@ -748,6 +742,8 @@
                                                     <asp:UpdatePanel ID="UpdatePanel71" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
                                                             <asp:TextBox ID="txtFechaV" runat="server" ></asp:TextBox>
+                                                            <asp:CalendarExtender ID="txtFechaV_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaV" Format="dd/MM/yyyy">
+                                                            </asp:CalendarExtender>
                                                         </ContentTemplate>
                                                         <Triggers>
                                                             <asp:AsyncPostBackTrigger ControlID="gvCronograma" EventName="RowCommand" />
@@ -1437,6 +1433,16 @@
     
     <script type="text/javascript">
 
+            $(document).ready(function () {
+                
+                $('#ContentPlaceHolder1_txtPeriodoIni').datepicker();
+                $('#ContentPlaceHolder1_txtPeriodoFin').datepicker();
+                $('#ContentPlaceHolder1_txtFechaIni').datepicker();
+                $('#ContentPlaceHolder1_txtFechaFin').datepicker();
+                $('#ContentPlaceHolder1_txtFechaP').datepicker();
+                $('#ContentPlaceHolder1_txtFechaV').datepicker();
+            });
+
             $(function () {
                 $("#emergente").draggable({ handle: 'div.undraggable' });
                 $("#emerLocalSubscriber").draggable({ handle: 'div.undraggable' });
@@ -1445,11 +1451,6 @@
                 $("#emerTecnico").draggable({ handle: 'div.undraggable' });
                 $("#emerNuevoCronograma").draggable({ handle: 'div.undraggable' });
                 
-            });
-
-            $(document).ready(function () {
-                $('#ContentPlaceHolder1_txtFechaP').datetimepicker();
-                $('#ContentPlaceHolder1_txtFechaV').datetimepicker();
             });
 
             function mostrarPopupSubscriber(titulo, ancho, alto) {

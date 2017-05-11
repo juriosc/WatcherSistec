@@ -393,7 +393,7 @@ namespace DataAccess
         }
 
 
-        public bool ActualizarCronograma(SqlConnection con, int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, DateTime Fecha_Programada, string Dealercode, DateTime Fecha_Visita, string Obser)
+        public bool ActualizarCronograma(SqlConnection con, int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, DateTime Fecha_Programada, string Dealercode, DateTime Fecha_Visita, string Obser, string ID_Ficha)
         {
             bool registro = false;
             SqlCommand cmd = new SqlCommand("sp_WCT_Actualizar_Cronograma", con);
@@ -434,6 +434,10 @@ namespace DataAccess
             SqlParameter param9 = cmd.Parameters.Add("@Obser", SqlDbType.VarChar, 3000);
             param9.Direction = ParameterDirection.Input;
             param9.Value = Obser;
+
+            SqlParameter param10 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.VarChar, 10);
+            param10.Direction = ParameterDirection.Input;
+            param10.Value = ID_Ficha;
 
             int n = cmd.ExecuteNonQuery();
 

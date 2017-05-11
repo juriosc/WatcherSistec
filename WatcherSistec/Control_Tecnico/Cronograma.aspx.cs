@@ -153,8 +153,8 @@ namespace WatcherSistec.Control_Tecnico
             txtNewDealerDesc.Text = "";
             txtNewAbon.Text = "";
             txtNewAbonDesc.Text = "";
-            //txtFechaP.Text = "";
-            //txtFechaV.Text = "";
+            txtFechaP.Text = "";
+            txtFechaV.Text = "";
             txtFicha.Text = "";
 
             // Para limpiar Grilla_TipoMant
@@ -371,12 +371,12 @@ namespace WatcherSistec.Control_Tecnico
 
             IFormatProvider culture = new CultureInfo("es-PE", true);
             DateTime FPeriodo = DateTime.ParseExact(Periodo, "dd/MM/yyyy", culture);
-            DateTime fechaP = DateTime.ParseExact(txtFechaP.Text, "dd/MM/yyyy HH:mm", culture);
+            DateTime fechaP = DateTime.ParseExact(txtFechaP.Text, "dd/MM/yyyy", culture);
             if (txtFechaV.Text == "")
             {
                 fechaV = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", culture);
             }
-            else { fechaV = DateTime.ParseExact(txtFechaV.Text, "dd/MM/yyyy HH:mm", culture); }
+            else { fechaV = DateTime.ParseExact(txtFechaV.Text, "dd/MM/yyyy", culture); }
 
             if (hdfEstado.Value == "NUEVO")
             {
@@ -420,7 +420,7 @@ namespace WatcherSistec.Control_Tecnico
                     men = "No se pudo registrar el Cronograma";
                 }
 
-                string script1 = "alert('Mensaje: ' " + men + "');";
+                string script1 = "alert('Mensaje:" + men + "');";
                 ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
             }
             else
@@ -429,7 +429,7 @@ namespace WatcherSistec.Control_Tecnico
                 {
                     bool updatedCD = br.ActualizarCronograma(Convert.ToInt32(txtNewProv.Text), Convert.ToInt32(txtNewTec.Text),
                                                              Convert.ToInt32(ddlRutas.SelectedValue.ToString()), FPeriodo,
-                                                             txtNewAbon.Text, fechaP, txtNewDealer.Text, fechaV, txtObs.Text);
+                                                             txtNewAbon.Text, fechaP, txtNewDealer.Text, fechaV, txtObs.Text, txtFicha.Text);
                     if (updatedCD == true)
                     {
                         foreach (GridViewRow fila in gvTipoMantenimiento.Rows)
@@ -544,7 +544,7 @@ namespace WatcherSistec.Control_Tecnico
                 txtNewAbon.Text = row.Cells[7].Text.ToString();
                 txtNewAbonDesc.Text = HttpUtility.HtmlDecode(row.Cells[8].Text.ToString());
                 txtFechaP.Text = HttpUtility.HtmlDecode(row.Cells[12].Text.ToString());
-                txtFechaV.Text = HttpUtility.HtmlDecode(row.Cells[17].Text.ToString());
+                txtFechaV.Text = HttpUtility.HtmlDecode(row.Cells[17].Text.ToString().Replace("&nbsp;", ""));
                 txtFicha.Text = HttpUtility.HtmlDecode(row.Cells[18].Text.ToString());
 
                 string Periodo = HttpUtility.HtmlDecode(row.Cells[0].Text.ToString());
@@ -620,6 +620,10 @@ namespace WatcherSistec.Control_Tecnico
                             bool updatedTM = brTM.InsertarFichaTipoMant(Convert.ToInt64(Ficha), Convert.ToInt64(fila.Cells[0].Text));
                         }
                     }
+
+                    string men = "Se registró correctamente la Ficha de Supervision";
+                    string script1 = "alert('Mensaje: " + men + "');SalirPopupNuevoCronograma();";
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script1, true);
                 }
             }
         }

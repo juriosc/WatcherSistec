@@ -207,7 +207,7 @@ namespace BusinessRules
             return (updated);
         }
 
-        public bool ActualizarCronograma(int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, DateTime Fecha_Programada, string Dealercode, DateTime Fecha_Visita, string Obser)
+        public bool ActualizarCronograma(int ProveedorID, int PersonalID, int Ruta, DateTime Periodo, string CSID, DateTime Fecha_Programada, string Dealercode, DateTime Fecha_Visita, string Obser, string ID_Ficha)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -216,7 +216,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daCronograma odaCronograma = new daCronograma();
-                    updated = odaCronograma.ActualizarCronograma(con, ProveedorID, PersonalID, Ruta, Periodo, CSID, Fecha_Programada, Dealercode, Fecha_Visita, Obser);
+                    updated = odaCronograma.ActualizarCronograma(con, ProveedorID, PersonalID, Ruta, Periodo, CSID, Fecha_Programada, Dealercode, Fecha_Visita, Obser, ID_Ficha);
                 }
                 catch (SqlException ex)
                 {
