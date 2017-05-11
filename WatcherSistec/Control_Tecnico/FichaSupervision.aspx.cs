@@ -36,6 +36,10 @@ namespace WatcherSistec.Control_Tecnico
                     {
                         Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                     }
+                    else 
+                    {
+                        Bloque_Zona("", "");
+                    }
 
                     btnAgregarTecnico.Enabled = false;
                     btnAgregarTecnico.BackColor = System.Drawing.Color.DimGray;
@@ -419,67 +423,91 @@ namespace WatcherSistec.Control_Tecnico
         {
             bool updatedAT;
             string outID_Atencion = "";
-
-            //CUANDO SE INICIA LA ATENCION, SE DEBE COLOCAR EL ESTADO DE LA FICHA EN ATENCION
-
-            brFichaSupervision br = new brFichaSupervision();
-            string men = "";
-
-            bool updated = br.ActualizarFichaSupervision(2, Convert.ToInt32(txtID_Ficha.Text));
-
-            if (updated == false)
-            {
-                men = "Hubo un problema al momento de intentar actualizar la atención";
-            }
-            else
-            {
-                men = "La atención se registro correctamente";
-            }
-
-            //string script = "alert('Mensaje:  " + men + "');";
-            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
-
-            ////////////
+            bool ActualizarAten=false;
 
             foreach (GridViewRow fila in gvAbonado.Rows)
             {
 
                 RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
-                
+
                 if (rbt.Checked)
                 {
-
-                    brFichaAtenciones brAT = new brFichaAtenciones();
-
-                    updatedAT = brAT.InsertarFichaAtencion(
-                        Convert.ToInt64(txtID_Ficha.Text)
-                        , HttpUtility.HtmlDecode(fila.Cells[2].Text)
-                        , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())                        
-                        , out outID_Atencion);                    
-
-                    if (updatedAT == false)
-                    {
-                        men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
-                    }
-                    else
-                    {
-                        btnIniciar.Enabled = false;
-                        btnDetener.Enabled = true;
-                        men = "Tipo Mantenimiento registrado correctamente";
-                    }
-
-                    //string script2 = "alert('Mensaje:  " + men + "');";
-                    //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
-
+                    ActualizarAten = true;
                 }
-            }                        
+            }
 
-            Ficha_Atenciones(txtID_Ficha.Text);
+
+
+            if (ActualizarAten==true)
+            {
+                //CUANDO SE INICIA LA ATENCION, SE DEBE COLOCAR EL ESTADO DE LA FICHA EN ATENCION
+
+                brFichaSupervision br = new brFichaSupervision();
+                string men = "";
+
+                bool updated = br.ActualizarFichaSupervision(2, Convert.ToInt32(txtID_Ficha.Text));
+
+                if (updated == false)
+                {
+                    men = "Hubo un problema al momento de intentar actualizar la atención";
+                }
+                else
+                {
+                    men = "La atención se registro correctamente";
+                }
+
+                //string script = "alert('Mensaje:  " + men + "');";
+                //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+                ////////////
+
+                foreach (GridViewRow fila in gvAbonado.Rows)
+                {
+
+                    RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                    if (rbt.Checked)
+                    {
+
+                        brFichaAtenciones brAT = new brFichaAtenciones();
+
+                        updatedAT = brAT.InsertarFichaAtencion(
+                            Convert.ToInt64(txtID_Ficha.Text)
+                            , HttpUtility.HtmlDecode(fila.Cells[2].Text)
+                            , HttpUtility.HtmlDecode(Session["sUserIden"].ToString())
+                            , out outID_Atencion);
+
+                        if (updatedAT == false)
+                        {
+                            men = "Hubo un problema al momento de intentar registrar el Tipo Mantenimiento";
+                        }
+                        else
+                        {
+                            btnIniciar.Enabled = false;
+                            btnDetener.Enabled = true;
+                            men = "Tipo Mantenimiento registrado correctamente";
+                        }
+
+                        //string script2 = "alert('Mensaje:  " + men + "');";
+                        //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+
+                    }
+                }
+
+                Ficha_Atenciones(txtID_Ficha.Text);
+
+                //tmrActualizarZonas.Enabled = true;
+
+                tmrRecepSeniales.Enabled = true;
+                lblTiempoFaltante.Text = "60";
+            }
+            else 
+            {
+                string script2 = "alert('Debe seleccionar un abonado para iniciar las atenciones');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
             
-            //tmrActualizarZonas.Enabled = true;
-
-            tmrRecepSeniales.Enabled = true;
-            lblTiempoFaltante.Text = "60";
+            }
+            
         }
 
         protected void tmrActualizarZonas_Tick(object sender, EventArgs e)
@@ -490,6 +518,10 @@ namespace WatcherSistec.Control_Tecnico
                 {
                     Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                 }
+                else
+                {
+                    Bloque_Zona("", "");
+                }
             }
             else
             {
@@ -499,6 +531,10 @@ namespace WatcherSistec.Control_Tecnico
                     {
                         Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                     }
+                }
+                else
+                {
+                    Bloque_Zona("", "");
                 }
 
             }

@@ -461,6 +461,7 @@
                                         <HeaderStyle CssClass="ColumnaOculta" />
                                         <ItemStyle CssClass="ColumnaOculta" />
                                         </asp:BoundField>
+                                        <asp:BoundField HeaderText="Estado" DataField="Estado_des" />
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="btnVer" runat="server" ImageUrl="~/Images/Mantenimiento/view.png" CommandName="Ver" ToolTip="VER"
@@ -473,8 +474,9 @@
                                                     CausesValidation="false" CommandArgument="<%# ((GridViewRow)Container).RowIndex %>" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
                                     </Columns>
-                                
+                                    
                                     <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
                                     <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
                                     <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
