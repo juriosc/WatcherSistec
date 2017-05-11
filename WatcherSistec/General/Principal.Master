@@ -156,11 +156,11 @@ ul, ol {
                                     <a href="#">CONTROL TÉCNICO</a> 
                                     <ul>
                                         <li><a href="#" onclick="salir = 0; window.location = '../Control_tecnico/RegSupervision.aspx'">Supervisiones</a></li>
-                                        <li><a href="#" onclick="salir = 0; ">Cronograma</a>
-                                            <ul>
+                                        <li><a href="#" onclick="salir = 0; window.location = '../Control_tecnico/Cronograma.aspx'">Cronograma</a>
+                                            <%--<ul>
                                                 <li><a href="#" onclick="salir = 0; window.location = '../Control_tecnico/Cronograma.aspx'">Busqueda de Cronograma</a></li>
                                                 <li><a href="#" onclick="salir = 0; window.location = '../Control_tecnico/Cronograma.aspx'">Vista de Calendario</a></li>
-                                            </ul>
+                                            </ul>--%>
                                         </li>
                                        <%-- <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Listado de Tecnicos en Atencion o Sin hora de Salida</a></li>
                                         <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Indicador_Tactico.aspx'">Listado de Abonados en  tes mkwn</a></li>
@@ -189,14 +189,14 @@ ul, ol {
                                      <a href="#">REPORTE</a> 
                                      <ul>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repOTsPendientesTec.aspx'">Fichas pendientes por Técnico</a></li>
-                                         <li><a href="#" onclick="salir = 0; window.location = '../Reportes/rephorasTrabajasxTecnico.aspx'">Horas trabajadas por Tecnico</a></li>
+                                         <%--<li><a href="#" onclick="salir = 0; window.location = '../Reportes/rephorasTrabajasxTecnico.aspx'">Horas trabajadas por Tecnico</a></li>--%>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repOTsPorTipoTrabajo.aspx'">Fichas por tipo de trabajo</a></li>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repOTsPorOficinaEntidad.aspx'">Fichas por Oficina/Entidad</a></li>
-                                         <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadTipoTrabOfiEntidad.aspx'">Reporte Estadístico - Ficha por Tipo de Trabajo</a></li>
+                                         <%--<li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadTipoTrabOfiEntidad.aspx'">Reporte Estadístico - Ficha por Tipo de Trabajo</a></li>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadHorasTrabPorTecnico.aspx'">Reporte Estadístico - Horas trabajadas por Técnico</a></li>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadSalidasNoReportadas.aspx'">Reporte Estadístico - Salidas No Reportadas</a></li>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadRutaDeTrabajo.aspx'">Reporte Estadístico - Ruta por Trabajo</a></li>
-                                         <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadProxreporte.aspx'">Reporte Estadístico - Próximo Reporte</a></li>
+                                         <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadProxreporte.aspx'">Reporte Estadístico - Próximo Reporte</a></li>--%>
                                      </ul>
                                  </li>
                              </ul>

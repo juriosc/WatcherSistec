@@ -264,6 +264,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <Content Include="General\Principal.Master" />
+    <None Include="Properties\PublishProfiles\CONTECT.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Reportes\repEstadHorasTrabPorTecnico.aspx" />
     <Content Include="Reportes\repEstadProxreporte.aspx" />
