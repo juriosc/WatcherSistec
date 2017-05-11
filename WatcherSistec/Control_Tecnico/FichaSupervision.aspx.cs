@@ -37,6 +37,11 @@ namespace WatcherSistec.Control_Tecnico
                         Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                     }
 
+                    btnAgregarTecnico.Enabled = false;
+                    btnAgregarTecnico.BackColor = System.Drawing.Color.DimGray;
+                    btnLimpiarTecnico.Enabled = false;
+                    btnLimpiarTecnico.BackColor = System.Drawing.Color.DimGray;
+
                     
                 }
                 else
@@ -431,8 +436,8 @@ namespace WatcherSistec.Control_Tecnico
                 men = "La ficha se registro correctamente";
             }
 
-            string script = "alert('Mensaje:  " + men + "');";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            //string script = "alert('Mensaje:  " + men + "');";
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
 
             ////////////
 
@@ -466,8 +471,8 @@ namespace WatcherSistec.Control_Tecnico
                         men = "Tipo Mantenimiento registrado correctamente";
                     }
 
-                    string script2 = "alert('Mensaje:  " + men + "');";
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
+                    //string script2 = "alert('Mensaje:  " + men + "');";
+                    //ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script2, true);
 
                 }
             }                        
@@ -637,7 +642,7 @@ namespace WatcherSistec.Control_Tecnico
             string men = "";
             
             IFormatProvider culture = new CultureInfo("es-PE", true);
-            DateTime fechaI = DateTime.ParseExact(txtFechaIngreso.Text, "dd/MM/yyyy HH:mm", culture);
+            DateTime fechaI = DateTime.Today;
             
             DateTime fechaS = DateTime.ParseExact("01/01/1900 00:00", "dd/MM/yyyy HH:mm", culture);
 
@@ -1037,6 +1042,16 @@ namespace WatcherSistec.Control_Tecnico
 
             string script = "alert('Mensaje:  " + men + "');";
             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+        }
+
+        protected void btnLimpiarTecnico_Click(object sender, ImageClickEventArgs e)
+        {
+            txtFechaIngreso.Text = "";
+            txtFechaSalida.Text = "";
+            txtProv.Text = "";
+            txtNombre.Text = "";
+            txtObs_Tec.Text = "";
+
         }
 
     }

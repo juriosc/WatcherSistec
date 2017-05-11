@@ -180,26 +180,28 @@
                                                     <tr>
                                                        <td class="auto-style4" >FEC INGRESO</td>
                                                         <td class="auto-style4">
-                                                            <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
+                                                            <asp:UpdatePanel ID="UpdatePanel8" runat="server" >
                                                                     <ContentTemplate>
                                                                         <asp:TextBox ID="txtFechaIngreso" runat="server" ReadOnly="true"></asp:TextBox>                                                    
                                                                     </ContentTemplate>
-                                                                    <Triggers>
-                                                                        <asp:AsyncPostBackTrigger ControlID="btnAceptarUpTecnico" EventName="Click" />
-                                                                    </Triggers>
+                                                                    
                                                                 </asp:UpdatePanel>    
                                                         </td>
                                                         <td>FEC SALIDA</td>
                                                         <td >
-                                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+                                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                                                 <ContentTemplate>
                                                                     <asp:TextBox ID="txtFechaSalida" runat="server" ReadOnly="true" ></asp:TextBox>
-                                                                </ContentTemplate>
-                                                                <Triggers>
-                                                                        <asp:AsyncPostBackTrigger ControlID="btnAceptarUpTecnico" EventName="Click" />
-                                                                    </Triggers>
+                                                                </ContentTemplate>                                                                
                                                             </asp:UpdatePanel>
-                                                        </td>                                        
+                                                        </td>
+                                                        <td style="vertical-align:top" >
+                                                            <asp:UpdatePanel ID="UpdatePanel31" runat="server" UpdateMode="Conditional">
+                                                                <ContentTemplate>
+                                                                    <asp:ImageButton ID="btnAgregarTecnico" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarEmergenteUpTecnico('AGREGANDO TÉCNICO ...',650,190);" OnClick="btnAgregarTecnico_Click"/>
+                                                                </ContentTemplate>
+                                                            </asp:UpdatePanel>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style5" >PROVEEDOR</td>
@@ -227,34 +229,30 @@
                                                             </asp:UpdatePanel>
                                             
                                                         </td>
+                                                        <td>
+                                                            <asp:UpdatePanel ID="UpdatePanel85" runat="server" UpdateMode="Conditional">
+                                                                <ContentTemplate>
+                                                                    <asp:ImageButton ID="btnLimpiarTecnico" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/Limpiar.png" OnClick="btnLimpiarTecnico_Click" />
+                                                                </ContentTemplate>                                                    
+                                                            </asp:UpdatePanel>
+                                                        </td>
+                                                        
                                                     </tr>
                                     
                                                     <tr>
                                                         <td style="vertical-align:top">OBSERVACIÓN</td>
                                                         <td colspan ="3">
-                                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" >
                                                                 <ContentTemplate>
                                                                     <asp:TextBox ID="txtObs_Tec" runat="server" Width="100%" Height="55px" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
                                                                 </ContentTemplate>
-                                                                <Triggers>
-                                                                        <asp:AsyncPostBackTrigger ControlID="btnAceptarUpTecnico" EventName="Click" />
-                                                                    </Triggers>
+                                                                
                                                             </asp:UpdatePanel>
                                                         </td>
                                                     </tr>
                                                 </table>                                                
                                             </td>
-                                            <td >
-
-                                            </td>
-                                            <td style="vertical-align:top" >
-                                                <asp:UpdatePanel ID="UpdatePanel31" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:ImageButton ID="btnAgregarTecnico" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarEmergenteUpTecnico('AGREGANDO TÉCNICO ...',650,190);" OnClick="btnAgregarTecnico_Click"/>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                            </td>
-                                        </tr>
+                                        </tr>                                        
                                     </table>
                                 </fieldset>
                                 </td>
@@ -368,7 +366,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel83" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="100%" Width="100%" BorderColor="#DEDEDE" >
+                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" BorderColor="#DEDEDE" >
                                                 <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                                 <ContentTemplate>
                                     <table style="width:100%">
@@ -432,8 +430,8 @@
                                             <td style="border-top:solid">&nbsp; </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <table style="width:100%">
+                                            <td >
+                                                <table style="width:100%;display:none" >
                                                     <tr>
                                                         <td>
                                                             Panel
@@ -1663,7 +1661,10 @@
                                             <td style="height:100px;vertical-align:top">                                                
                                                 <table style="width:100%">
                                                     <tr>
-                                                       <td class="auto-style4" >FEC INGRESO</td>
+                                                        <td>
+                                                            <table style="display:none">
+                                                                <tr>
+                                                                     <td class="auto-style4" >FEC INGRESO</td>
                                                         <td class="auto-style4">
                                                             <asp:UpdatePanel ID="UpdatePanel71" runat="server" UpdateMode="Conditional">
                                                                     <ContentTemplate>
@@ -1679,6 +1680,10 @@
                                                                 </ContentTemplate>
                                                             </asp:UpdatePanel>
                                                         </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                      
                                         
                                                     </tr>
                                                     <tr>
