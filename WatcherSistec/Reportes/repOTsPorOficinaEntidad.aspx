@@ -10,145 +10,156 @@
         <table style="width:100%">
             <tr>
                 <td class="CabeceraBusqueda">
-                    &nbsp; DATOS DE BUSQUEDA:
+                    &nbsp; Fichas por Oficina/Entidad
                 </td>
             </tr>
         </table>
 
         <table style="width:100%">
-              <tr>
-                  <td style="width: 11%">
-                      <fieldset style="height: 64px; margin-bottom:9px">
-                          <legend>
-                              Fechas
-                          </legend>
-                          <table id="tblCtrlFecha">
-                              <tr>
-                                  <td class="Etiqueta">Desde</td>
-                                  <td style="text-align:right">
-                                      <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
-                                          <ContentTemplate>
-                                              <asp:TextBox ID="txtFechaIni" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td colspan="2" style="font-size:3px;">
-                                      &nbsp;
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="Etiqueta">Hasta</td>
-                                  <td style="text-align:right">
-                                      <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
-                                          <ContentTemplate>
-                                              <asp:TextBox ID="txtFechaFin" runat="server" ReadOnly="true" style="height:16px ;width:80px" ></asp:TextBox>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                              </tr>
-                          </table>
-                      </fieldset>
-                  </td>
-                  <td style="width:30%">
-                      <fieldset>
-                          <table style="width:100%">
-                              <tr>
-                                  <td class="Etiqueta">
-                                      Distribuidor
-                                  </td>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                          <ContentTemplate>
-                                              <asp:TextBox ID="txtDealercode" runat="server" style="width:50px"></asp:TextBox>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel12" runat="server">
-                                          <ContentTemplate>
-                                              <asp:TextBox ID="txtDealerName" runat="server" style="width:220px"></asp:TextBox>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                      <asp:UpdatePanel ID="UpdatePanel14" runat="server">
-                                          <ContentTemplate>
-                                              <asp:Button ID="btnBusCodDistribuidor" runat="server" Text="Button" style="display:none" />
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                                  <td colspan="2">
-                                      <asp:UpdatePanel ID="UpdatePanel15" runat="server">
-                                          <ContentTemplate>
-                                              <asp:ImageButton ID="btnPopupDistribuidor" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteDealer('Buscar Distribuidor:',460,250);" />
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="Etiqueta">
-                                      Abonado
-                                  </td>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel10" runat="server">
-                                          <ContentTemplate>
-                                              <asp:TextBox ID="txtCsid" runat="server" style="width:50px"></asp:TextBox>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel8" runat="server">
-                                          <ContentTemplate>
-                                              <asp:TextBox ID="txtSubscriberName" runat="server" style="width:220px"></asp:TextBox>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                      <asp:UpdatePanel ID="UpdatePanel9" runat="server">
-                                          <ContentTemplate>
-                                              <asp:Button ID="btnBusCodAbonado" runat="server" Text="Button" style="display:none" />
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                                  <td colspan="2">
-                                      <asp:UpdatePanel ID="UpdatePanel13" runat="server">
-                                          <ContentTemplate>
-                                              <asp:ImageButton ID="btnPopupAbonado" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                              </tr>
-                          </table>
-                      </fieldset>
-                  </td>
-                  <td style="padding-left:15%">
-                      <fieldset style="width:50px">
-                          <table style="width:100%">
-                              <tr>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel11" runat="server">
-                                          <ContentTemplate>
-                                              <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="../Images/Limpiar.png" CssClass="ImagenBoton" OnClientClick="Limpiar();" />
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                          <ContentTemplate>
-                                              <asp:ImageButton ID="btnBuscar" runat="server" ImageUrl="../Images/binocular.png" CssClass="ImagenBoton" OnClick="btnBuscar_Click"/>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>
-                                  </td>
-                                  <td>
-                                      <asp:UpdatePanel ID="UpdatePanel6" runat="server" >
-                                          <ContentTemplate>
-                                              <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
-                                          </ContentTemplate>
-                                      </asp:UpdatePanel>                                                
-                                  </td>
-                              </tr>
-                          </table>
-                      </fieldset>
-                  </td>
-              </tr>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>
+                            OPCIONES DE BUSQUEDA :
+                        </legend>
+                            <table style="width:100%">
+                                  <tr>
+                                      <td style="width: 11%">
+                                          <fieldset style="height: 64px; margin-bottom:9px">
+                                              <legend>
+                                                  Fechas
+                                              </legend>
+                                              <table id="tblCtrlFecha">
+                                                  <tr>
+                                                      <td class="Etiqueta">Desde</td>
+                                                      <td style="text-align:right">
+                                                          <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
+                                                              <ContentTemplate>
+                                                                  <asp:TextBox ID="txtFechaIni" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td colspan="2" style="font-size:3px;">
+                                                          &nbsp;
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td class="Etiqueta">Hasta</td>
+                                                      <td style="text-align:right">
+                                                          <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
+                                                              <ContentTemplate>
+                                                                  <asp:TextBox ID="txtFechaFin" runat="server" ReadOnly="true" style="height:16px ;width:80px" ></asp:TextBox>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                  </tr>
+                                              </table>
+                                          </fieldset>
+                                      </td>
+                                      <td style="width:30%">
+                                          <fieldset>
+                                              <table style="width:100%">
+                                                  <tr>
+                                                      <td class="Etiqueta">
+                                                          Distribuidor
+                                                      </td>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:TextBox ID="txtDealercode" runat="server" style="width:50px"></asp:TextBox>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel12" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:TextBox ID="txtDealerName" runat="server" style="width:220px"></asp:TextBox>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                          <asp:UpdatePanel ID="UpdatePanel14" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:Button ID="btnBusCodDistribuidor" runat="server" Text="Button" style="display:none" />
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                      <td colspan="2">
+                                                          <asp:UpdatePanel ID="UpdatePanel15" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:ImageButton ID="btnPopupDistribuidor" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarEmergenteDealer('Buscar Distribuidor:',460,250);" />
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td class="Etiqueta">
+                                                          Abonado
+                                                      </td>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel10" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:TextBox ID="txtCsid" runat="server" style="width:50px"></asp:TextBox>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel8" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:TextBox ID="txtSubscriberName" runat="server" style="width:220px"></asp:TextBox>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                          <asp:UpdatePanel ID="UpdatePanel9" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:Button ID="btnBusCodAbonado" runat="server" Text="Button" style="display:none" />
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                      <td colspan="2">
+                                                          <asp:UpdatePanel ID="UpdatePanel13" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:ImageButton ID="btnPopupAbonado" runat="server" ImageUrl="../Images/search.png" CssClass="ImagenBotonBuscar" OnClientClick="mostrarPopupSubscriber('Buscar Oficinas:',810,480); " />
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                  </tr>
+                                              </table>
+                                          </fieldset>
+                                      </td>
+                                      <td style="padding-left:15%">
+                                          <fieldset style="width:50px">
+                                              <table style="width:100%">
+                                                  <tr>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel11" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="../Images/Limpiar.png" CssClass="ImagenBoton" OnClientClick="Limpiar();" />
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                                              <ContentTemplate>
+                                                                  <asp:ImageButton ID="btnBuscar" runat="server" ImageUrl="../Images/binocular.png" CssClass="ImagenBoton" OnClick="btnBuscar_Click"/>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>
+                                                      </td>
+                                                      <td>
+                                                          <asp:UpdatePanel ID="UpdatePanel6" runat="server" >
+                                                              <ContentTemplate>
+                                                                  <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
+                                                              </ContentTemplate>
+                                                          </asp:UpdatePanel>                                                
+                                                      </td>
+                                                  </tr>
+                                              </table>
+                                          </fieldset>
+                                      </td>
+                                  </tr>
+                            </table>
+                    </fieldset>
+                </td>
+            </tr>
         </table>
     </div>
     

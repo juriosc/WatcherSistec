@@ -115,11 +115,12 @@ ul, ol {
     <form id="form1" runat="server">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
      <div class="page">
-        <div class="header" style="z-index:1; top: 0px; left: 0px;">
-            <div class="title">
-                <img alt="" src="../Images/LogoWatcher.png" width="65" />
+        <div class="header" style="z-index:1;">
+            <div class="title" style="color:white;margin-top:-2px">
+                <img src="../Images/LogoWatcher.png" width="65" />
+                MÓDULO DE SUPERVISION TÉCNICA
             </div>
-            <div style="background: linear-gradient(#21A41A, #21A41A);width:100%;color:white">
+            <div style="background-color: #222;width:100%;color:white">
                 <div style="text-align: right; width: 100%">
                     <div id="btnExit" style="height:22px;padding-right:10px;cursor:pointer">                        
                         <asp:LinkButton ID="lnkSalir" runat="server" OnClick="lnkSalir_Click" Font-Size="10" ForeColor="#FFFFFF"> Salir  </asp:LinkButton>
@@ -130,20 +131,9 @@ ul, ol {
             <div class="loginDisplay" style="padding-right:10px;padding-top:8px">
                 <div>
                     <div style="text-align: right; width: 100%">
-                        <table>
-                            <tr>
-                                <td></td>
-                                <td style="width:100%;color:white;text-align:left;padding-left:50px;font-size:20px;font-family:Arial;" >
-                                    MÓDULO DE SUPERVISION TÉCNICA
-                                </td>
-                                <td>
-                                    <img alt="" src="../Images/user.png" width="30" style="vertical-align:middle" />                       
-                                </td>
-                            </tr>
-                        </table>
                         <asp:Label ID="lblCodPerfil" runat="server" Text="" style="display:none;" ></asp:Label>
                         <asp:Label ID="lblUsuario" runat="server" Text=""></asp:Label>
-                        
+                        <img alt="" src="../Images/user.png" width="30" style="vertical-align:middle" />
                     </div>
                 </div>
             </div>
