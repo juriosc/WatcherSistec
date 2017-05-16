@@ -209,7 +209,11 @@
     <Content Include="Images\AlRrojocAmarillo.PNG" />
     <Content Include="Images\binocular.png" />
     <Content Include="Images\Cancelada.ico" />
+    <Content Include="Images\Close.png" />
     <Content Include="Images\comentario.png" />
+    <Content Include="Images\ComnAdd.png" />
+    <Content Include="Images\ComnDel.png" />
+    <Content Include="Images\ComnEdit.png" />
     <Content Include="Images\Concluida.ico" />
     <Content Include="Images\email.png" />
     <Content Include="Images\En_Atencion.ico" />

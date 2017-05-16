@@ -159,7 +159,12 @@
                 <td style="width:150px">
                     <asp:Button ID="btnsms" runat="server" Text="SMS" Width="50px" Height="30px" />
                 </td>
+                <td>
 
+                </td>
+                <td>
+                    <asp:ImageButton ID="imgClose" runat="server" ImageUrl="~/Images/Close.png" />
+                </td>
             </tr>
         </table>
 
@@ -374,7 +379,7 @@
                                 <td>
                                     <asp:UpdatePanel ID="UpdatePanel83" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" BorderColor="#DEDEDE" >
+                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="100%" Width="100%" BorderColor="#DEDEDE" >
                                                 <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                                 <ContentTemplate>
                                     <table style="width:100%">
@@ -736,12 +741,17 @@
                             </tr>
                         </table>
                         <table style="width:100%;height:280px; border: 1px solid #DEDEDE;border-radius:3px">
-                        <tr>
-                            <td style="display:none">
-                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="imjusttext">Trabajos Pendiente: GENERALES</asp:HyperLink>
-                                <br />                                
+                        <tr>                            
+                            <td>
+                                <asp:UpdatePanel ID="UpdatePanel86" runat="server">
+                                    <ContentTemplate>
+                                        <asp:Button ID="Button2" runat="server" Text="Trabajos Pendiente: GENERALES" OnClientClick="mostraremerComenTrab('Trabajos Pendientes','550','350');"/>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>                                
+                                <br />
                             </td>
-                            
+                        </tr>
+                        <tr>
                             <td>
                                 <table >
                                     <tr>
@@ -1199,9 +1209,7 @@
             </table>
          </div>
     </div>
-
     
-
     <div id="emerSubs" class="ventana">
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
@@ -1903,6 +1911,70 @@
          </div>
     </div>
 
+    <div id="emerComenTrab" class="ventana">
+        <div class="undraggable" style="width:100%;">
+			<table style="width:100% ; border-spacing:0px 0px; ">
+				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
+					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
+					<span id="titcabemerComenTrab">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdemerComenTrabcerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupEmerComenTrab();">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+
+        <div id="emerComenTrabcuerpo">
+            <table>
+                <tr>
+                    <td>
+                        <asp:ImageButton ID="btnAddComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnAdd.png" />
+                    </td>
+                    <td>
+                        <asp:ImageButton ID="btnEditComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnEdit.png" />
+                    </td>
+                    <td>
+                        <asp:ImageButton ID="btnDelComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnDel.png" />
+                    </td>
+                </tr>
+            </table>
+            <table style="width: 388px;height:150px">
+                <asp:GridView ID="GridView2" runat="server"></asp:GridView>
+            </table>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <asp:RadioButton ID="rbtComentario" runat="server" Text="Comentario" />
+                    </td>
+                    <td>
+                        <asp:RadioButton ID="rbtTrabPendiente" runat="server" Text="Trabajo Pendiente" />
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <asp:CheckBox ID="chkCompletado" runat="server" Text="Completado" />
+                    </td>
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <asp:TextBox ID="txtComent" runat="server" Height="67px" TextMode="MultiLine" Width="99%" Enabled="False"></asp:TextBox>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
     <script type="text/javascript">
 
         $(function () {
@@ -1916,16 +1988,18 @@
             $("#emerUpTecnico").draggable({ handle: 'div.undraggable' });
             $("#emerUpAbonado").draggable({ handle: 'div.undraggable' });
             $("#emerListarAbonados").draggable({ handle: 'div.undraggable' });
+            $("#emerComenTrab").draggable({ handle: 'div.undraggable' });
         });
 
         function mostrarPopupComentario(titulo, ancho, alto) {
-            $("#tdemergentecerrar").show();
-            $("#fondoemergente").css('display', 'block');
-            $("#titcabemergente").html('Comentarios y/o Trabajos Pendientes - Zona: ' + titulo);
-            document.getElementById('ContentPlaceHolder1_txtZonaC').value = titulo;
-            (document.getElementById('ContentPlaceHolder1_btZona')).click();
-            mostrarCentrarDiv('emergente', ancho, alto);
-        }        
+            //$("#tdemergentecerrar").show();
+            //$("#fondoemergente").css('display', 'block');
+            //$("#titcabemergente").html('Comentarios y/o Trabajos Pendientes - Zona: ' + titulo);
+            //document.getElementById('ContentPlaceHolder1_txtZonaC').value = titulo;
+            //(document.getElementById('ContentPlaceHolder1_btZona')).click();
+            //mostrarCentrarDiv('emergente', ancho, alto);           
+        }
+
 
         function mostrarEmerUpAbonado(titulo, ancho, alto) {
             $("#tdemerUpAbonadocerrar").show();
@@ -1992,6 +2066,18 @@
             mostrarCentrarDiv('emerListarTecnico', ancho, alto);
         }
         
+        function mostraremerComenTrab(titulo, ancho, alto) {
+            $("#tdemerComenTrabcerrar").show();
+            $("#fondoemergente").css('display', 'block');
+            $("#titcabemerComenTrab").html(titulo);
+            mostrarCentrarDiv('emerComenTrab', ancho, alto);
+        }
+
+        function SalirPopupEmerComenTrab() {
+            $("#fondoemergente").hide();
+            $("#emerComenTrab").hide();
+        }
+
         function SalirPopupComentario() {
             $("#fondoemergente").hide();
             $("#emergente").hide();
