@@ -11,7 +11,7 @@
 </head>
 <body >
    <form id="login" runat="server">
-        <h1><strong>SISTEC - Acceso al sistema</strong>            
+        <h1><strong>CONTEC - Acceso al sistema</strong>            
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <strong style="font-size:11px;text-align:right">Versión 1.001</strong></h1>
         
