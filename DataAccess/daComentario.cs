@@ -56,7 +56,7 @@ namespace DataAccess
             }
             return lbeComentario;
         }
-        public List<beComentario> ListarComentarioZona(int pID_Ficha, int pNro_Zona, SqlConnection con)
+        public List<beComentario> ListarComentarioZona(SqlConnection con, Int64 pID_Ficha, int pZona, string pcsid)
         {
             List<beComentario> lbeComentario = null;
             SqlCommand cmd = new SqlCommand("sp_WCT_listar_Comentario_Supervision_Zona", con);
@@ -68,7 +68,11 @@ namespace DataAccess
 
             SqlParameter param2 = cmd.Parameters.Add("@Nro_Zona", SqlDbType.Int);
             param2.Direction = ParameterDirection.Input;
-            param2.Value = pNro_Zona;
+            param2.Value = pZona;
+
+            SqlParameter param3 = cmd.Parameters.Add("@csid", SqlDbType.VarChar, 10);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = pcsid;
 
             SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
 
@@ -105,5 +109,123 @@ namespace DataAccess
             }
             return lbeComentario;
         }
+
+        public bool InsertarComentario(SqlConnection con, Int64 ID_Ficha, int Nro_Zona, string Usuario, bool b_Pendiente, bool b_Completado, string Comentario, string csid)
+        {
+            bool registro = false;
+
+            SqlCommand cmd = new SqlCommand("sp_WCT_Insertar_Comentario", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ID_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@Nro_Zona", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = Nro_Zona;
+
+            SqlParameter param3 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = Usuario;
+
+            SqlParameter param4 = cmd.Parameters.Add("@b_Pendiente", SqlDbType.Bit);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = b_Pendiente;
+
+            SqlParameter param5 = cmd.Parameters.Add("@b_Completado", SqlDbType.Bit);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = b_Completado;
+
+            SqlParameter param6 = cmd.Parameters.Add("@Comentario", SqlDbType.VarChar, -1);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = Comentario;
+
+            SqlParameter param7 = cmd.Parameters.Add("@csid", SqlDbType.VarChar, 10);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = csid;
+
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
+        public bool ActualizarComentario(SqlConnection con, Int64 ID_Ficha, int Nro_Zona,int ID_Coment, string Usuario, bool b_Pendiente, bool b_Completado, string Comentario)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Actualizar_Comentario", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ID_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@Nro_Zona", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = Nro_Zona;
+
+            SqlParameter param3 = cmd.Parameters.Add("@ID_Coment", SqlDbType.Int);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = ID_Coment;
+
+            SqlParameter param4 = cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 20);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = Usuario;
+
+            SqlParameter param5 = cmd.Parameters.Add("@b_Pendiente", SqlDbType.Bit);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = b_Pendiente;
+
+            SqlParameter param6 = cmd.Parameters.Add("@b_Completado", SqlDbType.Bit);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = b_Completado;
+
+            SqlParameter param7 = cmd.Parameters.Add("@Comentario", SqlDbType.VarChar, -1);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = Comentario;
+
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
+
+        public bool EliminarComentario(SqlConnection con, Int64 ID_Ficha, int ID_Coment)
+        {
+            bool registro = false;
+            SqlCommand cmd = new SqlCommand("sp_WCT_Eliminar_Comentario", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@ID_Ficha", SqlDbType.Int);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = ID_Ficha;
+
+            SqlParameter param2 = cmd.Parameters.Add("@ID_Coment", SqlDbType.Int);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = ID_Coment;
+
+            
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                registro = true;
+            }
+
+            return registro;
+
+        }
+
     }
 }

@@ -28,7 +28,7 @@ namespace WatcherSistec.Control_Tecnico
                     Ficha_Abonados(IdFicha);                    
                     Ficha_TipoMant(IdFicha);                    
                     Ficha_Atenciones(IdFicha);
-                    Ficha_Comentario(IdFicha);
+                    //Ficha_Comentario(IdFicha);
 
                     txtID_Ficha.Text = IdFicha;
                     
@@ -221,11 +221,11 @@ namespace WatcherSistec.Control_Tecnico
 
         private void ListarFicha_Comentario_Zona(string Ficha, string Zona)
         {
-            brComentario br = new brComentario();
+            //brComentario br = new brComentario();
 
-            List<beComentario> ListarComentarioZona = br.ListarComentarioZona(Convert.ToInt32(Ficha),Convert.ToInt32(Zona));
-            gvComentario.DataSource = ListarComentarioZona;
-            gvComentario.DataBind();
+            //List<beComentario> ListarComentarioZona = br.ListarComentarioZona(Convert.ToInt32(Ficha),Convert.ToInt32(Zona));
+            //gvComentario.DataSource = ListarComentarioZona;
+            //gvComentario.DataBind();
         }
 
 
@@ -250,7 +250,7 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void gvComentario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvComentario.PageIndex = e.NewPageIndex;
+            //gvComentario.PageIndex = e.NewPageIndex;
             //ListarFicha_Comentario_Zona();
         }
 
@@ -280,9 +280,9 @@ namespace WatcherSistec.Control_Tecnico
         
         protected void btZona_Click(object sender, EventArgs e)
         {
-            string Ficha = txtID_Ficha.Text;
-            string Zona = txtZonaC.Text;
-            ListarFicha_Comentario_Zona(Ficha,Zona);
+            //string Ficha = txtID_Ficha.Text;
+           // string Zona = txtZonaC.Text;
+            //ListarFicha_Comentario_Zona(Ficha,Zona);
         }
 
       
@@ -379,7 +379,7 @@ namespace WatcherSistec.Control_Tecnico
                         if (Propiedad[0].ToString().Equals("P"))
                         {                            
                             e.Row.Cells[i - 1].Font.Bold = true;
-                            e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarPopupComentario('" + e.Row.Cells[i - 1].Text + "',600,560);");
+                            e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarComentario('Trabajo(s) / comentario(s) - Zona: " + e.Row.Cells[i - 1].Text + "', '"+ e.Row.Cells[i - 1].Text +"' ,550,350);");
                             e.Row.Cells[i - 1].Attributes["style"] = "cursor:pointer";
                             e.Row.Cells[i - 1].Attributes.Add("Title", Propiedad[1].ToString());
                             e.Row.Cells[i - 1].ForeColor = ColorLetra(Propiedad[2].ToString());
@@ -1109,6 +1109,173 @@ namespace WatcherSistec.Control_Tecnico
             txtNombre.Text = "";
             txtObs_Tec.Text = "";
 
+        }
+
+        protected void btnAddComent_Click(object sender, ImageClickEventArgs e)
+        {
+            hdfEstadoComentario.Value = "NUEVO";
+            btnAceptarComentario.Visible = true;
+            btnCancelarComentario.Visible = true;
+            btnCerrar.Visible = false;
+            txtComentario.Enabled = true;
+            txtComentario.Text = "";
+            txtComentario.Focus();
+            
+
+        }
+
+        protected void btnCancelarComentario_Click(object sender, EventArgs e)
+        {
+            hdfEstadoComentario.Value = "";
+            btnAceptarComentario.Visible = false;
+            btnCancelarComentario.Visible = false;
+            btnCerrar.Visible = true;
+            txtComentario.Enabled = false;            
+        }
+
+        protected void btnAceptarComentario_Click(object sender, EventArgs e)
+        {
+            brComentario br = new brComentario();
+            bool Update = false;
+            bool Pendiente;            
+            bool Completado;
+            bool VerificarAbonado  = false;
+            string csid="";
+
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+
+                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                if (rbt.Checked)
+                {
+                    VerificarAbonado = true;
+                }
+            }
+
+            if (VerificarAbonado==true)
+            {
+
+                    foreach (GridViewRow fila in gvAbonado.Rows)
+                    {
+
+                        RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                        if (rbt.Checked)
+                        {
+                            csid= HttpUtility.HtmlDecode(fila.Cells[2].Text);
+                            
+                        }
+                    }
+
+
+                    if (rbtPendiente.Checked==true)
+                    {
+                        Pendiente=true;
+                    }
+                    else
+                    {
+                        Pendiente=false;
+                    }
+
+                    if (chkCompletado.Checked==true)
+                    {
+                        Completado=true;
+                    }
+                    else
+                    {
+                        Completado=false;
+                    }
+
+
+                    Update = br.InsertarComentario(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value), Session["sUserIden"].ToString(), Pendiente, Completado, txtComentario.Text, csid);
+            
+                    string men;
+
+                    if (Update== false)
+                    {
+                        men = "Hubo un problema al registrar el trabajo pendiente ";
+                    }
+                    else
+                    {
+                        men = "Se registro el trabajo pendiente";
+                    }
+
+                    Ficha_Supervision(txtID_Ficha.Text);
+
+                    string script = "alert('Mensaje:  " + men + "');";
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            }
+            else
+            {
+                string script = "alert('Seleccione un abonado para registrar el trabajo pendiente / comentario');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            }
+
+
+
+
+        }
+
+        protected void btnListarComentariosZona_Click(object sender, EventArgs e)
+        {
+             bool VerificarAbonado = false;
+             string csid="";
+
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+
+                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                if (rbt.Checked)
+                {
+                    VerificarAbonado = true;
+                }
+            }
+
+            if (VerificarAbonado == true) 
+            {
+
+                foreach (GridViewRow fila in gvAbonado.Rows)
+                {
+
+                    RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                    if (rbt.Checked)
+                    {
+                        csid = HttpUtility.HtmlDecode(fila.Cells[2].Text);
+
+                    }
+                }
+                 }
+            else
+            {
+                string script = "alert('No se ha seleccionado abonado para listar trabajo(s) pendiente(s) / comentario(s)');";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+
+            }
+
+            if(csid.Trim().Length>0)
+            {
+                ListarComentarioZona(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value), csid);
+            }
+
+            
+        }
+
+        private void ListarComentarioZona(Int64 Ficha, int Zona, string csid)
+        {
+            brComentario br = new brComentario();
+            List<beComentario> ListarComentarioZona = br.ListarComentarioZona(Ficha, Zona, csid);
+            gvComentario.DataSource = ListarComentarioZona;
+            gvComentario.DataBind();
+        }
+
+        protected void btnTrabGenerales_Click(object sender, EventArgs e)
+        {
+             string script = "mostrarComentario('Trabajo(s) / comentario(s) - General',201,550,350)";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            
         }
 
     }

@@ -104,13 +104,13 @@
         </table>
         <table class="cab_context" style="width:100%">
             <tr>
-                <td style="width:300px">
-                    FICHA DE SUPERVISION NRO :
+                <td style="width:120px">
+                    FICHA NRO :
                 </td>
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel29" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:TextBox ID="txtID_Ficha" runat="server" ReadOnly="true"></asp:TextBox>
+                            <asp:TextBox ID="txtID_Ficha" runat="server" ReadOnly="true" Width="83px"></asp:TextBox>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
@@ -745,7 +745,7 @@
                             <td>
                                 <asp:UpdatePanel ID="UpdatePanel86" runat="server">
                                     <ContentTemplate>
-                                        <asp:Button ID="Button2" runat="server" Text="Trabajos Pendiente: GENERALES" OnClientClick="mostraremerComenTrab('Trabajos Pendientes','550','350');"/>
+                                        <asp:Button ID="btnTrabGenerales" runat="server" Text="Trabajos Pendiente: GENERALES" Height="30px" Width="250px" OnClick="btnTrabGenerales_Click" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>                                
                                 <br />
@@ -845,96 +845,7 @@
         </table>        
     </div>
 
-    <div id="emergente" class="ventana">
-        <div class="undraggable" style="width:100%;">
-			<table style="width:100% ; border-spacing:0px 0px; ">
-				<tr style="background:linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
-					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
-					<span id="titcabemergente">&nbsp;</span>&nbsp;&nbsp;</td>
-					<td id="tdemergentecerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupComentario();">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</td>
-				</tr>
-			</table>
-		</div>
-
-        <div id="emergentecuerpo">
-            <table style="width:100%"> 
-                <tr>                                        
-                    <td>
-                        <div>
-                            <table style="width:100%">
-                                <tr>
-                                    <td>                                        
-                                        <asp:UpdatePanel ID="UpdatePanel39" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:ImageButton ID="btnNuevo" ToolTip="Nuevo" runat="server" ImageUrl="../Images/Mantenimiento/NewDoc.png" CssClass="ImagenBoton"/>
-                                                <asp:Button ID="btZona" runat="server" Text="Button" style="display:none" OnClick="btZona_Click"  />
-                                                <asp:TextBox id="txtZonaC" runat="server" Width="45px" style="display:none" ></asp:TextBox>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                </tr>        
-                            </table>                        
-                            <table style="width:100%">
-                                <tr>
-                                    <td style="vertical-align:top;width:100%;">
-                                        <asp:UpdatePanel ID="UpdatePanel40" runat="server" >
-                                            <ContentTemplate>
-                                                <asp:GridView ID="gvComentario" runat="server" AllowPaging="True" CssClass="mGrid" AutoGenerateColumns="False" Width="800px" OnPageIndexChanging="gvComentario_PageIndexChanging">
-                                                    <Columns>                                    
-                                                        <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
-                                                        <asp:BoundField HeaderText="Comentario" DataField="Comentario" />
-                                                        <asp:BoundField HeaderText="Usuario" DataField="Usuario" />
-                                                        <asp:CommandField ButtonType="Button" SelectText="Seleccionar" ShowSelectButton="True" >
-                                                        <ControlStyle CssClass="btn btn-primary" />
-                                                        </asp:CommandField>
-                                                    </Columns>
-                                                    
-                                                    <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>
-                                                    <FooterStyle BackColor="#CCCCCC" HorizontalAlign="Center" />
-                                                    <HeaderStyle BackColor="Black" Font-Size="9pt"  ForeColor="White" />
-                                                    <PagerSettings FirstPageText="l&lt;" LastPageText="&gt;l" Mode="NumericFirstLast" NextPageText="&gt;" PreviousPageText="&lt;" />
-                                                    <PagerStyle BackColor="Black" ForeColor="white" HorizontalAlign="Center" Font-Bold="true" Font-Size="12pt"  />
-                                                    <RowStyle BackColor="White" Font-Size="8pt" />
-                                                    <SelectedRowStyle BackColor="Yellow" Font-Bold="True" ForeColor="Black" />
-                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
-
-                                                </asp:GridView>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                </tr>
-                                
-                            </table>
-                            <div style="position:absolute;width:250px; height:20px;top:50%;left:63%;margin-top:400px;margin-left:120px;">
-                                <table >
-                                <tr>
-                                    <td  >
-                                        <asp:UpdatePanel ID="UpdatePanel41" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:Button ID="btnAceptarComentario" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirPopupComentario()"/></td>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                    <td style="width:80px">
-                                    </td>    
-                                    <td>
-                                        <asp:Button ID="btnCancelarComentario" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupComentario()" />                                        
-                                    </td>                                
-                                </tr>
-                            </table>
-                            </div>
-                            
-                        </div>
-                    </td>
-                </tr>
-            </table>
-         </div>
-    </div>
+    
 
     <div id="emerUpAbonado" class="ventana">
 
@@ -1786,6 +1697,9 @@
                                             <ContentTemplate>
                                                 <asp:Button ID="btnAceptarUpTecnico" runat="server" Width="70" Text="Aceptar" Class="btn btn-primary" OnClientClick="SalirPopupUpTecnico()" OnClick="btnAceptarUpTecnico_Click"/></td>
                                             </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnTrabGenerales" EventName="Click" />
+                                            </Triggers>
                                         </asp:UpdatePanel>
                                     </td>
                                     <td style="width:80px">
@@ -1911,43 +1825,84 @@
          </div>
     </div>
 
-    <div id="emerComenTrab" class="ventana">
+    <div id="Comentario" class="ventana">
         <div class="undraggable" style="width:100%;">
 			<table style="width:100% ; border-spacing:0px 0px; ">
 				<tr style="background: linear-gradient(#525252,black);" onmouseover="this.style.cursor='move'">
 					<td style="width:100%; height:30px; text-align:center; font: bold 14px Tahoma;color:white;">&nbsp;&nbsp;
-					<span id="titcabemerComenTrab">&nbsp;</span>&nbsp;&nbsp;</td>
-					<td id="tdemerComenTrabcerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupEmerComenTrab();">
+					<span id="titcabComentario">&nbsp;</span>&nbsp;&nbsp;</td>
+					<td id="tdComentariocerrar" class="cerrar" style="width:24px; height:30px ; background-image:url('../Images/equisx.png'); background-repeat:no-repeat; cursor:pointer; text-align:right" onclick="SalirPopupComentario();">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 			</table>
 		</div>
 
-        <div id="emerComenTrabcuerpo">
+        <div id="Comentariocuerpo">
             <table>
                 <tr>
                     <td>
-                        <asp:ImageButton ID="btnAddComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnAdd.png" />
+                        <asp:UpdatePanel ID="UpdatePanel87" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:ImageButton ID="btnAddComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnAdd.png" OnClick="btnAddComent_Click" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>                        
                     </td>
                     <td>
-                        <asp:ImageButton ID="btnEditComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnEdit.png" />
+                        <asp:UpdatePanel ID="UpdatePanel88" runat="server">
+                            <ContentTemplate>
+                                <asp:ImageButton ID="btnEditComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnEdit.png" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>                        
                     </td>
                     <td>
-                        <asp:ImageButton ID="btnDelComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnDel.png" />
+                        <asp:UpdatePanel ID="UpdatePanel89" runat="server">
+                            <ContentTemplate>
+                                <asp:ImageButton ID="btnDelComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnDel.png" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>                        
+                    </td>
+                    <td>                        
+                        <asp:Button ID="btnListarComentariosZona" runat="server" Text="Button" style="display:none"  OnClick="btnListarComentariosZona_Click" />                                            
+                    </td>
+                    <td>
+                        <asp:UpdatePanel ID="UpdatePanel90" runat="server">
+                            <ContentTemplate>
+                                <asp:HiddenField ID="hdfEstadoComentario" runat="server" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                    <td>
+                        <asp:UpdatePanel ID="UpdatePanel39" runat="server">
+                            <ContentTemplate>
+                                <asp:HiddenField ID="hdfZonaComentario" runat="server" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </td>
                 </tr>
             </table>
             <table style="width: 388px;height:150px">
-                <asp:GridView ID="GridView2" runat="server"></asp:GridView>
+                <tr>
+                    <td style="vertical-align:top">
+                        <asp:UpdatePanel ID="UpdatePanel41" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvComentario" runat="server"></asp:GridView>
+                            </ContentTemplate>
+                            <Triggers>                               
+                                <asp:AsyncPostBackTrigger ControlID="btnListarComentariosZona" EventName="Click" />
+                            </Triggers>
+                        </asp:UpdatePanel>                
+                    </td>
+                </tr>
+                
             </table>
             <table style="width:100%">
                 <tr>
                     <td>
-                        <asp:RadioButton ID="rbtComentario" runat="server" Text="Comentario" />
+                        <asp:RadioButton ID="rbtComentario" runat="server" Text="Comentario" GroupName="CatComentario" />
                     </td>
                     <td>
-                        <asp:RadioButton ID="rbtTrabPendiente" runat="server" Text="Trabajo Pendiente" />
+                        <asp:RadioButton ID="rbtTrabPendiente" runat="server" Text="Trabajo Pendiente" GroupName="CatComentario" />
                     </td>
                     <td>
 
@@ -1960,17 +1915,32 @@
             <table style="width:100%">
                 <tr>
                     <td>
-                        <asp:TextBox ID="txtComent" runat="server" Height="67px" TextMode="MultiLine" Width="99%" Enabled="False"></asp:TextBox>
+                        <asp:UpdatePanel ID="UpdatePanel91" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:TextBox ID="txtComentario" runat="server" Height="67px" TextMode="MultiLine" Width="99%" Enabled="False"></asp:TextBox>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btnAddComent" EventName="Click" />
+                            </Triggers>
+                        </asp:UpdatePanel>
                     </td>
                 </tr>
             </table>
-            <table>
+            <asp:UpdatePanel ID="UpdatePanel92" runat="server">
+                <ContentTemplate>
+                    <table>
                 <tr>
                     <td>
-                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" />
+                        <asp:Button ID="btnAceptarComentario" runat="server" Text="Aceptar" Width="80px" Height="30px" Visible="false" OnClick="btnAceptarComentario_Click"/>
+                    </td>
+                    <td>
+                        <asp:Button ID="btnCancelarComentario" runat="server" Text="Cancelar" Width="80px" Height="30px" Visible="false" OnClick="btnCancelarComentario_Click" />
+                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" visible="true" Width="80px" Height="30px"/>
                     </td>
                 </tr>
             </table>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
 
     </div>
@@ -1988,7 +1958,7 @@
             $("#emerUpTecnico").draggable({ handle: 'div.undraggable' });
             $("#emerUpAbonado").draggable({ handle: 'div.undraggable' });
             $("#emerListarAbonados").draggable({ handle: 'div.undraggable' });
-            $("#emerComenTrab").draggable({ handle: 'div.undraggable' });
+            $("#Comentario").draggable({ handle: 'div.undraggable' });
         });
 
         function mostrarPopupComentario(titulo, ancho, alto) {
@@ -1997,7 +1967,7 @@
             //$("#titcabemergente").html('Comentarios y/o Trabajos Pendientes - Zona: ' + titulo);
             //document.getElementById('ContentPlaceHolder1_txtZonaC').value = titulo;
             //(document.getElementById('ContentPlaceHolder1_btZona')).click();
-            //mostrarCentrarDiv('emergente', ancho, alto);           
+            //mostrarCentrarDiv('emergente', ancho, alto);                       
         }
 
 
@@ -2066,22 +2036,21 @@
             mostrarCentrarDiv('emerListarTecnico', ancho, alto);
         }
         
-        function mostraremerComenTrab(titulo, ancho, alto) {
-            $("#tdemerComenTrabcerrar").show();
+        function mostrarComentario(titulo, zona, ancho, alto) {
+            document.getElementById('ContentPlaceHolder1_hdfZonaComentario').value = zona;
+            $("#tdComentariocerrar").show();
             $("#fondoemergente").css('display', 'block');
-            $("#titcabemerComenTrab").html(titulo);
-            mostrarCentrarDiv('emerComenTrab', ancho, alto);
-        }
-
-        function SalirPopupEmerComenTrab() {
-            $("#fondoemergente").hide();
-            $("#emerComenTrab").hide();
+            $("#titcabComentario").html(titulo);
+            mostrarCentrarDiv('Comentario', ancho, alto);
+            (document.getElementById('ContentPlaceHolder1_btnListarComentariosZona')).click();
         }
 
         function SalirPopupComentario() {
             $("#fondoemergente").hide();
-            $("#emergente").hide();
+            $("#Comentario").hide();
         }
+
+        
 
         function SalirPopupTecnico() {
             $("#fondoemergenteListarTecnico").hide();
