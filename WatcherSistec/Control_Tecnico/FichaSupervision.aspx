@@ -72,9 +72,6 @@
         
     </style>
 
-
-
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#ContentPlaceHolder1_txtUpFechaIngreso').datetimepicker();
@@ -162,7 +159,7 @@
                 <td>
 
                 </td>
-                <td>
+                <td style="display:none">
                     <asp:ImageButton ID="imgClose" runat="server" ImageUrl="~/Images/Close.png" />
                 </td>
             </tr>
@@ -374,12 +371,17 @@
                                 </td>
                             </tr>
                         </table>
-                        <table style="width:100% ;height:100%;">
+                        <table style="width:100% ;height:271px;">
                             <tr>
-                                <td>
+                                <td style="height:10px">
+                                    <b></b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:top">
                                     <asp:UpdatePanel ID="UpdatePanel83" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="100%" Width="100%" BorderColor="#DEDEDE" >
+                                            <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="100%" Width="100%" BorderColor="#DEDEDE" >
                                                 <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="REPORTE TÉCNICO" >
                                 <ContentTemplate>
                                     <table style="width:100%">
@@ -468,7 +470,7 @@
                                 </ContentTemplate>
                                 
                             </asp:TabPanel>
-                                                <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="SEÑALES ESPECIALES">
+                                                <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="SEÑALES ESPECIALES" Visible="false">
                                 <ContentTemplate>
                                     <div>
                                         <table>
@@ -743,49 +745,52 @@
                         <table style="width:100%;height:280px; border: 1px solid #DEDEDE;border-radius:3px">
                         <tr>                            
                             <td>
-                                <asp:UpdatePanel ID="UpdatePanel86" runat="server">
-                                    <ContentTemplate>
-                                        <asp:Button ID="btnTrabGenerales" runat="server" Text="Trabajos Pendiente: GENERALES" Height="30px" Width="250px" OnClick="btnTrabGenerales_Click" />
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>                                
+                                <table style="margin: 0 auto;">
+                                    <tr>
+                                        <td>
+                                            <asp:UpdatePanel ID="UpdatePanel86" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="btnTrabGenerales" runat="server" Text="Trabajos Pendiente: GENERALES" Height="30px" Width="250px" OnClick="btnTrabGenerales_Click" />
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>                                
+                                        </td>
+                                    </tr>
+                                </table>                                
                                 <br />
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <table >
+                            <td style="width:100%">
+                                <table style="width:100%" >
                                     <tr>
-                                        <td class="auto-style10">
-                                            <asp:Label ID="lblRojo" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:red" Text="ROJO: Señales sin restore"></asp:Label><br />
+                                        <td >
+                                            <asp:Label ID="lblRojo" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:3px; color:red" Text="ROJO: Señales sin restore"></asp:Label><br />
                                         </td>
-                                        <td class="auto-style11" >
-                                            <asp:Label ID="Label2" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:black" Text="NEGRO: Zona sin prueba"></asp:Label><br />
+                                        <td >
+                                            <asp:Label ID="Label2" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:3px;color:#F5F579;background-color:#DEDEDE" Text="FONDO AMARILLO: Comentarios"></asp:Label><br />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="auto-style10">
-                                            <asp:Label ID="Label1" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:blue" Text="AZUL: Restore si señal"></asp:Label><br />
+                                        <td >
+                                            <asp:Label ID="Label1" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:3px; color:blue" Text="AZUL: Restore si señal"></asp:Label><br />
                                         </td>
-                                        <td class="auto-style11">
-                                            <asp:Label ID="Label3" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px;color:green" Text="VERDE: Prueba de Zona OK (Señal + Restore)"></asp:Label><br />
+                                        <td >
+                                            <asp:Label ID="Label3" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:3px; color:green" Text="VERDE: Prueba de Zona OK (Señal + Restore)"></asp:Label><br />
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label4" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:3px; color:black" Text="NEGRO: Zona sin prueba"></asp:Label><br />
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label5" runat="server" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:3px; color:#00FFFF" Text="FONDO CELESTE: Trabajos Pendientes"></asp:Label><br />
+                                        </td>
+                                    </tr>                                    
                                     
                                 </table>
-
-                            </td>
-                            
-
-
-                            <td style="width:20px">&nbsp;</td>
-                            <td style="display:none">
-                                <asp:HyperLink ID="HyperLink2" runat="server" CssClass="imjusttext">Observaciones</asp:HyperLink>
-                            </td>
-                            <td style="width:150px">&nbsp;</td>
-                            <td style="display:none">
-                                <asp:Button ID="btnHistorial" runat="server" CssClass="btn btn-primary" Text="Historial de Señales" />
                             </td>
                         </tr>
+                        
                         <tr>
                             <td colspan="5" style="vertical-align:central">
                                 <asp:UpdatePanel ID="UpdatePanel4" runat="server" >
@@ -1851,19 +1856,23 @@
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel88" runat="server">
                             <ContentTemplate>
-                                <asp:ImageButton ID="btnEditComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnEdit.png" />
+                                <asp:ImageButton ID="btnEditComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnEdit.png" OnClick="btnEditComent_Click" />
                             </ContentTemplate>
                         </asp:UpdatePanel>                        
                     </td>
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel89" runat="server">
                             <ContentTemplate>
-                                <asp:ImageButton ID="btnDelComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnDel.png" />
+                                <asp:ImageButton ID="btnDelComent" CssClass="ImagenBoton" runat="server" ImageUrl="~/Images/ComnDel.png" OnClick="btnDelComent_Click" />
                             </ContentTemplate>
                         </asp:UpdatePanel>                        
                     </td>
-                    <td>                        
-                        <asp:Button ID="btnListarComentariosZona" runat="server" Text="Button" style="display:none"  OnClick="btnListarComentariosZona_Click" />                                            
+                    <td>                     
+                        <asp:UpdatePanel ID="UpdatePanel40" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:Button ID="btnListarComentariosZona" runat="server" Text="Button" style="display:none"  OnClick="btnListarComentariosZona_Click" />                                            
+                            </ContentTemplate>   
+                        </asp:UpdatePanel>
                     </td>
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel90" runat="server">
@@ -1881,15 +1890,49 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 388px;height:150px">
+            <table style="width: 100%;height:150px">
                 <tr>
                     <td style="vertical-align:top">
                         <asp:UpdatePanel ID="UpdatePanel41" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <asp:GridView ID="gvComentario" runat="server"></asp:GridView>
-                            </ContentTemplate>
-                            <Triggers>                               
+                                <asp:GridView ID="gvComentario" runat="server" AutoGenerateColumns="False" Width="100%" OnSelectedIndexChanged="gvComentario_SelectedIndexChanged" >
+                                    <Columns>
+                                        <asp:ImageField DataImageUrlField="ImageTipoComentario"></asp:ImageField>
+                                        <asp:BoundField DataField="fecha" HeaderText="FECHA"></asp:BoundField>
+                                        <asp:BoundField DataField="usuario" HeaderText="USUARIO"></asp:BoundField>
+                                        <asp:BoundField DataField="comentario" HeaderText="COMENTARIO"></asp:BoundField>
+                                        <asp:BoundField DataField="ID_Coment" HeaderText="ID COMENT">
+                                            <HeaderStyle CssClass="ColumnaOculta"></HeaderStyle>
+                                            <ItemStyle CssClass="ColumnaOculta"></ItemStyle>
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="b_Pendiente" HeaderText="PENDIENTE">
+                                            <HeaderStyle CssClass="ColumnaOculta"></HeaderStyle>
+
+                                            <ItemStyle CssClass="ColumnaOculta"></ItemStyle>
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="b_Completado" HeaderText="COMPLETADO">
+                                            <HeaderStyle CssClass="ColumnaOculta"></HeaderStyle>
+
+                                            <ItemStyle CssClass="ColumnaOculta"></ItemStyle>
+                                        </asp:BoundField>
+                                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" ButtonType="Image" SelectImageUrl="../Images/Select.png"></asp:CommandField>
+                                    </Columns>
+                                    <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                                                    <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                                    <SortedDescendingHeaderStyle BackColor="#242121" />
+                                    
+                                </asp:GridView>
+                            </ContentTemplate>                            
+                            <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="btnListarComentariosZona" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="gvComentario" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="btnAceptarComentario" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="btnDelComent" EventName="Click" />                                
                             </Triggers>
                         </asp:UpdatePanel>                
                     </td>
@@ -1899,16 +1942,38 @@
             <table style="width:100%">
                 <tr>
                     <td>
-                        <asp:RadioButton ID="rbtComentario" runat="server" Text="Comentario" GroupName="CatComentario" />
+                        <asp:UpdatePanel ID="UpdatePanel93" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:RadioButton ID="rbtComentario" runat="server" Text="Comentario" GroupName="CatComentario" />
+                            </ContentTemplate>
+                            <Triggers>                                
+                                <asp:AsyncPostBackTrigger ControlID="gvComentario" EventName="SelectedIndexChanged" />                                
+                            </Triggers>
+                        </asp:UpdatePanel>
+                        
                     </td>
                     <td>
-                        <asp:RadioButton ID="rbtTrabPendiente" runat="server" Text="Trabajo Pendiente" GroupName="CatComentario" />
+                        <asp:UpdatePanel ID="UpdatePanel94" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:RadioButton ID="rbtTrabPendiente" runat="server" Text="Trabajo Pendiente" GroupName="CatComentario" AutoPostBack="True" />
+                            </ContentTemplate>
+                            <Triggers>                                
+                                <asp:AsyncPostBackTrigger ControlID="gvComentario" EventName="SelectedIndexChanged" />                                
+                            </Triggers>
+                        </asp:UpdatePanel>                        
                     </td>
                     <td>
 
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkCompletado" runat="server" Text="Completado" />
+                        <asp:UpdatePanel ID="UpdatePanel95" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:CheckBox ID="chkCompletado" runat="server" Text="Completado" AutoPostBack="true" />
+                            </ContentTemplate>
+                              <Triggers>                                
+                                <asp:AsyncPostBackTrigger ControlID="gvComentario" EventName="SelectedIndexChanged" />                                
+                            </Triggers>
+                        </asp:UpdatePanel>                        
                     </td>
                 </tr>
             </table>
@@ -1921,6 +1986,10 @@
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="btnAddComent" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="btnEditComent" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="btnAceptarComentario" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="btnCancelarComentario" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="gvComentario" EventName="SelectedIndexChanged" />
                             </Triggers>
                         </asp:UpdatePanel>
                     </td>
@@ -1935,7 +2004,7 @@
                     </td>
                     <td>
                         <asp:Button ID="btnCancelarComentario" runat="server" Text="Cancelar" Width="80px" Height="30px" Visible="false" OnClick="btnCancelarComentario_Click" />
-                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" visible="true" Width="80px" Height="30px"/>
+                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" visible="true" Width="80px" Height="30px" OnClientClick="SalirPopupComentario();"/>
                     </td>
                 </tr>
             </table>

@@ -10,5 +10,7 @@
         public string b_Pendiente { get; set; }
         public string b_Completado { get; set; }
         public string Comentario { get; set; }
+        public string ImageTipoComentario { get; set; }
+        
     }
 }

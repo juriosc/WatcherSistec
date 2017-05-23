@@ -379,10 +379,34 @@ namespace WatcherSistec.Control_Tecnico
                         if (Propiedad[0].ToString().Equals("P"))
                         {                            
                             e.Row.Cells[i - 1].Font.Bold = true;
-                            e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarComentario('Trabajo(s) / comentario(s) - Zona: " + e.Row.Cells[i - 1].Text + "', '"+ e.Row.Cells[i - 1].Text +"' ,550,350);");
+                            e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarComentario('Trabajo(s) / comentario(s) - Zona: " + e.Row.Cells[i - 1].Text + "', '"+ e.Row.Cells[i - 1].Text +"' ,600,370);");
                             e.Row.Cells[i - 1].Attributes["style"] = "cursor:pointer";
                             e.Row.Cells[i - 1].Attributes.Add("Title", Propiedad[1].ToString());
                             e.Row.Cells[i - 1].ForeColor = ColorLetra(Propiedad[2].ToString());
+                            if(Convert.ToInt16(Propiedad[3].ToString())>0 && Convert.ToInt16(Propiedad[4].ToString())>0)
+                            {
+                                e.Row.Cells[i - 1].BackColor = System.Drawing.Color.Pink;
+                            }
+                            else
+                            {
+                                if(Convert.ToInt16(Propiedad[3].ToString())>0 && Convert.ToInt16(Propiedad[4].ToString())==0)
+                                {
+                                    e.Row.Cells[i - 1].BackColor = System.Drawing.Color.FromArgb(245, 245, 121); 
+                                } 
+                                else
+                                {
+                                    if(Convert.ToInt16(Propiedad[3].ToString())==0 && Convert.ToInt16(Propiedad[4].ToString())>0)
+                                    {
+                                        e.Row.Cells[i - 1].BackColor = System.Drawing.Color.FromArgb(0, 255, 255);
+                                    }
+                                    else
+                                    {
+                                        e.Row.Cells[i - 1].BackColor = System.Drawing.Color.White;
+
+                                    }
+
+                                }
+                            }
                         }
                       
 
@@ -417,8 +441,7 @@ namespace WatcherSistec.Control_Tecnico
 
             return Color;
         }
-            
-
+        
         protected void btnAceptarTEnvioMSM_Click(object sender, EventArgs e)
         {
             bool updatedAT;
@@ -1137,7 +1160,8 @@ namespace WatcherSistec.Control_Tecnico
         {
             brComentario br = new brComentario();
             bool Update = false;
-            bool Pendiente;            
+            bool Pendiente;
+            bool Comentario;            
             bool Completado;
             bool VerificarAbonado  = false;
             string csid="";
@@ -1169,13 +1193,13 @@ namespace WatcherSistec.Control_Tecnico
                     }
 
 
-                    if (rbtPendiente.Checked==true)
+                    if (rbtTrabPendiente.Checked == true)
                     {
-                        Pendiente=true;
+                        Pendiente=true;                        
                     }
                     else
                     {
-                        Pendiente=false;
+                        Pendiente=false;                        
                     }
 
                     if (chkCompletado.Checked==true)
@@ -1186,9 +1210,15 @@ namespace WatcherSistec.Control_Tecnico
                     {
                         Completado=false;
                     }
-
-
-                    Update = br.InsertarComentario(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value), Session["sUserIden"].ToString(), Pendiente, Completado, txtComentario.Text, csid);
+                    
+                    if (hdfEstadoComentario.Value.Equals("NUEVO"))
+                    {
+                        Update = br.InsertarComentario(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value), Session["sUserIden"].ToString(), Pendiente, Completado, txtComentario.Text, csid);
+                    }
+                    else
+                    {
+                        Update = br.ActualizarComentario(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value),csid, Convert.ToInt16(gvComentario.Rows[gvComentario.SelectedIndex].Cells[4].Text), Session["sUserIden"].ToString(), Pendiente, Completado, txtComentario.Text);
+                    }                    
             
                     string men;
 
@@ -1201,7 +1231,14 @@ namespace WatcherSistec.Control_Tecnico
                         men = "Se registro el trabajo pendiente";
                     }
 
-                    Ficha_Supervision(txtID_Ficha.Text);
+                    btnListarComentariosZona_Click(null, null);
+
+                    hdfEstadoComentario.Value = "";
+                    btnAceptarComentario.Visible = false;
+                    btnCancelarComentario.Visible = false;
+                    btnCerrar.Visible = true;
+                    txtComentario.Enabled = false;                    
+                    
 
                     string script = "alert('Mensaje:  " + men + "');";
                     ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
@@ -1273,8 +1310,84 @@ namespace WatcherSistec.Control_Tecnico
 
         protected void btnTrabGenerales_Click(object sender, EventArgs e)
         {
-             string script = "mostrarComentario('Trabajo(s) / comentario(s) - General',201,550,350)";
-                ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+             string script = "mostrarComentario('Trabajo(s) / comentario(s) - General',201,600,370)";
+              ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            
+        }
+
+        protected void btnEditComent_Click(object sender, ImageClickEventArgs e)
+        {
+            hdfEstadoComentario.Value = "EDITAR";
+            btnAceptarComentario.Visible = true;
+            btnCancelarComentario.Visible = true;
+            btnCerrar.Visible = false;
+            txtComentario.Enabled = true;
+            txtComentario.Text = gvComentario.Rows[gvComentario.SelectedIndex].Cells[3].Text;
+            txtComentario.Focus();
+        }
+
+        protected void gvComentario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = gvComentario.SelectedRow;
+            txtComentario.Text = HttpUtility.HtmlDecode(row.Cells[3].Text);
+
+            rbtTrabPendiente.Checked =Convert.ToBoolean(Convert.ToInt16(HttpUtility.HtmlDecode(row.Cells[5].Text)));
+            rbtComentario.Checked = !Convert.ToBoolean(Convert.ToInt16(HttpUtility.HtmlDecode(row.Cells[5].Text)));
+            chkCompletado.Checked = Convert.ToBoolean(Convert.ToInt16(HttpUtility.HtmlDecode(row.Cells[6].Text)));
+            
+
+        }
+
+        protected void btnDelComent_Click(object sender, ImageClickEventArgs e)
+        {
+            brComentario br = new brComentario();
+            bool VerificarAbonado=false;
+            string csid="";
+
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+
+                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                if (rbt.Checked)
+                {
+                    VerificarAbonado = true;
+                }
+            }
+
+            if (VerificarAbonado == true)
+            {
+
+                foreach (GridViewRow fila in gvAbonado.Rows)
+                {
+
+                    RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                    if (rbt.Checked)
+                    {
+                        csid = HttpUtility.HtmlDecode(fila.Cells[2].Text);
+
+                    }
+                }
+
+                bool Delete;
+                Delete = br.EliminarComentario(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value), csid, Convert.ToInt16(gvComentario.Rows[gvComentario.SelectedIndex].Cells[4].Text));
+
+                if (Delete == true) 
+                {
+                    string script = "alert('El registro fue eliminado')";
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+                    btnListarComentariosZona_Click(null, null);
+                }
+                else
+                {
+                    string script = "alert('Ocurrio un error al intentar eliminar el registro')";
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+                }
+
+            }
+
+
             
         }
 
