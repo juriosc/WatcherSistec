@@ -15,58 +15,112 @@ namespace WatcherSistec.Reportes
         {
             if (!IsPostBack)
             {
-                Listar_Supervisiones();
+                Listar_Reporte();
+
+                int dia_h, mes_h;
+                string sdia_h, smes_h;
+
+                dia_h = DateTime.Now.Day;
+                mes_h = DateTime.Now.Month;
+
+
+                if (dia_h < 10)
+                {
+                    sdia_h = "0" + dia_h.ToString();
+                }
+                else
+                {
+                    sdia_h = dia_h.ToString();
+                }
+
+                if (mes_h < 10)
+                {
+                    smes_h = "0" + mes_h.ToString();
+                }
+                else
+                {
+                    smes_h = mes_h.ToString();
+                }
+
+                txtFechaIni.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
+                txtFechaFin.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
             }
         }
 
-        private void Listar_Supervisiones()
+        private void Listar_Reporte()
         {
-            brSupervisiones br = new brSupervisiones();
-            //              List<beSupervisiones> lbeSupervisiones = br.ListarSupervisiones(txtCodAtencion.Text.ToString(), txtCsid.Text.ToString(), txtOperador.Text.ToString(), txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Pend, Conc, Aten, Canc, BeginDate, EndDate, Mant, Obs, Trab, Env);
+            brReportes br = new brReportes();
+            string BeginDate, EndDate;
 
-            //      gvSupervisiones.DataSource = lbeSupervisiones;
-            gvSupervisiones.DataBind();
+            BeginDate = txtFechaIni.Text;
+            EndDate = txtFechaFin.Text;
+
+            List<beReportes> lbeReportes = br.ListarReporte_HorasTrabxTecnico(BeginDate, EndDate, txtProveedor.Text.ToString(), txtTecnico.Text.ToString());
+
+            gvReporte.DataSource = lbeReportes;
+            gvReporte.DataBind();
         }
-
-
+        protected void gvReporte_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvReporte.PageIndex = e.NewPageIndex;
+            Listar_Reporte();
+        }
 
         protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
         {
-            Listar_Supervisiones();
+            Listar_Reporte();
         }
 
-        protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
+        private void Listar_Grilla_Proveedor(string Codigo, string Proveedor)
         {
-            Response.Redirect("../Control_Tecnico/FichaSupervision.aspx");
+            brProveedor br = new brProveedor();
+            List<beProveedor> lstListarProveedor = br.ListarProveedor(Codigo, Proveedor);
+            gvProveedor.DataSource = lstListarProveedor;
+            gvProveedor.DataBind();
+        }
+        protected void btnBuscarProv_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Proveedor("", txtProvName.Text);
         }
 
-        protected void gvSupervisiones_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            //if (e.CommandName.Equals("Ver"))
-            //{
-            //    int index = Convert.ToInt32(e.CommandArgument);
-            //    GridViewRow row = gvSupervisiones.Rows[index];
-
-            //    string pFichaID = row.Cells[1].Text.ToString();
-            //    Response.Redirect("../Control_Tecnico/FichaSupervision.aspx?FichaID=" + pFichaID);
-            //}
-
-
-            //if (e.CommandName.Equals("Modificar"))
-            //{
-            //    int index = Convert.ToInt32(e.CommandArgument);
-            //    GridViewRow row = gvSupervisiones.Rows[index];
-
-            //    string pFichaID = row.Cells[1].Text.ToString();
-            //    Response.Redirect("../Control_Tecnico/FichaSupervision.aspx?FichaID=" + pFichaID);
-            //}
-            Listar_Supervisiones();
+            gvProveedor.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Proveedor(txtProveedor.Text, txtProveName.Text);
         }
 
-        protected void gvSupervisiones_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnAceptar_Prov_Click(object sender, EventArgs e)
         {
-            gvSupervisiones.PageIndex = e.NewPageIndex;
-            Listar_Supervisiones();
+            txtProveedor.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[0].Text;
+            txtProveName.Text = gvProveedor.Rows[gvProveedor.SelectedIndex].Cells[1].Text;
+            txtTecnico.Text = "";
+            txtTecName.Text = "";
+        }
+
+        private void Listar_Grilla_Tecnico(string Proveedor, string Nombre)
+        {
+            brFichaTecnico br = new brFichaTecnico();
+            List<beTecnico> lstListarTecnico = br.ListarTecnico(Proveedor, Nombre);
+            gvTecnico.DataSource = lstListarTecnico;
+            gvTecnico.DataBind();
+        }
+        protected void btnBuscarTecnico_Click(object sender, EventArgs e)
+        {
+            Listar_Grilla_Tecnico(txtProv.Text, txtNameTecnico.Text);
+        }
+
+        protected void gvTecnico_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTecnico.PageIndex = e.NewPageIndex;
+            Listar_Grilla_Tecnico(txtProv.Text, txtNameTecnico.Text);
+        }
+
+        protected void btnAceptarTec_Click(object sender, EventArgs e)
+        {
+            txtTecnico.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[3].Text;
+            txtTecName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[2].Text);
+            txtProveedor.Text = gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[4].Text;
+            txtProveName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text);
         }
     }
 }

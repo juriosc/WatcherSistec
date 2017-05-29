@@ -108,5 +108,71 @@ namespace BusinessRules
             }
             return (lbeReportes);
         }
+
+        public List<beReportes> ListarReporte_HorasTrabxTecnico(string pfechad, string pfechah, string pProveedorID, string pPersonalID)
+        {
+            List<beReportes> lbeReportes = null;
+            using (SqlConnection con = new SqlConnection(Conexion))
+            {
+                try
+                {
+                    con.Open();
+                    daReportes odaReportes = new daReportes();
+                    lbeReportes = odaReportes.ListarReporte_HorasTrabxTecnico(con, pfechad, pfechah, pProveedorID, pPersonalID);
+                }
+                catch (SqlException ex)
+                {
+                    beLog obeLog;
+                    foreach (SqlError err in ex.Errors)
+                    {
+                        obeLog = new beLog();
+                        obeLog.MensajeError = err.Message;
+                        obeLog.DetalleError = ex.StackTrace;
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    beLog obeLog = new beLog();
+                    obeLog.MensajeError = ex.Message;
+                    obeLog.DetalleError = ex.StackTrace;
+                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                }
+            }
+            return (lbeReportes);
+        }
+
+        public List<beReportes> ListarReporte_Estadistico_xTrabajoEntidad(string pfechad, string pfechah, string pProveedorID, string ptipo_mant)
+        {
+            List<beReportes> lbeReportes = null;
+            using (SqlConnection con = new SqlConnection(Conexion))
+            {
+                try
+                {
+                    con.Open();
+                    daReportes odaReportes = new daReportes();
+                    lbeReportes = odaReportes.ListarReporte_Estadistico_xTrabajoEntidad(con, pfechad, pfechah, pProveedorID, ptipo_mant);
+                }
+                catch (SqlException ex)
+                {
+                    beLog obeLog;
+                    foreach (SqlError err in ex.Errors)
+                    {
+                        obeLog = new beLog();
+                        obeLog.MensajeError = err.Message;
+                        obeLog.DetalleError = ex.StackTrace;
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    beLog obeLog = new beLog();
+                    obeLog.MensajeError = ex.Message;
+                    obeLog.DetalleError = ex.StackTrace;
+                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                }
+            }
+            return (lbeReportes);
+        }
     }
 }

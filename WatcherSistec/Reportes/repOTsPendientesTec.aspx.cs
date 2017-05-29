@@ -176,7 +176,7 @@ namespace WatcherSistec.Reportes
         protected void gvProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProveedor.PageIndex = e.NewPageIndex;
-            Listar_Grilla_Proveedor(txtDealer.Text, txtNameDealer.Text);
+            Listar_Grilla_Proveedor(txtProveedor.Text, txtProveName.Text);
         }
 
         protected void btnAceptar_Prov_Click(object sender, EventArgs e)

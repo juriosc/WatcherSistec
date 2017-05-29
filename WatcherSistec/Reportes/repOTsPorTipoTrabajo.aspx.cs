@@ -17,7 +17,7 @@ namespace WatcherSistec.Reportes
             if (!IsPostBack)
             {
                 ListarTipoMantenimiento();
-                Listar_Reporte();
+                //Listar_Reporte();
 
                 int dia_h, mes_h;
                 string  sdia_h, smes_h;

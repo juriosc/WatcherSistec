@@ -24,5 +24,13 @@ namespace Entity
         public string DealerName { get; set; }
         public string ProvName { get; set; }
         public string Observaciones { get; set; }
+        public string Hora_Ingreso { get; set; }
+        public string Hora_Salida { get; set; }
+        public string Horas { get; set; }
+        public string Minutos { get; set; }
+        public string TxTman { get; set; }
+        public string Total { get; set; }
+        public string PORCENTAJE { get; set; }
+        
     }
 }

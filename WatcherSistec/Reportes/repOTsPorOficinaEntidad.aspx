@@ -174,7 +174,7 @@
                                     <Columns>
                                         <asp:BoundField HeaderText="Fecha" DataField="Fecha_Registro" />
                                         <asp:BoundField HeaderText="Tipo. Mant" DataField="TipoMantenimiento" />
-                                        <asp:BoundField HeaderText="Distribuidor" DataField="Dealer" />
+                                        <asp:BoundField HeaderText="Distribuidor" DataField="DealerName" />
                                         <asp:BoundField HeaderText="Abonado" DataField="CSID" />
                                         <asp:BoundField HeaderText="Oficina" DataField="SubscriberName" />
                                         <asp:BoundField HeaderText="Proveedor" DataField="ProvName" />
