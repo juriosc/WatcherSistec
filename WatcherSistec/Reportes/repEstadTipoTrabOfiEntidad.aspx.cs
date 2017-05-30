@@ -16,7 +16,7 @@ namespace WatcherSistec.Reportes
             if (!IsPostBack)
             {
                 ListarTipoMantenimiento();
-                //Listar_Reporte();
+                Listar_Reporte();
 
                 int dia_h, mes_h;
                 string sdia_h, smes_h;
@@ -44,6 +44,9 @@ namespace WatcherSistec.Reportes
 
                 txtFechaIni.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
                 txtFechaFin.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
+
+                txtFechaIni.Attributes.Add("ReadOnly", "true");
+                txtFechaFin.Attributes.Add("ReadOnly", "true");
             }
         }
 

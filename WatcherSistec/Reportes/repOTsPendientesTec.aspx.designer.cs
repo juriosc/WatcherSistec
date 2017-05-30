@@ -31,6 +31,15 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaIni;
         
         /// <summary>
+        /// txtFechaIni_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFechaIni_CalendarExtender;
+        
+        /// <summary>
         /// UpdatePanel7 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace WatcherSistec.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
+        
+        /// <summary>
+        /// txtFechaFin_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFechaFin_CalendarExtender;
         
         /// <summary>
         /// UpdatePanel76 control.

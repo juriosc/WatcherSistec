@@ -31,13 +31,22 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
         
         /// <summary>
-        /// UpdatePanel5 control.
+        /// txtFechaDesde_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
+        protected global::AjaxControlToolkit.CalendarExtender txtFechaDesde_CalendarExtender;
+        
+        /// <summary>
+        /// UpdatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
         /// txtFechaHasta control.
@@ -47,6 +56,15 @@ namespace WatcherSistec.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
+        
+        /// <summary>
+        /// txtFechaHasta_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFechaHasta_CalendarExtender;
         
         /// <summary>
         /// UpdatePanel76 control.

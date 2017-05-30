@@ -67,67 +67,49 @@ namespace WatcherSistec.Reportes {
         protected global::AjaxControlToolkit.CalendarExtender txtFechaFin_CalendarExtender;
         
         /// <summary>
-        /// UpdatePanel18 control.
+        /// UpdatePanel25 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel18;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel25;
         
         /// <summary>
-        /// txtProveedor control.
+        /// txtTecName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProveedor;
+        protected global::System.Web.UI.WebControls.TextBox txtTecName;
         
         /// <summary>
-        /// UpdatePanel19 control.
+        /// UpdatePanel23 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel19;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel23;
         
         /// <summary>
-        /// txtProveName control.
+        /// txtTecnico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProveName;
+        protected global::System.Web.UI.WebControls.TextBox txtTecnico;
         
         /// <summary>
-        /// UpdatePanel20 control.
+        /// UpdatePanel29 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel20;
-        
-        /// <summary>
-        /// btnBusCodProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusCodProveedor;
-        
-        /// <summary>
-        /// UpdatePanel21 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel21;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel29;
         
         /// <summary>
         /// btnPopupTecnico control.
@@ -184,13 +166,13 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
         
         /// <summary>
-        /// btnNuevo control.
+        /// btnExportar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnNuevo;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportar;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -202,12 +184,111 @@ namespace WatcherSistec.Reportes {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// gvSupervisiones control.
+        /// gvReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSupervisiones;
+        protected global::System.Web.UI.WebControls.GridView gvReporte;
+        
+        /// <summary>
+        /// txtProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProv;
+        
+        /// <summary>
+        /// txtNameTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNameTecnico;
+        
+        /// <summary>
+        /// txtFondo1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFondo1;
+        
+        /// <summary>
+        /// UpdatePanel63 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel63;
+        
+        /// <summary>
+        /// btnBuscarTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarTecnico;
+        
+        /// <summary>
+        /// UpdatePanel64 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel64;
+        
+        /// <summary>
+        /// gvTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTecnico;
+        
+        /// <summary>
+        /// UpdatePanel66 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel66;
+        
+        /// <summary>
+        /// btnAceptarTec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarTec;
+        
+        /// <summary>
+        /// UpdatePanel67 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel67;
+        
+        /// <summary>
+        /// btnCancelarTec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarTec;
     }
 }

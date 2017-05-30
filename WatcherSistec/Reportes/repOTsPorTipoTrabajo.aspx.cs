@@ -45,6 +45,8 @@ namespace WatcherSistec.Reportes
 
                 txtFechaDesde.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
                 txtFechaHasta.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
+                txtFechaDesde.Attributes.Add("ReadOnly", "true");
+                txtFechaHasta.Attributes.Add("ReadOnly", "true");
             }
         }
         private void ListarTipoMantenimiento()

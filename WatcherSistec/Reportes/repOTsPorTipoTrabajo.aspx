@@ -33,7 +33,9 @@
                                                 <td style="text-align:right">
                                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:TextBox ID="txtFechaDesde" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtFechaDesde" runat="server" style="height:16px ;width:80px"></asp:TextBox>
+                                                            <asp:CalendarExtender ID="txtFechaDesde_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaDesde" Format="dd/MM/yyyy">
+                                                            </asp:CalendarExtender>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
@@ -46,9 +48,11 @@
                                             <tr>
                                                 <td class="Etiqueta">Hasta</td>
                                                 <td style="text-align:right">
-                                                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional" >
+                                                    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:TextBox ID="txtFechaHasta" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtFechaHasta" runat="server" style="height:16px ;width:80px"></asp:TextBox>
+                                                            <asp:CalendarExtender ID="txtFechaHasta_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaHasta" Format="dd/MM/yyyy">
+                                                            </asp:CalendarExtender>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
@@ -197,11 +201,6 @@
         </fieldset>
     </div>
     <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('#ContentPlaceHolder1_txtFechaDesde').datepicker();
-            $('#ContentPlaceHolder1_txtFechaHasta').datepicker();
-        });
 
         $(function () {
             $("#emergente").draggable({ handle: 'div.undraggable' });

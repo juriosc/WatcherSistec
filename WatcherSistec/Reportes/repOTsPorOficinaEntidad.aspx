@@ -35,8 +35,10 @@
                                                       <td style="text-align:right">
                                                           <asp:UpdatePanel ID="UpdatePanel22" runat="server" UpdateMode="Conditional">
                                                               <ContentTemplate>
-                                                                  <asp:TextBox ID="txtFechaIni" runat="server" ReadOnly="true" style="height:16px ;width:80px"></asp:TextBox>
-                                                              </ContentTemplate>
+                                                                <asp:TextBox ID="txtFechaIni" runat="server" style="height:16px ;width:80px"></asp:TextBox>
+                                                                <asp:CalendarExtender ID="txtFechaIni_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaIni" Format="dd/MM/yyyy">
+                                                                </asp:CalendarExtender>
+                                                            </ContentTemplate>
                                                           </asp:UpdatePanel>
                                                       </td>
                                                   </tr>
@@ -50,7 +52,9 @@
                                                       <td style="text-align:right">
                                                           <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
                                                               <ContentTemplate>
-                                                                  <asp:TextBox ID="txtFechaFin" runat="server" ReadOnly="true" style="height:16px ;width:80px" ></asp:TextBox>
+                                                                  <asp:TextBox ID="txtFechaFin" runat="server" style="height:16px ;width:80px" ></asp:TextBox>
+                                                                  <asp:CalendarExtender ID="txtFechaFin_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtFechaFin" Format="dd/MM/yyyy">
+                                                                  </asp:CalendarExtender>
                                                               </ContentTemplate>
                                                           </asp:UpdatePanel>
                                                       </td>
@@ -424,12 +428,6 @@
     </div>
 
      <script type="text/javascript">
-
-         $(document).ready(function () {
-             $('#ContentPlaceHolder1_txtFechaIni').datepicker();
-             $('#ContentPlaceHolder1_txtFechaFin').datepicker();
-         });
-
 
          $(function () {
              $("#emergente").draggable({ handle: 'div.undraggable' });

@@ -44,6 +44,8 @@ namespace WatcherSistec.Reportes
 
                 txtFechaIni.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
                 txtFechaFin.Text = sdia_h + "/" + smes_h + "/" + DateTime.Now.Year.ToString();
+                txtFechaIni.Attributes.Add("ReadOnly", "true");
+                txtFechaFin.Attributes.Add("ReadOnly", "true");
             }
         }
 
