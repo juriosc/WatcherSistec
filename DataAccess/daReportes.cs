@@ -453,5 +453,58 @@ namespace DataAccess
             }
             return lbeReportes;
         }
+
+        public List<beReportes> ListarReporte_Estadistico_RutaTrab(SqlConnection con, string pfechad, string pfechah, string pProveedorID, string pPersonalID, string pRuta_ID)
+        {
+            List<beReportes> lbeReportes = null;
+
+            SqlCommand cmd = new SqlCommand("sp_WCT_listar_repEstad_RutaTrab", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param1 = cmd.Parameters.Add("@fechad", SqlDbType.VarChar, 10);
+            param1.Direction = ParameterDirection.Input;
+            param1.Value = pfechad != "" ? DateTime.ParseExact(pfechad, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+
+            SqlParameter param2 = cmd.Parameters.Add("@fechah", SqlDbType.VarChar, 10);
+            param2.Direction = ParameterDirection.Input;
+            param2.Value = pfechah != "" ? DateTime.ParseExact(pfechah, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") : "";
+
+            SqlParameter param3 = cmd.Parameters.Add("@ProveedorID", SqlDbType.VarChar, 15);
+            param3.Direction = ParameterDirection.Input;
+            param3.Value = pProveedorID;
+
+            SqlParameter param4 = cmd.Parameters.Add("@PersonalID", SqlDbType.VarChar, 15);
+            param4.Direction = ParameterDirection.Input;
+            param4.Value = pPersonalID;
+
+            SqlParameter param5 = cmd.Parameters.Add("@Ruta_ID", SqlDbType.VarChar, 10);
+            param5.Direction = ParameterDirection.Input;
+            param5.Value = pRuta_ID;
+
+            SqlDataReader drd = cmd.ExecuteReader(CommandBehavior.SingleResult);
+
+            if (drd != null)
+            {
+                int Ruta_Des = drd.GetOrdinal("Ruta_Des");
+                int Total = drd.GetOrdinal("Total");
+                int PORCENTAJE = drd.GetOrdinal("PORCENTAJE");
+
+                lbeReportes = new List<beReportes>();
+                beReportes obeReportes;
+                while (drd.Read())
+                {
+                    obeReportes = new beReportes();
+                    obeReportes.Ruta_Des = drd.GetString(Ruta_Des);
+                    obeReportes.Total = drd.GetString(Total);
+                    obeReportes.PORCENTAJE = drd.GetString(PORCENTAJE);
+
+                    lbeReportes.Add(obeReportes);
+                }
+
+                drd.Close();
+
+            }
+            return lbeReportes;
+        }
     }
 }

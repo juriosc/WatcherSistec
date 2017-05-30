@@ -31,6 +31,7 @@ namespace Entity
         public string TxTman { get; set; }
         public string Total { get; set; }
         public string PORCENTAJE { get; set; }
+        public string Ruta_Des { get; set; }
         
     }
 }

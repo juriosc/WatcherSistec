@@ -240,5 +240,38 @@ namespace BusinessRules
             }
             return (lbeReportes);
         }
+
+        public List<beReportes> ListarReporte_Estadistico_RutaTrab(string pfechad, string pfechah, string pProveedorID, string pPersonalID, string pRuta_ID)
+        {
+            List<beReportes> lbeReportes = null;
+            using (SqlConnection con = new SqlConnection(Conexion))
+            {
+                try
+                {
+                    con.Open();
+                    daReportes odaReportes = new daReportes();
+                    lbeReportes = odaReportes.ListarReporte_Estadistico_RutaTrab(con, pfechad, pfechah, pProveedorID, pPersonalID, pRuta_ID);
+                }
+                catch (SqlException ex)
+                {
+                    beLog obeLog;
+                    foreach (SqlError err in ex.Errors)
+                    {
+                        obeLog = new beLog();
+                        obeLog.MensajeError = err.Message;
+                        obeLog.DetalleError = ex.StackTrace;
+                        ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    beLog obeLog = new beLog();
+                    obeLog.MensajeError = ex.Message;
+                    obeLog.DetalleError = ex.StackTrace;
+                    ucObjeto<beLog>.grabarArchivoTexto(ArchivoLog, obeLog);
+                }
+            }
+            return (lbeReportes);
+        }
     }
 }

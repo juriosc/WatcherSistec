@@ -154,7 +154,7 @@
                                 </td>
                             </tr>
                         </table>
-                        </fieldset>
+                    </fieldset>
                 </td>
             </tr>
         </table>
