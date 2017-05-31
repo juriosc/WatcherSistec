@@ -6,6 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessRules;
+using System.Data;
+using System.Data.OleDb;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Data.SqlClient;
 
 namespace WatcherSistec.Reportes
 {
@@ -13,6 +19,10 @@ namespace WatcherSistec.Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // PARA QUE FUNCIONE LA EXPORTACION A EXCEL
+            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            scriptManager.RegisterPostBackControl(this.btnExportar);
+
             if (!IsPostBack)
             {
                 Listar_Reporte();
@@ -128,5 +138,70 @@ namespace WatcherSistec.Reportes
             txtProveName.Text = HttpUtility.HtmlDecode(gvTecnico.Rows[gvTecnico.SelectedIndex].Cells[0].Text);
         }
 
+        protected void btnExportar_Click(object sender, ImageClickEventArgs e)
+        {
+            string BeginDate, EndDate;
+
+            BeginDate = txtFechaIni.Text;
+            EndDate = txtFechaFin.Text;
+
+            Exportar(BeginDate, EndDate, txtProveedor.Text.ToString(), txtTecnico.Text.ToString());
+
+        }
+
+        private void Exportar(string pfechad, string pfechah, string pProveedorID, string pPersonalID)
+        {
+            String NombreXLS = "Reporte_Estadistico_HorasTrabxTecnico_" + DateTime.Now.ToString();
+
+            brExportReportes br = new brExportReportes();
+
+            DataTable dt = br.ListarReporte_Estadistico_HorasTrabxTecnico_Export(pfechad, pfechah, pProveedorID, pPersonalID);
+
+            string attachment = "attachment; filename=" + NombreXLS + ".xls";
+            Response.Clear();
+            Response.ClearHeaders();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", attachment);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.ContentEncoding = Encoding.Default;
+            Response.AddHeader("Cache-Control", "max-age=0");
+            Response.Charset = "UTF-8";
+
+            string html = "<table border='1' style='color:#556DA6';>";
+            html = html + "<thead><tr>";
+            html = html + "<th style='background-color:#EBEBE9;'>PROVEEDOR</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>TÉCNICO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>HORA(s)</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>MINUTO(s)</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>PORCENTAJE %</th>";
+            html = html + "</tr></thead><tbody>";
+
+            if (dt.Rows.Count == 0)
+            {
+                html = html + "<tr>";
+                html = html + "<td colspan='5'>No se encontraron registros</td></tr>";
+            }
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    html = html + "<tr>";
+                    html = html + "<td>" + dt.Rows[i][1].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][3].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][7].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][8].ToString() + "</td>";
+                    html = html + "<td style=\"mso-number-format:'Percent';\">" + dt.Rows[i][6].ToString() + "</td>";
+
+                    html = html + "</tr>";
+                }
+            }
+
+            html = html + "</tbody></table>";
+
+            Response.Write(html);
+
+            Response.End();
+
+        }
     }
 }

@@ -164,7 +164,7 @@
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
                                                         <ContentTemplate>
-                                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
+                                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton" OnClick="btnExportar_Click"/>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>                                                
                                                 </td>

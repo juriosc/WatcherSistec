@@ -6,6 +6,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessRules;
+using System.Data;
+using System.Data.OleDb;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Data.SqlClient;
+
+
 
 namespace WatcherSistec.Reportes
 {
@@ -13,6 +21,10 @@ namespace WatcherSistec.Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // PARA QUE FUNCIONE LA EXPORTACION A EXCEL
+            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            scriptManager.RegisterPostBackControl(this.btnExportar);
+
             if (!IsPostBack)
             {
                 ListarTipoMantenimiento();
@@ -238,6 +250,103 @@ namespace WatcherSistec.Reportes
                     }
                 }
             }
+        }
+
+        protected void btnExportar_Click(object sender, ImageClickEventArgs e)
+        {
+            string BeginDate, EndDate, Mant = "", Check = "";
+
+            BeginDate = txtFechaIni.Text;
+            EndDate = txtFechaFin.Text;
+
+            if (chkComent.Checked == true)
+            {
+                Check = "1";
+            }
+
+            foreach (GridViewRow row in gvTipoMantenimiento.Rows)
+            {
+                CheckBox check = row.FindControl("chkSel") as CheckBox;
+
+                beTipoMant P = new beTipoMant();
+                string strError = string.Empty;
+
+                if (check.Checked)
+                {
+                    Mant = Mant + row.Cells[0].Text + ",";
+                }
+            }
+            int lmant = Mant.Length;
+            if (lmant > 0) { Mant = Mant.Substring(0, lmant - 1); }
+
+            Exportar(BeginDate, EndDate, txtProveedor.Text.ToString(), txtTecnico.Text.ToString(), Mant, txtCsid.Text.ToString(), Check, ddlEstado.SelectedValue.ToString());
+        }
+
+        private void Exportar(string pfechad, string pfechah, string pProveedorID, string pPersonalID, string ptipo_mant, string pCSID, string pExc_coment, string pEstado)
+        {
+            String NombreXLS = "Reporte_FichaPendientePorTecnico_" + DateTime.Now.ToString();
+
+            brExportReportes br = new brExportReportes();
+
+            DataTable dt = br.ListarReporte_FichaPxT_Export(pfechad, pfechah, pProveedorID, pPersonalID, ptipo_mant, pCSID, pExc_coment, pEstado);
+
+            string attachment = "attachment; filename=" + NombreXLS + ".xls";
+            Response.Clear();
+            Response.ClearHeaders();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", attachment);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.ContentEncoding = Encoding.Default;
+            Response.AddHeader("Cache-Control", "max-age=0");
+            Response.Charset = "UTF-8";
+
+            string html = "<table border='1' style='color:#556DA6';>";
+            html = html + "<thead><tr>";
+            html = html + "<th style='background-color:#EBEBE9;'>PROVEEDOR</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>TÉCNICO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>FECHA</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>TIPO_MANTENIMIENTO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>DISTRIBUIDOR</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>ABONADO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>OFICINA</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>USUARIO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>ZONA</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>COMENTARIO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>PENDIENTE</th>";
+            html = html + "</tr></thead><tbody>";
+
+            if (dt.Rows.Count == 0)
+            {
+                html = html + "<tr>";
+                html = html + "<td colspan='11'>No se encontraron registros</td></tr>";
+            }
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    html = html + "<tr>";
+                    html = html + "<td>" + dt.Rows[i][17].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][3].ToString() + "</td>";
+                    html = html + "<td style=\"mso-number-format:mm/dd/yyyy hh:mm:ss;\">" + dt.Rows[i][4].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][13].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][16].ToString() + "</td>";
+                    html = html + "<td style=\"mso-number-format:'@';\">" + dt.Rows[i][6].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][7].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][8].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][12].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][9].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][14].ToString() + "</td>";
+
+                    html = html + "</tr>";
+                }
+            }
+
+            html = html + "</tbody></table>";
+
+            Response.Write(html);
+
+            Response.End();
+
         }
     }
 }

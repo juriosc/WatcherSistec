@@ -6,6 +6,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessRules;
+using System.Data;
+using System.Data.OleDb;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Data.SqlClient;
+
 
 namespace WatcherSistec.Reportes
 {
@@ -15,6 +22,10 @@ namespace WatcherSistec.Reportes
         {
             if (!IsPostBack)
             {
+                // PARA QUE FUNCIONE LA EXPORTACION A EXCEL
+                ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+                scriptManager.RegisterPostBackControl(this.btnExportar);
+
                 ListarTipoMantenimiento();
                 Listar_Reporte();
 
@@ -150,6 +161,88 @@ namespace WatcherSistec.Reportes
                     }
                 }
             }
+        }
+
+        protected void btnExportar_Click(object sender, ImageClickEventArgs e)
+        {
+            brReportes br = new brReportes();
+            string BeginDate, EndDate, Mant = "";
+
+            BeginDate = txtFechaIni.Text;
+            EndDate = txtFechaFin.Text;
+
+            foreach (GridViewRow row in gvTipoMantenimiento.Rows)
+            {
+                CheckBox check = row.FindControl("chkSel") as CheckBox;
+
+                beTipoMant P = new beTipoMant();
+                string strError = string.Empty;
+
+                if (check.Checked)
+                {
+                    Mant = Mant + row.Cells[0].Text + ",";
+                }
+            }
+            int lmant = Mant.Length;
+            if (lmant > 0) { Mant = Mant.Substring(0, lmant - 1); }
+
+            Exportar(BeginDate, EndDate, txtProveedor.Text.ToString(), Mant);
+
+        }
+
+        private void Exportar(string pfechad, string pfechah, string pProveedorID, string ptipo_mant)
+        {
+            String NombreXLS = "Reporte_Estadistico_TipoTrabajoxOficina_" + DateTime.Now.ToString();
+
+            brExportReportes br = new brExportReportes();
+
+            DataTable dt = br.ListarReporte_Estadistico_xTrabajoEntidad_Export(pfechad, pfechah, pProveedorID, ptipo_mant);
+
+            string attachment = "attachment; filename=" + NombreXLS + ".xls";
+            Response.Clear();
+            Response.ClearHeaders();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", attachment);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.ContentEncoding = Encoding.Default;
+            Response.AddHeader("Cache-Control", "max-age=0");
+            Response.Charset = "UTF-8";
+
+            string html = "<table border='1' style='color:#556DA6';>";
+            html = html + "<thead><tr>";
+            html = html + "<th style='background-color:#EBEBE9;'>PROVEEDOR</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>TIPO_MANTENIMIENTO</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>TRABAJOS x TIPO MANT</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>TRABAJOS x ENTIDAD</th>";
+            html = html + "<th style='background-color:#EBEBE9;'>%(TIPO/ENTIDAD)</th>";
+            html = html + "</tr></thead><tbody>";
+
+            if (dt.Rows.Count == 0)
+            {
+                html = html + "<tr>";
+                html = html + "<td colspan='5'>No se encontraron registros</td></tr>";
+            }
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    html = html + "<tr>";
+                    html = html + "<td>" + dt.Rows[i][0].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][1].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][2].ToString() + "</td>";
+                    html = html + "<td>" + dt.Rows[i][3].ToString() + "</td>";
+                    html = html + "<td style=\"mso-number-format:'Percent';\">" + dt.Rows[i][4].ToString() + "</td>";
+
+                    html = html + "</tr>";
+                }
+            }
+
+            html = html + "</tbody></table>";
+
+            Response.Write(html);
+
+            Response.End();
+
         }
     }
 }

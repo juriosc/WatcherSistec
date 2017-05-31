@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="daDealer.cs" />
+    <Compile Include="daExportReportes.cs" />
     <Compile Include="daFichaAtenciones.cs" />
     <Compile Include="daBloqueZona.cs" />
     <Compile Include="daComentario.cs" />

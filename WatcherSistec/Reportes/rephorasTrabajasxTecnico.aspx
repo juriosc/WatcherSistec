@@ -157,7 +157,7 @@
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel6" runat="server" >
                                                         <ContentTemplate>
-                                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
+                                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton" OnClick="btnExportar_Click"/>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
@@ -188,7 +188,7 @@
                                         <asp:BoundField HeaderText="Fecha/Hora Ingreso" DataField="Hora_Ingreso" />
                                         <asp:BoundField HeaderText="Fecha/Hora Salida" DataField="Hora_Salida" />
                                         <asp:BoundField HeaderText="Hora(s)" DataField="Horas" />
-                                        <asp:BoundField HeaderText="Minutos(s)" DataField="Minutos" />
+                                        <asp:BoundField HeaderText="Minuto(s)" DataField="Minutos" />
                                     </Columns>
                                 
                                     <EmptyDataTemplate>No existe(n) registro(s)</EmptyDataTemplate>

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="brDealer.cs" />
+    <Compile Include="brExportReportes.cs" />
     <Compile Include="brFichaAtenciones.cs" />
     <Compile Include="brBloqueZona.cs" />
     <Compile Include="brComentario.cs" />

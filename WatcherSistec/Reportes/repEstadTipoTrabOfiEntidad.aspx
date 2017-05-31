@@ -175,7 +175,7 @@
                                                 <td>
                                                     <asp:UpdatePanel ID="UpdatePanel6" runat="server" >
                                                         <ContentTemplate>
-                                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton"/>
+                                                            <asp:ImageButton ID="btnExportar" ToolTip="Exportar" runat="server" ImageUrl="../Images/excel.png" CssClass="ImagenBoton" OnClick="btnExportar_Click"/>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </td>
@@ -200,7 +200,7 @@
                                 <asp:GridView ID="gvReporte" Width="100%" runat="server" CssClass="mGrid" AutoGenerateColumns="False" CellPadding="4" CellSpacing="2" AllowPaging="True" PageSize="30" OnPageIndexChanging="gvReporte_PageIndexChanging" ShowHeaderWhenEmpty="True">
                                     <Columns>
                                         <asp:BoundField HeaderText="Proveedor" DataField="ProvName" />
-                                        <asp:BoundField HeaderText="Tipo de Mantenimiento" DataField="TipoMantenimiento" />
+                                        <asp:BoundField HeaderText="Tipo. Mant" DataField="TipoMantenimiento" />
                                         <asp:BoundField HeaderText="Trabajos x Tipo Mant" DataField="TxTman" />
                                         <asp:BoundField HeaderText="Trabajos x Entidad" DataField="Total" />
                                         <asp:BoundField HeaderText="%(Tipo/Entidad)" DataField="PORCENTAJE" />
