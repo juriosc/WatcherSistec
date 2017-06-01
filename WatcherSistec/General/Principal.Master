@@ -186,7 +186,7 @@ ul, ol {
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadHorasTrabPorTecnico.aspx'">Reporte Estadístico - Horas trabajadas por Técnico</a></li>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadSalidasNoReportadas.aspx'">Reporte Estadístico - Salidas No Reportadas</a></li>
                                          <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadRutaDeTrabajo.aspx'">Reporte Estadístico - Ruta por Trabajo</a></li>
-                                         <li><a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadProxreporte.aspx'">Reporte Estadístico - Próximo Reporte</a></li>
+                                         <li><%--<a href="#" onclick="salir = 0; window.location = '../Reportes/repEstadProxreporte.aspx'">Reporte Estadístico - Próximo Reporte</a>--%></li>
                                      </ul>
                                  </li>
                              </ul>
