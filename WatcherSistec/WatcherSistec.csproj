@@ -269,7 +269,10 @@
     <Content Include="Account\Web.config" />
     <Content Include="General\Principal.Master" />
     <None Include="Properties\PublishProfiles\20170511.pubxml" />
+    <None Include="Properties\PublishProfiles\contec.pubxml" />
     <None Include="Properties\PublishProfiles\CONTECT.pubxml" />
+    <None Include="Properties\PublishProfiles\public_20170605.pubxml" />
+    <None Include="Properties\PublishProfiles\public_20170605_new.pubxml" />
     <None Include="Properties\PublishProfiles\Watcher_Contec_20170602.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Reportes\repEstadHorasTrabPorTecnico.aspx" />

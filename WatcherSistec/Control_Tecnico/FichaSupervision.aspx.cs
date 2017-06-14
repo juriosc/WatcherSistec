@@ -35,6 +35,7 @@ namespace WatcherSistec.Control_Tecnico
                     if(gvAtenciones.Rows.Count>0)
                     {
                         Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                        ListarComentarioZona(Convert.ToInt64(txtID_Ficha.Text), 201, gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
                     }
                     else 
                     {
@@ -374,7 +375,6 @@ namespace WatcherSistec.Control_Tecnico
 
                 for (int i = 1; i <= 39; i++)
                 {
-
                         string[] Propiedad = e.Row.Cells[i].Text.Split('|');
                         if (Propiedad[0].ToString().Equals("P"))
                         {                            
@@ -408,10 +408,9 @@ namespace WatcherSistec.Control_Tecnico
                                 }
                             }
                         }
-                      
-
 
                 }
+                
             }
 
         }
@@ -1143,8 +1142,6 @@ namespace WatcherSistec.Control_Tecnico
             txtComentario.Enabled = true;
             txtComentario.Text = "";
             txtComentario.Focus();
-            
-
         }
 
         protected void btnCancelarComentario_Click(object sender, EventArgs e)
@@ -1294,6 +1291,7 @@ namespace WatcherSistec.Control_Tecnico
 
             if(csid.Trim().Length>0)
             {
+                txtComentario.Text = "";
                 ListarComentarioZona(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt32(hdfZonaComentario.Value), csid);
             }
 
@@ -1306,13 +1304,63 @@ namespace WatcherSistec.Control_Tecnico
             List<beComentario> ListarComentarioZona = br.ListarComentarioZona(Ficha, Zona, csid);
             gvComentario.DataSource = ListarComentarioZona;
             gvComentario.DataBind();
+            ColorBtnTrabajoPendiente();
         }
 
         protected void btnTrabGenerales_Click(object sender, EventArgs e)
         {
              string script = "mostrarComentario('Trabajo(s) / comentario(s) - General',201,600,370)";
-              ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
             
+             ScriptManager.RegisterClientScriptBlock(this, typeof(UpdatePanel), "jsMensaje", script, true);
+            
+        }
+
+
+        private void ColorBtnTrabajoPendiente()
+        {
+            int c = 0;
+            int p = 0;
+
+            foreach (GridViewRow fila in gvComentario.Rows)
+            {
+                if (HttpUtility.HtmlDecode(fila.Cells[5].Text).Equals("0"))
+                {
+                    c = c + 1;
+                }
+            }
+
+            foreach (GridViewRow fila in gvComentario.Rows)
+            {
+                if (HttpUtility.HtmlDecode(fila.Cells[5].Text).Equals("1"))
+                {
+                    p = p + 1;
+                }
+            }
+
+            if (c > 0 && p > 0)
+            {
+                btnTrabGenerales.BackColor = System.Drawing.Color.Pink;
+            }
+            else
+            {
+                if (c > 0 && p == 0)
+                {
+                    btnTrabGenerales.BackColor = System.Drawing.Color.FromArgb(245, 245, 121);
+                }
+                else
+                {
+                    if (c == 0 && p > 0)
+                    {
+                        btnTrabGenerales.BackColor = System.Drawing.Color.FromArgb(0, 255, 255);
+                    }
+                    else
+                    {
+                        btnTrabGenerales.BackColor = System.Drawing.Color.FromArgb(221, 221, 221);
+                    }
+                }
+            }
+
+
         }
 
         protected void btnEditComent_Click(object sender, ImageClickEventArgs e)

@@ -127,21 +127,21 @@
                 <td style="width:150px">
                      <asp:UpdatePanel ID="UpdatePanel27" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar Ficha" Width="120px" Height="30px" Enabled="False" OnClick="btnCancelar_Click"  />        
+                            <asp:Button ID="btnCancelar"  runat="server" Text="Cancelar" Width="120px" Height="30px" Enabled="False" OnClick="btnCancelar_Click"  />        
                         </ContentTemplate>
                     </asp:UpdatePanel>                        
                 </td>
                 <td style="width:150px">
                     <asp:UpdatePanel ID="UpdatePanel28" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnPendiente"  runat="server" Text="Ficha Pendiente" class="btn btn-success" Width="120px" Height="30px" Enabled="False" OnClick="btnPendiente_Click" />
+                            <asp:Button ID="btnPendiente"  runat="server" Text="Ficha" class="btn btn-success" Width="120px" Height="30px" Enabled="False" OnClick="btnPendiente_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                                            
                 </td>
                  <td style="width:150px">
                      <asp:UpdatePanel ID="UpdatePanel82" runat="server">
                          <ContentTemplate>
-                             <asp:Button ID="btnConcluir"  runat="server" Text="Concluir Ficha" Width="120px" Height="30px" Enabled="False" OnClick="btnConcluir_Click" />
+                             <asp:Button ID="btnConcluir"  runat="server" Text="Concluir" Width="120px" Height="30px" Enabled="False" OnClick="btnConcluir_Click" />
                          </ContentTemplate>
                      </asp:UpdatePanel>
                     
@@ -208,7 +208,7 @@
                                                         <td style="vertical-align:top" >
                                                             <asp:UpdatePanel ID="UpdatePanel31" runat="server" UpdateMode="Conditional">
                                                                 <ContentTemplate>
-                                                                    <asp:ImageButton ID="btnAgregarTecnico" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarEmergenteUpTecnico('AGREGANDO TÉCNICO ...',650,190);" OnClick="btnAgregarTecnico_Click"/>
+                                                                    <asp:ImageButton ID="btnAgregarTecnico" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/icon.ico" CssClass="ImagenBoton" OnClientClick="mostrarEmergenteUpTecnico('AGREGANDO TÉCNICO ...',650,180);" OnClick="btnAgregarTecnico_Click"/>
                                                                 </ContentTemplate>
                                                             </asp:UpdatePanel>
                                                         </td>
@@ -361,7 +361,7 @@
                                                                 
                                             <asp:UpdatePanel ID="UpdatePanel33" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:ImageButton ID="btnAdicionar" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/add_16_h.ico" CssClass="ImagenBotonMargin" OnClientClick="mostrarEmerUpAbonado('AGREGANDO ABONADO ...',750,250);" OnClick="btnAdicionar_Click"/>
+                                                    <asp:ImageButton ID="btnAdicionar" ToolTip="Adicionar" runat="server" ImageUrl="../Images/Mantenimiento/add_16_h.ico" CssClass="ImagenBotonMargin" OnClientClick="mostrarEmerUpAbonado('AGREGANDO ABONADO ...',750,210);" OnClick="btnAdicionar_Click"/>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </td>                                                            
@@ -919,7 +919,7 @@
                     <td>
                         <asp:UpdatePanel ID="UpdatePanel78" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <asp:Button ID="btnListarAbonados" runat="server" Text="..." onclientClick="mostrarEmerListarAbonados('Lista de Abonados','750','420');" OnClick="btnListarTecnicos_Click"/>
+                                <asp:Button ID="btnListarAbonados" runat="server" Text="..." onclientClick="mostrarEmerListarAbonados('Lista de Abonados','750','300');" OnClick="btnListarTecnicos_Click"/>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </td>
@@ -1006,53 +1006,48 @@
                             <table style="width:100%">
                                 <tr>                                    
                                     <td>
-                                        <div>
-                                            <fieldset style="border-color:black">
-                                                 <legend style="font-weight:bold;">
-                                                    REGISTRO(S)
-                                                </legend>
-                                                <table style="width:100%" >
+                                        <div>                                            
+                                            <table style="width:100%" >
+                                                <tr>                                    
+                                                    <td>
+                                                       COD. DISTRIB.
+                                                    </td>
+                                                    <td>
+                                                        <asp:UpdatePanel ID="UpdatePanel12" runat="server" UpdateMode="Conditional">
+                                                            <ContentTemplate>
+                                                                <asp:TextBox ID="txtBDealerCode" onkeyup="ListarSubscriber();" runat="server"></asp:TextBox>
+                                                            </ContentTemplate>
+                                                        </asp:UpdatePanel>
+                                                    </td>
+                                                    <td>
+                                                        ABONADO
+                                                    </td>      
+                                                    <td>
+                                                        <asp:UpdatePanel ID="UpdatePanel13" runat="server" UpdateMode="Conditional">
+                                                            <ContentTemplate>
+                                                                <asp:TextBox ID="txtBCsid" runat="server" onkeyup="ListarSubscriber();"></asp:TextBox>
+                                                            </ContentTemplate>
+                                                        </asp:UpdatePanel>
+                                                    </td>                              
+                                                    <td>
+                                                        OFICINA
+                                                    </td>
+                                                    <td>
+                                                        <asp:UpdatePanel ID="UpdatePanel14" runat="server" UpdateMode="Conditional">
+                                                            <ContentTemplate>
+                                                                <asp:TextBox ID="txtBSubscriberName" runat="server" onkeyup="ListarSubscriber();"></asp:TextBox>
+                                                            </ContentTemplate>
+                                                        </asp:UpdatePanel>
+                                                    </td>
+                                                    <td >
+                                                        <asp:UpdatePanel ID="UpdatePanel16" runat="server" UpdateMode="Conditional">
+                                                            <ContentTemplate>
+                                                                <asp:Button ID="btnListarSubcriber" runat="server" Text="Buscar" style="display:none;" OnClick="btnListarSubcriber_Click"  />
+                                                            </ContentTemplate>
+                                                        </asp:UpdatePanel>
+                                                    </td>
+                                                </tr>                                
                                                 <tr>
-                                    
-                                    <td>
-                                       COD. DISTRIB.
-                                    </td>
-                                    <td>
-                                        <asp:UpdatePanel ID="UpdatePanel12" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:TextBox ID="txtBDealerCode" onkeyup="ListarSubscriber();" runat="server"></asp:TextBox>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                    <td>
-                                        ABONADO
-                                    </td>      
-                                    <td>
-                                        <asp:UpdatePanel ID="UpdatePanel13" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:TextBox ID="txtBCsid" runat="server" onkeyup="ListarSubscriber();"></asp:TextBox>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>                              
-                                    <td>
-                                        OFICINA
-                                    </td>
-                                    <td>
-                                        <asp:UpdatePanel ID="UpdatePanel14" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:TextBox ID="txtBSubscriberName" runat="server" onkeyup="ListarSubscriber();"></asp:TextBox>
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                    <td >
-                                        <asp:UpdatePanel ID="UpdatePanel16" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <asp:Button ID="btnListarSubcriber" runat="server" Text="Buscar" style="display:none;" OnClick="btnListarSubcriber_Click"  />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                </tr>                                
-                                <tr>
                                     <td colspan="6" style="height:200px;width:100%;vertical-align:top" >
                                         
                                             <asp:UpdatePanel ID="UpdatePanel15" runat="server" UpdateMode="Conditional" >
@@ -1087,15 +1082,13 @@
                                     </td>
                                 </tr>
                                             </table>
-                                            </fieldset>
-                                            
                                         </div>
                                     </td>
                                 </tr>                           
                                 
                                 <tr>
                                     <td colspan="6" style="width:100%">
-                                        <div style="margin-top: 20px" >
+                                        <div style="margin-top: 3px" >
                                             <table style="margin: 0 auto;">
                                             <tr>
                                                 <td>
@@ -1819,7 +1812,11 @@
                                     <td style="width:80px">
                                     </td>    
                                     <td>
-                                        <asp:Button ID="btnCancelarListarTec" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupTecnico()" />                                        
+                                        <asp:UpdatePanel ID="UpdatePanel96" runat="server">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnCancelarListarTec" runat="server" Width="70" Text="Cancelar" Class="btn btn-primary" OnClientClick="SalirPopupTecnico()" />                                        
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
                                     </td>                                
                                 </tr>
                             </table>
@@ -1990,6 +1987,7 @@
                                 <asp:AsyncPostBackTrigger ControlID="btnAceptarComentario" EventName="Click" />
                                 <asp:AsyncPostBackTrigger ControlID="btnCancelarComentario" EventName="Click" />
                                 <asp:AsyncPostBackTrigger ControlID="gvComentario" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="gvBloqueZonas" EventName="RowCommand" />
                             </Triggers>
                         </asp:UpdatePanel>
                     </td>
@@ -2111,6 +2109,7 @@
             $("#fondoemergente").css('display', 'block');
             $("#titcabComentario").html(titulo);
             mostrarCentrarDiv('Comentario', ancho, alto);
+            document.getElementById('ContentPlaceHolder1_txtComentario').value = "";
             (document.getElementById('ContentPlaceHolder1_btnListarComentariosZona')).click();
         }
 

@@ -1768,6 +1768,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Button btnAceptarListarTec;
         
         /// <summary>
+        /// UpdatePanel96 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel96;
+        
+        /// <summary>
         /// btnCancelarListarTec control.
         /// </summary>
         /// <remarks>
