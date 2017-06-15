@@ -191,6 +191,12 @@ ul, ol {
                                  </li>
                              </ul>
                          </td>
+                        <td style="text-align:right;color:white;background-color:black">
+                            Versión 1.001
+                        </td>
+                        <td style="color:white;background-color:black">
+                            &nbsp;
+                        </td>
                     </tr>
                 </table>                 
             </div>
