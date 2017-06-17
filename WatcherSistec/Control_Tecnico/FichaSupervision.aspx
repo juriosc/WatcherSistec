@@ -563,10 +563,32 @@
                                                     </asp:BoundField>
                                                     <asp:BoundField HeaderText="Observación" DataField="Observaciones"/>
                                                     <asp:BoundField HeaderText="AlarmHistoryID_Inicial" DataField="AlarmHistoryID_Inicial">
-                                                    
                                                     <HeaderStyle CssClass="ColumnaOculta" />
                                                     <ItemStyle CssClass="ColumnaOculta" />
-                                                    
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="b_ALT" DataField="b_ALT">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="b_BB" DataField="b_BB">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="b_FAC" DataField="b_FAC">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="b_RED" DataField="b_RED">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="b_ACL" DataField="b_ACL">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="b_AA" DataField="b_AA">
+                                                    <HeaderStyle CssClass="ColumnaOculta" />
+                                                    <ItemStyle CssClass="ColumnaOculta" />
                                                     </asp:BoundField>
                                                 </Columns>
                                                 <EmptyDataTemplate></EmptyDataTemplate>
@@ -625,8 +647,9 @@
                                <td style="width:30px;height:30px; border: black 2px solid;font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px" >
                                    <asp:UpdatePanel ID="UpdatePanel50" runat="server">
                                        <ContentTemplate>                                           
-                                           <asp:Label ID="lblALT" runat="server" Text="ALT" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+                                           <asp:Label ID="lblALT" runat="server" Text="ALT" ToolTip="Corte de Linea Telefónica" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
                                            </asp:Label>
+                                           <asp:Label ID="lblALTColor" runat="server" Text="0" style="display:none"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -636,8 +659,9 @@
                                <td style="width:30px;height:30px; border: black 2px solid;font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px" class="auto-style9">
                                    <asp:UpdatePanel ID="UpdatePanel58" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblBB" runat="server" Text="BB" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+                                           <asp:Label ID="lblBB" runat="server" Text="BB" ToolTip="Batería Baja" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
                                            </asp:Label>
+                                           <asp:Label ID="lblBBColor" runat="server" Text="0" style="display:none"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -647,9 +671,9 @@
                                <td style="width:30px;height:30px; border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel59" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblFAC" runat="server" Text="FAC" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
-
+                                           <asp:Label ID="lblFAC" runat="server" Text="FAC" ToolTip="Falta Corriente" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
                                            </asp:Label>
+                                           <asp:Label ID="lblFACColor" runat="server" Text="0" style="display:none"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -659,8 +683,9 @@
                                <td style="border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel60" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblRED" runat="server" Text="RED" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
+                                           <asp:Label ID="lblRED" runat="server" Text="RED" ToolTip="RED" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
                                            </asp:Label>
+                                           <asp:Label ID="lblREDColor" runat="server" Text="0" style="display:none"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -670,9 +695,9 @@
                                <td style="border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel61" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblACL" runat="server" Text="ACL" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
-
+                                           <asp:Label ID="lblACL" runat="server" Text="ACL" ToolTip="Corte de Línea Celular" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
                                            </asp:Label>
+                                           <asp:Label ID="lblACLColor" runat="server" Text="0" style="display:none"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>
@@ -682,9 +707,9 @@
                                <td style="border: black 2px solid;width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;border-radius:8px 8px">
                                    <asp:UpdatePanel ID="UpdatePanel62" runat="server">
                                        <ContentTemplate>
-                                           <asp:Label ID="lblAA" runat="server" Text="AA" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
-
+                                           <asp:Label ID="lblAA" runat="server" Text="AA" ToolTip="Alarma Ambush" style="width:30px; height:30px; font-size:12px;font-weight:bold; vertical-align:central;text-align:center;padding:15px; border-radius:8px 8px">
                                            </asp:Label>
+                                           <asp:Label ID="lblAAColor" runat="server" Text="0" style="display:none"></asp:Label>
                                        </ContentTemplate>                                       
                                    </asp:UpdatePanel>
                                </td>

@@ -238,15 +238,74 @@ namespace WatcherSistec.Control_Tecnico
 
             if ((gvAtenciones.Rows.Count)>=1)
             {
-
                 if (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[7].Text.Trim().Equals("&nbsp;")) 
                 {
                     btnIniciar.Enabled = false;
                     btnDetener.Enabled = true;
                 }
+
+                lblALTColor.Text = (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[12].Text.ToString());
+                lblBBColor.Text = (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[13].Text.ToString());
+                lblFACColor.Text = (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[14].Text.ToString());
+                lblREDColor.Text = (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[15].Text.ToString());
+                lblACLColor.Text = (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[16].Text.ToString());
+                lblAAColor.Text = (gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[17].Text.ToString());
             }
 
+            //PARA ALT
+            if (lblALTColor.Text == "1")
+            {
+                lblALT.BackColor = System.Drawing.Color.Red;
+            }
 
+            if (lblALTColor.Text == "2")
+            {
+                lblALT.BackColor = System.Drawing.Color.Green;
+            }
+
+            //PARA BB 
+            if (lblBBColor.Text == "1")
+            {
+                lblBB.BackColor = System.Drawing.Color.Red;
+            }
+
+            if (lblBBColor.Text == "2")
+            {
+                lblBB.BackColor = System.Drawing.Color.Green;
+            }
+
+            //PARA FAC
+            if (lblFACColor.Text == "1")
+            {
+                lblFAC.BackColor = System.Drawing.Color.Red;
+            }
+
+            if (lblFACColor.Text == "2")
+            {
+                lblFAC.BackColor = System.Drawing.Color.Green;
+            }
+
+            //PARA RED o ACR
+            if (lblREDColor.Text == "1")
+            {
+                lblRED.BackColor = System.Drawing.Color.Red;
+            }
+
+            if (lblREDColor.Text == "2")
+            {
+                lblRED.BackColor = System.Drawing.Color.Green;
+            }
+
+            //PARA AA
+            if (lblAAColor.Text == "1")
+            {
+                lblAA.BackColor = System.Drawing.Color.Red;
+            }
+
+            if (lblAAColor.Text == "2")
+            {
+                lblAA.BackColor = System.Drawing.Color.Green;
+            }
         }
 
         protected void gvComentario_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -381,7 +440,7 @@ namespace WatcherSistec.Control_Tecnico
                             e.Row.Cells[i - 1].Font.Bold = true;
                             e.Row.Cells[i - 1].Attributes.Add("onclick", "mostrarComentario('Trabajo(s) / comentario(s) - Zona: " + e.Row.Cells[i - 1].Text + "', '"+ e.Row.Cells[i - 1].Text +"' ,600,370);");
                             e.Row.Cells[i - 1].Attributes["style"] = "cursor:pointer";
-                            e.Row.Cells[i - 1].Attributes.Add("Title", Propiedad[1].ToString());
+                            e.Row.Cells[i - 1].Attributes.Add("Title", HttpUtility.HtmlDecode(Propiedad[1].ToString().Replace("&nbsp;", "")));
                             e.Row.Cells[i - 1].ForeColor = ColorLetra(Propiedad[2].ToString());
                             if(Convert.ToInt16(Propiedad[3].ToString())>0 && Convert.ToInt16(Propiedad[4].ToString())>0)
                             {
@@ -843,44 +902,52 @@ namespace WatcherSistec.Control_Tecnico
                     if (SignalIdentifier.Equals("LT"))
                     {
                         lblALT.BackColor = System.Drawing.Color.Red;
+                        lblALTColor.Text = "1";
                     }
 
                     if (SignalIdentifier.Equals("LR"))
                     {                        
                         lblALT.BackColor = System.Drawing.Color.Green;
+                        lblALTColor.Text = "2";
                     }
                     
                     //PARA BB 
                     if (SignalIdentifier.Equals("YT"))
                     {
                         lblBB.BackColor = System.Drawing.Color.Red;
+                        lblBBColor.Text = "1";
                     }
 
                     if (SignalIdentifier.Equals("XR"))
                     {
                         lblBB.BackColor = System.Drawing.Color.Green;
+                        lblBBColor.Text = "2";
                     }
                     
                     //PARA FAC
                     if (SignalIdentifier.Equals("AT"))
                     {
                         lblFAC.BackColor = System.Drawing.Color.Red;
+                        lblFACColor.Text = "1";
                     }
 
                     if (SignalIdentifier.Equals("AR"))
                     {
                         lblFAC.BackColor = System.Drawing.Color.Green;
+                        lblFACColor.Text = "2";
                     }
 
                     //PARA RED o ACR
                     if (SignalIdentifier.Equals("YC"))
                     {
                         lblRED.BackColor = System.Drawing.Color.Red;
+                        lblREDColor.Text = "1";
                     }
 
                     if (SignalIdentifier.Equals("YK"))
                     {
                         lblRED.BackColor = System.Drawing.Color.Green;
+                        lblREDColor.Text = "2";
                     }
                     
                     //ACL -- NO HAY SEÑALES -- QUE PENDIENTE HASTA LA ACTIVACION DE ESTAS
@@ -889,11 +956,13 @@ namespace WatcherSistec.Control_Tecnico
                     if (SignalIdentifier.Equals("HA"))
                     {
                         lblAA.BackColor = System.Drawing.Color.Red;
+                        lblAAColor.Text = "1";
                     }
 
                     if (SignalIdentifier.Equals("HH"))
                     {
                         lblAA.BackColor = System.Drawing.Color.Green;
+                        lblAAColor.Text = "2";
                     }
 
 
@@ -962,7 +1031,7 @@ namespace WatcherSistec.Control_Tecnico
                 Estado = 4;
             }
 
-            updatedFA = brFA.ModificarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(txtIdAtencion.Text), HttpUtility.HtmlDecode(txtCsidAtencion.Text), Estado, HttpUtility.HtmlDecode(txtObsAtencion.Text));
+            updatedFA = brFA.ModificarFichaAtencion(Convert.ToInt64(txtID_Ficha.Text), Convert.ToInt16(txtIdAtencion.Text), HttpUtility.HtmlDecode(txtCsidAtencion.Text), Estado, HttpUtility.HtmlDecode(txtObsAtencion.Text), Convert.ToInt16(lblALTColor.Text), Convert.ToInt16(lblBBColor.Text), Convert.ToInt16(lblFACColor.Text), Convert.ToInt16(lblREDColor.Text), Convert.ToInt16(lblACLColor.Text), Convert.ToInt16(lblAAColor.Text));
 
             if (updatedFA == false)
             {

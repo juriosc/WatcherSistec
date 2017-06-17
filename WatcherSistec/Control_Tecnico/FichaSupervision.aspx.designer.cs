@@ -553,6 +553,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Label lblALT;
         
         /// <summary>
+        /// lblALTColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblALTColor;
+        
+        /// <summary>
         /// UpdatePanel58 control.
         /// </summary>
         /// <remarks>
@@ -569,6 +578,15 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBB;
+        
+        /// <summary>
+        /// lblBBColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBBColor;
         
         /// <summary>
         /// UpdatePanel59 control.
@@ -589,6 +607,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Label lblFAC;
         
         /// <summary>
+        /// lblFACColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFACColor;
+        
+        /// <summary>
         /// UpdatePanel60 control.
         /// </summary>
         /// <remarks>
@@ -605,6 +632,15 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRED;
+        
+        /// <summary>
+        /// lblREDColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblREDColor;
         
         /// <summary>
         /// UpdatePanel61 control.
@@ -625,6 +661,15 @@ namespace WatcherSistec.Control_Tecnico {
         protected global::System.Web.UI.WebControls.Label lblACL;
         
         /// <summary>
+        /// lblACLColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblACLColor;
+        
+        /// <summary>
         /// UpdatePanel62 control.
         /// </summary>
         /// <remarks>
@@ -641,6 +686,15 @@ namespace WatcherSistec.Control_Tecnico {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAA;
+        
+        /// <summary>
+        /// lblAAColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAAColor;
         
         /// <summary>
         /// UpdatePanel42 control.

@@ -76,7 +76,7 @@ namespace BusinessRules
             }
             return (updated);
         }
-        public bool ModificarFichaAtencion(Int64 ID_Ficha, int ID_Atencion, string CSID, int Estado_Termino, string Observaciones)
+        public bool ModificarFichaAtencion(Int64 ID_Ficha, int ID_Atencion, string CSID, int Estado_Termino, string Observaciones, int b_ALT, int b_BB, int b_FAC, int b_RED, int b_ACL, int b_AA)
         {
             bool updated = false;
             using (SqlConnection con = new SqlConnection(Conexion))
@@ -85,7 +85,7 @@ namespace BusinessRules
                 {
                     con.Open();
                     daFichaAtenciones odaFichaAtencion = new daFichaAtenciones();
-                    updated = odaFichaAtencion.ModificarFichaAtencion(con, ID_Ficha, ID_Atencion, CSID, Estado_Termino, Observaciones);
+                    updated = odaFichaAtencion.ModificarFichaAtencion(con, ID_Ficha, ID_Atencion, CSID, Estado_Termino, Observaciones, b_ALT, b_BB, b_FAC, b_RED, b_ACL, b_AA);
                 }
                 catch (SqlException ex)
                 {

@@ -39,6 +39,7 @@ namespace DataAccess
                 int b_ALT = drd.GetOrdinal("b_ALT");
                 int b_BB = drd.GetOrdinal("b_BB");
                 int b_FAC = drd.GetOrdinal("b_FAC");
+                int b_RED = drd.GetOrdinal("b_RED");
                 int b_ACL = drd.GetOrdinal("b_ACL");
                 int b_AA = drd.GetOrdinal("b_AA");
                 int Observaciones = drd.GetOrdinal("Observaciones");
@@ -64,6 +65,7 @@ namespace DataAccess
                     obeAtenciones.b_ALT = drd.GetString(b_ALT);
                     obeAtenciones.b_BB = drd.GetString(b_BB);
                     obeAtenciones.b_FAC = drd.GetString(b_FAC);
+                    obeAtenciones.b_RED = drd.GetString(b_RED);
                     obeAtenciones.b_ACL = drd.GetString(b_ACL);
                     obeAtenciones.b_AA = drd.GetString(b_AA);
                     obeAtenciones.Observaciones = drd.GetString(Observaciones);
@@ -146,7 +148,7 @@ namespace DataAccess
 
         }
 
-        public bool ModificarFichaAtencion(SqlConnection con, Int64 ID_Ficha, int ID_Atencion, string CSID, int Estado_Termino, string Observaciones)
+        public bool ModificarFichaAtencion(SqlConnection con, Int64 ID_Ficha, int ID_Atencion, string CSID, int Estado_Termino, string Observaciones, int b_ALT, int b_BB, int b_FAC, int b_RED, int b_ACL, int b_AA)
         {
 
             bool registro = false;
@@ -173,6 +175,30 @@ namespace DataAccess
             SqlParameter param5 = cmd.Parameters.Add("@Observaciones", SqlDbType.VarChar, -1);
             param5.Direction = ParameterDirection.Input;
             param5.Value = Observaciones;
+
+            SqlParameter param6 = cmd.Parameters.Add("@b_ALT", SqlDbType.Int);
+            param6.Direction = ParameterDirection.Input;
+            param6.Value = b_ALT;
+
+            SqlParameter param7 = cmd.Parameters.Add("@b_BB", SqlDbType.Int);
+            param7.Direction = ParameterDirection.Input;
+            param7.Value = b_BB;
+
+            SqlParameter param8 = cmd.Parameters.Add("@b_FAC", SqlDbType.Int);
+            param8.Direction = ParameterDirection.Input;
+            param8.Value = b_FAC;
+
+            SqlParameter param9 = cmd.Parameters.Add("@b_RED", SqlDbType.Int);
+            param9.Direction = ParameterDirection.Input;
+            param9.Value = b_RED;
+
+            SqlParameter param10 = cmd.Parameters.Add("@b_ACL", SqlDbType.Int);
+            param10.Direction = ParameterDirection.Input;
+            param10.Value = b_ACL;
+
+            SqlParameter param11 = cmd.Parameters.Add("@b_AA", SqlDbType.Int);
+            param11.Direction = ParameterDirection.Input;
+            param11.Value = b_AA;
 
             int n = cmd.ExecuteNonQuery();
 
