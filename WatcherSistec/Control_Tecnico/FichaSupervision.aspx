@@ -327,7 +327,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:RadioButton ID="rbtSelAbonado" GroupName="SuppliersGroup" runat="server" onclick="checkRadioBtn(this);" />
+                                                                    <asp:RadioButton ID="rbtSelAbonado" GroupName="SuppliersGroup" runat="server" onclick="checkRadioBtn(this);" OnCheckedChanged="rbtSelAbonado_CheckedChanged"/>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -537,15 +537,13 @@
                                 <div style="width:100%; height:100px; overflow:auto">
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <asp:GridView ID="gvAtenciones" runat="server"  AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" PageSize="5" ShowHeaderWhenEmpty="True" onpageindexchanging="gvAtenciones_PageIndexChanging" BackColor="White" BorderColor="Gray" BorderStyle="None" BorderWidth="1px" Width="575px" >
+                                            <asp:GridView ID="gvAtenciones" runat="server"  AutoGenerateColumns="False" CellPadding="4" AllowPaging="True" ShowHeaderWhenEmpty="True" BackColor="White" BorderColor="Gray" BorderStyle="None" BorderWidth="1px" Width="575px" >
                                                 <HeaderStyle Height="30px" />
                                                 <Columns>                                                    
                                                     <asp:ImageField DataImageUrlField="ImagenEstado">
                                                     </asp:ImageField>
-                                                    <asp:BoundField HeaderText="AT ID" DataField="ID_Atencion"/>                                                    
+                                                    <asp:BoundField HeaderText="Nº" DataField="ID_Atencion"/>                                                    
                                                     <asp:BoundField HeaderText="Abonado" DataField="CSID" HtmlEncode="False">
-                                                    <HeaderStyle CssClass="ColumnaOculta" />
-                                                    <ItemStyle CssClass="ColumnaOculta" />
                                                     </asp:BoundField>
                                                     <asp:BoundField HeaderText="Usuario" DataField="Usuario"/>
                                                     <asp:BoundField HeaderText="Fecha Inicio" DataField="Fecha_Inicio"/>

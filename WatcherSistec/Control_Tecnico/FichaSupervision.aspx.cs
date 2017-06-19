@@ -13,13 +13,14 @@ namespace WatcherSistec.Control_Tecnico
 {    
     public partial class FichaSupervision : System.Web.UI.Page
     {
-        
+        public static string Abonado = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (Request.QueryString["FichaID"] != null)
                 {
+                    Abonado = "";
                     string IdFicha = Request.QueryString["FichaID"];
 
                     ListarTipoMantenimiento();
@@ -31,11 +32,21 @@ namespace WatcherSistec.Control_Tecnico
                     //Ficha_Comentario(IdFicha);
 
                     txtID_Ficha.Text = IdFicha;
-                    
+
+                    foreach (GridViewRow fila in gvAbonado.Rows)
+                    {
+                        RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                        if (rbt.Checked)
+                        {
+                            Abonado = HttpUtility.HtmlDecode(fila.Cells[2].Text);
+                        }
+                    }
+
                     if(gvAtenciones.Rows.Count>0)
                     {
-                        Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
-                        ListarComentarioZona(Convert.ToInt64(txtID_Ficha.Text), 201, gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString());
+                        Bloque_Zona(Abonado, gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                        ListarComentarioZona(Convert.ToInt64(txtID_Ficha.Text), 201, Abonado);
                     }
                     else 
                     {
@@ -322,12 +333,12 @@ namespace WatcherSistec.Control_Tecnico
         //    gvAtenciones.DataSource = ListarFichaAtencion;
         //    gvAtenciones.DataBind();
         //}
-        protected void gvAtenciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        /*protected void gvAtenciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAtenciones.PageIndex = e.NewPageIndex;
             Ficha_Atenciones(txtID_Ficha.Text);
             //Listar_Atenciones();
-        }
+        }*/
 
         
         private void Bloque_Zona(string csid, string alarmhistoryidinicial)
@@ -597,7 +608,8 @@ namespace WatcherSistec.Control_Tecnico
             {
                 if (gvAtenciones.Rows.Count > 0)
                 {
-                    Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                    //Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                    Bloque_Zona(Abonado, gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                 }
                 else
                 {
@@ -610,7 +622,8 @@ namespace WatcherSistec.Control_Tecnico
                 {
                     if (gvAtenciones.Rows.Count > 0)
                     {
-                        Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                        //Bloque_Zona(gvAbonado.Rows[Convert.ToInt32(gvAbonado.Rows.Count) - 1].Cells[2].Text.ToString(), gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                        Bloque_Zona(Abonado, gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
                     }
                 }
                 else
@@ -736,8 +749,8 @@ namespace WatcherSistec.Control_Tecnico
                     Session["ListaAbonado"]=beAbonado.FAbonado;
                     gvAbonado.DataSource = beAbonado.FAbonado;
                     gvAbonado.DataBind();
-
-                break;
+                    
+                    break;
 
             }
 
@@ -1503,10 +1516,31 @@ namespace WatcherSistec.Control_Tecnico
                 }
 
             }
+        }
 
+        protected void rbtSelAbonado_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow fila in gvAbonado.Rows)
+            {
+                RadioButton rbt = fila.FindControl("rbtSelAbonado") as RadioButton;
+
+                if (rbt.Checked)
+                {
+                    Abonado = HttpUtility.HtmlDecode(fila.Cells[2].Text);
+                }
+            }
+
+            if (gvAtenciones.Rows.Count > 0)
+            {
+                Bloque_Zona(Abonado, gvAtenciones.Rows[Convert.ToInt32(gvAtenciones.Rows.Count) - 1].Cells[11].Text.ToString());
+                ListarComentarioZona(Convert.ToInt64(txtID_Ficha.Text), 201, Abonado);
+            }
+            else
+            {
+                Bloque_Zona("", "");
+            }
 
             
         }
-
     }
 }
