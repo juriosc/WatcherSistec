@@ -13,7 +13,7 @@
    <form id="login" runat="server">
         <h1><strong>CONTEC - Acceso al sistema</strong>            
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <strong style="font-size:11px;text-align:right">Versión 1.001</strong></h1>
+            <strong style="font-size:11px;text-align:right">Versión 1.02</strong></h1>
         
         <div style="margin:.5em 25px;background:#eee;padding:4px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-align:left;">
             
